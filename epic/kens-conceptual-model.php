@@ -12,7 +12,8 @@
 		<h3>Attribute: profileAuthorization</h3>
 		<h3>Attribute: profileHash</h3>
 		<h3>Attribute: profileSalt</h3>
-		<h3>Attribute: profileUsername</h3>
+		<h3>Attribute: profileUsername</h3>   <!-- CNM username -->
+		<h3>Attribute: profileName</h3>
 
 		<!-- List of categories tied to the columns in game (CSS, HTML, SQL, etc) -->
 		<h1>Entity: Category</h1>
