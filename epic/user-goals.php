@@ -3,10 +3,10 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>User Goals</title>
+		<title>System Goals</title>
 	</head>
 	<body>
-<h2>User Goals</H2>
+<h2>System Goals</H2>
 		<h4>By using the Q Review site as a "proctor" user can accomplish these goals</h4>
 		<ul>
 			<li>User can set up a classroom based interactive learning game mimicked after popular television show Jeopardy.</li>
