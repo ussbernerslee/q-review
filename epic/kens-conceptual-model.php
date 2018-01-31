@@ -8,19 +8,19 @@
 
 		<!-- Profile authentication information to match when checked against active directory -->
 		<h1>Entity: Profile</h1>
-		<h3>Attribute: profileId</h3>
-		<h3>Attribute: profileAuthorization</h3>
+		<h3>Attribute: profileId(Primary Key) BINARY(16) NOT NULL</h3>
+		<h3>Attribute: profileAuthorization</h3><!--not sure what this is-->
 		<h3>Attribute: profileHash</h3>
 		<h3>Attribute: profileSalt</h3>
-		<h3>Attribute: profileUsername</h3>   <!-- CNM username -->
-		<h3>Attribute: profileName</h3>
+		<h3>Attribute: profileUsername VARCHAR(50)</h3>
+		<h3>Attribute: profileName VARCHAR(50)</h3>
 
 		<!-- List of categories tied to the columns in game (CSS, HTML, SQL, etc) -->
 		<h1>Entity: Category</h1>
-		<h3>Attribute: categoryId</h3>
-		<h3>Attribute: categoryProfileId</h3>
-		<h3>Attribute: categoryTag</h3>
-		<h3>Attribute: </h3><!--do we want a sub attribute?-->
+		<h3>Attribute: categoryId(Primary Key)</h3>
+		<h3>Attribute: categoryProfileId (Foreign Key)</h3>
+		<h3>Attribute: categoryTag (VARCHAR)</h3>
+		<h3>Attribute: categoryPoints (TINYINT)</h3>
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
