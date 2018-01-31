@@ -34,7 +34,7 @@
 		<h3>Attribute: cardAnswer</h3>
 		<h3>Attribute: cardValue</h3>
 		<h3>Attribute: cardDoubleOrNothing</h3><!--not here-->
-		<h3>Attribute: cardFinalWager</h3><!--not herelkughljug-->
+		<h3>Attribute: cardFinalWager</h3><!--not here-->
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 
