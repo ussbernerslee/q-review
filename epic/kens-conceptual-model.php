@@ -19,8 +19,8 @@
 		<h1>Entity: Category</h1>
 		<h3>Attribute: categoryId(Primary Key) BINARY(16) NOT NULL</h3>
 		<h3>Attribute: categoryProfileId (Foreign Key)BINARY(16) NOT NULL</h3>
-		<h3>Attribute: categoryTag (VARCHAR)</h3>
-		<h3>Attribute: </h3>
+		<h3>Attribute: categoryTag VARCHAR(15)</h3>
+		<h3>Attribute: categoryTagSub VARCHAR(15)</h3>
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
@@ -50,6 +50,20 @@
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
+
+		<!-- Created "weak entity" linking Cards to Category -->
+		<h1>Entity: cardCategory</h1>
+		<h3>Attribute: cardCategoryId (CompoundPrimaryKey)BINARY(16) NOT NULL</h3>
+		<h3>Attribute: cardCategoryCardId(Foreign Key) BINARY(16) NOT NULL</h3>
+		<h3>Attribute: cardCategoryCategoryId (Foreign Key)BINARY(16) NOT NULL</h3>
+		<h3>Attribute: </h3>
+		<h3>Attribute: </h3>
+		<h3>Attribute: </h3>
+		<h3>Attribute: </h3>
+		<h3>Attribute: </h3>
+		<h3>Attribute: </h3>
+
+
 
 		<!-- Track stats? -->
 		<h1>Entity: Play-By-Play</h1>
