@@ -33,6 +33,8 @@
 		<h3>User Story</h3>
 		<h4>As the Captain of the class, A. I want to give my students a fun, interactive way to play a Jeopardy-like game with coding questions relating to what they learned in class. B. I want to add more questions to this game's question bank for future games.</h4>
 		<p></p>
+
+
 		<h3>Use Case A.</h3>
 		<ul>
 			<li><strong>Title: </strong>Proctoring a round of game-play:</li>
@@ -42,17 +44,20 @@
 			<li><strong>Interaction Flow(s), including alternates, if appropriate</strong></li>
 			<li><strong>Frequency of Use: </strong>at least once-per-week</li>
 		</ul>
+
+
 		<h3>Interaction Flow:</h3>
 		<!--Enter each after the </strong> and before the </li>-->
 		<ul>
-			<li><strong>User Action 1</strong> DeepDiveDylan enters his username and password.</li>
-			<li><strong>System Response 1</strong> CNM logs him in.</li>
-			<li><strong>User Action 2</strong> DeepDiveDylan navigates to the Q-Review Website and clicks the button to log-in as a Proctor.</li>
-			<li><strong>System Response 2</strong> Q-Review recognizes that he is allowed to be a proctor, so opens a page that gives him the choice to enter new questions, edit questions, or set up a game.</li>
-			<li><strong>User Action 3</strong> DeepDiveDylan chooses to set up a game, and clicks on this button</li>
-			<li><strong>System Response 3</strong> Q-Review opens the set up game screen.</li>
-			<li><strong>User Action 4</strong> DeepDiveDylan......</li>
-			<li><strong>System Response 4</strong> Q-Review.....</li>
+			<li><strong>System</strong> Q-review prompts login using CNM username and password.</li>
+			<li><strong>User</strong> DeepDiveDylan enters his username and password.</li>
+			<li><strong>System</strong> Q-review checks username and password against copy fom CNM Active Directory. Q-review matches credentials and logs logs him in, recognizing that his ID gives him proctor permissions.</li>
+			<li><strong>User</strong> DeepDiveDylan navigates the Q-Review Website and clicks the button to log-in as a Proctor.</li>
+			<li><strong>System</strong> Q-Review recognizes that he is allowed to be a proctor, so opens a page that gives him the choice to enter new questions, edit questions, or set up a game.</li>
+			<li><strong>User</strong> DeepDiveDylan chooses to set up a game, and clicks on this button</li>
+			<li><strong>System</strong> Q-Review opens the set up game screen.</li>
+			<li><strong>User</strong> DeepDiveDylan......</li>
+			<li><strong>System</strong> Q-Review.....</li>
 		</ul>
 		</div>
 
