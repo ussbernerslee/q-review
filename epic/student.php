@@ -6,28 +6,26 @@
 	</head>
 	<body>
 		<h1>Persona</h1>
-		<h3>Kevin</h3>
-		<p>Kevin is an individual in their mid-twenties who has decided to take on an immersive learning experience and tackle the daunting chanllenge of becoming a Full Stack Web Developer. They have chosen to attend a 10-week bootcamp-style class through CNM's Stemulus Center. Kevin was not interested in a traditional classroom and learning experience, finding it difficult to sit through long lectures, and study tangemtially related material in order to satisfy graduating requirements. Fascinated by the web, Kevin sees potential for a broad career, full of interesting projects. The motivation to take the bootcamp at the stemulus center is based on several recommendations through friends and family and an ability to aquire a grant through a local tech grant. Kevin is motivated to give everything to the 10-week course to ensure the greatest return.</p>
+		<h3>Kevin - Power User Student</h3>
+		<p>Kevin is an individual in their mid-twenties who has decided to take on an immersive learning experience and tackle the daunting challenge of becoming a full-stack web developer. They have chosen to attend a 10-week bootcamp-style class through CNM's Stemulus Center. Kevin was not interested in a traditional classroom and learning experience, finding it difficult to sit through long lectures, and study tangentially related material in order to satisfy graduating requirements. Fascinated by the web, Kevin sees potential for a broad career, full of interesting projects. The motivation to take the bootcamp at the Stemulus center is based on several recommendations through friends and family and an ability to acquire a grant through a local tech grant. Kevin is motivated to give everything to the 10-week course to ensure the greatest return.</p>
 		<br>
-		<p>Kevin is a longtime technology user. They are familiar with both mac and windows machines, though they gravitate towards macintosh for their sleek designs, and simple, user-friendly, interface. For the bootcamp they were able to secure a brand new 13-inch macbook pro laptop. Already familiar with other mac products, their was no learning curve to the software implementation, and Kevin found the pre-work easy to replicate.</p>
+		<p>Kevin is a longtime technology user. They are familiar with both mac and windows machines, though they gravitate towards macintosh for their sleek designs, and simple, user-friendly, interface. For the bootcamp they were able to secure a brand new 13-inch macbook pro laptop. Already familiar with other mac products, their was no learning curve to the software implementation, and Kevin found the pre-work easy to replicate. The pre-work dictated to Kevin that they should install the Chrome Browser and become familiar with it's interface and Develpment Tools. Kevin is now an avid Chrome user.</p>
 		<br>
 		<p>Kevin is an avid user of google, always scouring the web for new facts and information. Kevin likes to try things and iterate fast, discovering through trial-and-error. Kevin is liable to click a button to see what it does, or delete lines of code to see what happens, and is quick to jump into new projects, even before the instructions have been given</p>
 		<br>
-		<p>Kevin does not like test, nor do they like to get too deep into documentation, without the immediate feedback of practice code or a demonstration. Kevin learns through seeing, and doing.</p>
+		<p>Kevin does not like tests, nor do they like to get too deep into documentation, without the immediate feedback of practice code or a demonstration. Kevin learns through seeing, and doing.</p>
+		<br>
+		<p>In summary, Kevin is a power user of the site through the Student view. They will utilize the latest Chrome browser, on the latest macintosh laptop, and very quickly identify how to interact with the game.</p>
 		<h3>User Story</h3>
-		<p>Kevin has just finished a Monday morning snap challenge and would like to log into and play another game of Q-Review, a Jeopardy-esque game where the course instructor allows students to battle for points by answering questions faster than other students. Kevin really enjoys the simple, intuitive, user interface combined with the seamless game-play that suggests a very well thought out site.</p>
+		<p>Kevin has just finished a Monday morning snap challenge and their instructor instructs them to join this morning's game of Q-Review, a Jeopardy-esque game where the course instructor allows multiple students to simultaneously battle for points by buzzing in and answering questions revealed only to the instructor. Kevin logs into the site, and joins the instructors game and is able to buzz in and answer questions, verbally and through text input, and is able to track his score relative to the other students in the class.</p>
 		<h3>Use Case</h3>
-		<p>Kevin would like to log in and win today's game of Q-Review.</p>
+		<p>Kevin would like to win today's game of Q-Review.</p>
 		<h3>Preconditions</h3>
-		<p>Kevin is a student enrolled in CNM's Deep Dive Coding Bootcamp and had a CNM Username and Password.</p>
+		<p>Kevin is logged into Q-Review and in their instructors game.</p>
 		<h3>Postconditions</h3>
 		<p>Kevin has won the game of Q-Review by stealing control from the previous winner, and sweeping the board, doubling his score twice through the Double or Nothing question and the Final Wager.</p>
 		<h3>Interaction Flow</h3>
 		<ol>
-			<li>Kevin clicks the link that the instructor shared on Slack</li>
-			<li>The server directs Kevin to a Student Login Page</li>
-			<li>Kevin enters his CNM Username and Password and clicks Submit</li>
-			<li>The site hashes and salts his Password and checks with the CNM Student Database, returns true, and the Server issues Kevin a session ID</li>
 			<li>After the first question is read Kevin quickly presses his spacebar</li>
 			<li>The Server instantaneously records this key-press as the first press and freezes the game, lights up Kevin's screen and highlights his name on the Leaderboard</li>
 			<li>Kevin answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
