@@ -33,7 +33,7 @@
 			<li>Kevin answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
 			<li>The server then removes the question being played, and adds the point-value assigned to the question to Kevin's score and moves his name to the top of the Leaderboard</li>
 			<li>Kevin then clicks another tile, still in play</li>
-			<l>The Server displays the question to the instructor and unfreezes the game</l>
+			<li>The Server displays the question to the instructor and unfreezes the game</li>
 			<li>Kevin repeats steps 7-10 until the only one question remains. Kevin selects the tile, which happens to be the Double or Nothing Question</li>
 			<li>The Server flashes Kevin's screen multiple times and makes a really obnoxious sound.</li>
 			<li>The question is read and a timer is started</li>
