@@ -32,8 +32,7 @@
 		</ul>
 
 		<h3>User Story</h3>
-		<p>As the proctor, I would like to test students knowledge in a fun and engaging way.</p>
-		<p></p>
+		<p>As the proctor, I would like to host a game.</p>
 
 
 		<h3>Use Case</h3>
@@ -62,7 +61,7 @@
 			<li><strong>User: </strong>DeepDiveDylan selects: CSS, HTML, JavaScript, MySQL, and Fired Employees</li>
 			<li><strong>System: </strong>Prompts proctor to select difficulty of questions</li>
 			<li><strong>User: </strong>DeepDiveDylan selects "Moderate" (its only week[2] afterall...)</li>
-			<li><strong>System: </strong>Q-review auto populates a game board of 5 categories of 4 questions each. Ready to paly.</li>
+			<li><strong>System: </strong>Q-review auto populates a game board of 5 categories of 4 questions each. Ready to play.</li>
 		</ul>
 		</div>
 
