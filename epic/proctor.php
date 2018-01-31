@@ -52,13 +52,17 @@
 		<ul>
 			<li><strong>System: </strong> Q-review prompts login using username and password</li>
 			<li><strong>User: </strong> DeepDiveDylan enters his username and password.</li>
-			<li><strong>System: </strong> Q-review checks the username and hash and salt of the password against the database. Q-review matches credentials and logs logs him in, recognizing that his ID gives him proctor permissions.</li>
+			<li><strong>System: </strong> Q-review checks logs him in and givs him proctor permissions.</li>
 			<li><strong>User: </strong>DeepDiveDylan chooses to set up a game, and clicks the 'Create New Game' button</li>
 			<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
-			<li><strong>User: </strong></li>
-			<li><strong>System: </strong></li>
-			<li><strong>User: </strong></li>
-			<li><strong>System: </strong></li>
+			<li><strong>User: </strong>DeepDiveDylan selects option to use pre created questions for the game.</li>
+			<li><strong>System: </strong>Prompts proctor to select the number number of categories and questions per subject.</li>
+			<li><strong>User: </strong>DeepDiveDylan chooses to make a game using 5 categories and 4 questions per category.</li>
+			<li><strong>System: </strong>Prompts proctor to select 5 unique predefined categories</li>
+			<li><strong>User: </strong>DeepDiveDylan selects: CSS, HTML, JavaScript, MySQL, and Fired Employees</li>
+			<li><strong>System: </strong>Prompts proctor to select difficulty of questions</li>
+			<li><strong>User: </strong>DeepDiveDylan selects "Moderate" (its only week[2] afterall...)</li>
+			<li><strong>System: </strong>Q-review auto populates a game board of 5 categories of 4 questions each. Ready to paly.</li>
 		</ul>
 		</div>
 
