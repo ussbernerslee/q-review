@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div>
-		<h2>Personas, Use Cases, and Interaction Flow</h2>
+		<h2>Persona, Use Cases, and Interaction Flow for PROCTOR:</h2>
 		<h3>Persona:</h3>
 		<ul>
 			<li><strong>Name</strong>: DeepDiveDylan</li>
@@ -52,7 +52,7 @@
 			<li><strong>User Action 3</strong> DeepDiveDylan chooses to set up a game, and clicks on this button</li>
 			<li><strong>System Response 3</strong> Q-Review opens the set up game screen.</li>
 			<li><strong>User Action 4</strong> DeepDiveDylan......</li>
-			<li><strong>System Response 4</strong> .....</li>
+			<li><strong>System Response 4</strong> Q-Review.....</li>
 		</ul>
 		</div>
 

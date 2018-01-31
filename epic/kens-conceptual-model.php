@@ -20,7 +20,7 @@
 		<h3>Attribute: categoryId</h3>
 		<h3>Attribute: categoryProfileId</h3>
 		<h3>Attribute: categoryTag</h3>
-		<h3>Attribute: </h3>
+		<h3>Attribute: </h3><!--do we want a sub attribute?-->
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
@@ -33,8 +33,8 @@
 		<h3>Attribute: cardQuestion</h3>
 		<h3>Attribute: cardAnswer</h3>
 		<h3>Attribute: cardValue</h3>
-		<h3>Attribute: cardDoubleOrNothing</h3>
-		<h3>Attribute: cardFinalWager</h3>
+		<h3>Attribute: cardDoubleOrNothing</h3><!--not here-->
+		<h3>Attribute: cardFinalWager</h3><!--not here-->
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 
@@ -43,9 +43,9 @@
 		<h1>Entity: Board</h1>
 		<h3>Attribute: boardId</h3>
 		<h3>Attribute: boardProfileId</h3>
-		<h3>Attribute: boardSubject</h3>
-		<h3>Attribute: boardCategories</h3>
-		<h3>Attribute: boardCards</h3>
+		<h3>Attribute: boardSubject</h3><!--here- we might need a subject table to tie cards to game subjects-->
+		<h3>Attribute: boardCategories</h3><!--This needs to be broken out to a new table-->
+		<h3>Attribute: boardCards</h3><!--this needs to be broken out into a new table-->
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
