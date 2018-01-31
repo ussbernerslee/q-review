@@ -22,6 +22,7 @@
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 
+		<!-- Question card containing question in specific category, answer, and value -->
 		<h1>Entity: Card</h1>
 		<h3>Attribute: cardId</h3>
 		<h3>Attribute: cardCategoryId</h3>
@@ -33,6 +34,8 @@
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 
+
+		<!-- Created game board filled with questions and values -->
 		<h1>Entity: Board</h1>
 		<h3>Attribute: boardId</h3>
 		<h3>Attribute: boardProfileId</h3>
@@ -44,6 +47,7 @@
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 
+		<!-- Track stats? -->
 		<h1>Entity: Play-By-Play</h1>
 		<h3>Attribute: playByPlayId</h3>
 		<h3>Attribute: </h3>
