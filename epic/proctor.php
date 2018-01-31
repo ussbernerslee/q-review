@@ -15,29 +15,29 @@
 			<li><strong>Age</strong>: 35</li>
 			<li><strong>Technology</strong>: mac, pc, linux...but happiest on mac
 				<ul>
-					<li><strong>Device</strong> Newest Macbook Pro with Touch Bar</li>
-					<li><strong>Proficiency</strong> Master</li>
+					<li><strong>Device</strong> Newest Macbook Pro with Touch Bar...The 15-inch MacBook Pro features a powerful Radeon Pro discrete GPU in every configuration. Manufactured with a 14 nm process, Radeon Pro graphics combine outstanding power with outstanding power efficiency. And now 4GB of GDDR5 memory comes standard on the top configuration, giving you fluid, real-time performance for pro tasks like rendering 3D titles in Final Cut Pro X. Every 13-inch model features powerful integrated graphics with 64MB of embedded DRAM, which accelerates graphics tasks. That means more time for what matters most — creating amazing work (and mining Bitcoin)</li>
+					<li><strong>Proficiency</strong>Captain</li>
 					<li><strong>Love/Hate</strong> Loves, Loves, LOVES!  Checks Slack continuously. Keeps track of Bitcoin shares.</li>
 				</ul>
 			</li>
 			<li><strong>Attitudes and Needs</strong>
 				<ul>
-					<li><strong>What need does this person have?</strong> He needs a Jeopardy-like game for his students to play.</li>
+					<li><strong>What need does this person have?</strong> He needs a Jeopardy-like game for his Full Stack Bootcamp Coding students to play.</li>
 
-					<li><strong>Why choose your site over other options?</strong> Medium is beautiful, easy for her family back home to use, and allows commenting, and highlighting directly within the text of the article.</li>
+					<li><strong>Why choose your site over other options?</strong> Q-Review (this Jeopardy-like game) is built specifically to his specifications, and allows him to add questions on the fly. </li>
 				</ul>
 			</li>
 		</ul>
 
 		<h3>User Story</h3>
-		<h4>As a member of Medium, I want to post articles</h4>
+		<h4>As the Captain of the class, A. I want to give my students a fun, interactive way to play a Jeopardy-like game with coding questions relating to what they learned in class. B. I want to add more questions to this game's question bank for future games.</h4>
 		<p></p>
-		<h3>Use Case</h3>
+		<h3>Use Case A.</h3>
 		<ul>
-			<li><strong>Title: </strong> Through-Hiking the Appalachian Trail</li>
-			<li><strong>Name of the "actor, user or Persona, and their role: </strong> Alicia, Through-Hiker</li>
-			<li><strong>Usage Preconditions: </strong> Alicia needs to be a member of Medium and be signed in (Has to be in a place where she has wifi access)</li>
-			<li><strong>Usage Postconditions:</strong> Alicia's article is posted and available for her friends to read while she continues hiking.</li>
+			<li><strong>Title: </strong>Proctoring a round of game-play:</li>
+			<li><strong>Name of the "actor, user or Persona, and their role: </strong> DeepDiveDylan, Captain/Proctor of game</li>
+			<li><strong>Usage Preconditions: </strong>DeepDiveDylan must be signed into CNM, using his CNM UserId and password</li>
+			<li><strong>Usage Postconditions:</strong>DeepDiveDylan has successfully set up a game, proctored it, and has the scores of his players/students</li>
 			<li><strong>Interaction Flow(s), including alternates, if appropriate</strong></li>
 			<li><strong>Frequency of Use: </strong> once-a-week</li>
 		</ul>
