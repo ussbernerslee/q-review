@@ -32,33 +32,33 @@
 		</ul>
 
 		<h3>User Story</h3>
-		<h4>As the proctor, I would like to test students knowledge in a fun and engaging way.</h4>
+		<p>As the proctor, I would like to test students knowledge in a fun and engaging way.</p>
 		<p></p>
 
 
-		<h3>Use Case A.</h3>
+		<h3>Use Case</h3>
 		<ul>
 			<li><strong>Title: </strong>Proctoring a round of game-play:</li>
 			<li><strong>Name of the "actor, user or Persona, and their role: </strong> DeepDiveDylan, Captain/Proctor of game</li>
-			<li><strong>Usage Preconditions: </strong>DeepDiveDylan must be signed into CNM, using his CNM UserId and password</li>
-			<li><strong>Usage Postconditions:</strong>DeepDiveDylan has successfully set up a game, proctored it, has the scores of his players/students, and knows who the winner is.(may have entered new questions and set tags and value)</li>
-			<li><strong>Interaction Flow(s), including alternates, if appropriate</strong></li>
+			<li><strong>Usage Preconditions: </strong>DeepDiveDylan must be signed into Q-review using his previously registered account.</li>
+			<li><strong>Usage Postconditions:</strong>DeepDiveDylan has successfully set up a game, proctored it, has the scores of his players/students, and knows who the winner is.(may have entered new questions and set tags and values)</li>
 			<li><strong>Frequency of Use: </strong>at least once-per-week</li>
 		</ul>
 
 
 		<h3>Interaction Flow:</h3>
 		<!--Enter each after the </strong> and before the </li>-->
+		<p><strong>Assumption: </strong>User has previously created an account and is registered as a Proctor.</p>
 		<ul>
-			<li><strong>System</strong> Q-review prompts login using CNM username and password.</li>
-			<li><strong>User</strong> DeepDiveDylan enters his username and password.</li>
-			<li><strong>System</strong> Q-review checks username and password against copy fom CNM Active Directory. Q-review matches credentials and logs logs him in, recognizing that his ID gives him proctor permissions.</li>
-			<li><strong>User</strong>DeepDiveDylan chooses to set up a game, and clicks the 'Create New Game' button</li>
-			<li><strong>System</strong>Q-Review opens the set up game screen.</li>
-			<li><strong>User</strong></li>
-			<li><strong>System</strong></li>
-			<li><strong>User</strong></li>
-			<li><strong>System</strong></li>
+			<li><strong>System: </strong> Q-review prompts login using username and password</li>
+			<li><strong>User: </strong> DeepDiveDylan enters his username and password.</li>
+			<li><strong>System: </strong> Q-review checks the username and hash and salt of the password against the database. Q-review matches credentials and logs logs him in, recognizing that his ID gives him proctor permissions.</li>
+			<li><strong>User: </strong>DeepDiveDylan chooses to set up a game, and clicks the 'Create New Game' button</li>
+			<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
+			<li><strong>User: </strong></li>
+			<li><strong>System: </strong></li>
+			<li><strong>User: </strong></li>
+			<li><strong>System: </strong></li>
 		</ul>
 		</div>
 
