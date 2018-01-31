@@ -5,6 +5,8 @@
 		<title>Ken's Conceptual Model</title>
 	</head>
 	<body>
+
+		<!-- Profile authentication information to match when checked against active directory -->
 		<h1>Entity: Profile</h1>
 		<h3>Attribute: profileId</h3>
 		<h3>Attribute: profileAuthorization</h3>
@@ -12,6 +14,7 @@
 		<h3>Attribute: profileSalt</h3>
 		<h3>Attribute: profileUsername</h3>
 
+		<!-- List of categories tied to the columns in game (CSS, HTML, SQL, etc) -->
 		<h1>Entity: Category</h1>
 		<h3>Attribute: categoryId</h3>
 		<h3>Attribute: categoryProfileId</h3>
