@@ -16,7 +16,7 @@
 			<li><strong>Age</strong>: 35</li>
 			<li><strong>Technology</strong>: mac, pc, linux...but happiest on mac
 				<ul>
-					<li><strong>Device</strong> Newest Macbook Pro with Touch Bar..The 15-inch MacBook Pro features a powerful Radeon Pro discrete GPU in every configuration. Manufactured with a 14 nm process, Radeon Pro graphics combine outstanding power with outstanding power efficiency. And now 4GB of GDDR5 memory comes standard on the top configuration, giving you fluid, real-time performance for pro tasks like rendering 3D titles in Final Cut Pro X. Every 13-inch model features powerful integrated graphics with 64MB of embedded DRAM, which accelerates graphics tasks. That means more time for what matters most — creating amazing work (and mining Bitcoin)</li>
+					<li><strong>Device</strong> Newest Macbook Pro xxwith Touch Bar..The 15-inch MacBook Pro features a powerful Radeon Pro discrete GPU in every configuration. Manufactured with a 14 nm process, Radeon Pro graphics combine outstanding power with outstanding power efficiency. And now 4GB of GDDR5 memory comes standard on the top configuration, giving you fluid, real-time performance for pro tasks like rendering 3D titles in Final Cut Pro X. Every 13-inch model features powerful integrated graphics with 64MB of embedded DRAM, which accelerates graphics tasks. That means more time for what matters most — creating amazing work (and mining Bitcoin)</li>
 					<li><strong>Proficiency: </strong>extreme...Captain</li>
 					<li><strong>Love/Hate</strong> Loves, Loves, LOVES!  Checks Slack continuously. Keeps track of Bitcoin shares.</li>
 				</ul>
