@@ -52,12 +52,12 @@
 			<li><strong>System</strong> Q-review prompts login using CNM username and password.</li>
 			<li><strong>User</strong> DeepDiveDylan enters his username and password.</li>
 			<li><strong>System</strong> Q-review checks username and password against copy fom CNM Active Directory. Q-review matches credentials and logs logs him in, recognizing that his ID gives him proctor permissions.</li>
-			<li><strong>User</strong> DeepDiveDylan navigates the Q-Review Website and clicks the button to log-in as a Proctor.</li>
-			<li><strong>System</strong> Q-Review recognizes that he is allowed to be a proctor, so opens a page that gives him the choice to enter new questions, edit questions, or set up a game.</li>
-			<li><strong>User</strong> DeepDiveDylan chooses to set up a game, and clicks on this button</li>
-			<li><strong>System</strong> Q-Review opens the set up game screen.</li>
-			<li><strong>User</strong> DeepDiveDylan......</li>
-			<li><strong>System</strong> Q-Review.....</li>
+			<li><strong>User</strong>DeepDiveDylan chooses to set up a game, and clicks the 'Create New Game' button</li>
+			<li><strong>System</strong>Q-Review opens the set up game screen.</li>
+			<li><strong>User</strong></li>
+			<li><strong>System</strong></li>
+			<li><strong>User</strong></li>
+			<li><strong>System</strong></li>
 		</ul>
 		</div>
 
