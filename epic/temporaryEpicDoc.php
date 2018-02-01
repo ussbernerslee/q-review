@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>Executive Summary</title>
+		<meta charset="UTF-8" />
+
+		<link rel="stylesheet" href="../css/epicCss/epicStyle.css">
 	</head>
 	<body>
+
+
 <!----------------------------------------------------------------------------------------------------------------------
 
 
@@ -17,44 +20,35 @@
 
 			<h3>What is Q-Review</h3>
 
-			<p>Q-Review is a game-show style question and answer subject-matter review website that allows an instructor to input custom flash-cards, creating a deck for Q-Review to generate fun review sessions based on parameters set by the instructor.</p>
-
-			<br>
+			<p>Q-Review is a game-show style, question and answer, subject-matter review website that allows an instructor to input custom flash-cards to create a deck for Q-Review to generate fun interactive review sessions based on parameters set by the instructor.</p>
 
 			<h3>Building a New Deck</h3>
 
-			<p>Each “Deck” can generate an infinite number of new review sessions, though their variability will be determined by the number of cards. Each unique deck will be entered by the instructor themselves, who will have the ability to write in the question, suitable answers, a difficulty rating on a scale of 0-10, and a category tag.</p>
-			<br>
+			<p>Each “deck” can generate an infinite number of new review sessions, though their variability will be determined by the number of cards available. Each unique deck will be entered by the instructor themselves, who will have the ability to write in the question, suitable answers, a difficulty rating on a scale of 0-10, and a category tag.</p>
 
 			<h3>Creating a New Review Session (Game)</h3>
-			<p>Once a deck is built the instructor can build a review session, or game, by building the board. Each board will be composed of categories along the top, and questions of increasing difficulty cascading down for each. The instructor will input how many columns and rows they want for each of these sessions. For the columns, the instructor cannot have more than the number of different categories, or 7, whichever is less. For the number of rows, or questions per category, again they cannot have more than the number of unique difficulty values they have assigned in this deck, or 10, whichever is less. Categories will be assigned alphabetically left to right, and custom category titles may then be added for the game. Questions will populate accordingly with the easiest being at the top, and most-difficult at the bottom. The instructor will then be able to input a point value that corresponds to each row.</p>
 
-			<br>
+			<p>Once a deck is built, the instructor can build a review session (game) by building the board. Each board will be composed of categories along the top, and questions of increasing difficulty cascading down for each. The instructor will input how many columns and rows they want for each of these sessions. For the columns, the instructor cannot have more than the number of different categories in the deck, or 7, whichever is less. For the number of rows, or questions per category, again they cannot have more than the number of unique difficulty values they have assigned in this deck, or 10, whichever is less. Categories will be assigned alphabetically left to right, and custom category titles may then be added for the game. Questions will populate accordingly with the easiest being at the top, and most-difficult at the bottom. The instructor will then be able to input a point-value that corresponds to each row.</p>
 
 			<h3>Review Session (Game)</h3>
-			<p>Once the game is created, the instructor can allow students to join the game. Multiple students can login simultaneously to any game hosted by the instructor. The instructor will select a student to lead the game, or if a game has already been played with this group of students, the winner of the previous game will have control of the board and be able to pick the topic and difficulty of the question. Every student will have the ability to buzz-in by pressing the spacebar on their keyboard, but only the fastest will be recorded and allowed to answer the question. The instructor will be able to select whether the student got the question correct or not and the the game will update the points accordingly. If the student answers correctly, they will retain control of the board. If the student answers incorrectly the game will again allow for another round of buzz-ins for a second student to answer the question. This will continue until all of the card have been revealed and answered.</p>
 
-			<br>
+			<p>Once the review session is created, the instructor can allow students to join the game. Multiple students can login simultaneously to any review session hosted by the instructor. The instructor will then select a student to lead the game, or if a game has already been played with this group of students, the winner of the previous game will have control of the board and be able to pick the question by category and point-value. Every student will have the ability to buzz-in by pressing the space-bar on their keyboard, but only the fastest will be recorded and allowed to answer the question. The instructor will be able to select whether the student got the question correct or incorrect and then the game will update the student's points accordingly. If the student answers correctly, they will retain control of the board. If the student answers incorrectly and the instructor makes that selection, the game will allow for another round of buzz-ins for a second student to answer the question. This will continue until all of the card have been revealed and answered.</p>
 
 			<h3>Special cases</h3>
 
-			<h4>The Double or Nothing Question</h4>
+			<h4>The Double-or-Nothing Question</h4>
 
-			<p>One card out of every game will be randomly selected to be a Double or Nothing questions. There will be no buzz-ins for this question, the student who had control of the board will be allowed to try and answer the question. If they are correct, they will double their points, if they are incorrect they will lose the value of the card. If they are incorrect, the game will allow other students to “steal” the points by buzzing-in and answering correctly, though after, the student who originally chose the Double or Nothing will retain control of the board and pick a new topic and difficulty.</p>
+			<p>One card out of every game will be randomly selected to be a double-or-nothing question. There will be no buzz-ins for this question, the student who had control of the board will be allowed to try and answer the question. If they are correct, they will double their points, if they are incorrect the point-value of the card will be deducted from their points. If they are incorrect, the game will allow other students to “steal” the points by buzzing-in and answering correctly, though after, the student who originally chose the double-or-nothing will retain control of the board and pick a new topic and difficulty.</p>
 
-			<br>
+			<h4>The Final Wager</h4>
 
-			<h3>The Final Wager</h3>
-			<p>At the conclusion of every game, there is one questions that every student must answer. They will first have to enter and save a wager that is either equal to or less than their current score, or the highest value of the board that day, whichever is greater (though they risk losing that many points if they get it wrong). After the wagers are set, the question will be read and students will input their answers into a textbox and submit them. The teacher will be able to review the answers as they come in, but the scoreboard will not update until all answers have been submitted.</p>
-
-			<br>
+			<p>At the conclusion of every game, there is one final question that every student must answer. They will first have to enter and save a wager that is either equal to or less than their current score, or the highest value of the board that day, whichever is greater (though they risk losing that many points if they get it wrong, even going into negative values). After the wagers are set, the question will be read and students will input their answers into a textbox and submit them. The teacher will be able to review the answers as they come in, but the scoreboard will not update until all answers have been submitted.</p>
 
 			<p>At the conclusion of the game, the student with the highest number of points will be declared the winner, and in the subsequent game, will begin with control of the board.</p>
 
-			<br>
-
 			<h3>Ending a Review Session</h3>
-			<p>Each game is automagically saved during gameplay and, in the case of an accidental closing of the session, can be recovered. Therefore, at the conclusion of the game, the students and instructor can simply log out of the session. Upon returning to that Deck, the instructor can select Create New Sessions to generate a new board and start a fresh game based on the most up-to-date information from the last game, or the instructor could select Resume an Old Session, and open up a previous or unfinished session.</p>
+
+			<p>Each game is automagically saved during gameplay and, in the case of an accidental closing of the session, can be recovered. Therefore, at the conclusion of the game, the students and instructor can simply log out of the session. Upon returning to that Deck, the instructor can select Create New Review Session to generate a new board and start a fresh game based on the most up-to-date information from the last game, or the instructor could select Resume an Old Review Session, and open up a previous or unfinished session.</p>
 
 		</section>
 
@@ -70,7 +64,7 @@
 			</div>
 
 			<div class="persona">
-					<h3>Instructor Persona: Dylan</h3>
+					<h3>Instructor Persona</h3>
 					<ul>
 						<li><strong>Name</strong>: DeepDiveDylan</li>
 						<li><strong>Personality</strong>: Enthusiastic, energetic, brilliant, generous, kind to his students and co-workers. Loves his job, willing to "go there" to investigate any question his students ask.</li>
@@ -102,16 +96,16 @@
 			<div class="use case">
 					<h3>Use Case</h3>
 					<ul>
-						<li><strong>Title: </strong>Proctoring a round of game-play:</li>
-						<li><strong>Name of the "actor, user or Persona, and their role: </strong> DeepDiveDylan, Captain/Proctor of game</li>
+						<li><strong>Title: </strong>Proctoring a round of game-play</li>
+						<li><strong>User and Role: </strong>DeepDiveDylan, Captain/Proctor of game</li>
 						<li><strong>Pre-conditions: </strong>DeepDiveDylan must be signed into Q-review using his previously registered account.</li>
-						<li><strong>Post-conditions:</strong>DeepDiveDylan has successfully set up a game, proctored it, has the scores of his players/students, and knows who the winner is.</li>
+						<li><strong>Post-conditions: </strong>DeepDiveDylan has successfully set up a game, proctored it, has the scores of his players/students, and knows who the winner is.</li>
 						<li><strong>Frequency of Use: </strong>at least once-per-week</li>
 					</ul>
 			</div>
 
 			<div class="interaction flow">
-					<h3>Interaction Flow:</h3>
+					<h3>Interaction Flow</h3>
 					<!--Enter each after the </strong> and before the </li>-->
 					<p><strong>Assumption: </strong>User has previously created an account and is registered as a Proctor.</p>
 					<ul>
@@ -133,24 +127,24 @@
 
 
 			<div class="persona">
-					<h3>Instructor Persona: Janet</h3>
+					<h3>Instructor Persona</h3>
 					<ul>
 						<li><strong>Name</strong>: Janet Fredrickson</li>
-						<li><strong>Personality</strong>: Quite and down-to-earth. Holds her students in high regards and holds them to high expectations. Kind but professionally demanding.</li>
+						<li><strong>Personality</strong>: Quiet and down-to-earth. Holds her students in high regards and holds them to high expectations. Kind but professionally demanding.</li>
 						<li><strong>Gender</strong>: Female</li>
 						<li><strong>Age</strong>: 42</li>
 						<li><strong>Technology</strong>: Solely a PC user
 							<ul>
 								<li><strong>Device: </strong>Two year old Acer laptop with external keyboard and wireless mouse.</li>
 								<li><strong>Browser: </strong>Google Chrome</li>
-								<li><strong>Proficiency: </strong>Day to day user with average knowledge of the machine and in applications.</li>
-								<li><strong>Love/Hate </strong>Loves to teach via digital media however she hates her options to do so.</li>
+								<li><strong>Proficiency: </strong>Day to day user with average knowledge of the machine and it's applications.</li>
+								<li><strong>Love/Hate </strong>Loves to teach via digital media, however she hates her options to do so.</li>
 							</ul>
 						</li>
 						<li><strong>Attitudes and Needs</strong>
 							<ul>
 								<li><strong>What need does this person have? </strong> Janet needs to present her course material to her students in a fun and engaging manner.</li>
-								<li><strong>Why choose your site over other options? </strong> Q-Review is designed to make sometimes tedious material more enjoyable for students to learn by presenting the information in a game format. When an individual is enjoying themselves, retention and interest can be enhanced. </li>
+								<li><strong>Why choose your site over other options? </strong> Q-Review is designed to make sometimes tedious material more enjoyable for students to learn by presenting the information in a competitive game format. When an individual is enjoying themselves, retention and interest can be enhanced. </li>
 							</ul>
 						</li>
 					</ul>
@@ -164,11 +158,11 @@
 			<div class="use case">
 					<h3>Use Case</h3>
 					<ul>
-						<li><strong>Title: </strong>Teaching material more enjoyably:</li>
+						<li><strong>Title: </strong>Teaching material more enjoyably</li>
 						<li><strong>User and role: </strong> The proctor Janet Fredrickson</li>
 						<li><strong>Pre-conditions: </strong>Janet must be logged into her account and prepared to input her questions for the days Q-review game</li>
-						<li><strong>Post-conditions:</strong>Janet ends the game having inspired three students to invest more time into studying Biology.</li>
-						<li><strong>Frequency of Use: </strong>Once a week as a tool for her students to review.</li>
+						<li><strong>Post-conditions:</strong>Janet ends the game having inspired three students to invest more time into studying Biology</li>
+						<li><strong>Frequency of Use: </strong>Once a week as a tool for her students to review</li>
 					</ul>
 			</div>
 
@@ -206,57 +200,70 @@
 				</div>
 
 
-			<div class="persona">
-				<h2>Student Persona: Kevin</h2>
-				<h3>Kevin - Power User Student</h3>
-				<p>Kevin is an individual in their mid-twenties who has decided to take on an immersive learning experience and tackle the daunting challenge of becoming a full-stack web developer. They have chosen to attend a 10-week bootcamp-style class through CNM's Stemulus Center. Kevin was not interested in a traditional classroom and learning experience, finding it difficult to sit through long lectures, and study tangentially related material in order to satisfy graduating requirements. Fascinated by the web, Kevin sees potential for a broad career, full of interesting projects. The motivation to take the bootcamp at the Stemulus center is based on several recommendations through friends and family and an ability to acquire a grant through a local tech grant. Kevin is motivated to give everything to the 10-week course to ensure the greatest return.</p>
-				<br>
-				<p>Kevin is a longtime technology user. They are familiar with both mac and windows machines, though they gravitate towards macintosh for their sleek designs, and simple, user-friendly, interface. For the bootcamp they were able to secure a brand new 13-inch macbook pro laptop. Already familiar with other mac products, their was no learning curve to the software implementation, and Kevin found the pre-work easy to replicate. The pre-work dictated to Kevin that they should install the Chrome Browser and become familiar with it's interface and Develpment Tools. Kevin is now an avid Chrome user.</p>
-				<br>
-				<p>Kevin is an avid user of google, always scouring the web for new facts and information. Kevin likes to try things and iterate fast, discovering through trial-and-error. Kevin is liable to click a button to see what it does, or delete lines of code to see what happens, and is quick to jump into new projects, even before the instructions have been given</p>
-				<br>
-				<p>Kevin does not like tests, nor do they like to get too deep into documentation, without the immediate feedback of practice code or a demonstration. Kevin learns through seeing, and doing.</p>
-				<br>
-				<p>In summary, Kevin is a power user of the site through the Student view. They will utilize the latest Chrome browser, on the latest macintosh laptop, and very quickly identify how to interact with the game.</p>
+			<h2>Student Persona</h2>
+			<h3>Kevin - Power User Student</h3>
+			<ul>
+				<li><strong>Name</strong>: Kevin</li>
+				<li><strong>Personality</strong>: </li>
+				<li><strong>Gender</strong>: Male</li>
+				<li><strong>Age</strong>: 25</li>
+				<li><strong>Technology</strong>: mac, pc, but let's be honest...mac
+					<ul>
+						<li><strong>Device </strong> New Macbook Pro 13-inch</li>
+						<li><strong>Browser: </strong>Chrome</li>
+						<li><strong>Proficiency: </strong>Intermediate -> Advanced (has played around with the Dev Tools)</li>
+						<li><strong>Love/Hate: </strong>Reddit/Facebook (even though they check it constantly)</li>
+					</ul>
+				</li>
+				<li><strong>Attitudes and Needs</strong>
+					<ul>
+						<li><strong>What need does this person have?</strong> Kevin needs </li>
+
+						<li><strong>Why choose your site over other options?</strong> Q-Review offers  </li>
+					</ul>
+				</li>
+			</ul>
 			</div>
 
 			<div class="user story"></div>
-				<h3>User Story</h3>
-				<p>Kevin has just finished a Monday morning snap challenge and their instructor instructs them to join this morning's game of Q-Review, a Jeopardy-esque game where the course instructor allows multiple students to simultaneously battle for points by buzzing in and answering questions revealed only to the instructor. Kevin logs into the site, and joins the instructors game and is able to buzz in and answer questions, verbally and through text input, and is able to track his score relative to the other students in the class.</p>
+			<h3>User Story</h3>
+			<p>As a student, power-user, I want to dominate (win) today's review session.</p>
 			</div>
 
 			<div class="use case">
 				<h3>Use Case</h3>
-				<p>Kevin would like to win today's game of Q-Review.</p>
-				<h3>Preconditions</h3>
-				<p>Kevin is logged into Q-Review and in their instructors game.</p>
-				<h3>Postconditions</h3>
-				<p>Kevin has won the game of Q-Review by stealing control from the previous winner, and sweeping the board, doubling his score twice through the Double or Nothing question and the Final Wager.</p>
+				<ul>
+					<li><strong>Title: </strong>Kevin wins today's game of Q-Review.</li>
+					<li><strong>Name of the "actor, user or Persona, and their role: </strong> Kevin, One of the  students playing the game</li>
+					<li><strong>Pre-conditions: </strong>Kevin is logged into Q-Review and in their instructors game.</li>
+					<li><strong>Post-conditions: </strong>Kevin has won the game of Q-Review by stealing control from the previous winner, and sweeping the board, doubling his score twice through the Double or Nothing question and the Final Wager.</li>
+					<li><strong>Frequency of Use: </strong>at least once-per-week</li>
+				</ul>
 			</div>
 
 			<div class="interaction flow">
 				<h3>Interaction Flow</h3>
 				<ol>
-					<li>After the first question is read Kevin quickly presses his spacebar</li>
-					<li>The Server instantaneously records this key-press as the first press and freezes the game, lights up Kevin's screen and highlights his name on the Leaderboard</li>
-					<li>Kevin answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
-					<li>The server then removes the question being played, and adds the point-value assigned to the question to Kevin's score and moves his name to the top of the Leaderboard</li>
-					<li>Kevin then clicks another tile, still in play</li>
-					<li>The Server displays the question to the instructor and unfreezes the game</li>
-					<li>Kevin repeats steps 7-10 until the only one question remains. Kevin selects the tile, which happens to be the Double or Nothing Question</li>
-					<li>The Server flashes Kevin's screen multiple times and makes a really obnoxious sound.</li>
-					<li>The question is read and a timer is started</li>
-					<li>The server displays the question to Kevin and the rest of the class and a text-box becomes active on Kevin's screen</li>
-					<li>Kevin submits his answer</li>
-					<li>The server displays Kevin's answer on the instructors screen</li>
-					<li>The instructor checks "correct"</li>
-					<li>The server flashes Kevin's screen multiple times and multiplies his current score by two and adjusts the leaderboard if necessary. Because it was the last question, the server also displays Final Wager</li>
-					<li>All of the students enter an amount of points they wish to wager, no more than the amount of points they have won this game (Kevin - ALL THE POINTS, Other Students - no points...) Kevin is ALL IN</li>
-					<li>The server records all of the submissions and allows the Instructor to see the Final Wager Question. And unfreezes the text box</li>
-					<li>The class submit their answers even though they all were only able to wager nothing. Kevin submits his answer.</li>
-					<li>The server generates a list of students and their responses</li>
-					<li>The instructor goes down the list and checks "correct" or "incorrect" for each of the answers</li>
-					<li>For each selection the server immediately add, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
+					<li><strong>User: </strong>After the first question is read Kevin quickly presses his spacebar</li>
+					<li><strong>System: </strong>The Server instantaneously records this key-press as the first press and freezes the game, lights up Kevin's screen and highlights his name on the Leaderboard</li>
+					<li><strong>User: </strong>Kevin answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
+					<li><strong>System: </strong>The server then removes the question being played, and adds the point-value assigned to the question to Kevin's score and moves his name to the top of the Leaderboard</li>
+					<li><strong>User: </strong>Kevin then clicks another tile, still in play</li>
+					<li><strong>System: </strong>The Server displays the question to the instructor and unfreezes the game</li>
+					<li><strong>User: </strong>Kevin repeats steps 7-10 until the only one question remains. Kevin selects the tile, which happens to be the Double or Nothing Question</li>
+					<li><strong>System: </strong>The Server flashes Kevin's screen multiple times and makes a really obnoxious sound.</li>
+					<li><strong>User: </strong>The question is read and a timer is started</li>
+					<li><strong>System: </strong>The server displays the question to Kevin and the rest of the class and a text-box becomes active on Kevin's screen</li>
+					<li><strong>User: </strong>Kevin submits his answer</li>
+					<li><strong>System: </strong>The server displays Kevin's answer on the instructors screen</li>
+					<li><strong>User: </strong>The instructor checks "correct"</li>
+					<<li><strong>System: </strong>The server flashes Kevin's screen multiple times and multiplies his current score by two and adjusts the leaderboard if necessary. Because it was the last question, the server also displays Final Wager</li>
+					<li><strong>User: </strong>All of the students enter an amount of points they wish to wager, no more than the amount of points they have won this game (Kevin - ALL THE POINTS, Other Students - no points...) Kevin is ALL IN</li>
+					<li><strong>System: </strong>The server records all of the submissions and allows the Instructor to see the Final Wager Question. And unfreezes the text box</li>
+					<li><strong>User: </strong>The class submit their answers even though they all were only able to wager nothing. Kevin submits his answer.</li>
+					<li><strong>System: </strong>The server generates a list of students and their responses</li>
+					<li><strong>User: </strong>The instructor goes down the list and checks "correct" or "incorrect" for each of the answers</li>
+					<li><strong>System: </strong>For each selection the server immediately add, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
 				</ol>
 			</div>
 
