@@ -7,8 +7,8 @@
 	</head>
 	<body>
 		<div>
-		<h2>Persona, Use Cases, and Interaction Flow for PROCTOR:</h2>
-		<h3>Persona:</h3>
+		<h2>Persona, Use Cases, and Interaction Flow for DeepDive Proctor:</h2>
+			<h3>Persona:</h3>
 		<ul>
 			<li><strong>Name</strong>: DeepDiveDylan</li>
 			<li><strong>Personality</strong>: Enthusiastic, energetic, brilliant, generous, kind to his students and co-workers. Loves his job, willing to "go there" to investigate any question his students ask.</li>
@@ -64,6 +64,17 @@
 			<li><strong>System: </strong>Q-review auto populates a game board of 5 categories of 4 questions each. Ready to play.</li>
 		</ul>
 		</div>
+
+
+		<h2>Persona, Use Cases, and Interaction Flow for Alternate Proctor:</h2>
+		<h3>Persona:</h3>
+		<ul>
+			<li><strong>Name</strong>: Janet Fredrickson</li>
+			<li><strong>Personality</strong>: Quite and down-to-earth. Holds her students in high regards and holds them to high expectations. Kind but professionally demanding.</li>
+			<li><strong>Gender</strong>: Female</li>
+			<li><strong>Age</strong>: 42</li>
+			<li><strong>Technology</strong>: She uses an Acer laptop with limited technology know-how.
+
 
 
 
