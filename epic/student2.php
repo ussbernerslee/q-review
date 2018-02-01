@@ -17,13 +17,13 @@
 		<p>Miguel has to read and comprehend the instructions before attempting tasks and will often not attempt a task without clear direction. He is very hard working and very determined although not very technically saavy.He is hoping that his determination and work ethic will help him be a successful in this daunting task of learning to code</p>
 
 			<h3>User Story</h3>
-		<p>Miguel is a novice computer user, he owns a 4 year old MacBook Pro but does own an IPhone 7Plus.He has little to no experience with command line and is a basic Google search user.He is attending the bootcamp with very little computer skills  </p>
+		<p>Miguel is a novice computer user, he owns a 4 year old MacBook Pro but does own an IPhone 7Plus.He has little to no experience with command line and is a basic Google search user.He is attending a 10 week coding bootcamp with very little computer skills but has lots of determination and desire to become a great programmer </p>
 			<h3>Use Case</h3>
 		<p>Miguel participates in game of Q-review</p>
 			<h3>Preconditions</h3>
 		<p>Miguel is a student enrolled in CNM's Deep Dive Coding Boot-camp and has a CNM Username and Password.</p>
 			<h3>Postconditions</h3>
-		<p>Miguel participated in the game of Q-Review but did not actually answer any questions as he did not know of the answer quickly enough to win control of the board</p>
+		<p>Miguel participated in the game of Q-Review but did not actually get any answers correct ,however he attempted several questions by being first player to "click" in</p>
 
 			<h3>Interaction Flow</h3>
 		<ol>
@@ -49,7 +49,8 @@
 			<li>The students then enter their submissions in text area</li>
 			<li>The server generates a list of students and their responses</li>
 			<li>The instructor goes down the list and checks "correct" or "incorrect" for each of the answers</li>
-			<li>For each selection the server immediately add, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
+			<li>For each selection the server immediately adds, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
+			<li>THe instructor then inputs the top score to a running leaderboard that keeps the high score for future reference</li>
 		</ol>
 	</body>
 </html>
