@@ -65,7 +65,9 @@
 ----------------------------------------------------------------------------------------------------------------------->
 		<section>
 
-			<h2>Persona, Use Cases, and Interaction Flow for DeepDive Proctor:</h2>
+			<div class="section header">
+				<h2>Persona, Use Cases, and Interaction Flow for DeepDive Proctor:</h2>
+			</div>
 
 			<div class="persona">
 					<h3>Instructor Persona: Dylan</h3>
@@ -323,8 +325,12 @@
 
 ----------------------------------------------------------------------------------------------------------------------->
 		<section>
-			<div class="entity">
+
+			<div class="section header">
 				<h2>Conceptual Model</h2>
+			</div>
+
+			<div class="entity">
 				<!-- Profile authentication information to match when checked against active directory -->
 				<h1>Entity: Profile</h1>
 				<h3>Attribute: profileId(Primary Key) BINARY(16) NOT NULL</h3>
@@ -440,36 +446,40 @@
 
 ----------------------------------------------------------------------------------------------------------------------->
 		<section>
-			<div>
+
+			<div clas="section header">
 				<h2>Software Goals</h2>
-						<h3>Goals for Q-Review</h3>
-
-						<p>Easy to use interface for creating a new Deck and submitting new Cards.</p>
-
-						System for categorizing cards based on a subject matter tag or category, as well as a difficulty rating on a sliding-scale.
-
-						Ability to effortlessly generate new Review Sessions with custom category titles and point values for questions.
-
-						Ability for multiple students up to ______ to simultaneously join a session hosted by a single instructor.
-
-						Ability for live game-play and buzz-ins with the spacebar.
-
-						Ability for live scoreboard.
-
-						Ability to reveal question and answer discretely only to the instructor.
-
-						Ability for students to enter wagers.
-
-						Ability for students to enter typed responses to select questions.
-
-						Ability to save games.
-
-						Ability to steal questions.
-
-						Future goals -
-
-						Allow for a Deck to be shared and used like individual flashcards for studying.
-					</p>
 			</div>
+
+			<div>
+				<h3>Goals for Q-Review</h3>
+				<p>Easy to use interface for creating a new Deck and submitting new Cards.</p>
+
+				<p>System for categorizing cards based on a subject matter tag or category, as well as a difficulty rating on a sliding-scale.</p>
+
+				<p>Ability to effortlessly generate new Review Sessions with custom category titles and point values for questions.</p>
+
+				<p>Ability for multiple students up to ______ to simultaneously join a session hosted by a single instructor.</p>
+
+				<p>Ability for live game-play and buzz-ins with the spacebar.</p>
+
+				<p>Ability for live scoreboard.</p>
+
+				<p>Ability to reveal question and answer discretely only to the instructor.</p>
+
+				<p>Ability for students to enter wagers.</p>
+
+				<p>Ability for students to enter typed responses to select questions.</p>
+
+				<p>Ability to save games.</p>
+
+				<p>Ability to steal questions.</p>
+
+				<p>Future goals -</p>
+
+				<p>Allow for a Deck to be shared and used like individual flashcards for studying.</p>
+
+			</div>
+
 	</body>
 </html>
