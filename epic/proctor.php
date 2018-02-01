@@ -39,8 +39,8 @@
 		<ul>
 			<li><strong>Title: </strong>Proctoring a round of game-play:</li>
 			<li><strong>Name of the "actor, user or Persona, and their role: </strong> DeepDiveDylan, Captain/Proctor of game</li>
-			<li><strong>Usage Preconditions: </strong>DeepDiveDylan must be signed into Q-review using his previously registered account.</li>
-			<li><strong>Usage Postconditions:</strong>DeepDiveDylan has successfully set up a game, proctored it, has the scores of his players/students, and knows who the winner is.(may have entered new questions and set tags and values)</li>
+			<li><strong>Pre-conditions: </strong>DeepDiveDylan must be signed into Q-review using his previously registered account.</li>
+			<li><strong>Post-conditions:</strong>DeepDiveDylan has successfully set up a game, proctored it, has the scores of his players/students, and knows who the winner is.</li>
 			<li><strong>Frequency of Use: </strong>at least once-per-week</li>
 		</ul>
 
@@ -60,7 +60,7 @@
 			<li><strong>System: </strong>Prompts proctor to select 5 unique predefined categories</li>
 			<li><strong>User: </strong>DeepDiveDylan selects: CSS, HTML, JavaScript, MySQL, and Fired Employees</li>
 			<li><strong>System: </strong>Prompts proctor to select difficulty of questions</li>
-			<li><strong>User: </strong>DeepDiveDylan selects "Moderate" (its only week[2] afterall...)</li>
+			<li><strong>User: </strong>DeepDiveDylan selects "Moderate" (its only week[2] after all...)</li>
 			<li><strong>System: </strong>Q-review auto populates a game board of 5 categories of 4 questions each. Ready to play.</li>
 		</ul>
 		</div>
