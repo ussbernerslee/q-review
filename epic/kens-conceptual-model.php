@@ -52,6 +52,16 @@
 		<h3>Attribute: </h3>
 		<h3>Attribute: </h3>
 
+		<!-- Created score ledger  -->
+		<h1>Entity: Score</h1>
+		<h3>Attribute: scoreID</h3>
+		<h3>Attribute: scoreBoardID</h3>
+		<h3>Attribute: scoreProfileId</h3>
+		<h3>Attribute: </h3>
+		<h3>Attribute: </h3>
+		<h3>Attribute: </h3>
+
+
 		<!--Created weak entity linking cards to board-->
 		<h1>Entity: cardBoard</h1>
 		<h3>Attribute: cardBoardId (CompoundPrimaryKey)BINARY(16) NOT NULL</h3>
@@ -60,7 +70,7 @@
 		<h3>Attribute: </h3>
 
 
-		<!-- Created "weak entity" linking Cards to Category -->
+		<!-- Created weak entity linking Cards to Category -->
 		<h1>Entity: cardCategory</h1>
 		<h3>Attribute: cardCategoryId (CompoundPrimaryKey)BINARY(16) NOT NULL</h3>
 		<h3>Attribute: cardCategoryCardId(Foreign Key) BINARY(16) NOT NULL</h3>
