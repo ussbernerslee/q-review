@@ -10,10 +10,10 @@
 		<h1>Entity: Profile</h1>
 		<p><strong>Attribute: </strong> profileId(Primary Key) BINARY(16) NOT NULL</p>
 		<p><strong>Attribute: </strong> profileActivationToken</p>
-		<p><strong>Attribute: </strong> profileHash CHAR(64)</p>
+		<p><strong>Attribute: </strong> profileHash CHAR(128)</p>
 		<p><strong>Attribute: </strong> profileName VARCHAR(50)</p>
 		<p><strong>Attribute: </strong> profilePrivilege CHAR(10)</p><!--question for Bridge: what type to use for this?-->
-		<p><strong>Attribute: </strong> profileSaltCHAR(128)</p>
+		<p><strong>Attribute: </strong> profileSaltCHAR(64)</p>
 		<p><strong>Attribute: </strong> profileUsername VARCHAR(50)</p>
 
 
@@ -28,7 +28,7 @@
 		<p><strong>Attribute: </strong> cardId(Primary Key) BINARY(16) NOT NULL</p>
 		<p><strong>Attribute: </strong> cardCategoryId (Foreign Key)BINARY(16) NOT NULL</p><!--only 1 category per card-->
 		<p><strong>Attribute: </strong> cardAnswerVARCHAR(500)</p>
-		<p><strong>Attribute: </strong> cardDifficulty INTEGER (1)1:beginner, 2:intermediate, 3:advanced(?)</p>
+		<p><strong>Attribute: </strong> cardPoints INTEGER</p>
 		<p><strong>Attribute: </strong> cardQuestion VARCHAR(500)</p>
 
 
@@ -43,14 +43,13 @@
 		<h1>Entity: Ledger</h1>
 		<p><strong><strong>Attribute: </strong> </strong> LedgerID (NOT a composite key)(Primary Key)</p>
 		<p><strong>Attribute: </strong> ledgerBoardID (Foreign Key)BINARY(16) NOT NULL</p>
-		<p><strong>Attribute: </strong> ledgerProfileId(instructor/proctor) (Foreign Key)BINARY(16) NOT NULL</p>
 		<p><strong>Attribute: </strong> ledgerProfileId (student)(Foreign Key)BINARY(16) NOT NULL</p>
-		<p><strong>Attribute: </strong> ledgerCardId</p>
-		<p><strong>Attribute: </strong> ledgerCorrect(yes/no)</p>
+		<p><strong>Attribute: </strong> ledgerCardId (Foreign Key)</p>
+
+		<!--<p><strong>Attribute: </strong> ledgerCorrect(yes/no)</p>-->
+
 		<p><strong>Attribute: </strong> ledgerDouble(yes/no)</p>
 		<p><strong>Attribute: </strong> ledgerFinalWager</p>
-		<p><strong>Attribute: </strong> ledgerPointsId (sets row by value)</p>
-		<p><strong>Attribute: </strong> ledgerTypeId(sets column)</p>
 
 
 
