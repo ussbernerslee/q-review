@@ -41,15 +41,14 @@
 
 		<!-- Created ledger (weak entity) -->
 		<h1>Entity: Ledger</h1>
-		<p><strong><strong>Attribute: </strong> </strong> LedgerID (NOT a composite key)(Primary Key)</p>
 		<p><strong>Attribute: </strong> ledgerBoardID (Foreign Key)BINARY(16) NOT NULL</p>
 		<p><strong>Attribute: </strong> ledgerProfileId (student)(Foreign Key)BINARY(16) NOT NULL</p>
 		<p><strong>Attribute: </strong> ledgerCardId (Foreign Key)</p>
 
 		<!--<p><strong>Attribute: </strong> ledgerCorrect(yes/no)</p>-->
 
-		<p><strong>Attribute: </strong> ledgerDouble(yes/no)</p>
-		<p><strong>Attribute: </strong> ledgerFinalWager</p>
+		<p><strong>Attribute: </strong> ledgerType</p>
+		<p><strong>Attribute: </strong> ledgerWager</p>
 
 
 
