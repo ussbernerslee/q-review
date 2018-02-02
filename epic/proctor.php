@@ -77,17 +77,11 @@
 				</li>
 				<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
 				<li><strong>User: </strong>DeepDiveDylan selects the option to use pre created questions for the game.</li>
-				<li><strong>System: </strong>Prompts proctor to select the number number of categories and questions per
-					subject.
-				</li>
-				<li><strong>User: </strong>DeepDiveDylan chooses to make a game using 5 categories and 4 questions per
-					category.
-				</li>
-				<li><strong>System: </strong>Prompts proctor to select 5 unique predefined categories</li>
+				<li><strong>System: </strong>Prompts proctor to select 4 unique predefined categories</li>
 				<li><strong>User: </strong>DeepDiveDylan selects: CSS, HTML, JavaScript, MySQL, and Fired Employees</li>
 				<li><strong>System: </strong>Prompts proctor to select difficulty of questions</li>
 				<li><strong>User: </strong>DeepDiveDylan selects "Moderate" (its only week[2] after all...)</li>
-				<li><strong>System: </strong>Q-review auto populates a game board of 5 categories of 4 questions each. Ready
+				<li><strong>System: </strong>Q-review auto populates a game board of 4 categories of 5 questions each. Ready
 					to play.
 				</li>
 			</ul>
