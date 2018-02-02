@@ -164,9 +164,9 @@
 				<!--Enter each after the </strong> and before the </li>-->
 				<p><strong>Assumption: </strong>User has previously created an account and is registered as a Proctor.</p>
 				<ul>
-					<li><strong>System: </strong> Q-review prompts login using username and password</li>
-					<li><strong>User: </strong> Janet enters her username and password.</li>
-					<li><strong>System: </strong> Q-review logs her in and gives her proctor permissions.</li>
+					<li><strong>System: </strong>Q-review prompts login using username and password</li>
+					<li><strong>User: </strong>Janet enters her username and password.</li>
+					<li><strong>System: </strong>Q-review logs her in and gives her proctor permissions.</li>
 					<li><strong>User: </strong>Janet chooses to set up a game, and clicks the 'Create New Game' button</li>
 					<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
 					<li><strong>User: </strong>Janet selects the option to create new questions for this game.</li>
@@ -289,30 +289,30 @@
 			<div class="interaction flow">
 				<h3>Interaction Flow</h3>
 				<ul>
-					<li>Miguel clicks the link shared by the Instructor on Slack</li>
-					<li>The server then presents a Student Login Page</li>
-					<li>Miguel then enters his CNM Username and Password and clicks Submit</li>
-					<li>The site hashes and salts his Password and checks with the CNM Student Database, returns true, and the Server issues miguel a session ID</li>
-					<li>After the first question is read miguel presses his spacebar to attempt to gain control over the question ahead of other students playing</li>
-					<li>The server then immediately records which students keypress came first and gives control of that question to that student whos screen then lights up giving control to that student to answer the question.</li>
-					<li>Student then answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
-					<li>The server then removes the question being played, and adds the point-value assigned to the question to that students score being shown on leader-board</li>
-					<li>That student then clicks another tile, still in play</li>
-					<li>The Server displays the question to the instructor and unfreezes the game</li>
-					<li>Miguel repeats steps 7-10 until the only one question remains. Miguel selects the tile, which happens to be the "Double or Nothing" Question</li>
-					<li>Miguel is prompted by Instructor to wager up to his total score on "leader" board.</li>
-					<li>The question is then read and a timer is started for him to answer question</li>
-					<li>The server displays the question the class and a text-box becomes active on miguels screen</li>
-					<li>Miguel then submits his answer to the question and clicks submit</li>
-					<li>The Instructor then verifies his answer to be correct or not and then selects the correct or incorrect button at that time</li>
-					<li>The server then adjusts Miguels score and the leader-board if necessary. Because there is only one question left the server also displays "Final Wager</li>
-					<li>All of the students enter an amount of points they wish to wager for "final-wager", no more than the amount of points they have on leader-board. (miguel - very few points)</li>
-					<li>The server records all of the submissions and allows the Instructor to see the Final Wager Question. And unfreezes the text box</li>
-					<li>The students then enter their submissions in text area</li>
-					<li>The server generates a list of students and their responses</li>
-					<li>The instructor goes down the list and checks "correct" or "incorrect" for each of the answers</li>
-					<li>For each selection the server immediately adds, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
-					<li>THe instructor then inputs the top score to a running leaderboard that keeps the high score for future reference</li>
+					<li><strong>User: </strong>Miguel clicks the link shared by the Instructor on Slack</li>
+					<li><strong>System: </strong>The server then presents a Student Login Page</li>
+					<li><strong>User: </strong>Miguel then enters his CNM Username and Password and clicks Submit</li>
+					<li><strong>System: </strong>The site hashes and salts his Password and checks with the CNM Student Database, returns true, and the Server issues miguel a session ID</li>
+					<li><strong>User: </strong>After the first question is read miguel presses his spacebar to attempt to gain control over the question ahead of other students playing</li>
+					<li><strong>System: </strong>The server then immediately records which students keypress came first and gives control of that question to that student whos screen then lights up giving control to that student to answer the question.</li>
+					<li><strong>User: </strong>Student then answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
+					<li><strong>System: </strong>The server then removes the question being played, and adds the point-value assigned to the question to that students score being shown on leader-board</li>
+					<li><strong>User: </strong>That student then clicks another tile, still in play</li>
+					<li><strong>System: </strong>The Server displays the question to the instructor and unfreezes the game</li>
+					<li><strong>User: </strong>Miguel repeats steps 7-10 until the only one question remains. Miguel selects the tile, which happens to be the "Double or Nothing" Question</li>
+					<li><strong>User: </strong>Miguel is prompted by Instructor to wager up to his total score on "leader" board.</li>
+					<li><strong>System: </strong>The question is then read and a timer is started for him to answer question</li>
+					<li><strong>User: </strong>The server displays the question the class and a text-box becomes active on miguels screen</li>
+					<li><strong>System: </strong>Miguel then submits his answer to the question and clicks submit</li>
+					<li><strong>User: </strong>The Instructor then verifies his answer to be correct or not and then selects the correct or incorrect button at that time</li>
+					<li><strong>System: </strong>The server then adjusts Miguels score and the leader-board if necessary. Because there is only one question left the server also displays "Final Wager</li>
+					<li><strong>User: </strong>All of the students enter an amount of points they wish to wager for "final-wager", no more than the amount of points they have on leader-board. (miguel - very few points)</li>
+					<li><strong>System: </strong>The server records all of the submissions and allows the Instructor to see the Final Wager Question. And unfreezes the text box</li>
+					<li><strong>User: </strong>The students then enter their submissions in text area</li>
+					<li><strong>System: </strong>The server generates a list of students and their responses</li>
+					<li><strong>User: </strong>The instructor goes down the list and checks "correct" or "incorrect" for each of the answers</li>
+					<li><strong>System: </strong>For each selection the server immediately adds, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
+					<li><strong>User: </strong>THe instructor then inputs the top score to a running leaderboard that keeps the high score for future reference</li>
 				</ul>
 			</div>
 		</section>
