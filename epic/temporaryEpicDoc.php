@@ -234,7 +234,7 @@
 
 			<div class="interaction flow">
 				<h3>Interaction Flow</h3>
-				<ol>
+				<ul>
 					<li><strong>User: </strong>After the first question is read Kevin quickly presses his spacebar</li>
 					<li><strong>System: </strong>The Server instantaneously records this key-press as the first press and freezes the game, lights up Kevin's screen and highlights his name on the Leaderboard</li>
 					<li><strong>User: </strong>Kevin answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
@@ -255,7 +255,7 @@
 					<li><strong>System: </strong>The server generates a list of students and their responses</li>
 					<li><strong>User: </strong>The instructor goes down the list and checks "correct" or "incorrect" for each of the answers</li>
 					<li><strong>System: </strong>For each selection the server immediately add, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
-				</ol>
+				</ul>
 			</div>
 
 
@@ -288,7 +288,7 @@
 
 			<div class="interaction flow">
 				<h3>Interaction Flow</h3>
-				<ol>
+				<ul>
 					<li>Miguel clicks the link shared by the Instructor on Slack</li>
 					<li>The server then presents a Student Login Page</li>
 					<li>Miguel then enters his CNM Username and Password and clicks Submit</li>
@@ -313,7 +313,7 @@
 					<li>The instructor goes down the list and checks "correct" or "incorrect" for each of the answers</li>
 					<li>For each selection the server immediately adds, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
 					<li>THe instructor then inputs the top score to a running leaderboard that keeps the high score for future reference</li>
-				</ol>
+				</ul>
 			</div>
 		</section>
 
