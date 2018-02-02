@@ -433,7 +433,9 @@
 
 				<p>User Role, Captain: See all student scores in real-time</p>
 
-				<p>User-Role, Captain; Archive Review Sessions</p>
+				<p>User Role, Captain: Archive Review Sessions</p>
+
+				<p>User Role, Captain: Update Question and Answer</p>
 
 				<p>User Role, Student: Join Review Session</p>
 
