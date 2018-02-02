@@ -121,76 +121,48 @@
 				</div>
 
 
-			<div class="persona">
-					<h3>Instructor Persona</h3>
-					<ul>
-						<li><strong>Name</strong>: Janet Fredrickson</li>
-						<li><strong>Personality</strong>: Quiet and down-to-earth. Holds her students in high regards and holds them to high expectations. Kind but professionally demanding.</li>
-						<li><strong>Gender</strong>: Female</li>
-						<li><strong>Age</strong>: 42</li>
-						<li><strong>Technology</strong>: Solely a PC user
-							<ul>
-								<li><strong>Device: </strong>Two year old Acer laptop with external keyboard and wireless mouse.</li>
-								<li><strong>Browser: </strong>Google Chrome</li>
-								<li><strong>Proficiency: </strong>Day to day user with average knowledge of the machine and it's applications.</li>
-								<li><strong>Love/Hate </strong>Loves to teach via digital media, however she hates her options to do so.</li>
-							</ul>
-						</li>
-						<li><strong>Attitudes and Needs</strong>
-							<ul>
-								<li><strong>What need does this person have? </strong> Janet needs to present her course material to her students in a fun and engaging manner.</li>
-								<li><strong>Why choose your site over other options? </strong> Q-Review is designed to make sometimes tedious material more enjoyable for students to learn by presenting the information in a competitive game format. When an individual is enjoying themselves, retention and interest can be enhanced. </li>
-							</ul>
-						</li>
-					</ul>
-			</div>
 
-			<div class="user story">
-					<h3>User Story</h3>
-					<p>As the proctor, I would like to make learning fun.</p>
-			</div>
 
-			<div class="use case">
-					<h3>Use Case</h3>
-					<ul>
-						<li><strong>Title: </strong>Teaching material more enjoyably</li>
-						<li><strong>User and role: </strong> The proctor Janet Fredrickson</li>
-						<li><strong>Pre-conditions: </strong>Janet must be logged into her account and prepared to input her questions for the days Q-review game</li>
-						<li><strong>Post-conditions:</strong>Janet ends the game having inspired three students to invest more time into studying Biology</li>
-						<li><strong>Frequency of Use: </strong>Once a week as a tool for her students to review</li>
-					</ul>
-			</div>
 
-			<div class="interaction flow">
-				<h3>Interaction Flow:</h3>
+			<div>
+				<h3>Interaction Flow 2:</h3>
 				<!--Enter each after the </strong> and before the </li>-->
 				<p><strong>Assumption: </strong>User has previously created an account and is registered as a Proctor.</p>
 				<ul>
 					<li><strong>System: </strong> Q-review prompts login using username and password</li>
-					<li><strong>User: </strong> Janet enters her username and password.</li>
-					<li><strong>System: </strong> Q-review logs her in and gives her proctor permissions.</li>
-					<li><strong>User: </strong>Janet chooses to set up a game, and clicks the 'Create New Game' button</li>
+					<li><strong>User: </strong> DeepDiveDylan enters his username and password.</li>
+					<li><strong>System: </strong> Q-review logs his in and gives his proctor permissions.</li>
+					<li><strong>User: </strong>DeepDiveDylan chooses to set up a game, and clicks the 'Create New Game' button</li>
 					<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
-					<li><strong>User: </strong>Janet selects the option to create new questions for this game.</li>
+					<li><strong>User: </strong>DeepDiveDylan selects the option to create new questions for this game.</li>
 					<li><strong>System: </strong>Q-review generates a blank table with each cell as a text box.</li>
-					<li><strong>User: </strong>Janet inputs her categories and questions</li>
+					<li><strong>User: </strong>DeepDiveDylan inputs his categories and questions</li>
 					<li><strong>System: </strong>Asks if user is ready to play</li>
-					<li><strong>User: </strong>Janet clicks "Play" button</li>
+					<li><strong>User: </strong>DeepDiveDylan clicks "Play" button</li>
 					<li><strong>System: </strong>"Game Started" message appears on screen</li>
-					<li><strong>User: </strong>Janet selects a student by highest test score to start the game</li>
+					<li><strong>User: </strong>DeepDiveDylan selects a student by highest test score to start the game</li>
 					<li><strong>System: </strong>ALERTS proctor that the "hot key" has been pressed by a specific student</li>
-					<li><strong>User: </strong>Janet selects "yes" if question was correct, "no" if not</li>
+					<li><strong>User: </strong>DeepDiveDylan selects "yes" if question was correct, "no" if not</li>
 				</ul>
 				<p><em>Repetitious process until all questions have been answered</em></p>
 				<ul>
 					<li><strong>System: </strong>Prompts proctor, "Would you like to start the Final Question?"</li>
-					<li><strong>User: </strong>Janet selects "yes"</li>
-					<li><strong>System: </strong>Final Question and a text box open on all "Players" screens then display answers to proctor</li>
-					<li><strong>User: </strong>Janet approves or denies "Players" answers by clicking "yes" or "no" next to each one</li>
+					<li><strong>User: </strong>DeepDiveDylan selects "yes"</li>
+					<li><strong>System: </strong>Final Question and a text box open on all "Players" screens then displays
+						answers to proctor
+					</li>
+					<li><strong>User: </strong>DeepDiveDylan approves or denies "Players" answers by clicking "yes" or "no" next to each
+						one
+					</li>
 					<li><strong>System: </strong>Displays "Game Over" on screen</li>
-					<li><strong>User: </strong>Janet logs out</li>
+					<li><strong>User: </strong>DeepDiveDylan logs out</li>
 				</ul>
-				</div>
+			</div>
+
+
+
+
+
 
 			<div>
 				<h2>Student Persona</h2>
@@ -259,64 +231,6 @@
 					<li><strong>System: </strong>For each selection the server immediately add, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
 				</ol>
 			</div>
-
-
-			<div class="persona">
-				<h2>Student Persona: Miguel</h2>
-
-				<h3>Miguel</h3>
-				<p>miguel is a 38 year old who has decided to make a complete career change. After the opportunity to attend an 10 week excelerated full stack bootcamp presented itself miguels family encouraged him to take advantage of the chance. He is very unsure of his abilities and ability to complete the course but is determined to make a better life for himself.    </p>
-				<br>
-				<p>Miguel does not consider himself a "techy". His only computer experience is as a passive user for browsing the internet , his only computer is a 6 year old hp laptop that he just recently upgraded to Windows 10. In anticipation of attending the course Miguel invested in a used 4 year old MacBook Pro after quickly realizing during pre-work that not only was he moving slowly so was his laptop.</p>
-				<br>
-				<p>Miguel uses the computer in a very limited capacity to shop online and visit social media site. Miguel uses a hunt and peck style user that has no working knowledge of the command line or its existence.He is very cautious in every keystroke and constantly has to use Google to learn new computer commands. Miguel is very timid because of his lack of computer knowledge and needs extra instuction for tasks.</p>
-				<br>
-				<p>Miguel has to read and comprehend the instructions before attempting tasks and will often not attempt a task without clear direction. He is very hard working and very determined although not very technically saavy.He is hoping that his determination and work ethic will help him be a successful in this daunting task of learning to code</p>
-			</div>
-
-			<div class="user story">
-				<h3>User Story</h3>
-				<p>Miguel is a novice computer user, he owns a 4 year old MacBook Pro but does own an IPhone 7Plus.He has little to no experience with command line and is a basic Google search user.He is attending a 10 week coding bootcamp with very little computer skills but has lots of determination and desire to become a great programmer </p>
-			</div>
-
-			<div class="use case">
-				<h3>Use Case</h3>
-				<p>Miguel participates in game of Q-review</p>
-				<h3>Preconditions</h3>
-				<p>Miguel is a student enrolled in CNM's Deep Dive Coding Boot-camp and has a CNM Username and Password.</p>
-				<h3>Postconditions</h3>
-				<p>Miguel participated in the game of Q-Review but did not actually get any answers correct ,however he attempted several questions by being first player to "click" in</p>
-			</div>
-
-			<div class="interaction flow">
-				<h3>Interaction Flow</h3>
-				<ol>
-					<li>Miguel clicks the link shared by the Instructor on Slack</li>
-					<li>The server then presents a Student Login Page</li>
-					<li>Miguel then enters his CNM Username and Password and clicks Submit</li>
-					<li>The site hashes and salts his Password and checks with the CNM Student Database, returns true, and the Server issues miguel a session ID</li>
-					<li>After the first question is read miguel presses his spacebar to attempt to gain control over the question ahead of other students playing</li>
-					<li>The server then immediately records which students keypress came first and gives control of that question to that student whos screen then lights up giving control to that student to answer the question.</li>
-					<li>Student then answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
-					<li>The server then removes the question being played, and adds the point-value assigned to the question to that students score being shown on leader-board</li>
-					<li>That student then clicks another tile, still in play</li>
-					<li>The Server displays the question to the instructor and unfreezes the game</li>
-					<li>Miguel repeats steps 7-10 until the only one question remains. Miguel selects the tile, which happens to be the "Double or Nothing" Question</li>
-					<li>Miguel is prompted by Instructor to wager up to his total score on "leader" board.</li>
-					<li>The question is then read and a timer is started for him to answer question</li>
-					<li>The server displays the question the class and a text-box becomes active on miguels screen</li>
-					<li>Miguel then submits his answer to the question and clicks submit</li>
-					<li>The Instructor then verifies his answer to be correct or not and then selects the correct or incorrect button at that time</li>
-					<li>The server then adjusts Miguels score and the leader-board if necessary. Because there is only one question left the server also displays "Final Wager</li>
-					<li>All of the students enter an amount of points they wish to wager for "final-wager", no more than the amount of points they have on leader-board. (miguel - very few points)</li>
-					<li>The server records all of the submissions and allows the Instructor to see the Final Wager Question. And unfreezes the text box</li>
-					<li>The students then enter their submissions in text area</li>
-					<li>The server generates a list of students and their responses</li>
-					<li>The instructor goes down the list and checks "correct" or "incorrect" for each of the answers</li>
-					<li>For each selection the server immediately adds, or subtracts the wagered value to/from the student's accumulated points and adjusts the leaderboard if necessary</li>
-					<li>THe instructor then inputs the top score to a running leaderboard that keeps the high score for future reference</li>
-				</ol>
-			</div>
 		</section>
 
 		<hr>
@@ -330,80 +244,49 @@
 				<h2>Conceptual Model</h2>
 			</div>
 
-			<<!-- Profile authentication information to match when checked against active directory -->
 			<h1>Entity: Profile</h1>
-			<h3>Attribute: profileId(Primary Key) BINARY(16) NOT NULL</h3>
-			<h3>Attribute: profileActivationToken</h3>
-			<h3>Attribute: profileHash CHAR(64)</h3>
-			<h3>Attribute: profileName VARCHAR(50)</h3>
-			<h3>Attribute: profilePrivilege CHAR(10)</h3><!--question for Bridge: what type to use for this?-->
-			<h3>Attribute: profileSaltCHAR(128)</h3>
-			<h3>Attribute: profileUsername VARCHAR(50)</h3>
+			<p><strong>Attribute: </strong> profileId(Primary Key) BINARY(16) NOT NULL</p>
+			<p><strong>Attribute: </strong> profileActivationToken</p>
+			<p><strong>Attribute: </strong> profileHash CHAR(128)</p>
+			<p><strong>Attribute: </strong> profileName VARCHAR(50)</p>
+			<p><strong>Attribute: </strong> profilePrivilege CHAR(1)</p><!--question for Bridge: what type to use for this?-->
+			<p><strong>Attribute: </strong> profileSalt CHAR(64)</p>
+			<p><strong>Attribute: </strong> profileUsername VARCHAR(50)</p>
 
 
-			<!-- List of categories tied to the columns in game (CSS, HTML, SQL, etc) -->
+			<!-- List of categories tied to the columns in game, tied to specific profile for the instructor/proctor (CSS, HTML, SQL, etc) -->
 			<h1>Entity: Category</h1>
-			<h3>Attribute: categoryId(Primary Key) BINARY(16) NOT NULL</h3>
-			<h3>Attribute: categoryTag VARCHAR(15)</h3><!--this is the name of the category-->
+			<p><strong>Attribute: </strong> categoryId (Primary Key) VARCHAR(15) NOT NULL</p>
+			<p><strong>Attribute: </strong> categoryProfileId VARCHAR(15)(instructor/proctor)</p>
 
 
 			<!-- Question card containing question in specific category, answer, and value -->
 			<h1>Entity: Card</h1>
-			<h3>Attribute: cardId(Primary Key) BINARY(16) NOT NULL</h3>
-			<h3>Attribute: cardCategoryId (Foreign Key)BINARY(16) NOT NULL</h3><!--this works if there is only 1 category per card-->
-			<h3>Attribute: cardAnswerVARCHAR(500)</h3>
-			<h3>Attribute: cardDifficulty INTEGER (1)1:beginner, 2:intermediate, 3:advanced(?)</h3><!--for Minimum Viable Product, we COULD assign the value of the card here so we don't have to have another weak entity called pointsBoard, however there are many errors that can be associated with doing it this way, rather than using an additional table. The main problem is that if the person who sets up their cards messes up the point system, the columns could have differing point values in matching rows. -->
-			<h3>Attribute: cardQuestion VARCHAR(500)</h3>
-			<h3>Attribute: cardValue CHAR(1)</h3><!--ask bridge: assign fixed number of points vs assign a letter A,B,C,D (or something like this)corresponding to comparative ease of question(A=Easiest, D=Hardest)Then when the proctor sets up the game, she/he sets what values they want for each box, and the cards fill the appropriate box in game board-->
+			<p><strong>Attribute: </strong> cardId(Primary Key) BINARY(16) NOT NULL</p>
+			<p><strong>Attribute: </strong> cardCategoryId (Foreign Key)BINARY(16) NOT NULL</p><!--only 1 category per card-->
+			<p><strong>Attribute: </strong> cardAnswer  VARCHAR(500)</p>
+			<p><strong>Attribute: </strong> cardPoints INTEGER</p>
+			<p><strong>Attribute: </strong> cardQuestion VARCHAR(500)</p>
 
 
 			<!-- Created game board filled with questions and values -->
 			<h1>Entity: Board</h1>
-			<h3>Attribute: boardId(Primary Key) BINARY(16) NOT NULL</h3>
-			<h3>Attribute: boardProfileId (Foreign Key)BINARY(16) NOT NULL</h3><!--this is the proctor who created the game-->
-			<h3>Attribute: boardName VARCHAR(50)</h3><!--or boardSubject-->
+			<p><strong>Attribute: </strong> boardId(Primary Key) BINARY(16) NOT NULL</p>
+			<p><strong>Attribute: </strong> boardProfileId (Foreign Key)BINARY(16) NOT NULL</p><!--this is the proctor who created the game-->
+			<p><strong>Attribute: </strong> boardName VARCHAR(50)</p><!--or boardSubject-->
 
 
-			<!-- Created score ledger  -->
-			<h1>Entity: Score</h1>
-			<h3>Attribute: scoreID (NOT a composite key)(Primary Key)</h3><!--ask bridge about this...can it be a simple unique index or does it need to be UUID?-->
-			<h3>Attribute: scoreBoardID (Foreign Key)BINARY(16) NOT NULL</h3>
-			<h3>Attribute: scoreProfileId (Foreign Key)BINARY(16) NOT NULL</h3>
-			<h3>Attribute: scoreCorrect(is this an INTEGER or CHAR? it should be a yes/no)</h3><!--The way we set this should depend on how we intend to calculate the score-->
-			<h3>Attribute: scoreDoubleOrNothing (is this an INTEGER or CHAR? it should be a yes/no)</h3>
-			<h3>Attribute: scoreFinalWager INTEGER of some type</h3>
-			<h3>Attribute: scorePoints INTEGER of some type</h3>
+			<!-- Created ledger (weak entity) -->
+			<h1>Entity: Ledger</h1>
+			<p><strong>Attribute: </strong> ledgerBoardID (Foreign Key)BINARY(16) NOT NULL</p>
+			<p><strong>Attribute: </strong> ledgerProfileId (student)(Foreign Key)BINARY(16) NOT NULL</p>
+			<p><strong>Attribute: </strong> ledgerCardId (Foreign Key)</p>
 
+			<!--<p><strong>Attribute: </strong> ledgerCorrect(yes/no)</p>-->
 
-			<!-- Created weak entity linking Board to Category (needed because there are more than 1 category/column(and a variable number of columns) to each board to indicate which categories make up the columns of the game board to be populated from cards of the same category)-->
-			<h1>Entity: boardCategory</h1>
-			<h3>Attribute: boardCategoryId (CompositePrimaryKey)BINARY(16) NOT NULL</h3>
-			<h3>Attribute: boardCategoryBoardId(Foreign Key) BINARY(16) NOT NULL</h3>
-			<h3>Attribute: boardCategoryCategoryId (Foreign Key)BINARY(16) NOT NULL</h3>
-			<h3>Attribute: boardCategoryColumn INTEGER(1)</h3><!--this assigns the category to a specific column in the board and doesn't need to be more than a single digit-->
+			<p><strong>Attribute: </strong> ledgerType</p>
+			<p><strong>Attribute: </strong> ledgerWager</p>
 
-
-			<!-- Created weak entity assigning points scheme to specific rows for a specific Board(needed because there are more than 1 rows per board(and a variable number of points set by proctor for each of these)-->
-			<h1>Entity: pointsBoard</h1>
-			<h3>Attribute: pointsBoardId (PrimaryKey) BINARY(16) NOT NULL</h3><!--this CAN be a composite primary key using the foreign key: "pointsBoardBoardId" + "pointsBoardRowNumber"-->
-			<h3>Attribute: pointsBoardBoardId (Foreign Key) BINARY(16) NOT NULL</h3><!--there are going to need to be -->
-			<h3>Attribute: pointsBoardRowNumber</h3>
-			<h3>Attribute: pointsBoardValue</h3>
-
-
-			<!--*************Stuff for Extension beyone minimum viable product****************-->
-
-			<!-- Created weak entity linking Cards to Category if we want to assign more than one category per card-->
-			<h1>Entity: cardCategory</h1>
-			<h3>Attribute: cardCategoryId (CompositePrimaryKey)BINARY(16) NOT NULL</h3>
-			<h3>Attribute: cardCategoryCardId(Foreign Key) BINARY(16) NOT NULL</h3>
-			<h3>Attribute: cardCategoryCategoryId (Foreign Key)BINARY(16) NOT NULL</h3>
-			<h3>Attribute: </h3>
-			<h3>Attribute: </h3>
-			<h3>Attribute: </h3>
-			<h3>Attribute: </h3>
-			<h3>Attribute: </h3>
-			<h3>Attribute: </h3>
 		</section>
 
 		<hr>
@@ -413,7 +296,7 @@
 ----------------------------------------------------------------------------------------------------------------------->
 		<section>
 
-			<div clas="section header">
+			<div class="section header">
 				<h2>Software Goals</h2>
 			</div>
 
@@ -421,7 +304,7 @@
 				<h3>Goals for Q-Review</h3>
 				<p>Profile Creation with User Role Privileges </p>
 
-				<p>User Role, Capitan: Create new categories</p>
+				<p>User Role, Captain Create new categories</p>
 
 				<p>User Role, Capitan: Create new cards with category, questions, answer, and difficulty attributes.</p>
 
