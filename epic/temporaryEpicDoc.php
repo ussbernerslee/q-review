@@ -420,31 +420,35 @@
 
 			<div>
 				<h3>Goals for Q-Review</h3>
-				<p>Easy to use interface for creating a new Deck and submitting new Cards.</p>
+				<p>Profile Creation with User Role Privileges </p>
 
-				<p>System for categorizing cards based on a subject matter tag or category, as well as a difficulty rating on a sliding-scale.</p>
+				<p>User Role, Capitan: Create new categories</p>
 
-				<p>Ability to effortlessly generate new Review Sessions with custom category titles and point values for questions.</p>
+				<p>User Role, Capitan: Create new cards with category, questions, answer, and difficulty attributes.</p>
 
-				<p>Ability for multiple students up to ______ to simultaneously join a session hosted by a single instructor.</p>
+				<p>User Role, Capitan: Create new Review Sessions with 4 categories and 5 cards each</p>
 
-				<p>Ability for live game-play and buzz-ins with the spacebar.</p>
+				<p>User Role, Captain: Host Review Sessions with multiple students </p>
 
-				<p>Ability for live scoreboard.</p>
+				<p>User Role, Captain: View Questions and Answers for selected cards</p>
 
-				<p>Ability to reveal question and answer discretely only to the instructor.</p>
+				<p>User Role, Captain: Input whether student answers are “correct” or “incorrect”</p>
 
-				<p>Ability for students to enter wagers.</p>
+				<p>User Role, Captain: See all student scores in real-time</p>
 
-				<p>Ability for students to enter typed responses to select questions.</p>
+				<p>User-Role, Captain; Archive Review Sessions</p>
 
-				<p>Ability to save games.</p>
+				<p>User Role, Student: Join Review Session</p>
 
-				<p>Ability to steal questions.</p>
+				<p>User Role, Student: Select category and point value that they wish to try and answer</p>
 
-				<p>Future goals -</p>
+				<p>User Role, Student: See selected question</p>
 
-				<p>Allow for a Deck to be shared and used like individual flashcards for studying.</p>
+				<p>User Role, Student: See scores in real-time</p>
+
+				<p>User Role, Student: Make wager for Final Wager Question</p>
+
+				<p>User Role, Student: Enter text response for Final Wager Question</p>
 
 			</div>
 
