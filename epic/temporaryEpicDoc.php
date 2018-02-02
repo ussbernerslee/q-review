@@ -102,21 +102,20 @@
 					<h3>Interaction Flow</h3>
 					<!--Enter each after the </strong> and before the </li>-->
 					<p><strong>Assumption: </strong>User has previously created an account and is registered as a Proctor.</p>
-					<ul>
-						<li><strong>System: </strong> Q-review prompts login using username and password</li>
-						<li><strong>User: </strong> DeepDiveDylan enters his username and password.</li>
-						<li><strong>System: </strong> Q-review logs him in and gives him proctor permissions.</li>
-						<li><strong>User: </strong>DeepDiveDylan chooses to set up a game, and clicks the 'Create New Game' button</li>
-						<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
-						<li><strong>User: </strong>DeepDiveDylan selects the option to use pre created questions for the game.</li>
-						<li><strong>System: </strong>Prompts proctor to select the number number of categories and questions per subject.</li>
-						<li><strong>User: </strong>DeepDiveDylan chooses to make a game using 5 categories and 4 questions per category.</li>
-						<li><strong>System: </strong>Prompts proctor to select 5 unique predefined categories</li>
-						<li><strong>User: </strong>DeepDiveDylan selects: CSS, HTML, JavaScript, MySQL, and Fired Employees</li>
-						<li><strong>System: </strong>Prompts proctor to select difficulty of questions</li>
-						<li><strong>User: </strong>DeepDiveDylan selects "Moderate" (its only week[2] after all...)</li>
-						<li><strong>System: </strong>Q-review auto populates a game board of 5 categories of 4 questions each. Ready to play.</li>
-					</ul>
+				<p><strong>Assumption: </strong>User has previously created an account and is registered as a Proctor.</p>
+				<ul>
+					<li><strong>System: </strong> Q-review prompts login using username and password</li>
+					<li><strong>User: </strong> DeepDiveDylan enters his username and password.</li>
+					<li><strong>System: </strong> Q-review logs him in and gives him proctor permissions.</li>
+					<li><strong>User: </strong>DeepDiveDylan chooses to set up a game, and clicks the 'Create New Game' button</li>
+					<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
+					<li><strong>User: </strong>DeepDiveDylan selects the option to use pre created questions for the game.</li>
+					<li><strong>System: </strong>Prompts proctor to select 4 unique predefined categories</li>
+					<li><strong>User: </strong>DeepDiveDylan selects: CSS, HTML, JavaScript, MySQL, and Fired Employees</li>
+					<li><strong>System: </strong>Prompts proctor to select difficulty of questions</li>
+					<li><strong>User: </strong>DeepDiveDylan selects "Moderate" (its only week[2] after all...)</li>
+					<li><strong>System: </strong>Q-review auto populates a game board of 4 categories of 5 questions each. Ready to play.</li>
+				</ul>
 				</div>
 
 
@@ -161,36 +160,34 @@
 			</div>
 
 			<div class="interaction flow">
-					<h3>Interaction Flow:</h3>
-					<!--Enter each after the </strong> and before the </li>-->
-					<p><strong>Assumption: </strong>User has previously created an account and is registered as a Proctor.</p>
-					<ul>
-						<li><strong>System: </strong> Q-review prompts login using username and password</li>
-						<li><strong>User: </strong> Janet enters her username and password.</li>
-						<li><strong>System: </strong> Q-review logs her in and gives her proctor permissions.</li>
-						<li><strong>User: </strong>Janet chooses to set up a game, and clicks the 'Create New Game' button</li>
-						<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
-						<li><strong>User: </strong>Janet selects the option to create new questions for this game.</li>
-						<li><strong>System: </strong>Asks for input on number of categories and questions per category</li>
-						<li><strong>User: </strong>Janet inputs 4 for categories and 6 for questions and one FINAL question</li>
-						<li><strong>System: </strong>Q-review generates a blank table with each cell as a text box.</li>
-						<li><strong>User: </strong>Janet inputs her categories and questions</li>
-						<li><strong>System: </strong>Asks if user is ready to play</li>
-						<li><strong>User: </strong>Janet clicks "Play" button</li>
-						<li><strong>System: </strong>"Game Started" message appears on screen</li>
-						<li><strong>User: </strong>Janet selects a student by highest test score to start the game</li>
-						<li><strong>System: </strong>ALERTS proctor that the "hot key" has been pressed by a specific student</li>
-						<li><strong>User: </strong>Janet selects "yes" if question was correct, "no" if not</li>
-					</ul>
-					<p><em>Repetitious process until all questions have been answered</em></p>
-					<ul>
-						<li><strong>System: </strong>Prompts proctor, "Would you like to start the Final Question?"</li>
-						<li><strong>User: </strong>Janet selects "yes"</li>
-						<li><strong>System: </strong>Final Question and a text box open on all "Players" screens then displays answers to proctor</li>
-						<li><strong>User: </strong>Janet approves or denies "Players" answers by clicking "yes" or "no" next to each one</li>
-						<li><strong>System: </strong>Displays "Game Over" on screen</li>
-						<li><strong>User: </strong>Janet logs out</li>
-					</ul>
+				<h3>Interaction Flow:</h3>
+				<!--Enter each after the </strong> and before the </li>-->
+				<p><strong>Assumption: </strong>User has previously created an account and is registered as a Proctor.</p>
+				<ul>
+					<li><strong>System: </strong> Q-review prompts login using username and password</li>
+					<li><strong>User: </strong> Janet enters her username and password.</li>
+					<li><strong>System: </strong> Q-review logs her in and gives her proctor permissions.</li>
+					<li><strong>User: </strong>Janet chooses to set up a game, and clicks the 'Create New Game' button</li>
+					<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
+					<li><strong>User: </strong>Janet selects the option to create new questions for this game.</li>
+					<li><strong>System: </strong>Q-review generates a blank table with each cell as a text box.</li>
+					<li><strong>User: </strong>Janet inputs her categories and questions</li>
+					<li><strong>System: </strong>Asks if user is ready to play</li>
+					<li><strong>User: </strong>Janet clicks "Play" button</li>
+					<li><strong>System: </strong>"Game Started" message appears on screen</li>
+					<li><strong>User: </strong>Janet selects a student by highest test score to start the game</li>
+					<li><strong>System: </strong>ALERTS proctor that the "hot key" has been pressed by a specific student</li>
+					<li><strong>User: </strong>Janet selects "yes" if question was correct, "no" if not</li>
+				</ul>
+				<p><em>Repetitious process until all questions have been answered</em></p>
+				<ul>
+					<li><strong>System: </strong>Prompts proctor, "Would you like to start the Final Question?"</li>
+					<li><strong>User: </strong>Janet selects "yes"</li>
+					<li><strong>System: </strong>Final Question and a text box open on all "Players" screens then display answers to proctor</li>
+					<li><strong>User: </strong>Janet approves or denies "Players" answers by clicking "yes" or "no" next to each one</li>
+					<li><strong>System: </strong>Displays "Game Over" on screen</li>
+					<li><strong>User: </strong>Janet logs out</li>
+				</ul>
 				</div>
 
 
