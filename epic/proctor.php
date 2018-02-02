@@ -154,8 +154,6 @@
 				<li><strong>User: </strong>Janet chooses to set up a game, and clicks the 'Create New Game' button</li>
 				<li><strong>System: </strong>Q-Review opens the set up game screen.</li>
 				<li><strong>User: </strong>Janet selects the option to create new questions for this game.</li>
-				<li><strong>System: </strong>Asks for input on number of categories and questions per category</li>
-				<li><strong>User: </strong>Janet inputs 4 for categories and 6 for questions and one FINAL question</li>
 				<li><strong>System: </strong>Q-review generates a blank table with each cell as a text box.</li>
 				<li><strong>User: </strong>Janet inputs her categories and questions</li>
 				<li><strong>System: </strong>Asks if user is ready to play</li>
