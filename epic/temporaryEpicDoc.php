@@ -20,35 +20,29 @@
 
 			<h3>What is Q-Review</h3>
 
-			<p>Q-Review is a game-show style, question and answer, subject-matter review website that allows an instructor to input custom flash-cards to create a deck for Q-Review to generate fun interactive review sessions based on parameters set by the instructor.</p>
+			<p>In order to create a review session, the instructor will have to create multiple categories and cards. The initial release of Q-Review, will require a MINIMUM of 4 categories, though more can be added. Once the categories are entered, the instructor can begin to add cards. In order to make cards the instructor will be required to select one category tag, enter a question and answer, and select a difficulty “rating” - the difficulty rating simply serves to compare one card to another and serve up an easier or harder question. In the initial release of Q-Review, the instructor will be required to enter a MINIMUM of 5 cards per category, in order to be able to create a review session. The site can of course hold as many cards as the instructor would like.</p>
 
-			<h3>Building a New Deck</h3>
+			<p>For the initial release of Q-Review, the focus will be on functionality and experience. For this reason, we have decided to remove several complications, by restricting a Review Session to only allow 4 categories, and 5 cards per category. As previously mentioned, any number of sessions can be generated, with different categories, or cards depending on how many have been stored, but in order to create their first review session, an instructor MUST have entered at least 4 categories with 5 cards each.</p>
 
-			<p>Each “deck” can generate an infinite number of new review sessions, though their variability will be determined by the number of cards available. Each unique deck will be entered by the instructor themselves, who will have the ability to write in the question, suitable answers, a difficulty rating on a scale of 0-10, and a category tag.</p>
+			<p>Once the instructor chooses the 4 categories for the review session, the categories will be assigned alphabetically left to right. Once the categories are selected, Q-Review will populate the questions by randomly selecting questions with appropriate difficulty ratings sorted by easiest at the top, and most-difficult at the bottom. </p>
 
-			<h3>Creating a New Review Session (Game)</h3>
+			<p>Before the instructor invites their students into the game, they will be able to adjust parameters, like point values for rows, category titles, and which card should be the session’s Double-or-Nothing.</p>
 
-			<p>Once a deck is built, the instructor can build a review session (game) by building the board. Each board will be composed of categories along the top, and questions of increasing difficulty cascading down for each. The instructor will input how many columns and rows they want for each of these sessions. For the columns, the instructor cannot have more than the number of different categories in the deck, or 7, whichever is less. For the number of rows, or questions per category, again they cannot have more than the number of unique difficulty values they have assigned in this deck, or 10, whichever is less. Categories will be assigned alphabetically left to right, and custom category titles may then be added for the game. Questions will populate accordingly with the easiest being at the top, and most-difficult at the bottom. The instructor will then be able to input a point-value that corresponds to each row.</p>
+			<h3>A Review Session (Game)</h3>
 
-			<h3>Review Session (Game)</h3>
+			<p>Once the review sessions is created, the instructor can allow students to join the game. Multiple students can login simultaneously to any game hosted by the instructor. The instructor will select a student to lead the game, or if a game has already been played with this group of students, the winner of the previous game will have control of the board and be able to pick the topic and difficulty of the question. Every student will have the ability to buzz-in by pressing a “hot-key,”, but only the fastest will be recorded and allowed to answer the question. The instructor will be able to select whether the student got the question correct or not and the the game will update the points accordingly. If the student answers correctly, they will retain control of the board. If the student answers incorrectly the game will again allow for another round of buzz-ins for a second student to answer the question. This will continue until all of the cards have been revealed and answered.</p>
 
-			<p>Once the review session is created, the instructor can allow students to join the game. Multiple students can login simultaneously to any review session hosted by the instructor. The instructor will then select a student to lead the game, or if a game has already been played with this group of students, the winner of the previous game will have control of the board and be able to pick the question by category and point-value. Every student will have the ability to buzz-in by pressing the space-bar on their keyboard, but only the fastest will be recorded and allowed to answer the question. The instructor will be able to select whether the student got the question correct or incorrect and then the game will update the student's points accordingly. If the student answers correctly, they will retain control of the board. If the student answers incorrectly and the instructor makes that selection, the game will allow for another round of buzz-ins for a second student to answer the question. This will continue until all of the card have been revealed and answered.</p>
+			<h3>Special case:</h3>
+			<h4>The Double or Nothing Question</h4>
+			<p>One card out of every game will be randomly selected to be a Double or Nothing questions. There will be no buzz-ins for this question, the student who had control of the board will be allowed to try and answer the question. If they are correct, they will double their points, if they are incorrect they will lose the value of the card. Also if they are incorrect, the game will allow other students to “steal” the points by buzzing-in and answering correctly, though, after, the student who originally chose the Double or Nothing will retain control of the board and pick a new topic and difficulty.</p>
 
-			<h3>Special cases</h3>
+			<h3>The Final Wager</h3>
 
-			<h4>The Double-or-Nothing Question</h4>
+			<p>At the conclusion of every game, there is one questions that every student must answer. They will first have to enter and save a wager that is either equal to or less than their current score, or the highest value of the board that day, whichever is greater (though they risk losing that many points if they get it wrong). After the wagers are set, the question will be read and students will input their answers into a textbox and submit them. The teacher will be able to review the answers as they come in, but the scoreboard will not update until all answers have been submitted. </p>
 
-			<p>One card out of every game will be randomly selected to be a double-or-nothing question. There will be no buzz-ins for this question, the student who had control of the board will be allowed to try and answer the question. If they are correct, they will double their points, if they are incorrect the point-value of the card will be deducted from their points. If they are incorrect, the game will allow other students to “steal” the points by buzzing-in and answering correctly, though after, the student who originally chose the double-or-nothing will retain control of the board and pick a new topic and difficulty.</p>
+			<p>At the conclusion of the game, the student with the highest number of points will be declared the winner, and in the subsequent game, will begin with control of the board. </p>
 
-			<h4>The Final Wager</h4>
-
-			<p>At the conclusion of every game, there is one final question that every student must answer. They will first have to enter and save a wager that is either equal to or less than their current score, or the highest value of the board that day, whichever is greater (though they risk losing that many points if they get it wrong, even going into negative values). After the wagers are set, the question will be read and students will input their answers into a textbox and submit them. The teacher will be able to review the answers as they come in, but the scoreboard will not update until all answers have been submitted.</p>
-
-			<p>At the conclusion of the game, the student with the highest number of points will be declared the winner, and in the subsequent game, will begin with control of the board.</p>
-
-			<h3>Ending a Review Session</h3>
-
-			<p>Each game is automagically saved during gameplay and, in the case of an accidental closing of the session, can be recovered. Therefore, at the conclusion of the game, the students and instructor can simply log out of the session. Upon returning to that Deck, the instructor can select Create New Review Session to generate a new board and start a fresh game based on the most up-to-date information from the last game, or the instructor could select Resume an Old Review Session, and open up a previous or unfinished session.</p>
+			<p>All review sessions will be archived so that an instructor may re-use previous sessions, or review how their students performed. </p>
 
 		</section>
 
