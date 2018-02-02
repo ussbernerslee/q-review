@@ -8,49 +8,49 @@
 
 		<!-- Profile authentication information to match when checked against active directory -->
 		<h1>Entity: Profile</h1>
-		<h3>Attribute: profileId(Primary Key) BINARY(16) NOT NULL</h3>
-		<h3>Attribute: profileActivationToken</h3>
-		<h3>Attribute: profileHash CHAR(64)</h3>
-		<h3>Attribute: profileName VARCHAR(50)</h3>
-		<h3>Attribute: profilePrivilege CHAR(10)</h3><!--question for Bridge: what type to use for this?-->
-		<h3>Attribute: profileSaltCHAR(128)</h3>
-		<h3>Attribute: profileUsername VARCHAR(50)</h3>
+		<p><strong>Attribute: </strong> profileId(Primary Key) BINARY(16) NOT NULL</p>
+		<p><strong>Attribute: </strong> profileActivationToken</p>
+		<p><strong>Attribute: </strong> profileHash CHAR(64)</p>
+		<p><strong>Attribute: </strong> profileName VARCHAR(50)</p>
+		<p><strong>Attribute: </strong> profilePrivilege CHAR(10)</p><!--question for Bridge: what type to use for this?-->
+		<p><strong>Attribute: </strong> profileSaltCHAR(128)</p>
+		<p><strong>Attribute: </strong> profileUsername VARCHAR(50)</p>
 
 
 		<!-- List of categories tied to the columns in game, tied to specific profile for the instructor/proctor (CSS, HTML, SQL, etc) -->
 		<h1>Entity: Category</h1>
-		<h3>Attribute: categoryId (Primary Key) VARCHAR(15) NOT NULL</h3>
-		<h3>Attribute: categoryProfileId VARCHAR(15)(instructor/proctor)</h3>
+		<p><strong>Attribute: </strong> categoryId (Primary Key) VARCHAR(15) NOT NULL</p>
+		<p><strong>Attribute: </strong> categoryProfileId VARCHAR(15)(instructor/proctor)</p>
 
 
 		<!-- Question card containing question in specific category, answer, and value -->
 		<h1>Entity: Card</h1>
-		<h3>Attribute: cardId(Primary Key) BINARY(16) NOT NULL</h3>
-		<h3>Attribute: cardCategoryId (Foreign Key)BINARY(16) NOT NULL</h3><!--only 1 category per card-->
-		<h3>Attribute: cardAnswerVARCHAR(500)</h3>
-		<h3>Attribute: cardDifficulty INTEGER (1)1:beginner, 2:intermediate, 3:advanced(?)</h3>
-		<h3>Attribute: cardQuestion VARCHAR(500)</h3>
+		<p><strong>Attribute: </strong> cardId(Primary Key) BINARY(16) NOT NULL</p>
+		<p><strong>Attribute: </strong> cardCategoryId (Foreign Key)BINARY(16) NOT NULL</p><!--only 1 category per card-->
+		<p><strong>Attribute: </strong> cardAnswerVARCHAR(500)</p>
+		<p><strong>Attribute: </strong> cardDifficulty INTEGER (1)1:beginner, 2:intermediate, 3:advanced(?)</p>
+		<p><strong>Attribute: </strong> cardQuestion VARCHAR(500)</p>
 
 
 		<!-- Created game board filled with questions and values -->
 		<h1>Entity: Board</h1>
-		<h3>Attribute: boardId(Primary Key) BINARY(16) NOT NULL</h3>
-		<h3>Attribute: boardProfileId (Foreign Key)BINARY(16) NOT NULL</h3><!--this is the proctor who created the game-->
-		<h3>Attribute: boardName VARCHAR(50)</h3><!--or boardSubject-->
+		<p><strong>Attribute: </strong> boardId(Primary Key) BINARY(16) NOT NULL</p>
+		<p><strong>Attribute: </strong> boardProfileId (Foreign Key)BINARY(16) NOT NULL</p><!--this is the proctor who created the game-->
+		<p><strong>Attribute: </strong> boardName VARCHAR(50)</p><!--or boardSubject-->
 
 
 		<!-- Created ledger (weak entity) -->
 		<h1>Entity: Ledger</h1>
-		<h3>Attribute: LedgerID (NOT a composite key)(Primary Key)</h3>
-		<h3>Attribute: ledgerBoardID (Foreign Key)BINARY(16) NOT NULL</h3>
-		<h3>Attribute: ledgerProfileId(instructor/proctor) (Foreign Key)BINARY(16) NOT NULL</h3>
-		<h3>Attribute: ledgerProfileId (student)(Foreign Key)BINARY(16) NOT NULL</h3>
-		<h3>Attribute: ledgerCardId</h3>
-		<h3>Attribute: ledgerCorrect(yes/no)</h3>
-		<h3>Attribute: ledgerDouble(yes/no)</h3>
-		<h3>Attribute: ledgerFinalWager</h3>
-		<h3>Attribute: ledgerPointsId (sets row by value)</h3>
-		<h3>Attribute: ledgerTypeId(sets column)</h3>
+		<p><strong><strong>Attribute: </strong> </strong> LedgerID (NOT a composite key)(Primary Key)</p>
+		<p><strong>Attribute: </strong> ledgerBoardID (Foreign Key)BINARY(16) NOT NULL</p>
+		<p><strong>Attribute: </strong> ledgerProfileId(instructor/proctor) (Foreign Key)BINARY(16) NOT NULL</p>
+		<p><strong>Attribute: </strong> ledgerProfileId (student)(Foreign Key)BINARY(16) NOT NULL</p>
+		<p><strong>Attribute: </strong> ledgerCardId</p>
+		<p><strong>Attribute: </strong> ledgerCorrect(yes/no)</p>
+		<p><strong>Attribute: </strong> ledgerDouble(yes/no)</p>
+		<p><strong>Attribute: </strong> ledgerFinalWager</p>
+		<p><strong>Attribute: </strong> ledgerPointsId (sets row by value)</p>
+		<p><strong>Attribute: </strong> ledgerTypeId(sets column)</p>
 
 
 
