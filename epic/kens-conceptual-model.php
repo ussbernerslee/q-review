@@ -12,8 +12,8 @@
 		<p><strong>Attribute: </strong> profileActivationToken</p>
 		<p><strong>Attribute: </strong> profileHash CHAR(128)</p>
 		<p><strong>Attribute: </strong> profileName VARCHAR(50)</p>
-		<p><strong>Attribute: </strong> profilePrivilege CHAR(10)</p><!--question for Bridge: what type to use for this?-->
-		<p><strong>Attribute: </strong> profileSaltCHAR(64)</p>
+		<p><strong>Attribute: </strong> profilePrivilege CHAR(1)</p><!--question for Bridge: what type to use for this?-->
+		<p><strong>Attribute: </strong> profileSalt CHAR(64)</p>
 		<p><strong>Attribute: </strong> profileUsername VARCHAR(50)</p>
 
 
@@ -27,7 +27,7 @@
 		<h1>Entity: Card</h1>
 		<p><strong>Attribute: </strong> cardId(Primary Key) BINARY(16) NOT NULL</p>
 		<p><strong>Attribute: </strong> cardCategoryId (Foreign Key)BINARY(16) NOT NULL</p><!--only 1 category per card-->
-		<p><strong>Attribute: </strong> cardAnswerVARCHAR(500)</p>
+		<p><strong>Attribute: </strong> cardAnswer  VARCHAR(500)</p>
 		<p><strong>Attribute: </strong> cardPoints INTEGER</p>
 		<p><strong>Attribute: </strong> cardQuestion VARCHAR(500)</p>
 
