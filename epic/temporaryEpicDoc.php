@@ -190,22 +190,22 @@
 				</ul>
 				</div>
 
-
-			<h2>Student Persona</h2>
-			<h3>Kevin - Power User Student</h3>
-			<ul>
-				<li><strong>Name</strong>: Kevin</li>
-				<li><strong>Personality</strong>: </li>
-				<li><strong>Gender</strong>: Male</li>
-				<li><strong>Age</strong>: 25</li>
-				<li><strong>Technology</strong>: mac, pc, but let's be honest...mac
-					<ul>
-						<li><strong>Device </strong> New Macbook Pro 13-inch</li>
-						<li><strong>Browser: </strong>Chrome</li>
-						<li><strong>Proficiency: </strong>Intermediate -> Advanced (has played around with the Dev Tools)</li>
-						<li><strong>Love/Hate: </strong>Reddit/Facebook (even though they check it constantly)</li>
-					</ul>
-				</li>
+			<div>
+				<h2>Student Persona</h2>
+				<h3>Kevin - Power User Student</h3>
+				<ul>
+					<li><strong>Name</strong>: Kevin</li>
+					<li><strong>Personality</strong>: </li>
+					<li><strong>Gender</strong>: Male</li>
+					<li><strong>Age</strong>: 25</li>
+					<li><strong>Technology</strong>: mac, pc, but let's be honest...mac
+						<ul>
+							<li><strong>Device </strong> New Macbook Pro 13-inch</li>
+							<li><strong>Browser: </strong>Chrome</li>
+							<li><strong>Proficiency: </strong>Intermediate -> Advanced (has played around with the Dev Tools)</li>
+							<li><strong>Love/Hate: </strong>Reddit/Facebook (even though they check it constantly)</li>
+						</ul>
+					</li>
 				<li><strong>Attitudes and Needs</strong>
 					<ul>
 						<li><strong>What need does this person have?</strong> Kevin needs </li>
@@ -216,7 +216,7 @@
 			</ul>
 			</div>
 
-			<div class="user story"></div>
+			<div class="user story">
 			<h3>User Story</h3>
 			<p>As a student, power-user, I want to dominate (win) today's review session.</p>
 			</div>
