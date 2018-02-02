@@ -34,7 +34,9 @@
 
 			<h3>Special case:</h3>
 			<h4>Wagers</h4>
-			<p>One card out of every game will be randomly selected to be a Double or Nothing questions. There will be no buzz-ins for this question, the student who had control of the board will be allowed to try and answer the question. If they are correct, they will double their points, if they are incorrect they will lose the value of the card. Also if they are incorrect, the game will allow other students to “steal” the points by buzzing-in and answering correctly, though, after, the student who originally chose the Double or Nothing will retain control of the board and pick a new topic and difficulty.</p>
+			<p>One card out of every game will be randomly selected to be a wager question. The student that selects this card will be notified that this is a wager question, and they must enter a value equal to or less than their current score. They are given priority to answer the question. If they answer correctly, their wager will be added to their score. If they answer incorrectly, they will be deducted the value of their wager, and the session will be opened up for the rest of the students to "steal" for the original value of the card. When the question is finally settled, control of the board will go back to the original student that picked it.</p>
+
+			<p>At the end of the game, their will be a Final Wager question that every student MUST interact with. They all must enter a wager, less than or equal to their score or the highest value on the review session that day. Whichever is greater. Then they must submit their answer to the question. </p>
 
 			<h3>The Final Wager</h3>
 
