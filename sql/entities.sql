@@ -1,4 +1,4 @@
-ALTER DATABASE faqt CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER DATABASE jeopardy CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- profile table:
 CREATE TABLE profile(
