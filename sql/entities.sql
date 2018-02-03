@@ -38,7 +38,7 @@ CREATE TABLE card(
 	-- attributes for card:
 	cardAnswer VARCHAR(255) NOT NULL,
 	cardPoints TINYINT UNSIGNED,
-	cardQuestion VARCHAR(255)
-
-
+	cardQuestion VARCHAR(255),
+	-- Primary Key:
+	PRIMARY KEY(cardID)
 );
