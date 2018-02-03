@@ -1,4 +1,4 @@
-ALTER DATABASE akhamsamran1 CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER DATABASE faqt CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- profile table:
 CREATE TABLE profile(
@@ -88,5 +88,4 @@ CREATE TABLE ledger(
 	PRIMARY KEY (ledgerBoardId),
 	PRIMARY KEY (ledgerCardId),
 	PRIMARY KEY (ledgerProfileId)
-
 );
