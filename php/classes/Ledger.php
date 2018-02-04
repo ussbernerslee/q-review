@@ -127,6 +127,28 @@ class Ledger {
 		return ($this->ledgerType);
 	}
 	/**
+	 * mutator method for ledger type
+	 *
+	 * @param string $newLedgerType new value of ledger type
+	 * @throws \InvalidArgumentException if $newLedgerType is not a string or insecure
+	 * @throws \RangeException if $newLedgerType is > 32 characters
+	 * @throws \TypeError if $newLedgerType is not a string
+	 **/
+	public function setLedgerType(string $newLedgerType): void {
+		// verify the ledger type is secure
+		$newLedgerType = trim($newLedgerType);
+		$newLedgerType = filter_var($newLedgerType, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newLedgerType) === true) {
+			throw(new \InvalidArgumentException("ledger type is empty or insecure"));
+		}
+		// verify the category name will fit in the database
+		if(strlen($newLedgerType) > 32) {
+			throw(new \RangeException("ledger type is too large"));
+		}
+		// store the ledger type
+		$this->ledgerType = $newLedgerType;
+	}
+	/**
 	 * accessor method for getting LedgerPoints
 	 *
 	 * @return Uuid value for LedgerPoints
