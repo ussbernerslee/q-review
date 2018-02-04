@@ -18,31 +18,31 @@ use Ramsey\Uuid\Uuid;
  * @version 4.0.0
  * @package Edu\Cnm\DataDesign
  **/
-/*
-CREATE TABLE ledger(
-	-- attribute for foreign keys:
-	ledgerBoardId BINARY(16) NOT NULL,
-	ledgerCardId BINARY(16) NOT NULL,
-	ledgerProfileId BINARY(16) NOT NULL,
-	-- attributes for ledger:
-	ledgerType TINYINT UNSIGNED,
-	ledgerPoints TINYINT SIGNED,
-	-- unique index created:
-	UNIQUE (ledgerBoardId),
-	UNIQUE (ledgerCardId),
-	UNIQUE (ledgerProfileId),
-	-- create foreign keys and relationships:
-	FOREIGN KEY (ledgerBoardId) REFERENCES board(boardId),
-	FOREIGN KEY (ledgerCardId) REFERENCES card(cardId),
-	FOREIGN KEY (ledgerProfileId) REFERENCES profile(profileId),
-	-- Primary Key (compound key):
-	PRIMARY KEY (ledgerBoardId),
-	PRIMARY KEY (ledgerCardId),
-	PRIMARY KEY (ledgerProfileId)
-);
-*/
 class Ledger {
 
+	private $ledgerBoardId;
+
+	private $ledgerCardId;
+
+	private $ledgerProfileId;
+
+	private $ledgerType;
+
+	private $ledgerPoints;
+
+	public function __construct($newLedgerBoardId, $newLedgerCardId, $newLedgerProfileId, $newLedgerType, $newLedgerPoints) {
+		try {
+			$this->setLedgerBoardId($newLedgerBoardId);
+			$this->setLedgerCardId($newLedgerCardId);
+			$this->setLedgerProfileId($newLedgerProfileId);
+			$this->setLedgerType($newLedgerType);
+			$this->setLedgerPoints($newLedgerPoints);
+		} catch(\InvalidArgumentException | \RangeException |\TypeError | \Exception $exception) {
+			//determine what exception type was thrown
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 
 
 }
