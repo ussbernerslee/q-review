@@ -62,7 +62,7 @@ class Board {
 	 *
 	 * @param Uuid|string $newBoardId with the value of boardId
 	 * @throws \RangeException if $newBoardId is not positive
-	 * @throws \TypeError if card id is not positive
+	 * @throws \TypeError if board id is not positive
 	 **/
 	public function setBoardId($newBoardId): void {
 		try {
@@ -81,6 +81,23 @@ class Board {
 	 **/
 	public function getBoardProfileId(): Uuid {
 		return ($this->boardProfileId);
+	}
+	/**
+	 * mutator function for boardProfileId
+	 *
+	 * @param Uuid|string $newBoardProfileId with the value of boardProfileId
+	 * @throws \RangeException if $newBoardProfileId is not positive
+	 * @throws \TypeError if board profile id is not positive
+	 **/
+	public function setBoardProfileId($newBoardProfileId): void {
+		try {
+			$uuid = self::validateUuid($newBoardProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		// convert and store the card id
+		$this->boardProfileId = $uuid;
 	}
 	/**
 	 * accessor method for getting boardName

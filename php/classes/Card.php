@@ -77,6 +77,23 @@ class Card {
 		return ($this->cardCategoryId);
 	}
 	/**
+	 * mutator function for cardCategoryId
+	 *
+	 * @param Uuid|string $newCardCategoryId with the value of cardCategoryId
+	 * @throws \RangeException if $newCardCategoryId is not positive
+	 * @throws \TypeError if card category id is not positive
+	 **/
+	public function setCardId($newCardCategoryId): void {
+		try {
+			$uuid = self::validateUuid($newCardCategoryId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		// convert and store the card category id
+		$this->cardCategoryId = $uuid;
+	}
+	/**
 	 * accessor method for getting cardAnswer
 	 *
 	 * @return string value for cardAnswer

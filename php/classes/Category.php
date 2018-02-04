@@ -83,6 +83,23 @@ class Category {
 		return ($this->categoryProfileId);
 	}
 	/**
+	 * mutator function for categoryProfileId
+	 *
+	 * @param Uuid|string $newCategoryProfileId with the value of categoryProfileId
+	 * @throws \RangeException if $newCategoryProfileId is not positive
+	 * @throws \TypeError if category profile id is not positive
+	 **/
+	public function setCategoryId($newCategoryProfileId): void {
+		try {
+			$uuid = self::validateUuid($newCategoryProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		// convert and store the category profile id
+		$this->categoryProfileId = $uuid;
+	}
+	/**
 	 * accessor method for getting categoryName
 	 *
 	 * @return string value for categoryName
