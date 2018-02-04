@@ -107,5 +107,27 @@ class Category {
 	public function getCategoryName(): string {
 		return ($this->categoryName);
 	}
+	/**
+	 * mutator method for category name
+	 *
+	 * @param string $newCategoryName new value of category name
+	 * @throws \InvalidArgumentException if $newCategoryName is not a string or insecure
+	 * @throws \RangeException if $newCategoryName is > 32 characters
+	 * @throws \TypeError if $newCategoryName is not a string
+	 **/
+	public function setCategoryName(string $newCategoryName): void {
+		// verify the category name is secure
+		$newCategoryName = trim($newCategoryName);
+		$newCategoryName = filter_var($newCategoryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCategoryName) === true) {
+			throw(new \InvalidArgumentException("category name is empty or insecure"));
+		}
+		// verify the category name will fit in the database
+		if(strlen($newCategoryName) > 32) {
+			throw(new \RangeException("category name is too large"));
+		}
+		// store the board name
+		$this->categoryName = $newCategoryName;
+	}
 
 }

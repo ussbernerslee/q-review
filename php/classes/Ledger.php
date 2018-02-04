@@ -131,8 +131,8 @@ class Ledger {
 	 *
 	 * @return Uuid value for LedgerPoints
 	 **/
-	public function getLedgerTypes(): string {
-		return ($this->ledgerType);
+	public function getLedgerPoints(): int {
+		return ($this->ledgerPoints);
 	}
 
 }

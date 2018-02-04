@@ -107,5 +107,27 @@ class Board {
 	public function getBoardName(): string {
 		return ($this->boardName);
 	}
+	/**
+	 * mutator method for board name
+	 *
+	 * @param string $newBoardName new value of board name
+	 * @throws \InvalidArgumentException if $newBoardName is not a string or insecure
+	 * @throws \RangeException if $newBoardName is > 32 characters
+	 * @throws \TypeError if $newBoardName is not a string
+	 **/
+	public function setBoardName(string $newBoardName): void {
+		// verify the board name is secure
+		$newBoardName = trim($newBoardName);
+		$newBoardName = filter_var($newBoardName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newBoardName) === true) {
+			throw(new \InvalidArgumentException("board name is empty or insecure"));
+		}
+		// verify the board name will fit in the database
+		if(strlen($newBoardName) > 32) {
+			throw(new \RangeException("board name is too large"));
+		}
+		// store the board name
+		$this->boardName = $newBoardName;
+	}
 
 }
