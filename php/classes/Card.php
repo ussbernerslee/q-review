@@ -132,6 +132,28 @@ class Card {
 		return ($this->cardPoints);
 	}
 	/**
+	 * mutator method for card points
+	 *
+	 * @param int $newCardPoints new value of card points
+	 * @throws \InvalidArgumentException if $newCardPoints is not an int or insecure
+	 * @throws \RangeException if $newCardPoints is > 32 characters
+	 * @throws \TypeError if $newCardPoints is not an int
+	 **/
+	public function setCardPoints(int $newCardPoints): void {
+		// verify the card points are secure
+		$newCardPoints = trim($newCardPoints);
+		$newCardPoints = filter_var($newCardPoints, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCardPoints) === true) {
+			throw(new \InvalidArgumentException("card points are empty or insecure"));
+		}
+		// verify the card points will fit in the database
+		if(strlen($newCardPoints) > 32) {
+			throw(new \RangeException("card points is too large"));
+		}
+		// store the card points
+		$this->cardPoints = $newCardPoints;
+	}
+	/**
 	 * accessor method for getting cardQuestion
 	 *
 	 * @return string value for cardQuestion

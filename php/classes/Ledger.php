@@ -141,7 +141,7 @@ class Ledger {
 		if(empty($newLedgerType) === true) {
 			throw(new \InvalidArgumentException("ledger type is empty or insecure"));
 		}
-		// verify the category name will fit in the database
+		// verify the ledger type will fit in the database
 		if(strlen($newLedgerType) > 32) {
 			throw(new \RangeException("ledger type is too large"));
 		}
@@ -155,6 +155,28 @@ class Ledger {
 	 **/
 	public function getLedgerPoints(): int {
 		return ($this->ledgerPoints);
+	}
+	/**
+	 * mutator method for ledger points
+	 *
+	 * @param int $newLedgerPoints new value of ledger points
+	 * @throws \InvalidArgumentException if $newLedgerPoints is not an int or insecure
+	 * @throws \RangeException if $newLedgerPoints is > 32 characters
+	 * @throws \TypeError if $newLedgerPoints is not an int
+	 **/
+	public function setLedgerPoints(int $newLedgerPoints): void {
+		// verify the ledger points are secure
+		$newLedgerPoints = trim($newLedgerPoints);
+		$newLedgerPoints = filter_var($newLedgerPoints, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newLedgerPoints) === true) {
+			throw(new \InvalidArgumentException("ledger points are empty or insecure"));
+		}
+		// verify the ledger points will fit in the database
+		if(strlen($newLedgerPoints) > 32) {
+			throw(new \RangeException("ledger points is too large"));
+		}
+		// store the ledger points
+		$this->ledgerPoints = $newLedgerPoints;
 	}
 
 }
