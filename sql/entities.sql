@@ -6,11 +6,12 @@ CREATE TABLE profile(
 	profileId BINARY(16) NOT NULL,
 	-- attributes for profile:
 	profileActivationToken CHAR(32),
+	profileEmail VARCHAR(128) NOT NULL,
+	profileHash CHAR(128) NOT NULL,
 	profileName VARCHAR(50),
 	profilePrivilege CHAR(1),
 	profileUsername VARCHAR(50),
 	-- verification attributes for entity:
-	profileHash CHAR(128) NOT NULL,
 	profileSalt CHAR(64) NOT NULL,
 	-- unique index created:
 	UNIQUE (profileId),
