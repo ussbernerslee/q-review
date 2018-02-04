@@ -1,22 +1,23 @@
 <?php
+namespace Edu\Cnm\DataDesign;
 
-/*
-CREATE TABLE board(
-	-- attribute for primary key:
-	boardId BINARY(16) NOT NULL,
-	-- attribute for foreign key:
-	boardProfileId BINARY(16) NOT NULL,
-	-- other attribute for board:
-	boardName VARCHAR(64),
-	-- unique index created:
-	UNIQUE (boardID),
-	-- create foreign key and relationships:
-	FOREIGN KEY (boardProfileId) REFERENCES profile(profileId),
-	-- Primary key:
-	PRIMARY KEY (boardId)
-);
-*/
 
+
+require_once("autoload.php");
+require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+
+use Ramsey\Uuid\Uuid;
+
+/**
+ *Board
+ *
+ *
+ *
+ * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
+ * @author Dylan McDonald <dmcdonald21@cnm.edu>
+ * @version 4.0.0
+ * @package Edu\Cnm\DataDesign
+ **/
 class Board {
 
 	private $boardId;

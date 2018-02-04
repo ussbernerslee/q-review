@@ -1,20 +1,88 @@
 <?php
+namespace Edu\Cnm\DataDesign;
 
-/*
-CREATE TABLE card(
--- attribute for primary key:
-	cardID BINARY(16) NOT NULL,
-	-- attribute for foreign key:
-	cardCategoryId BINARY(16) NOT NULL,
-	-- attributes for card:
-	cardAnswer VARCHAR(255) NOT NULL,
-	cardPoints TINYINT UNSIGNED,
-	cardQuestion VARCHAR(255),
-	-- unique index created:
-	UNIQUE (cardId),
-	-- create foreign keys and relationships:
-	FOREIGN KEY (cardCategoryId) REFERENCES category(categoryId),
-	-- Primary Key:
-	PRIMARY KEY(cardID)
-);
-*/
+
+
+require_once("autoload.php");
+require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+
+use Ramsey\Uuid\Uuid;
+
+/**
+ *Card
+ *
+ *
+ *
+ * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
+ * @author Dylan McDonald <dmcdonald21@cnm.edu>
+ * @version 4.0.0
+ * @package Edu\Cnm\DataDesign
+ **/
+class Card {
+
+	private $cardId;
+
+	private $cardCategoryId;
+
+	private $cardAnswer;
+
+	private $cardPoints;
+
+	private $cardQuestion;
+
+	public function __construct($newCardId, $newCardCategoryId, $newCardAnswer, $newCardPoints, $newCardQuestion) {
+		try {
+			$this->setCardId($newCardId);
+			$this->setCardCategoryId($newCardCategoryId);
+			$this->setCardAnswer($newCardAnswer);
+			$this->setCardPoints($newCardPoints);
+			$this->setCardQuestion($newCardQuestion);
+		} catch(\InvalidArgumentException | \RangeException |\TypeError | \Exception $exception) {
+			//determine what exception type was thrown
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
+	/**
+	 * accessor method for getting cardId
+	 *
+	 * @return Uuid value for cardId
+	 **/
+	public function getCardId(): Uuid {
+		return ($this->cardId);
+	}
+	/**
+	 * accessor method for getting cardCategoryId
+	 *
+	 * @return Uuid value for cardCategoryId
+	 **/
+	public function getCardCategoryId(): Uuid {
+		return ($this->cardCategoryId);
+	}
+	/**
+	 * accessor method for getting cardAnswer
+	 *
+	 * @return string value for cardAnswer
+	 **/
+	public function getCardAnswer(): string {
+		return ($this->cardAnswer);
+	}
+	/**
+	 * accessor method for getting cardPoints
+	 *
+	 * @return string value for cardPoints
+	 **/
+	public function getCardPoints(): string {
+		return ($this->cardPoints);
+	}
+	/**
+	 * accessor method for getting cardQuestion
+	 *
+	 * @return string value for cardQuestion
+	 **/
+	public function getCardQuestion(): string {
+		return ($this->cardQuestion);
+	}
+
+
+}

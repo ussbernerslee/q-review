@@ -1,5 +1,23 @@
 <?php
+namespace Edu\Cnm\DataDesign;
 
+
+
+require_once("autoload.php");
+require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+
+use Ramsey\Uuid\Uuid;
+
+/**
+ *Category
+ *
+ *
+ *
+ * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
+ * @author Dylan McDonald <dmcdonald21@cnm.edu>
+ * @version 4.0.0
+ * @package Edu\Cnm\DataDesign
+ **/
 class Category {
 
 	private $categoryId;
