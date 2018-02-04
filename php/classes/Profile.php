@@ -73,15 +73,15 @@ class Profile implements \JsonSerializable {
 	 **/
 	private $profilePrivilege;
 	/**
-	 * username for this profile
-	 * @var string $profileUsername
-	 **/
-	private $profileUsername;
-	/**
 	 * salt stored for this profile
 	 * @var string $profileSalt
 	 **/
 	private $profileSalt;
+	/**
+	 * username for this profile
+	 * @var string $profileUsername
+	 **/
+	private $profileUsername;
 
 	/**
 	 * constructor for this Profile
@@ -90,26 +90,26 @@ class Profile implements \JsonSerializable {
 	 * @param string $newProfileActivationToken activation token to safe guard against malicious accounts
 	 * @param string $newProfileEmail string containing email
 	 * @param string $newProfileHash string containing password hash
-	 * @param string $newProfileName string containing newProfileFullName
-	 * @param string $newProfilePrivilege string containing newProfileCaption can be null
-	 * @param string $newProfileUsername string containing phone number
+	 * @param string $newProfileName string containing new profile name
+	 * @param string $newProfilePrivilege string containing new profile privilege captain or student
 	 * @param string $newProfileSalt string containing password salt
+	 * @param string $newProfileUsername string containing username
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if a data type violates a data hint
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newProfileId, ?string $newProfileActivationToken, string $newProfileFullName, string $newProfileCaption, string $newProfileEmail, string $newProfileHash, ?string $newProfilePhone, string $newProfileSalt) {
+	public function __construct($newProfileId, ?string $newProfileActivationToken, string $newProfileEmail, string $newProfileHash, string $newProfileName, string $newProfilePrivilege, string $newProfileSalt, ?string $newProfileUsername) {
 		try {
 			$this->setProfileId($newProfileId);
 			$this->setProfileActivationToken($newProfileActivationToken);
-			$this->setProfileFullName($newProfileFullName);
-			$this->setProfileCaption($newProfileCaption);
 			$this->setProfileEmail($newProfileEmail);
 			$this->setProfileHash($newProfileHash);
-			$this->setProfilePhone($newProfilePhone);
+			$this->setProfileName($newProfileName);
+			$this->setProfilePrivilege($newProfilePrivilege);
 			$this->setProfileSalt($newProfileSalt);
+			$this->setProfileUsername($newProfileUsername);
 		} catch(\InvalidArgumentException | \RangeException |\TypeError | \Exception $exception) {
 			//determine what exception type was thrown
 			$exceptionType = get_class($exception);
@@ -142,36 +142,6 @@ class Profile implements \JsonSerializable {
 		$this->profileId = $uuid;
 	}
 	/**
-	 * accessor method for full name
-	 *
-	 * @return string value of full name
-	 **/
-	public function getProfileFullName(): string {
-		return ($this->profileFullName);
-	}
-	/**
-	 * mutator method for full name
-	 *
-	 * @param string $newProfileFullName new value of full name
-	 * @throws \InvalidArgumentException if $newProfileFullName is not a string or insecure
-	 * @throws \RangeException if $newProfileFullName is > 32 characters (may not work for all names, but I did set this field to 32 in my database so I am sticking with it)
-	 * @throws \TypeError if $newProfileFullName is not a string
-	 **/
-	public function setProfileFullName(string $newProfileFullName): void {
-		// verify the full name is secure
-		$newProfileFullName = trim($newProfileFullName);
-		$newProfileFullName = filter_var($newProfileFullName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newProfileFullName) === true) {
-			throw(new \InvalidArgumentException("name is empty or insecure"));
-		}
-		// verify the full name will fit in the database
-		if(strlen($newProfileFullName) > 32) {
-			throw(new \RangeException("name is too large"));
-		}
-		// store the full name
-		$this->profileFullName = $newProfileFullName;
-	}
-	/**
 	 * accessor method for account activation token
 	 *
 	 * @return string value of the activation token
@@ -201,38 +171,6 @@ class Profile implements \JsonSerializable {
 			throw(new\RangeException("user activation token has to be 32"));
 		}
 		$this->profileActivationToken = $newProfileActivationToken;
-	}
-	/**
-	 * accessor method for profile caption
-	 *
-	 * @return string value of profile caption
-	 **/
-	public function getProfileCaption(): string {
-		return($this->profileCaption);
-	}
-	/**
-	 * mutator method for profile caption
-	 *
-	 * @param string $newProfileCaption new value of profile caption
-	 * @throws \InvalidArgumentException if $newProfileCaption is not a string or insecure
-	 * @throws \RangeException if $newProfileCaption is > 140 characters
-	 * @throws \TypeError if $newProfileCaption is not a string
-	 **/
-	public function setProfileCaption(string $newProfileCaption): void {
-		// verify the profile caption is secure
-		$newProfileCaption = trim($newProfileCaption);
-		$newProfileCaption = filter_var($newProfileCaption, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newProfileCaption) === true) {
-			throw(new \InvalidArgumentException("caption is empty or insecure"));
-		}
-
-		// verify the caption will fit in the database
-		if(strlen($newProfileCaption) > 140) {
-			throw(new \RangeException("caption is too large"));
-		}
-
-		// store the caption
-		$this->profileCaption = $newProfileCaption;
 	}
 	/**
 	 * accessor method for email
@@ -299,47 +237,64 @@ class Profile implements \JsonSerializable {
 		$this->profileHash = $newProfileHash;
 	}
 	/**
-	 * accessor method for phone
+	 * accessor method for name
 	 *
-	 * @return string value of phone or null
+	 * @return string value of name
 	 **/
-	public function getProfilePhone(): ?string {
-		return ($this->profilePhone);
+	public function getProfileName(): string {
+		return ($this->profileName);
 	}
 	/**
-	 * mutator method for phone
+	 * mutator method for name
 	 *
-	 * @param string $newProfilePhone new value of phone
-	 * @throws \InvalidArgumentException if $newPhone is not a string or insecure
-	 * @throws \RangeException if $newPhone is > 32 characters
-	 * @throws \TypeError if $newPhone is not a string
+	 * @param string $newProfileName new value of name
+	 * @throws \InvalidArgumentException if $newProfileName is not a string or insecure
+	 * @throws \RangeException if $newProfileName is > 32 characters
+	 * @throws \TypeError if $newProfileName is not a string
 	 **/
-	public function setProfilePhone(?string $newProfilePhone): void {
-		//if $profilePhone is null return it right away
-		if($newProfilePhone === null) {
-			$this->profilePhone = null;
-			return;
+	public function setProfileName(string $newProfileName): void {
+		// verify the name is secure
+		$newProfileName = trim($newProfileName);
+		$newProfileName = filter_var($newProfileName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newProfileName) === true) {
+			throw(new \InvalidArgumentException("name is empty or insecure"));
 		}
-		// verify the phone is secure
-		$newProfilePhone = trim($newProfilePhone);
-		$newProfilePhone = filter_var($newProfilePhone, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newProfilePhone) === true) {
-			throw(new \InvalidArgumentException("profile phone is empty or insecure"));
+		// verify the name will fit in the database
+		if(strlen($newProfileName) > 32) {
+			throw(new \RangeException("name is too large"));
 		}
-		// verify the phone will fit in the database
-		if(strlen($newProfilePhone) > 32) {
-			throw(new \RangeException("profile phone is too large"));
-		}
-		// store the phone
-		$this->profilePhone = $newProfilePhone;
+		// store the full name
+		$this->profileName = $newProfileName;
 	}
 	/**
-	 *accessor method for profile salt
+	 * accessor method for profile privilege
 	 *
-	 * @return string representation of the salt hexadecimal
-	 */
-	public function getProfileSalt(): string {
-		return $this->profileSalt;
+	 * @return string value of profile privilege
+	 **/
+	public function getProfilePrivilege(): string {
+		return($this->profilePrivilege);
+	}
+	/**
+	 * mutator method for profile privilege
+	 *
+	 * @param string $newProfilePrivilege new value of profile privilege
+	 * @throws \InvalidArgumentException if $newProfilePrivilege is not a string or insecure
+	 * @throws \RangeException if $newProfilePrivilege is > 1 characters
+	 * @throws \TypeError if $newProfilePrivilege is not a string
+	 **/
+	public function setProfilePrivilege(string $newProfilePrivilege): void {
+		// verify the profile privilege is secure
+		$newProfilePrivilege = trim($newProfilePrivilege);
+		$newProfilePrivilege = filter_var($newProfilePrivilege, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newProfilePrivilege) === true) {
+			throw(new \InvalidArgumentException("caption is empty or insecure"));
+		}
+		// verify the caption will fit in the database
+		if(strlen($newProfilePrivilege) > 1) {
+			throw(new \RangeException("privilege is too large"));
+		}
+		// store the caption
+		$this->profilePrivilege = $newProfilePrivilege;
 	}
 	/**
 	 * mutator method for profile salt
@@ -363,6 +318,36 @@ class Profile implements \JsonSerializable {
 		}
 		//store the hash
 		$this->profileSalt = $newProfileSalt;
+	}
+	/**
+	 * accessor method for username
+	 *
+	 * @return string value of username
+	 **/
+	public function getProfileUsername(): string {
+		return ($this->profileUsername);
+	}
+	/**
+	 * mutator method for username
+	 *
+	 * @param string $newProfileUsername new value of username
+	 * @throws \InvalidArgumentException if $newProfileUsername is not a string or insecure
+	 * @throws \RangeException if $newProfileUsername is > 32 characters
+	 * @throws \TypeError if $newProfileUsername is not a string
+	 **/
+	public function setProfileUsername(string $newProfileUsername): void {
+		// verify the username is secure
+		$newProfileUsername = trim($newProfileUsername);
+		$newProfileUsername = filter_var($newProfileUsername, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newProfileUsername) === true) {
+			throw(new \InvalidArgumentException("username is empty or insecure"));
+		}
+		// verify the username will fit in the database
+		if(strlen($newProfileUsername) > 32) {
+			throw(new \RangeException("username is too large"));
+		}
+		// store the username
+		$this->profileUsername = $newProfileUsername;
 	}
 	/**
 	 * formats the state variables for JSON serialization
