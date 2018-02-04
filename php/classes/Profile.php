@@ -29,9 +29,9 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- * Cross Section of a "Medium" Profile
+ *Profile
  *
- *This is a cross section of what is likely stored in a User's Profile on Medium. This entity is a top-level entity and holds the keys to the other entities I will be using: Article and Clap.
+ *
  *
  * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
