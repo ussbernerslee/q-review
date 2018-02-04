@@ -102,6 +102,28 @@ class Card {
 		return ($this->cardAnswer);
 	}
 	/**
+	 * mutator method for card answer
+	 *
+	 * @param string $newCardAnswer new value of card answer
+	 * @throws \InvalidArgumentException if $enwCardAnswer is not a string or insecure
+	 * @throws \RangeException if $newCardAnswer is > 140 characters
+	 * @throws \TypeError if $newCardAnswer is not a string
+	 **/
+	public function setCardAnswer(string $newCardAnswer): void {
+		// verify the card answer is secure
+		$newCardAnswer = trim($newCardAnswer);
+		$newCardAnswer = filter_var($newCardAnswer, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCardAnswer) === true) {
+			throw(new \InvalidArgumentException("card answer is empty or insecure"));
+		}
+		// verify the card answer will fit in the database
+		if(strlen($newCardAnswer) > 140) {
+			throw(new \RangeException("card answer content too large"));
+		}
+		// store the card answer
+		$this->cardAnswer = $newCardAnswer;
+	}
+	/**
 	 * accessor method for getting cardPoints
 	 *
 	 * @return string value for cardPoints
@@ -116,6 +138,28 @@ class Card {
 	 **/
 	public function getCardQuestion(): string {
 		return ($this->cardQuestion);
+	}
+	/**
+	 * mutator method for card question
+	 *
+	 * @param string $newCardQuestion new value of card answer
+	 * @throws \InvalidArgumentException if $enwCardQuestion is not a string or insecure
+	 * @throws \RangeException if $newCardQuestion is > 140 characters
+	 * @throws \TypeError if $newCardQuestion is not a string
+	 **/
+	public function setCardQuestion(string $newCardQuestion): void {
+		// verify the card question is secure
+		$newCardQuestion = trim($newCardQuestion);
+		$newCardQuestion = filter_var($newCardQuestion, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCardQuestion) === true) {
+			throw(new \InvalidArgumentException("card question is empty or insecure"));
+		}
+		// verify the card question will fit in the database
+		if(strlen($newCardQuestion) > 140) {
+			throw(new \RangeException("card question content too large"));
+		}
+		// store the card question
+		$this->cardQuestion = $newCardQuestion;
 	}
 
 
