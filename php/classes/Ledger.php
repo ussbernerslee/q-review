@@ -43,6 +43,45 @@ class Ledger {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
-
+	/**
+	 * accessor method for getting LedgerBoardId
+	 *
+	 * @return Uuid value for LedgerBoardId
+	 **/
+	public function getLedgerBoardId(): Uuid {
+		return ($this->ledgerBoardId);
+	}
+	/**
+	 * accessor method for getting LedgerCardId
+	 *
+	 * @return Uuid value for LedgerCardId
+	 **/
+	public function getLedgerCardId(): Uuid {
+		return ($this->ledgerCardId);
+	}
+	/**
+	 * accessor method for getting LedgerProfileId
+	 *
+	 * @return Uuid value for LedgerProfileId
+	 **/
+	public function getLedgerProfileId(): Uuid {
+		return ($this->ledgerProfileId);
+	}
+	/**
+	 * accessor method for getting LedgerType
+	 *
+	 * @return Uuid value for LedgerType
+	 **/
+	public function getLedgerType(): string {
+		return ($this->ledgerType);
+	}
+	/**
+	 * accessor method for getting LedgerPoints
+	 *
+	 * @return Uuid value for LedgerPoints
+	 **/
+	public function getLedgerTypes(): string {
+		return ($this->ledgerType);
+	}
 
 }
