@@ -1,4 +1,9 @@
 ALTER DATABASE jeopardy CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+DROP TABLE IF EXISTS ledger;
+DROP TABLE IF EXISTS board;
+DROP TABLE IF EXISTS card;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS profile;
 
 -- profile table:
 CREATE TABLE profile(
@@ -9,7 +14,7 @@ CREATE TABLE profile(
 	profileEmail VARCHAR(128) NOT NULL,
 	profileHash CHAR(128) NOT NULL,
 	profileName VARCHAR(50),
-	profilePrivilege CHAR(1),
+	profilePrivilege TINYINT UNSIGNED,
 	profileUsername VARCHAR(50),
 	-- verification attributes for entity:
 	profileSalt CHAR(64) NOT NULL,
@@ -19,7 +24,6 @@ CREATE TABLE profile(
 	-- Primary key:
 	PRIMARY KEY(profileId)
 	);
-
 -- category table:
 CREATE TABLE category(
 -- attribute for primary key:
@@ -36,10 +40,11 @@ CREATE TABLE category(
 	-- Primary key:
 	PRIMARY KEY(categoryId)
 );
+
 -- card table:
 CREATE TABLE card(
 -- attribute for primary key:
-	cardID BINARY(16) NOT NULL,
+	cardId BINARY(16) NOT NULL,
 	-- attribute for foreign key:
 	cardCategoryId BINARY(16) NOT NULL,
 	-- attributes for card:
@@ -52,7 +57,7 @@ CREATE TABLE card(
 	-- create foreign keys and relationships:
 	FOREIGN KEY (cardCategoryId) REFERENCES category(categoryId),
 	-- Primary Key:
-	PRIMARY KEY(cardID)
+	PRIMARY KEY(cardId)
 );
 
 -- board table:
@@ -65,7 +70,6 @@ CREATE TABLE board(
 	boardName VARCHAR(64),
 	-- unique index created:
 	INDEX (boardProfileId),
-	INDEX (boardName),
 	-- create foreign key and relationships:
 	FOREIGN KEY (boardProfileId) REFERENCES profile(profileId),
 	-- Primary key:
@@ -80,16 +84,15 @@ CREATE TABLE ledger(
 	ledgerProfileId BINARY(16) NOT NULL,
 	-- attributes for ledger:
 	ledgerType TINYINT UNSIGNED,
-	ledgerPoints TINYINT SIGNED,
+	ledgerPoints MEDIUMINT SIGNED,
 	-- unique index created:
-	UNIQUE (ledgerBoardId),
-	UNIQUE (ledgerCardId),
-	UNIQUE (ledgerProfileId),
+	INDEX (ledgerBoardId),
+	INDEX (ledgerCardId),
+	INDEX (ledgerProfileId),
 	-- create foreign keys and relationships:
 	FOREIGN KEY (ledgerBoardId) REFERENCES board(boardId),
 	FOREIGN KEY (ledgerCardId) REFERENCES card(cardId),
 	FOREIGN KEY (ledgerProfileId) REFERENCES profile(profileId),
 	-- Primary Key (compound key):
-	<1-- PRIMARY KEY (ledgerBoardIdl, edgerCardId, ledgerProfileId);             Do we need it?    -->
-
+	PRIMARY KEY (ledgerBoardId, ledgerCardId, ledgerProfileId)
 );
