@@ -21,17 +21,27 @@ use Ramsey\Uuid\Uuid;
 class Category implements \JsonSerializable {
 	use ValidateUuid;
 
+	/**
+	 * id for this category: primary key
+	 * @var Uuid $categoryId
+	 **/
 	private $categoryId;
-
+	/**
+	 * profile for this category by profile id: foreign key
+	 * @var Uuid $categoryProfileId
+	 **/
 	private $categoryProfileId;
-
+	/**
+	 * name for this category: unique index
+	 * @var string $categoryName
+	 **/
 	private $categoryName;
 
 	/**
 	 * constructor for new category
 	 *
 	 * @param string|Uuid $newCategoryId
-	 * @param string $newCategoryProfileId
+	 * @param string|Uuid $newCategoryProfileId
 	 * @param string $newCategoryName
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
@@ -90,7 +100,7 @@ class Category implements \JsonSerializable {
 	 * @throws \RangeException if $newCategoryProfileId is not positive
 	 * @throws \TypeError if category profile id is not positive
 	 **/
-	public function setCategoryId($newCategoryProfileId): void {
+	public function setCategoryProfileId($newCategoryProfileId): void {
 		try {
 			$uuid = self::validateUuid($newCategoryProfileId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {

@@ -21,17 +21,27 @@ use Ramsey\Uuid\Uuid;
 class Board implements \JsonSerializable {
 	use ValidateUuid;
 
+	/**
+	 * id for this board: primary key
+	 * @var Uuid $boardId
+	 **/
 	private $boardId;
-
+	/**
+	 * profile for this board by profile id: foreign key
+	 * @var Uuid $boardProfileId
+	 **/
 	private $boardProfileId;
-
+	/**
+	 * name for this board: unique index
+	 * @var string $categoryName
+	 **/
 	private $boardName;
 
 	/**
 	 * constructor for new board
 	 *
 	 * @param string|Uuid $newBoardId
-	 * @param string $newBoardProfileId
+	 * @param string|Uuid $newBoardProfileId
 	 * @param string $newBoardName
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
@@ -97,7 +107,7 @@ class Board implements \JsonSerializable {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-		// convert and store the card id
+		// convert and store the board profile id
 		$this->boardProfileId = $uuid;
 	}
 	/**

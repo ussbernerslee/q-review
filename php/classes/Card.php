@@ -21,17 +21,47 @@ use Ramsey\Uuid\Uuid;
 class Card implements \JsonSerializable {
 	use ValidateUuid;
 
+	/**
+	 * id for this card: primary key
+	 * @var Uuid $cardId
+	 **/
 	private $cardId;
-
+	/**
+	 * category for this card by category id: foreign key
+	 * @var Uuid $cardCategoryId
+	 **/
 	private $cardCategoryId;
-
+	/**
+	 * card answer
+	 * @var string $cardAnswer
+	 **/
 	private $cardAnswer;
-
+	/**
+	 * card point value
+	 * @var int $cardPoints
+	 **/
 	private $cardPoints;
-
+	/**
+	 * card question
+	 * @var int $cardQuestion
+	 **/
 	private $cardQuestion;
 
-	public function __construct($newCardId, $newCardCategoryId, $newCardAnswer, $newCardPoints, $newCardQuestion) {
+	/**
+	 * constructor for this Card
+	 *
+	 * @param string|Uuid $newCardId id of this card or null if a new card
+	 * @param string|Uuid $newCardCategoryId id of the category of this card
+	 * @param string $newCardAnswer string containing answer
+	 * @param integer $newCardPoints integer point value for card
+	 * @param string $newCardQuestion string containing question
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if a data type violates a data hint
+	 * @throws \Exception if some other exception occurs
+	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
+	 **/
+	public function __construct($newCardId, $newCardCategoryId, string $newCardAnswer, int $newCardPoints, string $newCardQuestion) {
 		try {
 			$this->setCardId($newCardId);
 			$this->setCardCategoryId($newCardCategoryId);
@@ -84,7 +114,7 @@ class Card implements \JsonSerializable {
 	 * @throws \RangeException if $newCardCategoryId is not positive
 	 * @throws \TypeError if card category id is not positive
 	 **/
-	public function setCardId($newCardCategoryId): void {
+	public function setCardCategoryId($newCardCategoryId): void {
 		try {
 			$uuid = self::validateUuid($newCardCategoryId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -127,7 +157,7 @@ class Card implements \JsonSerializable {
 	/**
 	 * accessor method for getting cardPoints
 	 *
-	 * @return string value for cardPoints
+	 * @return int value for cardPoints
 	 **/
 	public function getCardPoints(): int {
 		return ($this->cardPoints);
@@ -137,7 +167,7 @@ class Card implements \JsonSerializable {
 	 *
 	 * @param int $newCardPoints new value of card points
 	 * @throws \InvalidArgumentException if $newCardPoints is not an int or insecure
-	 * @throws \RangeException if $newCardPoints is > 10 characters
+	 * @throws \RangeException if $newCardPoints is > 255 characters
 	 * @throws \TypeError if $newCardPoints is not an int
 	 **/
 	public function setCardPoints(int $newCardPoints): void {
@@ -148,7 +178,7 @@ class Card implements \JsonSerializable {
 			throw(new \InvalidArgumentException("card points are empty or insecure"));
 		}
 		// verify the card points will fit in the database
-		if(strlen($newCardPoints) > 10) {
+		if(strlen($newCardPoints) > 255) {
 			throw(new \RangeException("card points is too large"));
 		}
 		// store the card points
@@ -165,8 +195,8 @@ class Card implements \JsonSerializable {
 	/**
 	 * mutator method for card question
 	 *
-	 * @param string $newCardQuestion new value of card answer
-	 * @throws \InvalidArgumentException if $enwCardQuestion is not a string or insecure
+	 * @param string $newCardQuestion new value of card question
+	 * @throws \InvalidArgumentException if $newCardQuestion is not a string or insecure
 	 * @throws \RangeException if $newCardQuestion is > 255 characters
 	 * @throws \TypeError if $newCardQuestion is not a string
 	 **/

@@ -43,12 +43,12 @@ class Profile implements \JsonSerializable {
 	 **/
 	private $profileHash;
 	/**
-	 * this is the Name associated with this account
+	 * this is the name associated with this account
 	 * @var string $profileName
 	 **/
 	private $profileName;
 	/**
-	 * user Privilege - Captain or Student
+	 * user role privilege - Captain or Student
 	 * @var string $profilePrivilege
 	 **/
 	private $profilePrivilege;
@@ -58,7 +58,7 @@ class Profile implements \JsonSerializable {
 	 **/
 	private $profileSalt;
 	/**
-	 * username for this profile
+	 * username for this profile; this is a unique index
 	 * @var string $profileUsername
 	 **/
 	private $profileUsername;
@@ -71,7 +71,7 @@ class Profile implements \JsonSerializable {
 	 * @param string $newProfileEmail string containing email
 	 * @param string $newProfileHash string containing password hash
 	 * @param string $newProfileName string containing new profile name
-	 * @param string $newProfilePrivilege string containing new profile privilege captain or student
+	 * @param string $newProfilePrivilege string containing new profile privilege: captain or student
 	 * @param string $newProfileSalt string containing password salt
 	 * @param string $newProfileUsername string containing username
 	 * @throws \InvalidArgumentException if data types are not valid
@@ -80,7 +80,7 @@ class Profile implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newProfileId, ?string $newProfileActivationToken, string $newProfileEmail, string $newProfileHash, string $newProfileName, string $newProfilePrivilege, string $newProfileSalt, ?string $newProfileUsername) {
+	public function __construct($newProfileId, ?string $newProfileActivationToken, string $newProfileEmail, string $newProfileHash, string $newProfileName, string $newProfilePrivilege, string $newProfileSalt, string $newProfileUsername) {
 		try {
 			$this->setProfileId($newProfileId);
 			$this->setProfileActivationToken($newProfileActivationToken);
@@ -133,7 +133,7 @@ class Profile implements \JsonSerializable {
 	 * mutator method for account activation token
 	 *
 	 * @param string $newProfileActivationToken
-	 * @throws \InvalidArgumentException  if the token is not a string or insecure
+	 * @throws \InvalidArgumentException if the token is not a string or insecure
 	 * @throws \RangeException if the token is not exactly 32 characters
 	 * @throws \TypeError if the activation token is not a string
 	 **/
@@ -263,16 +263,6 @@ class Profile implements \JsonSerializable {
 	 * @throws \TypeError if $newProfilePrivilege is not a string
 	 **/
 	public function setProfilePrivilege(string $newProfilePrivilege): void {
-		// verify the profile privilege is secure
-		$newProfilePrivilege = trim($newProfilePrivilege);
-		$newProfilePrivilege = filter_var($newProfilePrivilege, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newProfilePrivilege) === true) {
-			throw(new \InvalidArgumentException("caption is empty or insecure"));
-		}
-		// verify the caption will fit in the database
-		if(strlen($newProfilePrivilege) > 1) {
-			throw(new \RangeException("privilege is too large"));
-		}
 		// store the caption
 		$this->profilePrivilege = $newProfilePrivilege;
 	}

@@ -21,17 +21,47 @@ use Ramsey\Uuid\Uuid;
 class Ledger implements \JsonSerializable {
 	use ValidateUuid;
 
+	/**
+	 * board for this ledger by board id: foreign key
+	 * @var Uuid $ledgerBoardId
+	 **/
 	private $ledgerBoardId;
-
+	/**
+	 * card for this ledger by card id: foreign key
+	 * @var Uuid $ledgerCardId
+	 **/
 	private $ledgerCardId;
-
+	/**
+	 * profile for this ledger by profile id: foreign key
+	 * @var Uuid $ledgerProfileId
+	 **/
 	private $ledgerProfileId;
-
+	/**
+	 * type of question, normal, wager, or final for this question stored in ledger
+	 * @var string $ledgerType
+	 **/
 	private $ledgerType;
-
+	/**
+	 * question point value stored in ledger
+	 * @var int $ledgerPoints
+	 **/
 	private $ledgerPoints;
 
-	public function __construct($newLedgerBoardId, $newLedgerCardId, $newLedgerProfileId, $newLedgerType, $newLedgerPoints) {
+	/**
+	 * constructor for this Profile
+	 *
+	 * @param string|Uuid $newLedgerBoardId id of this board for this record in ledger
+	 * @param string|Uuid $newLedgerCardId id of the card for this record in ledger
+	 * @param string|Uuid $newLedgerProfileId id of this Profile for this record in ledger
+	 * @param string $newLedgerType type of question for this record in ledger
+	 * @param int $newLedgerPoints signed int value of points for this record in ledger
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if a data type violates a data hint
+	 * @throws \Exception if some other exception occurs
+	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
+	 **/
+	public function __construct($newLedgerBoardId, $newLedgerCardId, $newLedgerProfileId, string $newLedgerType, int $newLedgerPoints) {
 		try {
 			$this->setLedgerBoardId($newLedgerBoardId);
 			$this->setLedgerCardId($newLedgerCardId);
@@ -122,7 +152,7 @@ class Ledger implements \JsonSerializable {
 	/**
 	 * accessor method for getting LedgerType
 	 *
-	 * @return Uuid value for LedgerType
+	 * @return int value for LedgerType
 	 **/
 	public function getLedgerType(): int {
 		return ($this->ledgerType);
@@ -130,12 +160,12 @@ class Ledger implements \JsonSerializable {
 	/**
 	 * mutator method for ledger type
 	 *
-	 * @param string $newLedgerType new value of ledger type
+	 * @param int $newLedgerType new value of ledger type
 	 * @throws \InvalidArgumentException if $newLedgerType is not a string or insecure
-	 * @throws \RangeException if $newLedgerType > 10
+	 * @throws \RangeException if $newLedgerType > 255
 	 * @throws \TypeError if $newLedgerType is not a string
 	 **/
-	public function setLedgerType(string $newLedgerType): void {
+	public function setLedgerType(int $newLedgerType): void {
 		// verify the ledger type is secure
 		$newLedgerType = trim($newLedgerType);
 		$newLedgerType = filter_var($newLedgerType, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -143,7 +173,7 @@ class Ledger implements \JsonSerializable {
 			throw(new \InvalidArgumentException("ledger type is empty or insecure"));
 		}
 		// verify the ledger type will fit in the database
-		if(strlen($newLedgerType) > 10) {
+		if(strlen($newLedgerType) > 255) {
 			throw(new \RangeException("ledger type is too large"));
 		}
 		// store the ledger type
@@ -152,7 +182,7 @@ class Ledger implements \JsonSerializable {
 	/**
 	 * accessor method for getting LedgerPoints
 	 *
-	 * @return Uuid value for LedgerPoints
+	 * @return int value for LedgerPoints
 	 **/
 	public function getLedgerPoints(): int {
 		return ($this->ledgerPoints);
@@ -162,7 +192,7 @@ class Ledger implements \JsonSerializable {
 	 *
 	 * @param int $newLedgerPoints new value of ledger points
 	 * @throws \InvalidArgumentException if $newLedgerPoints is not an int or insecure
-	 * @throws \RangeException if $newLedgerPoints is > 10 characters
+	 * @throws \RangeException if $newLedgerPoints is > 255 characters
 	 * @throws \TypeError if $newLedgerPoints is not an int
 	 **/
 	public function setLedgerPoints(int $newLedgerPoints): void {
@@ -173,7 +203,7 @@ class Ledger implements \JsonSerializable {
 			throw(new \InvalidArgumentException("ledger points are empty or insecure"));
 		}
 		// verify the ledger points will fit in the database
-		if(strlen($newLedgerPoints) > 10) {
+		if(strlen($newLedgerPoints) > 255) {
 			throw(new \RangeException("ledger points is too large"));
 		}
 		// store the ledger points
