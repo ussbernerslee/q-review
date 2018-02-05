@@ -343,7 +343,7 @@
 			----------------------------------------------------------------------------------------------------------------------->
 			<section>
 				<h2>ERD:</h2>
-				<img src="erd-q-review.svg" alt="erd"/>
+				<img src="images/erd-q-review.svg" alt="erd"/>
 			</section>
 
 	</body>
