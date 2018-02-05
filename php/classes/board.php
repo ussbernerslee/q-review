@@ -104,8 +104,9 @@ class Board implements \JsonSerializable {
 	 *
 	 * @param string | Uuid $newBoardProfileId new value of board profile id
 	 * @throws \RangeException if $newBordProfileId is not positive
-	 */
-
+	 * @throws \TypeError if the $newBoardProfileId is not a uuid or string
+	 **/
+	public function setBoardProfileId
 
 
 
