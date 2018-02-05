@@ -14,7 +14,8 @@ CREATE TABLE profile(
 	-- verification attributes for entity:
 	profileSalt CHAR(64) NOT NULL,
 	-- unique index created:
-	UNIQUE (profileId),
+	UNIQUE (profileEmail),
+	UNIQUE (profileUsername),
 	-- Primary key:
 	PRIMARY KEY(profileId)
 	);
@@ -28,7 +29,8 @@ CREATE TABLE category(
 	-- attributes for category;
 	categoryName VARCHAR(64) NOT NULL,
 	-- unique index created:
-	UNIQUE (categoryId),
+	INDEX (categoryProfileId),
+	INDEX (categoryName),
 	-- create foreign keys and relationships:
 	FOREIGN KEY (categoryProfileId) REFERENCES profile(profileId),
 	-- Primary key:
@@ -45,7 +47,8 @@ CREATE TABLE card(
 	cardPoints TINYINT UNSIGNED,
 	cardQuestion VARCHAR(255),
 	-- unique index created:
-	UNIQUE (cardId),
+	INDEX (cardCategoryId),
+	INDEX (cardPoints),
 	-- create foreign keys and relationships:
 	FOREIGN KEY (cardCategoryId) REFERENCES category(categoryId),
 	-- Primary Key:
@@ -61,7 +64,8 @@ CREATE TABLE board(
 	-- other attribute for board:
 	boardName VARCHAR(64),
 	-- unique index created:
-	UNIQUE (boardID),
+	INDEX (boardProfileId),
+	INDEX (boardName),
 	-- create foreign key and relationships:
 	FOREIGN KEY (boardProfileId) REFERENCES profile(profileId),
 	-- Primary key:
