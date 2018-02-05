@@ -82,8 +82,7 @@ class Board implements \JsonSerializable {
 	public function setBoardId($newBoardId) : void {
 		try {
 			$uuid = self::validateUuid($newBoardId)
-		}
-		cath(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -97,7 +96,7 @@ class Board implements \JsonSerializable {
 	 * @return Uuid value of board profile id
 	 **/
 	public function getBoardProfileId() : Uuid {
-		return($this->bordProfileId);
+		return($this->boardProfileId);
 	}
 	/**
 	 * mutator method for board profile id
@@ -106,7 +105,44 @@ class Board implements \JsonSerializable {
 	 * @throws \RangeException if $newBordProfileId is not positive
 	 * @throws \TypeError if the $newBoardProfileId is not a uuid or string
 	 **/
-	public function setBoardProfileId
+	public function setBoardProfileId($newBoardProfileId) : void {
+		try {
+			$uuid = self::validateUuid($newBoardProfileId);
+				} catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
+					$exceptionType = get_class($exception->getMessage(), 0, $exception));
+			}
+			//convert and store the board profile id
+		$this->boardProfileId = $uuid;
+		}
+	/**
+	 * accessor method for board name
+	 * @return string value of board name
+	 **/
+	public function getBoardName() : string {
+		return($this->boardName);
+	}
+	/**
+	 * mutator method for board name
+	 *
+	 * @param string $newBoardName new value of board name
+	 * @throws \InvalidArgumentException if $newBoardName is not a string or insecure
+	 * @throws \RangeException if $newBoardName is >64 characters
+	 * @throws \TypeError if $newBoardNam is not a string
+	 **/
+	public function setBoardName(string $newBoardName) : void {
+		//verify the board name is secure
+		$newBoardName = trim($newBoardName);
+		$newBoardName = filter_var($newBoardName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newBoardName) === true) {
+			throw(new \InvalidArgumentException("board name is empty or insecure"));
+		}
+		//verify the board name will fit in the database
+		if(strlen($newBoardName) > 64) {
+			throw(new \RangeException("board name too long"))
+		}
+		//store the board name
+		$this->boardName = $newBoardName;
+	}
 
 
 
