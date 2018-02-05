@@ -197,10 +197,16 @@ class Board implements \JsonSerializable {
 	 * @param Uuid | string $boardId board id to search for
 	 * @return Board|null Board found or null if not found
 	 * @throws \PDOException when mySQL related error occurs
-	 * @throws \TypeErro when a variable is not correct data type
+	 * @throws \TypeError when a variable is not correct data type
 	 **/
-
-
+	public static function getBoardByBoardId(\PDO $pdo, $boardId) : ?Board {
+		//sanitize the string before searching
+		try{
+			$boardId = self::validateUuid($boardId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+	}
 
 
 }
