@@ -18,7 +18,8 @@ use Ramsey\Uuid\Uuid;
  * @version 4.0.0
  * @package Edu\Cnm\DataDesign
  **/
-class Category {
+class Category implements \JsonSerializable {
+	use ValidateUuid;
 
 	private $categoryId;
 
@@ -112,7 +113,7 @@ class Category {
 	 *
 	 * @param string $newCategoryName new value of category name
 	 * @throws \InvalidArgumentException if $newCategoryName is not a string or insecure
-	 * @throws \RangeException if $newCategoryName is > 32 characters
+	 * @throws \RangeException if $newCategoryName is > 64 characters
 	 * @throws \TypeError if $newCategoryName is not a string
 	 **/
 	public function setCategoryName(string $newCategoryName): void {
@@ -123,11 +124,23 @@ class Category {
 			throw(new \InvalidArgumentException("category name is empty or insecure"));
 		}
 		// verify the category name will fit in the database
-		if(strlen($newCategoryName) > 32) {
+		if(strlen($newCategoryName) > 64) {
 			throw(new \RangeException("category name is too large"));
 		}
 		// store the board name
 		$this->categoryName = $newCategoryName;
+	}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["categoryId"] = $this->categoryId;
+		$fields["categoryProfileId"] = $this->categoryProfileId;
+		return ($fields);
 	}
 
 }

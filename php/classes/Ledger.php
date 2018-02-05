@@ -18,7 +18,8 @@ use Ramsey\Uuid\Uuid;
  * @version 4.0.0
  * @package Edu\Cnm\DataDesign
  **/
-class Ledger {
+class Ledger implements \JsonSerializable {
+	use ValidateUuid;
 
 	private $ledgerBoardId;
 
@@ -123,7 +124,7 @@ class Ledger {
 	 *
 	 * @return Uuid value for LedgerType
 	 **/
-	public function getLedgerType(): string {
+	public function getLedgerType(): int {
 		return ($this->ledgerType);
 	}
 	/**
@@ -131,7 +132,7 @@ class Ledger {
 	 *
 	 * @param string $newLedgerType new value of ledger type
 	 * @throws \InvalidArgumentException if $newLedgerType is not a string or insecure
-	 * @throws \RangeException if $newLedgerType is > 32 characters
+	 * @throws \RangeException if $newLedgerType > 10
 	 * @throws \TypeError if $newLedgerType is not a string
 	 **/
 	public function setLedgerType(string $newLedgerType): void {
@@ -142,7 +143,7 @@ class Ledger {
 			throw(new \InvalidArgumentException("ledger type is empty or insecure"));
 		}
 		// verify the ledger type will fit in the database
-		if(strlen($newLedgerType) > 32) {
+		if(strlen($newLedgerType) > 10) {
 			throw(new \RangeException("ledger type is too large"));
 		}
 		// store the ledger type
@@ -161,7 +162,7 @@ class Ledger {
 	 *
 	 * @param int $newLedgerPoints new value of ledger points
 	 * @throws \InvalidArgumentException if $newLedgerPoints is not an int or insecure
-	 * @throws \RangeException if $newLedgerPoints is > 32 characters
+	 * @throws \RangeException if $newLedgerPoints is > 10 characters
 	 * @throws \TypeError if $newLedgerPoints is not an int
 	 **/
 	public function setLedgerPoints(int $newLedgerPoints): void {
@@ -172,11 +173,24 @@ class Ledger {
 			throw(new \InvalidArgumentException("ledger points are empty or insecure"));
 		}
 		// verify the ledger points will fit in the database
-		if(strlen($newLedgerPoints) > 32) {
+		if(strlen($newLedgerPoints) > 10) {
 			throw(new \RangeException("ledger points is too large"));
 		}
 		// store the ledger points
 		$this->ledgerPoints = $newLedgerPoints;
+	}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["ledgerBoardId"] = $this->ledgerBoardId;
+		$fields["ledgerCardId"] = $this->ledgerCardId;
+		$fields["ledgerProfileId"] = $this->ledgerprofileId;
+		return ($fields);
 	}
 
 }

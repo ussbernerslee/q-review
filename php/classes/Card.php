@@ -18,7 +18,8 @@ use Ramsey\Uuid\Uuid;
  * @version 4.0.0
  * @package Edu\Cnm\DataDesign
  **/
-class Card {
+class Card implements \JsonSerializable {
+	use ValidateUuid;
 
 	private $cardId;
 
@@ -106,7 +107,7 @@ class Card {
 	 *
 	 * @param string $newCardAnswer new value of card answer
 	 * @throws \InvalidArgumentException if $enwCardAnswer is not a string or insecure
-	 * @throws \RangeException if $newCardAnswer is > 140 characters
+	 * @throws \RangeException if $newCardAnswer is > 255 characters
 	 * @throws \TypeError if $newCardAnswer is not a string
 	 **/
 	public function setCardAnswer(string $newCardAnswer): void {
@@ -117,7 +118,7 @@ class Card {
 			throw(new \InvalidArgumentException("card answer is empty or insecure"));
 		}
 		// verify the card answer will fit in the database
-		if(strlen($newCardAnswer) > 140) {
+		if(strlen($newCardAnswer) > 255) {
 			throw(new \RangeException("card answer content too large"));
 		}
 		// store the card answer
@@ -128,7 +129,7 @@ class Card {
 	 *
 	 * @return string value for cardPoints
 	 **/
-	public function getCardPoints(): string {
+	public function getCardPoints(): int {
 		return ($this->cardPoints);
 	}
 	/**
@@ -136,7 +137,7 @@ class Card {
 	 *
 	 * @param int $newCardPoints new value of card points
 	 * @throws \InvalidArgumentException if $newCardPoints is not an int or insecure
-	 * @throws \RangeException if $newCardPoints is > 32 characters
+	 * @throws \RangeException if $newCardPoints is > 10 characters
 	 * @throws \TypeError if $newCardPoints is not an int
 	 **/
 	public function setCardPoints(int $newCardPoints): void {
@@ -147,7 +148,7 @@ class Card {
 			throw(new \InvalidArgumentException("card points are empty or insecure"));
 		}
 		// verify the card points will fit in the database
-		if(strlen($newCardPoints) > 32) {
+		if(strlen($newCardPoints) > 10) {
 			throw(new \RangeException("card points is too large"));
 		}
 		// store the card points
@@ -166,7 +167,7 @@ class Card {
 	 *
 	 * @param string $newCardQuestion new value of card answer
 	 * @throws \InvalidArgumentException if $enwCardQuestion is not a string or insecure
-	 * @throws \RangeException if $newCardQuestion is > 140 characters
+	 * @throws \RangeException if $newCardQuestion is > 255 characters
 	 * @throws \TypeError if $newCardQuestion is not a string
 	 **/
 	public function setCardQuestion(string $newCardQuestion): void {
@@ -177,11 +178,23 @@ class Card {
 			throw(new \InvalidArgumentException("card question is empty or insecure"));
 		}
 		// verify the card question will fit in the database
-		if(strlen($newCardQuestion) > 140) {
+		if(strlen($newCardQuestion) > 255) {
 			throw(new \RangeException("card question content too large"));
 		}
 		// store the card question
 		$this->cardQuestion = $newCardQuestion;
+	}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["cardId"] = $this->cardId;
+		$fields["cardCategoryId"] = $this->cardCategoryId;
+		return ($fields);
 	}
 
 

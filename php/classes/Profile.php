@@ -229,7 +229,7 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param string $newProfileName new value of name
 	 * @throws \InvalidArgumentException if $newProfileName is not a string or insecure
-	 * @throws \RangeException if $newProfileName is > 32 characters
+	 * @throws \RangeException if $newProfileName is > 50 characters
 	 * @throws \TypeError if $newProfileName is not a string
 	 **/
 	public function setProfileName(string $newProfileName): void {
@@ -240,7 +240,7 @@ class Profile implements \JsonSerializable {
 			throw(new \InvalidArgumentException("name is empty or insecure"));
 		}
 		// verify the name will fit in the database
-		if(strlen($newProfileName) > 32) {
+		if(strlen($newProfileName) > 50) {
 			throw(new \RangeException("name is too large"));
 		}
 		// store the full name
@@ -312,7 +312,7 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param string $newProfileUsername new value of username
 	 * @throws \InvalidArgumentException if $newProfileUsername is not a string or insecure
-	 * @throws \RangeException if $newProfileUsername is > 32 characters
+	 * @throws \RangeException if $newProfileUsername is > 50 characters
 	 * @throws \TypeError if $newProfileUsername is not a string
 	 **/
 	public function setProfileUsername(string $newProfileUsername): void {
@@ -323,7 +323,7 @@ class Profile implements \JsonSerializable {
 			throw(new \InvalidArgumentException("username is empty or insecure"));
 		}
 		// verify the username will fit in the database
-		if(strlen($newProfileUsername) > 32) {
+		if(strlen($newProfileUsername) > 50) {
 			throw(new \RangeException("username is too large"));
 		}
 		// store the username

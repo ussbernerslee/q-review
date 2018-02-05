@@ -18,7 +18,8 @@ use Ramsey\Uuid\Uuid;
  * @version 4.0.0
  * @package Edu\Cnm\DataDesign
  **/
-class Board {
+class Board implements \JsonSerializable {
+	use ValidateUuid;
 
 	private $boardId;
 
@@ -112,7 +113,7 @@ class Board {
 	 *
 	 * @param string $newBoardName new value of board name
 	 * @throws \InvalidArgumentException if $newBoardName is not a string or insecure
-	 * @throws \RangeException if $newBoardName is > 32 characters
+	 * @throws \RangeException if $newBoardName is > 64 characters
 	 * @throws \TypeError if $newBoardName is not a string
 	 **/
 	public function setBoardName(string $newBoardName): void {
@@ -123,11 +124,23 @@ class Board {
 			throw(new \InvalidArgumentException("board name is empty or insecure"));
 		}
 		// verify the board name will fit in the database
-		if(strlen($newBoardName) > 32) {
+		if(strlen($newBoardName) > 64) {
 			throw(new \RangeException("board name is too large"));
 		}
 		// store the board name
 		$this->boardName = $newBoardName;
+	}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+
+		$fields["boardId"] = $this->boardId;
+		$fields["boardProfileId"] = $this->boardProfileId;
+		return ($fields);
 	}
 
 }
