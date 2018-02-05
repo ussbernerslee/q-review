@@ -343,7 +343,7 @@
 			----------------------------------------------------------------------------------------------------------------------->
 			<section>
 				<h2>ERD (Corrected):</h2>
-				<img src="images/erd-q-review2.svg" alt="erd"/>
+				<img src="images/ehd-q-review2.svg" alt="erd2"/>
 				<h2>ERD (previous):</h2>
 				<img src="images/erd-q-review.svg" alt="erd"/>
 			</section>
