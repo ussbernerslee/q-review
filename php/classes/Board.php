@@ -9,9 +9,11 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- *Board
+ * Board
  *
- *
+ * This is the data stored when a board is created.
+ * This is primarily created to tie a profile to a new board, and make the boards easy to store and identify.
+ * Boards cannot exist without a profile.
  *
  * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
  * @author Dylan McDonald <dmcdonald21@cnm.edu>

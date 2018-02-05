@@ -9,9 +9,12 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- *Board
+ * Ledger
  *
- *
+ * This is the data stored in the ledger.
+ * The ledger will record every interaction in a game.
+ * The ledger will document the points earned or lost, based on the type of question of the card, on the board, by a specific profile.
+ * The ledger cannon exist without profiles, cards and a board.
  *
  * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
  * @author Dylan McDonald <dmcdonald21@cnm.edu>

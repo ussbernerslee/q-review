@@ -9,9 +9,10 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- *Profile
+ * Profile
  *
- *
+ * This is what data is stored when a user creates a profile.
+ * This is top-level entity, categories, boards, cards and ledgers cannot exist without a profile
  *
  * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
  * @author Dylan McDonald <dmcdonald21@cnm.edu>

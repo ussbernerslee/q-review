@@ -9,9 +9,11 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- *Card
+ *	Card
  *
- *
+ * This is the data that is stored when a card is created.
+ * Each card MUST be assigned a category.
+ * Each card will contain a question, an answer and a point value.
  *
  * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
  * @author Dylan McDonald <dmcdonald21@cnm.edu>

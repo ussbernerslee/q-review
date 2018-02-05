@@ -9,9 +9,11 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 /**
- *Category
+ * Category
  *
- *
+ * This is the data stored when a category is created.
+ * This is used to tie a profile to a category and make the categories easy to identify and apply to cards.
+ * Cards cannot exist without categories.
  *
  * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
