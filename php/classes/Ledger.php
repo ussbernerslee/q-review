@@ -10,6 +10,20 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 
+/**
+ * Ledger for kmaru game
+ *
+ * The ledger will record all interactions with the game, documenting points gained and lost by each player on each question
+ * as it relates to the the board.
+ *
+ * The ledger contains a composite primary key of $ledgerBoardId, $ledgerCardId, and $ledgerProfileId.
+ *
+ * @author Tristan Bennett <tbennett19@cnm.edu> updated for kmaru capstone
+ * @author Dylan McDonald <dmcdonald21@cnm.edu>
+ * @version 4.0.0
+ * @package Edu\Cnm\DataDesign
+ **/
+//TODO: add correct namespace and package
 class Ledger implements \JsonSerializable {
 
 	/**
@@ -47,11 +61,11 @@ class Ledger implements \JsonSerializable {
 	 **/
 	private $ledgerPoints;
 
-
+//******************************************************************************************************************
 
 	//TODO: constructor
 
-
+//******************************************************************************************************************
 
 	/**
 	 * accessor method for $ledgerBoardId
@@ -62,6 +76,8 @@ class Ledger implements \JsonSerializable {
 		return($this->$ledgerBoardId);
 	}
 
+//*******************************************************************************************************************
+
 	/**
 	 * accessor method for $ledgerCardId
 	 *
@@ -70,6 +86,8 @@ class Ledger implements \JsonSerializable {
 	public function getLedgerCardId () : Uuid {
 		return($this->$ledgerCardId);
 	}
+
+//*******************************************************************************************************************
 
 	/**
 	 * accessor method for $ledgerprofileId
@@ -80,31 +98,35 @@ class Ledger implements \JsonSerializable {
 		return($this->$ledgerProfileId);
 	}
 
+//*******************************************************************************************************************
+
 	/**
 	 * accessor method for $ledgerType
 	 *
 	 * @return int unsigned value for $ledgerType
 	 **/
-	public function getLedgerType () : Uuid {
+	public function getLedgerType () : int {
 		return($this->$ledgerType);
 	}
+
+//*******************************************************************************************************************
 
 	/**
 	 * accessor method for $ledgerPoints
 	 *
 	 * @return int signed or unsigned value for $ledgerPoints
 	 **/
-	public function getLedgerPoints () : Uuid {
+	public function getLedgerPoints () : int {
 		return($this->$ledgerPoints);
 	}
 
+//*******************************************************************************************************************
 
-
-
-
-
-
-
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 		$fields["ledgerBoardId"] = $this->ledgerBoardId->toString();
