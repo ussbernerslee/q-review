@@ -260,8 +260,8 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param string $newProfilePrivilege new value of profile privilege
 	 * @throws \InvalidArgumentException if $newProfilePrivilege is not a string or insecure
-	 * @throws \RangeException if $newProfilePrivilege is > 1 characters
-	 * @throws \TypeError if $newProfilePrivilege is not a string
+	 * @throws \RangeException if $newProfilePrivilege is > 255 characters
+	 * @throws \TypeError if $newProfilePrivilege is not an int
 	 **/
 	public function setProfilePrivilege(string $newProfilePrivilege): void {
 		// store the caption
@@ -284,7 +284,7 @@ class Profile implements \JsonSerializable {
 			throw(new \InvalidArgumentException("profile password hash is empty or insecure"));
 		}
 		//enforce that the salt is exactly 64 characters.
-		if(strlen($newProfileSalt) !== 64) {
+		if(strlen($newProfileSalt) !== 255) {
 			throw(new \RangeException("profile salt must be 128 characters"));
 		}
 		//store the hash
