@@ -143,6 +143,62 @@ class Board implements \JsonSerializable {
 		//store the board name
 		$this->boardName = $newBoardName;
 	}
+	/**
+	 * inserts this Board into mySQL
+	 *
+	 * @param \PDO $pdp PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) : void {
+
+		//create query template
+		$query = "INSERT INTO board(boardId, boardProfileId, boardName) VALUES(:boardId, :boardProfileId, :boardName)";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place-holders on the template
+		$parameters = ["boardId" => $this->boardId->getBytes(),"boardProfileId" =>$this->boardProfileId->getBytes(), "boardName" => $this->boardName];
+		$statement->execute($parameters);
+	}
+	/**
+	 * deletes this Board from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pco is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) : void {
+		//create query template
+		$query = "DELETE FROM board WHERE boardId = :boardId";
+		$statement = $pdo->prepare($query);
+		//bind the member variables to the place holder in the template
+		$parameters =["boardId => $this->>boardId->getBytes()"];
+		$statement->execute($parameters);
+	}
+	/**
+	 * updates this Board in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related error occurs
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) : void {
+		//create query template
+		$query = "UPDATE board SET boardProfileId = :boardProfileId, boardName = :boardName WHERE boardId = :boardId";
+		$statement = $pdo->prepare($query);
+		//bind the member variables to the place-holder in the template
+		$parameters = ["boardId" => $this->boardId->getBytes(), "boardProfileId" => $this->boardProfileId->getBytes(), "boardName" => $this->boardName];
+		$statement->execute($parameters);
+	}
+	/**
+	 * gets the Board by boardId
+	 *
+	 * @param \PDO $pdo PDO connection objct
+	 * @param Uuid | string $boardId board id to search for
+	 * @return Board|null Board found or null if not found
+	 * @throws \PDOException when mySQL related error occurs
+	 * @throws \TypeErro when a variable is not correct data type
+	 **/
 
 
 
