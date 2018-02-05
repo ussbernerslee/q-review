@@ -90,7 +90,6 @@ CREATE TABLE ledger(
 	FOREIGN KEY (ledgerCardId) REFERENCES card(cardId),
 	FOREIGN KEY (ledgerProfileId) REFERENCES profile(profileId),
 	-- Primary Key (compound key):
-	PRIMARY KEY (ledgerBoardId),
-	PRIMARY KEY (ledgerCardId),
-	PRIMARY KEY (ledgerProfileId)
+	<1-- PRIMARY KEY (ledgerBoardIdl, edgerCardId, ledgerProfileId);             Do we need it?    -->
+
 );
