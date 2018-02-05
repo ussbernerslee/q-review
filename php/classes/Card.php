@@ -226,6 +226,7 @@ class Card implements \JsonSerializable {
 
 		$fields["cardId"] = $this->cardId;
 		$fields["cardCategoryId"] = $this->cardCategoryId;
+		$fields["cardPoints"] = $this->cardPoints;
 		return ($fields);
 	}
 

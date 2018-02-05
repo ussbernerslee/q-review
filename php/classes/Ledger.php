@@ -223,6 +223,7 @@ class Ledger implements \JsonSerializable {
 		$fields["ledgerBoardId"] = $this->ledgerBoardId;
 		$fields["ledgerCardId"] = $this->ledgerCardId;
 		$fields["ledgerProfileId"] = $this->ledgerprofileId;
+		$fields["ledgerPoints"] = $this->ledgerPoints;
 		return ($fields);
 	}
 
