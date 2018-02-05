@@ -73,7 +73,25 @@ class Ledger implements \JsonSerializable {
 	 * @return Uuid value for $ledgerBoardId
 	 **/
 	public function getLedgerBoardId () : Uuid {
-		return($this->$ledgerBoardId);
+		return($this->ledgerBoardId);
+	}
+
+	/**
+	 * mutator for ledgerBoardId
+	 *
+	 * @param Uuid|string $newLedgerBoardId is a new value for ledgerBoardId
+	 * @throws \RangeException if $newLedgerBoardId is not positive
+	 * @throws \TypeError if $newLedgerBoardId is not a Uuid or string
+	 */
+	public function setLedgerBoardId($newLedgerBoardId): void {
+		try {
+			$uuid = self::validateUuid($newLedgerBoardId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		//convert and store profileId
+		$this->ledgerBoardId = $uuid;
 	}
 
 //*******************************************************************************************************************
@@ -84,7 +102,25 @@ class Ledger implements \JsonSerializable {
 	 * @return Uuid value for $ledgerCardId
 	 **/
 	public function getLedgerCardId () : Uuid {
-		return($this->$ledgerCardId);
+		return($this->ledgerCardId);
+	}
+
+	/**
+	 * mutator for ledgerCardId
+	 *
+	 * @param Uuid|string $newLedgerCardId is a new value for ledgerCardId
+	 * @throws \RangeException if $newLedgerCardId is not positive
+	 * @throws \TypeError if $newLedgerBoardId is not a Uuid or string
+	 */
+	public function setLedgerCardId($newLedgerCardId): void {
+		try {
+			$uuid = self::validateUuid($newLedgerCardId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		//convert and store profileId
+		$this->ledgerCardId = $uuid;
 	}
 
 //*******************************************************************************************************************
@@ -95,20 +131,26 @@ class Ledger implements \JsonSerializable {
 	 * @return Uuid value for $ledgerProfileId
 	 **/
 	public function getLedgerProfileId () : Uuid {
-		return($this->$ledgerProfileId);
+		return($this->ledgerProfileId);
 	}
-
-//*******************************************************************************************************************
 
 	/**
-	 * accessor method for $ledgerType
+	 * mutator for ledgerProfileId
 	 *
-	 * @return int unsigned value for $ledgerType
-	 **/
-	public function getLedgerType () : int {
-		return($this->$ledgerType);
+	 * @param Uuid|string $newLedgerProfileId is a new value for ledgerProfileId
+	 * @throws \RangeException if $newLedgerProfileId is not positive
+	 * @throws \TypeError if $newLedgerProfileId is not a Uuid or string
+	 */
+	public function setLedgerProfileId($newLedgerProfileId): void {
+		try {
+			$uuid = self::validateUuid($newLedgerProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		//convert and store profileId
+		$this->ledgerProfileId = $uuid;
 	}
-
 //*******************************************************************************************************************
 
 	/**
@@ -117,7 +159,41 @@ class Ledger implements \JsonSerializable {
 	 * @return int signed or unsigned value for $ledgerPoints
 	 **/
 	public function getLedgerPoints () : int {
-		return($this->$ledgerPoints);
+		return($this->ledgerPoints);
+	}
+
+	/**
+	 * mutator method for ledgerType
+	 *
+	 * @param int $newLedgerType new value of ledger type
+	 * @throws \InvalidArgumentException if $newLedgerType is not an int or insecure
+	 * @throws \RangeException if $newLedgerType > 255
+	 * @throws \TypeError if $newLedgerType is not an int
+	 **/
+	public function setLedgerType(int $newLedgerType): void {
+		// verify the ledger type is secure
+
+		//value cannot be 0....is it looking at False?
+		$newLedgerType = filter_var($newLedgerType, FILTER_VALIDATE_INT);
+		if(empty($newLedgerType) === true) {
+			throw(new \InvalidArgumentException("Ledger type is empty or insecure"));
+		}
+		// verify the ledger type will fit in the database
+		if(strlen($newLedgerType) > 255) {
+			throw(new \RangeException("ledger type is too large"));
+		}
+		// store the ledger type
+		$this->ledgerType = $newLedgerType;
+	}
+//*******************************************************************************************************************
+
+	/**
+	 * accessor method for $ledgerType
+	 *
+	 * @return int unsigned value for $ledgerType
+	 **/
+	public function getLedgerType () : int {
+		return($this->ledgerType);
 	}
 
 //*******************************************************************************************************************
@@ -132,6 +208,8 @@ class Ledger implements \JsonSerializable {
 		$fields["ledgerBoardId"] = $this->ledgerBoardId->toString();
 		$fields["ledgerCardId"] = $this->ledgerCardId->toString();
 		$fields["ledgerProfileId"] = $this->ledgerProfileId->toString();
+		$fields["ledgerPoints"] = $this->ledgerPoints;
+		$fields["ledgerType"] = $this->ledgerType;
 		return ($fields);
 	}
 }
