@@ -191,19 +191,19 @@ class Card implements \JsonSerializable {
 		/**
 		 * mutator method for card question
 		 *
-		 * @param string $newCardId new value of card id
+		 * @param string $newCardQuestion new card question
 		 * @throws \RangeException if $newCardId is null
-		 * @throws \TypeError if $newCardQuestion is not a uuid.e
+		 * @throws \TypeError if $newCardQuestion is not a string
 		 **/
 		public function setCardQuestion( $newCardQuestion) : void {
-			try {
-				$uuid = self::validateUuid($newCardQuestion);
-			} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-				$exceptionType = get_class($exception);
-				throw(new $exceptionType($exception->getMessage(), 0, $exception));
+			$newCardQuestion = trim($newCardQuestion);
+			$newCardQuestion = filter_var($newCardQuestion, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+			if(empty($newCardQuestion) === true) {
+				throw(new \InvalidArgumentException("card question is empty or insecure"));
 			}
+
 			// convert and store the card question
-			$this->cardQuestion = $uuid;
+			$this->cardQuestion = $newCardQuestion;
 		}
 
 	/**
@@ -336,7 +336,7 @@ class Card implements \JsonSerializable {
 		$cardCategory = trim($cardCategory);
 		$cardCategory = filter_var($cardCategory, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($cardCategory) === true) {
-			throw(new \PDOException("tweet content is invalid"));
+			throw(new \PDOException("card content is invalid"));
 		}
 		// escape any mySQL wild cards
 		$cardCategory = str_replace("_", "\\_", str_replace("%", "\\%", $cardCategory));
