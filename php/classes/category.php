@@ -75,7 +75,7 @@ class Category implements \JsonSerializable {
 	/**
 	 * mutator method for category id
 	 *
-	 * @param Uuid | string $newCategoryId
+	 * @param string|Uuid $newCategoryId
 	 * @throws \RangeException if $newCategoryId is not positive
 	 * @throws \TypeError if $newCategoryId is not a uuid or string
 	 **/
@@ -103,48 +103,48 @@ class Category implements \JsonSerializable {
 	 *
 	 * @param string|Uuid $newCategoryProfileId new value of board profile id
 	 * @throws \RangeException if $newCategoryProfileId is not positive
-	 * @throws \TypeError if the $newBoardProfileId is not a uuid or string
+	 * @throws \TypeError if the $newCategoryProfileId is not a uuid or string
 	 **/
-	public function setBoardProfileId($newBoardProfileId) : void {
+	public function setCategoryProfileId($newCategoryProfileId) : void {
 		try {
-			$uuid = self::validateUuid($newBoardProfileId);
+			$uuid = self::validateUuid($newCategoryProfileId);
 		} catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception->getMessage(), 0, $exception);
 		}
-		//convert and store the board profile id
-		$this->boardProfileId = $uuid;
+		//convert and store the category profile id
+		$this->categoryProfileId = $uuid;
 	}
 	/**
-	 * accessor method for board name
-	 * @return string value of board name
+	 * accessor method for category name
+	 * @return string value of category name
 	 **/
-	public function getBoardName() : string {
-		return($this->boardName);
+	public function getCategoryName() : string {
+		return($this->categoryName);
 	}
 	/**
-	 * mutator method for board name
+	 * mutator method for category name
 	 *
-	 * @param string $newBoardName new value of board name
+	 * @param string $newCategoryName new value of board name
 	 * @throws \InvalidArgumentException if $newBoardName is not a string or insecure
 	 * @throws \RangeException if $newBoardName is >64 characters
 	 * @throws \TypeError if $newBoardNam is not a string
 	 **/
-	public function setBoardName(string $newBoardName) : void {
-		//verify the board name is secure
-		$newBoardName = trim($newBoardName);
-		$newBoardName = filter_var($newBoardName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newBoardName) === true) {
+	public function setCategoryName(string $newCategoryName) : void {
+		//verify the category name is secure
+		$newCategoryName = trim($newCategoryName);
+		$newCategoryName = filter_var($newCategoryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCategoryName) === true) {
 			throw(new \InvalidArgumentException("board name is empty or insecure"));
 		}
-		//verify the board name will fit in the database
-		if(strlen($newBoardName) > 64) {
-			throw(new \RangeException("board name too long"));
+		//verify the category name will fit in the database
+		if(strlen($newCategoryName) > 64) {
+			throw(new \RangeException("category name too long"));
 		}
-		//store the board name
-		$this->boardName = $newBoardName;
+		//store the category name
+		$this->categoryName = $newCategoryName;
 	}
 	/**
-	 * inserts this Board into mySQL
+	 * inserts this Category into mySQL
 	 *
 	 * @param \PDO $pdp PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
@@ -153,15 +153,15 @@ class Category implements \JsonSerializable {
 	public function insert(\PDO $pdo) : void {
 
 		//create query template
-		$query = "INSERT INTO board(boardId, boardProfileId, boardName) VALUES(:boardId, :boardProfileId, :boardName)";
+		$query = "INSERT INTO category(categoryId, categoryProfileId, categoryName) VALUES(:categoryId, :categoryProfileId, :categoryName)";
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place-holders on the template
-		$parameters = ["boardId" => $this->boardId->getBytes(),"boardProfileId" =>$this->boardProfileId->getBytes(), "boardName" => $this->boardName];
+		$parameters = ["categoryId" => $this->categoryId->getBytes(),"categoryProfileId" =>$this->categoryProfileId->getBytes(), "categoryName" => $this->categoryName];
 		$statement->execute($parameters);
 	}
 	/**
-	 * deletes this Board from mySQL
+	 * deletes this Category from mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
@@ -169,10 +169,10 @@ class Category implements \JsonSerializable {
 	 **/
 	public function delete(\PDO $pdo) : void {
 		//create query template
-		$query = "DELETE FROM board WHERE boardId = :boardId";
+		$query = "DELETE FROM category WHERE categoryId = :cateogryId";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holder in the template
-		$parameters =["boardId => $this->>boardId->getBytes()"];
+		$parameters =["categoryId => $this->categoryId->getBytes()"];
 		$statement->execute($parameters);
 	}
 	/**
@@ -194,7 +194,7 @@ class Category implements \JsonSerializable {
 	 * gets the Board by boardId
 	 *
 	 * @param \PDO $pdo PDO connection objct
-	 * @param Uuid | string $boardId board id to search for
+	 * @param string|Uuid $boardId board id to search for
 	 * @return Board|null Board found or null if not found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not correct data type
@@ -230,7 +230,7 @@ class Category implements \JsonSerializable {
 	 * gets the board by profile id
 	 *
 	 * @param |PDO $pdo PDO connection object
-	 * @param Uuid | string $boardProfileId board profile id to search by
+	 * @param string|Uuid $boardProfileId board profile id to search by
 	 * @return \SplFixedArray SplFixedArray of blogs found
 	 * @throws \PDOExceptionwhen mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type

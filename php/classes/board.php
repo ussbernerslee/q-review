@@ -172,7 +172,7 @@ class Board implements \JsonSerializable {
 		$query = "DELETE FROM board WHERE boardId = :boardId";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holder in the template
-		$parameters =["boardId => $this->>boardId->getBytes()"];
+		$parameters =["boardId => $this->boardId->getBytes()"];
 		$statement->execute($parameters);
 	}
 	/**
