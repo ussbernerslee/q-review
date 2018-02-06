@@ -210,9 +210,9 @@ class Board implements \JsonSerializable {
 		$query = "SELECT boardId, boardProfileId, boardName FROM board WHERE boardId = :boardId";
 		$statement = $pdo->prepare($query);
 		//bind the board id to the place holder in the template
-		$parameters = ["clapId" => $boardId->getBytes()];
+		$parameters = ["boardId" => $boardId->getBytes()];
 		$statement->execute($parameters);
-		//grab the clap from mySQL
+		//grab the board from mySQL
 		try {
 			$board = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
@@ -231,7 +231,7 @@ class Board implements \JsonSerializable {
 	 *
 	 * @param |PDO $pdo PDO connection object
 	 * @param string|Uuid $boardProfileId board profile id to search by
-	 * @return \SplFixedArray SplFixedArray of blogs found
+	 * @return \SplFixedArray SplFixedArray of board found
 	 * @throws \PDOExceptionwhen mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 */

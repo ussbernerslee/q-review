@@ -169,14 +169,14 @@ class Category implements \JsonSerializable {
 	 **/
 	public function delete(\PDO $pdo) : void {
 		//create query template
-		$query = "DELETE FROM category WHERE categoryId = :cateogryId";
+		$query = "DELETE FROM category WHERE categoryId = :categoryId";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holder in the template
 		$parameters =["categoryId => $this->categoryId->getBytes()"];
 		$statement->execute($parameters);
 	}
 	/**
-	 * updates this Board in mySQL
+	 * updates this Category in mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related error occurs
@@ -184,75 +184,75 @@ class Category implements \JsonSerializable {
 	 **/
 	public function update(\PDO $pdo) : void {
 		//create query template
-		$query = "UPDATE board SET boardProfileId = :boardProfileId, boardName = :boardName WHERE boardId = :boardId";
+		$query = "UPDATE category SET categoryProfileId = :categoryProfileId, categoryName = :categoryName WHERE categoryId = :categoryId";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place-holder in the template
-		$parameters = ["boardId" => $this->boardId->getBytes(), "boardProfileId" => $this->boardProfileId->getBytes(), "boardName" => $this->boardName];
+		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryProfileId" => $this->categoryProfileId->getBytes(), "categoryName" => $this->categoryName];
 		$statement->execute($parameters);
 	}
 	/**
-	 * gets the Board by boardId
+	 * gets the Category by categoryId
 	 *
 	 * @param \PDO $pdo PDO connection objct
-	 * @param string|Uuid $boardId board id to search for
-	 * @return Board|null Board found or null if not found
+	 * @param string|Uuid $categoryId category id to search for
+	 * @return Category|null Category found or null if not found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not correct data type
 	 **/
-	public static function getBoardByBoardId(\PDO $pdo, $boardId) : ?Board {
+	public static function getCategoryByCategoryId(\PDO $pdo, $categoryId) : ?Category {
 		//sanitize the string before searching
 		try{
-			$boardId = self::validateUuid($boardId);
+			$categoryId = self::validateUuid($categoryId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		//create query template
-		$query = "SELECT boardId, boardProfileId, boardName FROM board WHERE boardId = :boardId";
+		$query = "SELECT categorydId, categoryProfileId, categoryName FROM category WHERE categoryId = :categoryId";
 		$statement = $pdo->prepare($query);
-		//bind the board id to the place holder in the template
-		$parameters = ["clapId" => $boardId->getBytes()];
+		//bind the category id to the place holder in the template
+		$parameters = ["categoryId" => $categoryId->getBytes()];
 		$statement->execute($parameters);
-		//grab the clap from mySQL
+		//grab the category from mySQL
 		try {
-			$board = null;
+			$category = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$board = new Board($row["boardId"], $row["boardProfileId"], $row["boardName"]);
+				$category = new Category($row["categoryId"], $row["categoryProfileId"], $row["categoryName"]);
 			}
 		} catch(\Exception $exception) {
 			//if the row couldn't be converted, then rethrow it
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($board);
+		return($category);
 	}
 	/**
-	 * gets the board by profile id
+	 * gets the category by profile id
 	 *
 	 * @param |PDO $pdo PDO connection object
-	 * @param string|Uuid $boardProfileId board profile id to search by
-	 * @return \SplFixedArray SplFixedArray of blogs found
+	 * @param string|Uuid $categoryProfileId category profile id to search by
+	 * @return \SplFixedArray SplFixedArray of categories found
 	 * @throws \PDOExceptionwhen mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 */
-	public static function getBoardByBoardProfileId(\PDO $pdo, $boardProfileId) : \SplFixedArray {
+	public static function getCatetegoryByCategoryProfileId(\PDO $pdo, $categoryProfileId) : \SplFixedArray {
 		try {
-			$boardProfileId = self::validateUuid($boardProfileId);
+			$categoryProfileId = self::validateUuid($categoryProfileId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		// create query template
-		$query = "SELECT boardId, boardProfileId, boardName FROM board WHERE boardProfileId = :boardProfileId";
+		$query = "SELECT categoryId, categoryProfileId, categoryName FROM category WHERE categoryProfileId = :categoryProfileId";
 		$statement = $pdo->prepare($query);
-		//bind the boardProfileId to the place holder in the template
-		$parameters = ["boardProfileId" => $boardProfileId->getBytes()];
+		//bind the categoryProfileId to the place holder in the template
+		$parameters = ["categoryProfileId" => $categoryProfileId->getBytes()];
 		$statement->execute($parameters);
-		//build an array of boards
-		$board = new \SplFixedArray($statement->rowCount());
+		//build an array of category
+		$category = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$board = new Board($row["boardId"], $row["boardProfileId"], $row["boardName"]);
+				$category = new Category($row["categoryId"], $row["categoryProfileId"], $row["categoryName"]);
 				$boards[$boards->key()] = $board;
 				$boards->next();
 			} catch(\Exception $exception) {
