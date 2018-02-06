@@ -162,6 +162,18 @@ class Ledger implements \JsonSerializable {
 		return($this->ledgerPoints);
 	}
 
+
+//*******************************************************************************************************************
+
+	/**
+	 * accessor method for $ledgerType
+	 *
+	 * @return int unsigned value for $ledgerType
+	 **/
+	public function getLedgerType () : int {
+		return($this->ledgerType);
+	}
+
 	/**
 	 * mutator method for ledgerType
 	 *
@@ -179,21 +191,11 @@ class Ledger implements \JsonSerializable {
 			throw(new \InvalidArgumentException("Ledger type is not an integer"));
 		}
 		// verify the ledger type will fit in the database
-		if($newLedgerType <= 0 || $newLedgerType > 255) {
-			throw(new \RangeException("ledger type out of range"));
+		if($newLedgerType <= 0 || $newLedgerType > 3) {
+			throw(new \RangeException("ledger type out of expected range"));
 		}
 		// store the ledger type
 		$this->ledgerType = $newLedgerType;
-	}
-//*******************************************************************************************************************
-
-	/**
-	 * accessor method for $ledgerType
-	 *
-	 * @return int unsigned value for $ledgerType
-	 **/
-	public function getLedgerType () : int {
-		return($this->ledgerType);
 	}
 
 //*******************************************************************************************************************
