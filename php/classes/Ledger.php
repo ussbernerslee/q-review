@@ -162,6 +162,27 @@ class Ledger implements \JsonSerializable {
 		return($this->ledgerPoints);
 	}
 
+	/**
+	 * mutator method for ledger points $ledgerPoints
+	 *
+	 * @param int $newLedgerPoints ew value of ledger points
+	 * @throws \InvalidArgumentException if $newLedgerPoints is not an int or insecure
+	 * @throws \RangeException if $newLedgerPoints is > 255 characters
+	 * @throws \TypeError if $newLedgerPoints is not an int
+	 **/
+	public function setLedgerPoints(int $newLedgerPoints): void {
+		// verify the ledger points are integers
+		$newLedgerPoints = filter_var($newLedgerPoints, FILTER_VALIDATE_INT);
+		if(is_int($newLedgerPoints) !== true) {
+			throw(new \InvalidArgumentException("ledger points is not an integer"));
+		}
+		// verify the ledger points will fit in the database
+		if($newLedgerPoints > 8388607) {
+			throw(new \RangeException("ledger points is too large"));
+		}
+		// store the ledger points
+		$this->ledgerPoints = $newLedgerPoints;
+	}
 
 //*******************************************************************************************************************
 
@@ -190,7 +211,7 @@ class Ledger implements \JsonSerializable {
 		if(in_int($newLedgerType) !== true) {
 			throw(new \InvalidArgumentException("Ledger type is not an integer"));
 		}
-		// verify the ledger type will fit in the database
+		// verify the ledger type will fit the game set up
 		if($newLedgerType <= 0 || $newLedgerType > 3) {
 			throw(new \RangeException("ledger type out of expected range"));
 		}
