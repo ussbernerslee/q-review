@@ -1,6 +1,6 @@
 <?php
 
-namespace Edu\Cnm\kmaru\Test;
+namespace Edu\Cnm\Kmaru\Test;
 
 use Edu\Cnm\kmaru\Profile;
 
