@@ -285,10 +285,22 @@ class Board implements \JsonSerializable {
 				$boards->next();
 			} catch(\Exception $exception) {
 				//if the row couldn't be converted, rethrow it
-				throw(new |\PDOException($exception->getMessage(), 0, $exception));
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 			return($boards);
 		}
+		/**
+		 * formats the state variables for JSON serialization
+		 *
+		 * @return array resultion state variables to serialize
+		 **/
+		$fields = get_object_vars($this);
+
+		$fields["boardId"] = $this->boardId->toString();
+		$fields["boardProfileId"] = $this->boarProfileId->toString();
+		$fields["boardName"] = $this->boardName->toString();
+
+		return($fields);
 	}
 
 
