@@ -1,6 +1,6 @@
 <?php
 /**
-*created class for card
+ * created class for card
  *
  **/
 namespace Edu\Cnm\Capstone;
