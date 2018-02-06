@@ -75,7 +75,7 @@ class Board implements \JsonSerializable {
 	/**
 	 * mutator method for board id
 	 *
-	 * @param Uuid | string $newBoardId
+	 * @param string|Uuid $newBoardId
 	 * @throws \RangeException if $newBoardId is not positive
 	 * @throws \TypeError if $newBoardId is not a uuid or string
 	 **/
@@ -101,7 +101,7 @@ class Board implements \JsonSerializable {
 	/**
 	 * mutator method for board profile id
 	 *
-	 * @param string | Uuid $newBoardProfileId new value of board profile id
+	 * @param string|Uuid $newBoardProfileId new value of board profile id
 	 * @throws \RangeException if $newBoardProfileId is not positive
 	 * @throws \TypeError if the $newBoardProfileId is not a uuid or string
 	 **/
@@ -194,7 +194,7 @@ class Board implements \JsonSerializable {
 	 * gets the Board by boardId
 	 *
 	 * @param \PDO $pdo PDO connection objct
-	 * @param Uuid | string $boardId board id to search for
+	 * @param string|Uuid $boardId board id to search for
 	 * @return Board|null Board found or null if not found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not correct data type
@@ -230,7 +230,7 @@ class Board implements \JsonSerializable {
 	 * gets the board by profile id
 	 *
 	 * @param |PDO $pdo PDO connection object
-	 * @param Uuid | string $boardProfileId board profile id to search by
+	 * @param string|Uuid $boardProfileId board profile id to search by
 	 * @return \SplFixedArray SplFixedArray of blogs found
 	 * @throws \PDOExceptionwhen mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type

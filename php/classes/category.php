@@ -76,7 +76,7 @@ class Category implements \JsonSerializable {
 	 * mutator method for category id
 	 *
 	 * @param Uuid | string $newCategoryId
-	 * @throws \RangeException if $newCategoryd is not positive
+	 * @throws \RangeException if $newCategoryId is not positive
 	 * @throws \TypeError if $newCategoryId is not a uuid or string
 	 **/
 	public function setCategoryId($newCategoryId) : void {
@@ -101,7 +101,7 @@ class Category implements \JsonSerializable {
 	/**
 	 * mutator method for category profile id
 	 *
-	 * @param string | Uuid $newCategoryProfileId new value of board profile id
+	 * @param string|Uuid $newCategoryProfileId new value of board profile id
 	 * @throws \RangeException if $newCategoryProfileId is not positive
 	 * @throws \TypeError if the $newBoardProfileId is not a uuid or string
 	 **/
