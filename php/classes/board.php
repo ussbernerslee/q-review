@@ -226,6 +226,46 @@ class Board implements \JsonSerializable {
 		}
 		return($clap);
 	}
+	/**
+	 * gets the board by profile id
+	 *
+	 * @param |PDO $pdo PDO connection object
+	 * @param Uuid | string $boardProfileId board profile id to search by
+	 * @return \SplFixedArray SplFixedArray of blogs found
+	 * @throws \PDOExceptionwhen mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 */
+	public static function getBoardByBoardProfileId(\PDO $pdo, $boardProfileId) : \SplFixedArray {
+		try {
+			$boardProfileId = self::validateUuid($boardProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		// create query template
+		$query = "SELECT boardId, boardProfileId, boardName FROM board WHERE boardProfileId = :boardProfileId";
+		$statement = $pdo->prepare($query);
+		//bind the boardProfileId to the place holder in the template
+		$parameters = ["boardProfileId" => $boardProfileId->getBytes()];
+		$statement->execute($parameters);
+		//build an array of boards
+		$board = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$board = new Board($row["boardId"], $row["boardProfileId"], $row["boardName"]);
+				$boards[$boards->key()] = $board;
+				$boards->next();
+			} catch(\Exception $exception) {
+				//if the row could not be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($boards);
+	}
+
+
+
+
 
 
 }
