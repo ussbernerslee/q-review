@@ -61,7 +61,7 @@ class Board implements \JsonSerializable {
 		//determine what exception type was thrown
 		catch(\InvalidArgumentException | \RangeException | \TypeError | \Exception $exception) {
 			$exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception)),
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
 	/**
@@ -81,7 +81,7 @@ class Board implements \JsonSerializable {
 	 **/
 	public function setBoardId($newBoardId) : void {
 		try {
-			$uuid = self::validateUuid($newBoardId)
+			$uuid = self::validateUuid($newBoardId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -109,7 +109,7 @@ class Board implements \JsonSerializable {
 		try {
 			$uuid = self::validateUuid($newBoardProfileId);
 				} catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
-					$exceptionType = get_class($exception->getMessage(), 0, $exception));
+					$exceptionType = get_class($exception->getMessage(), 0, $exception);
 			}
 			//convert and store the board profile id
 		$this->boardProfileId = $uuid;
@@ -138,7 +138,7 @@ class Board implements \JsonSerializable {
 		}
 		//verify the board name will fit in the database
 		if(strlen($newBoardName) > 64) {
-			throw(new \RangeException("board name too long"))
+			throw(new \RangeException("board name too long"));
 		}
 		//store the board name
 		$this->boardName = $newBoardName;
@@ -210,7 +210,7 @@ class Board implements \JsonSerializable {
 		$query = "SELECT boardId, boardProfileId, boardName FROM board WHERE boardId = :boardId";
 		$statement = $pdo->prepare($query);
 		//bind the board id to the place holder in the template
-		$parameters = ["clapId" => $clapId->getBytes()];
+		$parameters = ["clapId" => $boardId->getBytes()];
 		$statement->execute($parameters);
 		//grab the clap from mySQL
 		try {
@@ -277,7 +277,7 @@ class Board implements \JsonSerializable {
 		$statement->execute();
 		//built and array of boards
 		$boards = new \SplFixedArray(($statement->rowCount()));
-		$statement->setFetcMode(\PDO::FETCH_ASSOC);
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$board = new Board ($row["boardId"], $row["boardProfileId"], $row["boardName"]);
@@ -287,21 +287,24 @@ class Board implements \JsonSerializable {
 				//if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-			return($boards);
+			return ($boards);
 		}
+	}
 		/**
 		 * formats the state variables for JSON serialization
 		 *
-		 * @return array resultion state variables to serialize
+		 * @return array result in state variables to serialize
 		 **/
-		$fields = get_object_vars($this);
+		public function jsonSerialize() {
+			$fields = get_object_vars($this);
 
-		$fields["boardId"] = $this->boardId->toString();
-		$fields["boardProfileId"] = $this->boarProfileId->toString();
-		$fields["boardName"] = $this->boardName->toString();
+			$fields["boardId"] = $this->boardId->toString();
+			$fields["boardProfileId"] = $this->boardProfileId->toString();
+			$fields["boardName"] = $this->boardName->toString();
 
-		return($fields);
+			return($fields);
 	}
+
 
 
 
