@@ -32,7 +32,7 @@
 			<li>Miguel then enters his CNM Username and Password and clicks Submit</li>
 			<li>The site hashes and salts his Password and checks with the CNM Student Database, returns true, and the Server issues miguel a session ID</li>
 			<li>After the first question is read miguel presses his spacebar to attempt to gain control over the question ahead of other students playing</li>
-			<li>The server then immediately records which students keypress came first and gives control of that question to that student whos screen then lights up giving control to that student to answer the question.</li>
+			<li>The server then immediately records which students key-press came first and gives control of that question to that student whos screen then lights up giving control to that student to answer the question.</li>
 			<li>Student then answers the question correctly, in the form of a question, and the instructor checks "correct"</li>
 			<li>The server then removes the question being played, and adds the point-value assigned to the question to that students score being shown on leader-board</li>
 			<li>That student then clicks another tile, still in play</li>
