@@ -173,14 +173,14 @@ class Ledger implements \JsonSerializable {
 	public function setLedgerType(int $newLedgerType): void {
 		// verify the ledger type is secure
 
-		//value cannot be 0....is it looking at False?
+		//TODO: get this checked
 		$newLedgerType = filter_var($newLedgerType, FILTER_VALIDATE_INT);
-		if(empty($newLedgerType) === true) {
-			throw(new \InvalidArgumentException("Ledger type is empty or insecure"));
+		if(in_int($newLedgerType) !== true) {
+			throw(new \InvalidArgumentException("Ledger type is not an integer"));
 		}
 		// verify the ledger type will fit in the database
-		if(strlen($newLedgerType) > 255) {
-			throw(new \RangeException("ledger type is too large"));
+		if($newLedgerType <= 0 || $newLedgerType > 255) {
+			throw(new \RangeException("ledger type out of range"));
 		}
 		// store the ledger type
 		$this->ledgerType = $newLedgerType;
