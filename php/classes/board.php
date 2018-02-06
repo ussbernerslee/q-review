@@ -206,6 +206,25 @@ class Board implements \JsonSerializable {
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
+		//create query template
+		$query = "SELECT boardId, boardProfileId, boardName FROM board WHERE boardId = :boardId";
+		$statement = $pdo->prepare($query);
+		//bind the board id to the place holder in the template
+		$parameters = ["clapId" => $clapId->getBytes()];
+		$statement->execute($parameters);
+		//grab the clap from mySQL
+		try {
+			$clap = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$board = new Board($row["boardId"], $row["boardProfileId"], $row["boardName"]);
+			}
+		} catch(\Exception $exception) {
+			//if the row couldn't be converted, then rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($clap);
 	}
 
 
