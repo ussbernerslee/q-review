@@ -287,8 +287,52 @@ class Ledger implements \JsonSerializable {
 		// stops direct access to database for formatting
 		$statement = $pdo->prepare($query);
 
-		// bind the article id to the place holder in the template
+		// bind the ledger board id to the place holder in the template
 		$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes()];
+		$statement->execute($parameters);
+
+		// grab the Ledger from mySQL
+		try {
+			$ledger = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow the exception
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($ledger);
+	}
+
+//*******************************************************************************************************************
+
+	/**
+	 * gets ledger by ledger card id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $ledgerCardId ledger card id to search by
+	 * @return Ledger|null Ledger found or null if not found
+	 * @throws \PDOException when mySQL related error occurs
+	 * @throws \TypeError when a variable is not the correct data type
+	 **/
+	public static function getLedgerByLedgerCardId(\PDO $pdo, $ledgerCardId) : ?Ledger {
+		// sanitize the ledgerCardId before searching
+		try {
+			$ledgerCardId = self::validateUuid($ledgerCardId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT ledgerBoardId, ledgerCardId, ledgerProfileId, ledgerPoints, ledgerType FROM ledger WHERE ledgerCardId = :ledgerCardId";
+
+		// stops direct access to database for formatting
+		$statement = $pdo->prepare($query);
+
+		// bind the ledger card id to the place holder in the template
+		$parameters = ["ledgerCardId" => $ledgerCardId->getBytes()];
 		$statement->execute($parameters);
 
 		// grab the Ledger from mySQL
