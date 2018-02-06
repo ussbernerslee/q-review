@@ -83,8 +83,8 @@ CREATE TABLE ledger(
 	ledgerCardId BINARY(16) NOT NULL,
 	ledgerProfileId BINARY(16) NOT NULL,
 	-- attributes for ledger:
-	ledgerType TINYINT UNSIGNED,
 	ledgerPoints MEDIUMINT SIGNED,
+	ledgerType TINYINT UNSIGNED,
 	-- unique index created:
 	INDEX (ledgerBoardId),
 	INDEX (ledgerCardId),

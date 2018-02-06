@@ -177,7 +177,7 @@ class Ledger implements \JsonSerializable {
 			throw(new \InvalidArgumentException("ledger points is not an integer"));
 		}
 		// verify the ledger points will fit in the database
-		if($newLedgerPoints > 8388607) {
+		if($newLedgerPoints > 	8388607) {
 			throw(new \RangeException("ledger points is too large"));
 		}
 		// store the ledger points
@@ -218,6 +218,28 @@ class Ledger implements \JsonSerializable {
 		// store the ledger type
 		$this->ledgerType = $newLedgerType;
 	}
+
+//*******************************************************************************************************************
+
+	/**
+	 * inserts a new ledger into mySQL
+	 * @param \PDO $pdo connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo): void {
+
+		// creates the query template. Ready to be formatted and inserted
+		$query = "INSERT INTO ledger(ledgerBoardId, ledgerCardId, ledgerProfileId, ledgerPoints, ledgerType) VALUES (:ledgerBoardId, :ledgerCardId, :ledgerProfileId, :ledgerPoints, :ledgerType)";
+
+		// stops direct insert for security reasons. Allows for further formatting.
+		$statement = $pdo->prepare($query);
+
+		// bind values of variables to respective placeholders in template
+		$parameters = ["ledgerBoardId" => $this->ledgerBoardId->getBytes(), "ledgerCardId" => $this->ledgerCardId->getBytes(), "ledgerProfileId" => $this->ledgerProfileId->getBytes(), "ledgerPoints" => $this->ledgerPoints, "ledgerType => $this->ledgerType"];
+		$statement->execute($parameters);
+	}
+
 
 //*******************************************************************************************************************
 
