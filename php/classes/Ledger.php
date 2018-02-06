@@ -240,9 +240,29 @@ class Ledger implements \JsonSerializable {
 		$statement->execute($parameters);
 	}
 
-
 //*******************************************************************************************************************
 
+	/**
+	 * Deletes selected ledger from mySQL
+	 *
+	 * @param \PDO $pdo connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo): void {
+
+		// create query template
+		$query = "DELETE FROM ledger WHERE ledgerBoardId = :ledgerBoardId AND ledgerCardId = :ledgerCardId AND ledgerProfileId = :ledgerProfileId";
+
+		// stops direct deletion
+		$statement = $pdo->prepare($query);
+
+		// binds binary value of articleId to placeholder for profileId
+		$parameters = ["ledgerBoardId" => $this->ledgerBoardId->getBytes(), "ledgerCardId" => $this->ledgerCardId->getBytes(), "ledgerProfileId" => $this->ledgerProfileId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+//*******************************************************************************************************************
 	/**
 	 * formats the state variables for JSON serialization
 	 *
