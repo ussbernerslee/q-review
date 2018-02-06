@@ -214,7 +214,7 @@ class Board implements \JsonSerializable {
 		$statement->execute($parameters);
 		//grab the clap from mySQL
 		try {
-			$clap = null;
+			$board = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
@@ -224,7 +224,7 @@ class Board implements \JsonSerializable {
 			//if the row couldn't be converted, then rethrow it
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($clap);
+		return($board);
 	}
 	/**
 	 * gets the board by profile id
