@@ -10,10 +10,10 @@ use PHPUnit\Exception;
 use Ramsey\Uuid\Uuid;
 
 /**
- * board
+ * category
  *
- * This is what data is stored when a captain/instructor/proctor (the person running the game) creates a board.
- * This sets the "name" of each specific game for the ledger.
+ * This is what data is stored when a captain/instructor/proctor (the person running the game) creates a category.
+ * This sets the "name" of each specific category into which each card(question) is categorized for example css, html, biology, famous people, vertebrates, etc.
  *
  * @author AnnaKhamsamran <akhamsamran1@cnm.edu>
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
@@ -21,99 +21,99 @@ use Ramsey\Uuid\Uuid;
  * @package Edu\Cnm\DataDesign
  **/
 
-class Board implements \JsonSerializable {
+class Category implements \JsonSerializable {
 	use ValidateUuid;
 
 	/**
-	 * id for this Board; this is the primary key
-	 * @var Uuid $boardId
+	 * id for this Category; this is the primary key
+	 * @var Uuid $categoryId
 	 **/
-	private $boardId;
+	private $categoryId;
 	/**
-	 * id of the Profile that created this Board; this is a foreign key
-	 * @var Uuid $boardProfileId
+	 * id of the Profile that created this Category; this is a foreign key
+	 * @var Uuid $categoryProfileId
 	 **/
-	private $boardProfileId;
+	private $categoryProfileId;
 	/**
 	 * name of the board-this is to distinguish between games within the ledger
-	 * @var string $boardName
+	 * @var string $categoryName
 	 **/
-	private $boardName;
+	private $categoryName;
 
 	/**
-	 * constructor for this Board
+	 * constructor for this Category
 	 *
-	 * @param string|Uuid $newBoardId id of this Board or null if new Board
-	 * @param string|Uuid $newBoardProfileId id of the Profile of the creator of this Board
-	 * @param string $newBoardName the Name of this Board
+	 * @param string|Uuid $newCategoryId id of this Category or null if new Category
+	 * @param string|Uuid $newCategoryProfileId id of the Profile of the creator of this Category
+	 * @param string $newCategoryName the Name of this Category
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds(ie strings too long, integers negative)
 	 * @throws \TypeError if data types violates type hints
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php (constructors and destructors)
 	 **/
-	public function __construct($newBoardId, $newBoardProfileId, string $newBoardName) {
+	public function __construct($newCategoryId, $newCategoryProfileId, string $newCategoryName) {
 		try {
-			$this->setBoardId($newBoardId);
-			$this->setBoardProfileId($newBoardProfileId);
-			$this->setBoardName($newBoardName);
+			$this->setCategoryId($newCategoryId);
+			$this->setCategoryProfileId($newCategoryProfileId);
+			$this->setCategoryName($newCategoryName);
 		}
-		//determine what exception type was thrown
+			//determine what exception type was thrown
 		catch(\InvalidArgumentException | \RangeException | \TypeError | \Exception $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
 	/**
-	 * accessor method for board id
+	 * accessor method for category id
 	 *
-	 * @return Uuid value of the board id
+	 * @return Uuid value of the category id
 	 **/
-	public function getBoardId() : Uuid {
-		return($this->boardId);
+	public function getCategoryId() : Uuid {
+		return($this->categoryId);
 	}
 	/**
-	 * mutator method for board id
+	 * mutator method for category id
 	 *
-	 * @param Uuid | string $newBoardId
-	 * @throws \RangeException if $newBoardId is not positive
-	 * @throws \TypeError if $newBoardId is not a uuid or string
+	 * @param Uuid | string $newCategoryId
+	 * @throws \RangeException if $newCategoryd is not positive
+	 * @throws \TypeError if $newCategoryId is not a uuid or string
 	 **/
-	public function setBoardId($newBoardId) : void {
+	public function setCategoryId($newCategoryId) : void {
 		try {
-			$uuid = self::validateUuid($newBoardId);
+			$uuid = self::validateUuid($newCategoryId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-		//convert and store the board id
-		$this->boardId = $uuid;
+		//convert and store the category id
+		$this->categoryId = $uuid;
 	}
 
 	/**
-	 * accessor method for board profile id
+	 * accessor method for category profile id
 	 *
-	 * @return Uuid value of board profile id
+	 * @return Uuid value of category profile id
 	 **/
-	public function getBoardProfileId() : Uuid {
-		return($this->boardProfileId);
+	public function getCategoryProfileId() : Uuid {
+		return($this->categoryProfileId);
 	}
 	/**
-	 * mutator method for board profile id
+	 * mutator method for category profile id
 	 *
-	 * @param string | Uuid $newBoardProfileId new value of board profile id
-	 * @throws \RangeException if $newBoardProfileId is not positive
+	 * @param string | Uuid $newCategoryProfileId new value of board profile id
+	 * @throws \RangeException if $newCategoryProfileId is not positive
 	 * @throws \TypeError if the $newBoardProfileId is not a uuid or string
 	 **/
 	public function setBoardProfileId($newBoardProfileId) : void {
 		try {
 			$uuid = self::validateUuid($newBoardProfileId);
-				} catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
-					$exceptionType = get_class($exception->getMessage(), 0, $exception);
-			}
-			//convert and store the board profile id
-		$this->boardProfileId = $uuid;
+		} catch(\InvalidArgumentException | \RangeException |\Exception | \TypeError $exception) {
+			$exceptionType = get_class($exception->getMessage(), 0, $exception);
 		}
+		//convert and store the board profile id
+		$this->boardProfileId = $uuid;
+	}
 	/**
 	 * accessor method for board name
 	 * @return string value of board name
@@ -127,7 +127,7 @@ class Board implements \JsonSerializable {
 	 * @param string $newBoardName new value of board name
 	 * @throws \InvalidArgumentException if $newBoardName is not a string or insecure
 	 * @throws \RangeException if $newBoardName is >64 characters
-	 * @throws \TypeError if $newBoardName is not a string
+	 * @throws \TypeError if $newBoardNam is not a string
 	 **/
 	public function setBoardName(string $newBoardName) : void {
 		//verify the board name is secure
@@ -266,10 +266,10 @@ class Board implements \JsonSerializable {
 	 * gets all Boards
 	 *
 	 * @param \PDO $pdo PDO connection object
- 	* @return \SplFixedArray SplFixedArray of Boards found or null if not fund
+	 * @return \SplFixedArray SplFixedArray of Boards found or null if not fund
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
- 	**/
+	 **/
 	public static function getAllBoards(\PDO $pdo) : \SPLFixedArray {
 		//create query template
 		$query = "SELECT boardId, boardProfileId, boardName FROM board";
@@ -290,19 +290,19 @@ class Board implements \JsonSerializable {
 			return ($boards);
 		}
 	}
-		/**
-		 * formats the state variables for JSON serialization
-		 *
-		 * @return array result in state variables to serialize
-		 **/
-		public function jsonSerialize() {
-			$fields = get_object_vars($this);
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array result in state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
 
-			$fields["boardId"] = $this->boardId->toString();
-			$fields["boardProfileId"] = $this->boardProfileId->toString();
-			$fields["boardName"] = $this->boardName->toString();
+		$fields["boardId"] = $this->boardId->toString();
+		$fields["boardProfileId"] = $this->boardProfileId->toString();
+		$fields["boardName"] = $this->boardName->toString();
 
-			return($fields);
+		return($fields);
 	}
 
 
