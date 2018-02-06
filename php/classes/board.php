@@ -262,7 +262,34 @@ class Board implements \JsonSerializable {
 		}
 		return($boards);
 	}
-
+	/**
+	 * gets all Boards
+	 *
+	 * @param \PDO $pdo PDO connection object
+ 	* @return \SplFixedArray SplFixedArray of Boards found or null if not fund
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+ 	**/
+	public static function getAllBoards(\PDO $pdo) : \SPLFixedArray {
+		//create query template
+		$query = "SELECT boardId, boardProfileId, boardName FROM board";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+		//built and array of boards
+		$boards = new \SplFixedArray(($statement->rowCount()));
+		$statement->setFetcMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$board = new Board ($row["boardId"], $row["boardProfileId"], $row["boardName"]);
+				$boards[$boards->key()] = $board;
+				$boards->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new |\PDOException($exception->getMessage(), 0, $exception));
+			}
+			return($boards);
+		}
+	}
 
 
 
