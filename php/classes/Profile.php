@@ -1,5 +1,5 @@
 <?php
-namespace Edu\Cnm\kmaru\q-review;
+namespace Edu\Cnm\Kmaru;
 
 
 
