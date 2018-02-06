@@ -247,47 +247,47 @@ class Category implements \JsonSerializable {
 		//bind the categoryProfileId to the place holder in the template
 		$parameters = ["categoryProfileId" => $categoryProfileId->getBytes()];
 		$statement->execute($parameters);
-		//build an array of category
+		//build an array of categories
 		$category = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$category = new Category($row["categoryId"], $row["categoryProfileId"], $row["categoryName"]);
-				$boards[$boards->key()] = $board;
-				$boards->next();
+				$categories[$categories->key()] = $category;
+				$categories->next();
 			} catch(\Exception $exception) {
 				//if the row could not be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($boards);
+		return($categories);
 	}
 	/**
-	 * gets all Boards
+	 * gets all Categories
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @return \SplFixedArray SplFixedArray of Boards found or null if not fund
+	 * @return \SplFixedArray SplFixedArray of Categories found or null if not fund
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getAllBoards(\PDO $pdo) : \SPLFixedArray {
+	public static function getAllCategories(\PDO $pdo) : \SPLFixedArray {
 		//create query template
-		$query = "SELECT boardId, boardProfileId, boardName FROM board";
+		$query = "SELECT categoryId, categoryProfileId, categoryName FROM category";
 		$statement = $pdo->prepare($query);
 		$statement->execute();
-		//built and array of boards
-		$boards = new \SplFixedArray(($statement->rowCount()));
+		//built and array of categories
+		$categories = new \SplFixedArray(($statement->rowCount()));
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$board = new Board ($row["boardId"], $row["boardProfileId"], $row["boardName"]);
-				$boards[$boards->key()] = $board;
-				$boards->next();
+				$category= new Category ($row["categoryId"], $row["categoryProfileId"], $row["categoryName"]);
+				$categories[$categories->key()] = $category;
+				$categories->next();
 			} catch(\Exception $exception) {
 				//if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-			return ($boards);
+			return ($categories);
 		}
 	}
 	/**
@@ -298,9 +298,9 @@ class Category implements \JsonSerializable {
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 
-		$fields["boardId"] = $this->boardId->toString();
-		$fields["boardProfileId"] = $this->boardProfileId->toString();
-		$fields["boardName"] = $this->boardName->toString();
+		$fields["categoryId"] = $this->categoryId->toString();
+		$fields["categoryProfileId"] = $this->categoryProfileId->toString();
+		$fields["categoryName"] = $this->categoryName->toString();
 
 		return($fields);
 	}
