@@ -242,7 +242,7 @@ class Profile implements \JsonSerializable {
 		if(strlen($newProfileName) > 50) {
 			throw(new \RangeException("name is too large"));
 		}
-		// store the full name
+		// store the name
 		$this->profileName = $newProfileName;
 	}
 	/**
@@ -262,7 +262,7 @@ class Profile implements \JsonSerializable {
 	 * @throws \TypeError if $newProfilePrivilege is not an int
 	 **/
 	public function setProfilePrivilege(string $newProfilePrivilege): void {
-		// store the caption
+		// store the value
 		$this->profilePrivilege = $newProfilePrivilege;
 	}
 	/**
@@ -327,9 +327,9 @@ class Profile implements \JsonSerializable {
 	 **/
 	public function insert(\PDO $pdo): void {
 		// create query template
-		$query = "INSERT INTO profile(profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileUsername, profileSalt) VALUES (:profileId, :profileActivationToken, :profileEmail, :profileHash, :profileName, :profilePrivilege, :profileUsername, :profileSalt)";
+		$query = "INSERT INTO profile(profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileSalt, profileUsername) VALUES (:profileId, :profileActivationToken, :profileEmail, :profileHash, :profileName, :profilePrivilege, :profileSalt, :profileUsername)";
 		$statement = $pdo->prepare($query);
-		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileName" => $this->profileName, "profilePrivilege" => $this->profilePrivilege, "profileUsername" => $this->profileUsername, "profileSalt" => $this->profileSalt];
+		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileName" => $this->profileName, "profilePrivilege" => $this->profilePrivilege, "profileSalt" => $this->profileSalt, "profileUsername" => $this->profileUsername];
 		$statement->execute($parameters);
 	}
 	/**
@@ -355,10 +355,10 @@ class Profile implements \JsonSerializable {
 	 **/
 	public function update(\PDO $pdo): void {
 		// create query template
-		$query = "UPDATE profile SET profileActivationToken = :profileActivationToken, profileEmail = :profileEmail, profileHash = :profileHash, profileName = :profileName, profilePrivilege = :profilePrivilege, profileUsername = :profileUsername, profileSalt = :profileSalt WHERE profileId = :profileId";
+		$query = "UPDATE profile SET profileActivationToken = :profileActivationToken, profileEmail = :profileEmail, profileHash = :profileHash, profileName = :profileName, profilePrivilege = :profilePrivilege, profileSalt = :profileSalt, profileUsername = :profileUsername WHERE profileId = :profileId";
 		$statement = $pdo->prepare($query);
 		// bind the member variables to the place holders in the template
-		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileName" => $this->profileName, "profilePrivilege" => $this->profilePrivilege, "profileUsername" => $this->profileUsername, "profileSalt" => $this->profileSalt];
+		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileName" => $this->profileName, "profilePrivilege" => $this->profilePrivilege, "profileSalt" => $this->profileSalt, "profileUsername" => $this->profileUsername];
 		$statement->execute($parameters);
 	}
 	/**
@@ -378,7 +378,7 @@ class Profile implements \JsonSerializable {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		// create query template
-		$query = "SELECT profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileUsername, profileSalt FROM profile WHERE profileId = :profileId";
+		$query = "SELECT profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileSalt, profileUsername FROM profile WHERE profileId = :profileId";
 		$statement = $pdo->prepare($query);
 		// bind the profile id to the place holder in the template
 		$parameters = ["profileId" => $profileId->getBytes()];
@@ -389,7 +389,7 @@ class Profile implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileUsername"], $row["profileSalt"]);
+				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileSalt"], $row["profileUsername"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it
@@ -414,7 +414,7 @@ class Profile implements \JsonSerializable {
 			throw(new \InvalidArgumentException("profile activation token is empty or in the wrong format"));
 		}
 		//create the query template
-		$query = "SELECT  profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileUsername, profileSalt FROM profile WHERE profileActivationToken = :profileActivationToken";
+		$query = "SELECT  profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileSalt, profileUsername FROM profile WHERE profileActivationToken = :profileActivationToken";
 		$statement = $pdo->prepare($query);
 		// bind the profile activation token to the placeholder in the template
 		$parameters = ["profileActivationToken" => $profileActivationToken];
@@ -425,7 +425,7 @@ class Profile implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileUsername"], $row["profileSalt"]);
+				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileSalt"], $row["profileUsername"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it
@@ -450,7 +450,7 @@ class Profile implements \JsonSerializable {
 			throw(new \PDOException("not a valid email"));
 		}
 		// create query template
-		$query = "SELECT profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileUsername, profileSalt FROM profile WHERE profileEmail = :profileEmail";
+		$query = "SELECT profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileSalt, profileUsername FROM profile WHERE profileEmail = :profileEmail";
 		$statement = $pdo->prepare($query);
 		// bind the profile id to the place holder in the template
 		$parameters = ["profileEmail" => $profileEmail];
@@ -461,7 +461,7 @@ class Profile implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileUsername"], $row["profileSalt"]);
+				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileSalt"], $row["profileUsername"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it
@@ -486,7 +486,7 @@ class Profile implements \JsonSerializable {
 			throw(new \PDOException("not a valid name"));
 		}
 		// create query template
-		$query = "SELECT  profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileUsername, profileSalt FROM profile WHERE profileName = :profileName";
+		$query = "SELECT  profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileSalt, profileUsername FROM profile WHERE profileName = :profileName";
 		$statement = $pdo->prepare($query);
 		// bind the profile name to the place holder in the template
 		$parameters = ["profileName" => $profileName];
@@ -495,7 +495,7 @@ class Profile implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while (($row = $statement->fetch()) !== false) {
 			try {
-				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileUsername"], $row["profileSalt"]);
+				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileSalt"], $row["profileUsername"]);
 				$profiles[$profiles->key()] = $profile;
 				$profiles->next();
 			} catch(\Exception $exception) {
@@ -522,7 +522,7 @@ class Profile implements \JsonSerializable {
 			throw(new \PDOException("not a valid username"));
 		}
 		// create query template
-		$query = "SELECT  profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileUsername, profileSalt FROM profile WHERE profileUsername = :profileUsername";
+		$query = "SELECT  profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileSalt, profileUsername FROM profile WHERE profileUsername = :profileUsername";
 		$statement = $pdo->prepare($query);
 		// bind the profile username to the place holder in the template
 		$parameters = ["profileUsername" => $profileUsername];
@@ -531,7 +531,7 @@ class Profile implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while (($row = $statement->fetch()) !== false) {
 			try {
-				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileUsername"], $row["profileSalt"]);
+				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileSalt"], $row["profileUsername"]);
 				$profiles[$profiles->key()] = $profile;
 				$profiles->next();
 			} catch(\Exception $exception) {
