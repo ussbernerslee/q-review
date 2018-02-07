@@ -5,7 +5,7 @@ namespace Edu\Cnm\Kmaru;
 
 
 require_once("autoload.php");
-require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+require_once(dirname(__DIR__, 2) . "../vendor/autoload.php");
 
 use Ramsey\Uuid\Uuid;
 
@@ -51,14 +51,14 @@ class Ledger implements \JsonSerializable {
 	/**
 	 * type of question in ledger: normal (1), wager (2), and final (3)
 	 *
-	 * @var String $ledgerType
+	 * @var int $ledgerType
 	 **/
 	private $ledgerType;
 
 	/**
 	 * points awarded or taken by question on this ledger
 	 *
-	 * @var Uuid $ledgerPoints
+	 * @var int $ledgerPoints
 	 **/
 	private $ledgerPoints;
 
@@ -71,7 +71,7 @@ class Ledger implements \JsonSerializable {
 	 * @param Uuid|string $newLedgerCardId id of the card for this record in ledger
 	 * @param Uuid|string $newLedgerProfileId id of the profiles in the ledger
 	 * @param int $newLedgerPoints signed int value of points for this record in ledger
-	 * @param string $newLedgerType type of question for this record in ledger
+	 * @param int $newLedgerType type of question for this record in ledger
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds
 	 * @throws \TypeError if a data type violates a data hint
