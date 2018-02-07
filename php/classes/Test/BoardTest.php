@@ -130,6 +130,20 @@ public function testInsertValidBoard() : void {
 	}
 
 	/**
+	 * test grabbing a Board that does not exist
+	 **/
+	public function testGetInvalidBoardByBoardId() : void {
+		//grab a profile id that exceeds the maximum allowable profile id
+		$board = Board::getBoardByBoardId($this->getPDO(), generateUuidV4());
+		$this->assertNull($board);
+	}
+
+	/**
+	 * test inserting a Board and re-grabbing it from mySQL
+	 **/
+	public function testGetValidBoardIdByBoardProfileId() {
+
+	}
 
 
 
