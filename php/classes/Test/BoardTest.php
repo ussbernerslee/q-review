@@ -104,8 +104,32 @@ public function testInsertValidBoard() : void {
 		$this->asssertEquals($pdoBoard->getBoardId(), $boardId);
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("board"));
 		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME2)
+		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME2);
 	}
+
+	/**
+	 * test creating a Board and then deleting it
+	 **/
+	public function testDeleteValidBoard() : void {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("board");
+
+		//create a new Board and insert it into mySQL
+		$boardId = generateUuidV4();
+		$board = new Board($boardId, $this->profile->getBoardId(), $this->VALID_BOARDNAME);
+		$board->insert($this->getPDO());
+
+		//delete the Board from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("board"));
+		$this->delete($this->getPDO());
+
+		//grab the data from mySQL and enforce the Board does not exist
+		$pdoBoard = Board::getBoardByBoardId($this->getPDO(), $board->getBoardId());
+		$this->assertNull($pdoBoard);
+		$this->asserEquals($numRows, $this->getConnection()->getRowCount("board"));
+	}
+
+	/**
 
 
 
