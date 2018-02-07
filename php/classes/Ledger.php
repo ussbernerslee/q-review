@@ -1,6 +1,6 @@
 <?php
 
-namespace Edu\Cnm\DataDesign;
+namespace Edu\Cnm\Kmaru;
 
 
 
@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
 
 
 /**
- * Ledger for kmaru game
+ * Ledger for Kmaru
  *
  * The ledger will record all interactions with the game, documenting points gained and lost by each player on each question
  * as it relates to the the board.
@@ -23,8 +23,9 @@ use Ramsey\Uuid\Uuid;
  * @version 4.0.0
  * @package Edu\Cnm\DataDesign
  **/
-//TODO: add correct namespace and package
+
 class Ledger implements \JsonSerializable {
+	use ValidateUuid;
 
 	/**
 	 * id for the board on this ledger: this is a foreign key
@@ -66,13 +67,13 @@ class Ledger implements \JsonSerializable {
 	/**
 	 * constructor for this ledger
 	 *
-	 * @param string|Uuid $newLedgerBoardId id of this board for this record in ledger
-	 * @param string|Uuid $newLedgerCardId id of the card for this record in ledger
-	 * @param string|Uuid $newLedgerProfileId id of the profiles in the ledger
+	 * @param Uuid|string $newLedgerBoardId id of this board for this record in ledger
+	 * @param Uuid|string $newLedgerCardId id of the card for this record in ledger
+	 * @param Uuid|string $newLedgerProfileId id of the profiles in the ledger
 	 * @param int $newLedgerPoints signed int value of points for this record in ledger
 	 * @param string $newLedgerType type of question for this record in ledger
 	 * @throws \InvalidArgumentException if data types are not valid
-	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \RangeException if data values are out of bounds
 	 * @throws \TypeError if a data type violates a data hint
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
@@ -117,7 +118,7 @@ class Ledger implements \JsonSerializable {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-		//convert and store profileId
+		//convert and store ledgerBoardId
 		$this->ledgerBoardId = $uuid;
 	}
 
@@ -146,7 +147,7 @@ class Ledger implements \JsonSerializable {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-		//convert and store profileId
+		//convert and store ledgerCardId
 		$this->ledgerCardId = $uuid;
 	}
 
@@ -164,7 +165,7 @@ class Ledger implements \JsonSerializable {
 	/**
 	 * mutator for ledgerProfileId
 	 *
-	 * @param Uuid|string $newLedgerProfileId is a new value for ledgerProfileId
+	 * @param Uuid|string $newLedgerProfileId is a new value for ledger Profile Id
 	 * @throws \RangeException if $newLedgerProfileId is not positive
 	 * @throws \TypeError if $newLedgerProfileId is not a Uuid or string
 	 */
@@ -175,7 +176,7 @@ class Ledger implements \JsonSerializable {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-		//convert and store profileId
+		//convert and store ledgerProfileId
 		$this->ledgerProfileId = $uuid;
 	}
 //*******************************************************************************************************************
@@ -194,7 +195,7 @@ class Ledger implements \JsonSerializable {
 	 *
 	 * @param int $newLedgerPoints ew value of ledger points
 	 * @throws \InvalidArgumentException if $newLedgerPoints is not an int or insecure
-	 * @throws \RangeException if $newLedgerPoints is > 255 characters
+	 * @throws \RangeException if $newLedgerPoints is > 100000 characters
 	 * @throws \TypeError if $newLedgerPoints is not an int
 	 **/
 	public function setLedgerPoints(int $newLedgerPoints): void {
@@ -204,7 +205,7 @@ class Ledger implements \JsonSerializable {
 			throw(new \InvalidArgumentException("ledger points is not an integer"));
 		}
 		// verify the ledger points will fit in the database
-		if($newLedgerPoints > 	8388607) {
+		if($newLedgerPoints > 	100000) {
 			throw(new \RangeException("ledger points is too large"));
 		}
 		// store the ledger points
@@ -227,7 +228,7 @@ class Ledger implements \JsonSerializable {
 	 *
 	 * @param int $newLedgerType new value of ledger type
 	 * @throws \InvalidArgumentException if $newLedgerType is not an int or insecure
-	 * @throws \RangeException if $newLedgerType > 255
+	 * @throws \RangeException if $newLedgerType <= 0 OR > 3
 	 * @throws \TypeError if $newLedgerType is not an int
 	 **/
 	public function setLedgerType(int $newLedgerType): void {
@@ -250,6 +251,7 @@ class Ledger implements \JsonSerializable {
 
 	/**
 	 * inserts a new ledger into mySQL
+	 *
 	 * @param \PDO $pdo connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
@@ -434,8 +436,8 @@ class Ledger implements \JsonSerializable {
 		$fields["ledgerBoardId"] = $this->ledgerBoardId->toString();
 		$fields["ledgerCardId"] = $this->ledgerCardId->toString();
 		$fields["ledgerProfileId"] = $this->ledgerProfileId->toString();
-		$fields["ledgerPoints"] = $this->ledgerPoints;
-		$fields["ledgerType"] = $this->ledgerType;
+		unset($fields["ledgerPoints"]);
+		unset($fields["ledgerType"]);
 		return ($fields);
 	}
 }
