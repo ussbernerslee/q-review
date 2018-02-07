@@ -324,8 +324,43 @@ class Card implements \JsonSerializable {
 		}
 		return($cards);
 	}
+/**
+* gets the Card by cardPoints
+*
+* @param \PDO $pdo PDO connection object
+* @param string|Uuid $cardId card id to search for
+* @return Card|null Card found or null if not found
+* @throws \PDOException when mySQL related errors occur
+* @throws \TypeError when a variable are not the correct data type
+**/
+	public static function getCardByCardPoints(\PDO $pdo, $cardId) : ?Card {
+		// sanitize the cardId before searching
+		try {
+			$cardId = self::validateUuid($cardId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		// create query template
+		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card WHERE cardId = :cardId";
+		$statement = $pdo->prepare($query);
+		// bind the card id to the place holder in the template
+		$parameters = ["cardId" => $cardId->getBytes()];
+		$statement->execute($parameters);
+		// grab the card from mySQL
+		try {
+			$card = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$card = new Card($row["cardId"], $row["cardCategoryId"], $row["cardAnswer"], $row["cardPoints"], $row["cardQuestion"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($card);
+	}
 
-	//TODO: write getCardByCardPoints
 
 	/**
 	 * gets all cards
