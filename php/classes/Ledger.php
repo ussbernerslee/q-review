@@ -78,7 +78,7 @@ class Ledger implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newLedgerBoardId, $newLedgerCardId, $newLedgerProfileId, int $newLedgerPoints, string $newLedgerType) {
+	public function __construct($newLedgerBoardId, $newLedgerCardId, $newLedgerProfileId, int $newLedgerPoints, int $newLedgerType) {
 		try {
 			$this->setLedgerBoardId($newLedgerBoardId);
 			$this->setLedgerCardId($newLedgerCardId);
@@ -193,7 +193,7 @@ class Ledger implements \JsonSerializable {
 	/**
 	 * mutator method for ledger points $ledgerPoints
 	 *
-	 * @param int $newLedgerPoints ew value of ledger points
+	 * @param int $newLedgerPoints new value of ledger points
 	 * @throws \InvalidArgumentException if $newLedgerPoints is not an int or insecure
 	 * @throws \RangeException if $newLedgerPoints is > 100000 characters
 	 * @throws \TypeError if $newLedgerPoints is not an int
@@ -201,6 +201,11 @@ class Ledger implements \JsonSerializable {
 	public function setLedgerPoints(int $newLedgerPoints): void {
 		// verify the ledger points are integers
 		$newLedgerPoints = filter_var($newLedgerPoints, FILTER_VALIDATE_INT);
+		//check to see if points is empty or insecure
+		if(empty($newLedgerPoints) === true) {
+			throw(new \PDOException("empty value or insecure"));
+		}
+		//check to see if ledger points is int
 		if(is_int($newLedgerPoints) !== true) {
 			throw(new \InvalidArgumentException("ledger points is not an integer"));
 		}
