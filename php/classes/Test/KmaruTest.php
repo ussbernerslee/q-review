@@ -19,7 +19,7 @@ require_once(dirname(__DIR__, 3) . "/vendor/autoload.php");
 /**
  * Abstract class containing universal and project specific mySQL parameters
  *
- * This class is designed to lay the foundation of the unit tests for Kmaru. It loads the all the database
+ * This class is designed to lay the foundation of the unit tests for Kmaru. It loads all the database
  * parameters about the project so that table specific tests can share the parameters in one place.
 
  * *NOTE*: Tables must be added in the order they were created in step (2).
