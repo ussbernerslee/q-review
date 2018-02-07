@@ -239,7 +239,6 @@ class Ledger implements \JsonSerializable {
 	public function setLedgerType(int $newLedgerType): void {
 		// verify the ledger type is secure
 
-		//TODO: get this checked
 		$newLedgerType = filter_var($newLedgerType, FILTER_VALIDATE_INT);
 		if(in_int($newLedgerType) !== true) {
 			throw(new \InvalidArgumentException("Ledger type is not an integer"));
