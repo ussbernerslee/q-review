@@ -216,7 +216,7 @@ public function testInsertValidBoard() : void {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("board");
 
-		//create a new Board and inster it into mySQL
+		//create a new Board and insert it into mySQL
 		$boardId = generateUuidV4();
 		$board = new Board($boardId, $this->profile->getProfileId(), $this->VALID_BOARDNAME);
 		$board->insert($this->getPDO());
