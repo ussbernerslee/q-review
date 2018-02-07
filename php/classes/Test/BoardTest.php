@@ -164,7 +164,9 @@ public function testInsertValidBoard() : void {
 		$this->assertEquals($pdoBoard->getBoardContent(), $this->VALID_BOARDNAME);
 	}
 
-
+	/**
+	 * test grabbing a Board that does not exist
+	 **/
 
 
 
