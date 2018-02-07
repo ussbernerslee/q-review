@@ -142,7 +142,26 @@ public function testInsertValidBoard() : void {
 	 * test inserting a Board and re-grabbing it from mySQL
 	 **/
 	public function testGetValidBoardIdByBoardProfileId() {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()>getRowCount("board");
 
+		//create a new Board and insert it in to mySQL
+		$boardId = generateUuidV4();
+		$board = new Board($boardId, $this->profile->getProfileId());
+		$board->insert($this->getPDO());
+
+		//grab the data from mySQL and enforce the fields match our expectations
+		$results = Board::getBoardByBoardProfileId($this->getPDO(), $board->getBoardProfileId());
+		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("board"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Board", $results);
+
+		//grab the result from the array and validate it
+		$pdoBoard = $results[0];
+
+		$this->assertEquals($pdoBoard->getBoardId(), $boardId);
+		$this->assertEquals($pdoBoard->getBoardProfileId(), $boardId);
+		$this->assertEquals($pdoBoard->getBoardContent(), $this->VALID_BOARDNAME);
 	}
 
 
