@@ -154,7 +154,7 @@ class Ledger implements \JsonSerializable {
 //*******************************************************************************************************************
 
 	/**
-	 * accessor method for $ledgerprofileId
+	 * accessor method for $ledgerProfileId
 	 *
 	 * @return Uuid value for $ledgerProfileId
 	 **/
@@ -203,7 +203,7 @@ class Ledger implements \JsonSerializable {
 		$newLedgerPoints = filter_var($newLedgerPoints, FILTER_VALIDATE_INT);
 		//check to see if points is empty or insecure
 		if(empty($newLedgerPoints) === true) {
-			throw(new \PDOException("empty value or insecure"));
+			throw(new \PDOException("ledger points empty or insecure"));
 		}
 		//check to see if ledger points is int
 		if(is_int($newLedgerPoints) !== true) {
@@ -240,7 +240,11 @@ class Ledger implements \JsonSerializable {
 		// verify the ledger type is secure
 
 		$newLedgerType = filter_var($newLedgerType, FILTER_VALIDATE_INT);
-		if(in_int($newLedgerType) !== true) {
+		//check to see if ledger type is empty or insecure
+		if(empty($newLedgerType) === true) {
+			throw(new \PDOException("ledger type is empty or insecure"));
+		}
+		if(is_int($newLedgerType) !== true) {
 			throw(new \InvalidArgumentException("Ledger type is not an integer"));
 		}
 		// verify the ledger type will fit the game set up
@@ -616,7 +620,7 @@ public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, str
 		}
 
 		// create query template
-		$query = "SELECT ledgerBoardId, ledgerCardId, ledgerProfileId, ledgerPoints, ledgerType FROM ledger WHERE ledgerCardId = :ledgerCardId";
+		$query = "SELECT ledgerBoardId, ledgerCardId, ledgerProfileId, ledgerPoints, ledgerType FROM ledger WHERE ledgerProfileId = :ledgerProfileId";
 
 		// stops direct access to database for formatting
 		$statement = $pdo->prepare($query);
