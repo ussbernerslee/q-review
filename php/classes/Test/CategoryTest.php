@@ -108,11 +108,11 @@ class CategoryTest extends KmaruTest {
 	}
 
 	/**
-	 * test creating a Board and then deleting it
+	 * test creating a Category and then deleting it
 	 **/
-	public function testDeleteValidBoard() : void {
+	public function testDeleteValidCategory() : void {
 		//count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("board");
+		$numRows = $this->getConnection()->getRowCount("category");
 
 		//create a new Board and insert it into mySQL
 		$boardId = generateUuidV4();
