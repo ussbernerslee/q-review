@@ -3,18 +3,18 @@ namespace Edu\Cnm\Kmaru\Test;
 
 use Edu\Cnm\Kmaru\{Profile, Category};
 
-//grab the class under scrutiny: Board
+//grab the class under scrutiny: Category
 require_once(dirname(__DIR__) . "/autoload.php");
 
 //grab the uuid generator
 require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 
-/**
+/**C
  * Full PHPUnit text for the Category class. It is complete
  * because *ALL* mySQL/PDO enabled methods are tested for both
  * invalid and valid inputs.
  *
- * @see Board
+ * @see Category
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  * @author Anna Khamsamran <akhamsamran1@cnm.edu>
  **/
@@ -38,7 +38,7 @@ class CategoryTest extends KmaruTest {
 	protected $VALID_PROFILE_SALT;
 
 	/**
-	 * name of the Board
+	 * name of the Category
 	 * @var string $VALID_CATEGORYNAME
 	 **/
 	protected $VALID_CATEGORYNAME = "PHPUnit test passing";
@@ -59,7 +59,7 @@ class CategoryTest extends KmaruTest {
 		$this->VALID_PROFILE_SALT = bin2hex(random_bytes(32));
 		$this->VALID_PROFILE_HASH = hash_pbkdf2("sha512", $password, $this->VALID_PROFILE_SALT, 262144);
 
-		//create and insert a Profile to own this test Board
+		//create and insert a Profile to own this test Category
 		$this->profile = new Profile(generateUuidV4(), null, "@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH, "+12125551212", $this->VALID_PROFILE_SALT);
 		$this->profile->insert($this->getPDO());
 	}
@@ -90,9 +90,9 @@ class CategoryTest extends KmaruTest {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("category");
 
-		//create a new Board and insert into mySQL
+		//create a new Category and insert into mySQL
 		$categoryId = generateUuidV4();
-		$category = new Board($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME, $this->VALID_CATEGORYNAME);
+		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME, $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
 
 		//edit the Category and update it in mySQL
@@ -195,8 +195,8 @@ class CategoryTest extends KmaruTest {
 
 		//grab the result from the array and validate it
 		$pdoCategory = $results[0];
-		$this->assertEquals($pdoCateogry->getCategoryId(), $categoryId);
-		$this->assertEquals($pdoCategory->getBCategoryProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
+		$this->assertEquals($pdoCategory->getCategoryByProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
 	}
 
@@ -218,7 +218,7 @@ class CategoryTest extends KmaruTest {
 
 		//create a new Category and insert it into mySQL
 		$categoryId = generateUuidV4();
-		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_BOARDNAME);
+		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
