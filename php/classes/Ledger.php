@@ -63,7 +63,34 @@ class Ledger implements \JsonSerializable {
 
 //******************************************************************************************************************
 
-	//TODO: constructor
+	/**
+	 * constructor for this ledger
+	 *
+	 * @param string|Uuid $newLedgerBoardId id of this board for this record in ledger
+	 * @param string|Uuid $newLedgerCardId id of the card for this record in ledger
+	 * @param string|Uuid $newLedgerProfileId id of the profiles in the ledger
+	 * @param int $newLedgerPoints signed int value of points for this record in ledger
+	 * @param string $newLedgerType type of question for this record in ledger
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if a data type violates a data hint
+	 * @throws \Exception if some other exception occurs
+	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
+	 **/
+	public function __construct($newLedgerBoardId, $newLedgerCardId, $newLedgerProfileId, int $newLedgerPoints, string $newLedgerType) {
+		try {
+			$this->setLedgerBoardId($newLedgerBoardId);
+			$this->setLedgerCardId($newLedgerCardId);
+			$this->setLedgerProfileId($newLedgerProfileId);
+			$this->setLedgerPoints($newLedgerPoints);
+			$this->setLedgerType($newLedgerType);
+
+		} catch(\InvalidArgumentException | \RangeException |\TypeError | \Exception $exception) {
+			//determine what exception type was thrown
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 
 //******************************************************************************************************************
 
