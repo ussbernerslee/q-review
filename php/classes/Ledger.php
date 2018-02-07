@@ -303,7 +303,7 @@ class Ledger implements \JsonSerializable {
 //*******************************************************************************************************************
 
 	/**
-	 * gets the Ledger by ledger board id, ledger card id, and ledger profile id
+	 * gets the Ledgers by ledger board id, ledger card id, and ledger profile id
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $ledgerBoardId ledger board id to search by
@@ -363,17 +363,17 @@ class Ledger implements \JsonSerializable {
 //*******************************************************************************************************************
 
 	/**
-	 * gets the Ledger by ledger board id and ledger profile id
+	 * gets the Ledgers by ledger board id and ledger profile id
 	 *
 	 * @param Uuid|string $ledgerBoardId ledger board id to search by
 	 * @param Uuid|string $ledgerProfileId ledger profile id to search
-	 * @return Ledger|null Ledger found or null if not found
+	 * @return \SplFixedArray SplFixedArray of ledgers found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
 
 
-public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, string $ledgerBoardId, string $ledgerProfileId) : ?Ledger {
+public static function getLedgersByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, string $ledgerBoardId, string $ledgerProfileId) : \SplFixedArray {
 	// sanitize the ledgerBoardId before searching
 	try {
 		$ledgerBoardId = self::validateUuid($ledgerBoardId);
@@ -396,35 +396,35 @@ public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, str
 	$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes(), "ledgerProfileId" => $ledgerProfileId->getBytes()];
 	$statement->execute($parameters);
 
-	//TODO: change type to \SplFixedArray
-	// grab the Ledger from mySQL
-	try {
-		$ledger = null;
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		$row = $statement->fetch();
-		if($row !== false) {
+	//build an array of ledgers
+	$ledgers = new \SplFixedArray(($statement->rowCount()));
+	$statement->setFetchMode(\PDO::FETCH_ASSOC);
+	while(($row = $statement->fetch()) !== false) {
+		try {
 			$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+			$ledgers[$ledgers->key()] = $ledger;
+			$ledgers->next();
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-	} catch(\Exception $exception) {
-	// if the row couldn't be converted, rethrow the exception
-	throw(new \PDOException($exception->getMessage(), 0, $exception));
 	}
-	return ($ledger);
+	return ($ledgers);
 }
 
 //*******************************************************************************************************************
 
 	/**
-	 * gets the Ledger by ledger card id and ledger profile id
+	 * gets the Ledgers by ledger card id and ledger profile id
 	 *
 	 * @param Uuid|string $ledgerCardId ledger card id to search by
 	 * @param Uuid|string $ledgerProfileId ledger profile id to search by
-	 * @return Ledger|null Ledger found or null if not found
+	 * @return \SplFixedArray SplFixedArray of ledgers found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
 
-	public static function getLedgerByLedgerCardIdAndLedgerProfileId(\PDO $pdo, string $ledgerCardId, string $ledgerProfileId) : ?Ledger {
+	public static function getLedgersByLedgerCardIdAndLedgerProfileId(\PDO $pdo, string $ledgerCardId, string $ledgerProfileId) : \SplFixedArray {
 		// sanitize the ledgerCardId
 		try {
 			$ledgerCardId = self::validateUuid($ledgerCardId);
@@ -447,35 +447,35 @@ public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, str
 		$parameters = ["ledgerCardId" => $ledgerCardId->getBytes(), "ledgerProfileId" => $ledgerProfileId->getBytes()];
 		$statement->execute($parameters);
 
-		//TODO: change type to \SplFixedArray
-		// grab the Ledger from mySQL
-		try {
-			$ledger = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
+		//build an array of ledgers
+		$ledgers = new \SplFixedArray(($statement->rowCount()));
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
 				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+				$ledgers[$ledgers->key()] = $ledger;
+				$ledgers->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			// if the row couldn't be converted, rethrow the exception
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($ledger);
+		return ($ledgers);
 	}
 
 //******************************************************************************************************************
 
 	/**
-	 * gets the Ledger by ledger board id and ledger card id
+	 * gets the Ledgers by ledger board id and ledger card id
 	 *
 	 * @param Uuid|string $ledgerBoardId ledger board id to search by
 	 * @param Uuid|string $ledgerCardId ledger card id to search by
-	 * @return Ledger|null Ledger found or null if not found
+	 * @return \SplFixedArray SplFixedArray of ledgers found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
 
-	public static function getLedgerByLedgerBoardIdAndLedgerCardId(\PDO $pdo, string $ledgerBoardId, string $ledgerCardId) : ?Ledger {
+	public static function getLedgersByLedgerBoardIdAndLedgerCardId(\PDO $pdo, string $ledgerBoardId, string $ledgerCardId) : \SplFixedArray {
 
 		// sanitize the ledgerBoardId before searching
 		try {
@@ -499,35 +499,35 @@ public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, str
 		$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes(), "ledgerCardId" => $ledgerCardId->getBytes()];
 		$statement->execute($parameters);
 
-		//TODO: change type to \SplFixedArray
-		// grab the Ledger from mySQL
-		try {
-			$ledger = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
+		//build an array of ledgers
+		$ledgers = new \SplFixedArray(($statement->rowCount()));
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
 				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+				$ledgers[$ledgers->key()] = $ledger;
+				$ledgers->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			// if the row couldn't be converted, rethrow the exception
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($ledger);
+		return ($ledgers);
 
 	}
 
 //*******************************************************************************************************************
 
 	/**
-	 * gets ledger by ledger board id
+	 * gets ledgers by ledger board id
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $ledgerBoardId ledger board id to search by
-	 * @return Ledger|null Ledger found or null if not found
+	 * @return \SplFixedArray SplFixedArray of ledgers found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getLedgerByLedgerBoardId(\PDO $pdo, $ledgerBoardId) : ?Ledger {
+	public static function getLedgerByLedgerBoardId(\PDO $pdo, $ledgerBoardId) : \SplFixedArray {
 		// sanitize the ledgerBoardId before searching
 		try {
 			$ledgerBoardId = self::validateUuid($ledgerBoardId);
@@ -545,34 +545,34 @@ public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, str
 		$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes()];
 		$statement->execute($parameters);
 
-		//TODO: change type to \SplFixedArray
-		// grab the Ledger from mySQL
-		try {
-			$ledger = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
+		//build an array of ledgers
+		$ledgers = new \SplFixedArray(($statement->rowCount()));
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
 				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+				$ledgers[$ledgers->key()] = $ledger;
+				$ledgers->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			// if the row couldn't be converted, rethrow the exception
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($ledger);
+		return ($ledgers);
 	}
 
 //*******************************************************************************************************************
 
 	/**
-	 * gets ledger by ledger card id
+	 * gets ledgers by ledger card id
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $ledgerCardId ledger card id to search by
-	 * @return Ledger|null Ledger found or null if not found
+	 * @return \SplFixedArray SplFixedArray of ledgers found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getLedgerByLedgerCardId(\PDO $pdo, $ledgerCardId) : ?Ledger {
+	public static function getLedgerByLedgerCardId(\PDO $pdo, $ledgerCardId) : \SplFixedArray {
 		// sanitize the ledgerCardId before searching
 		try {
 			$ledgerCardId = self::validateUuid($ledgerCardId);
@@ -590,34 +590,34 @@ public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, str
 		$parameters = ["ledgerCardId" => $ledgerCardId->getBytes()];
 		$statement->execute($parameters);
 
-		//TODO: change type to \SplFixedArray
-		// grab the Ledger from mySQL
-		try {
-			$ledger = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
+		//build an array of ledgers
+		$ledgers = new \SplFixedArray(($statement->rowCount()));
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
 				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+				$ledgers[$ledgers->key()] = $ledger;
+				$ledgers->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			// if the row couldn't be converted, rethrow the exception
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($ledger);
+		return ($ledgers);
 	}
 
 //*******************************************************************************************************************
 
 	/**
-	 * gets ledger by ledger profile id
+	 * gets ledgers by ledger profile id
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $ledgerProfileId ledger profile id to search by
-	 * @return Ledger|null Ledger found or null if not found
+	 * @return \SplFixedArray SplFixedArray of ledgers found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getLedgerByLedgerProfileId(\PDO $pdo, $ledgerProfileId) : ?Ledger {
+	public static function getLedgerByLedgerProfileId(\PDO $pdo, $ledgerProfileId) : \SplFixedArray {
 		// sanitize the ledgerProfileId before searching
 		try {
 			$ledgerProfileId = self::validateUuid($ledgerProfileId);
@@ -635,20 +635,20 @@ public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, str
 		$parameters = ["ledgerProfileId" => $ledgerProfileId->getBytes()];
 		$statement->execute($parameters);
 
-		//TODO: change type to \SplFixedArray
-		// grab the Ledger from mySQL
-		try {
-			$ledger = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
+		//build an array of ledgers
+		$ledgers = new \SplFixedArray(($statement->rowCount()));
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
 				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+				$ledgers[$ledgers->key()] = $ledger;
+				$ledgers->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			// if the row couldn't be converted, rethrow the exception
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($ledger);
+		return ($ledgers);
 	}
 
 
