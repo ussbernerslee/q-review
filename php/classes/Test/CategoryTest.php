@@ -91,20 +91,20 @@ class CategoryTest extends KmaruTest {
 		$numRows = $this->getConnection()->getRowCount("category");
 
 		//create a new Board and insert into mySQL
-		$boardId = generateUuidV4();
-		$board = new Board($boardId, $this->profile->getProfileId(), $this->VALID_BOARDNAME, $this->VALID_BOARDNAME);
-		$board->insert($this->getPDO());
+		$categoryId = generateUuidV4();
+		$category = new Board($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME, $this->VALID_CATEGORYNAME);
+		$category->insert($this->getPDO());
 
-		//edit the Board and update it in mySQL
-		$board->setBoardName($this->VALID_BOARDNAME2);
-		$board->update($this->getPDO());
+		//edit the Category and update it in mySQL
+		$category->setCategoryName($this->VALID_CATEGORYNAME2);
+		$category->update($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$pdoBoard = Board::getBoardByBoardId($this->getPDO(), $board->getBoardId());
-		$this->asssertEquals($pdoBoard->getBoardId(), $boardId);
-		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("board"));
-		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME2);
+		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
+		$this->asssertEquals($pdoCategory->getCategoryId(), $categoryId);
+		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("category"));
+		$this->assertEquals($pdoCategory->getCategoryProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME2);
 	}
 
 	/**
