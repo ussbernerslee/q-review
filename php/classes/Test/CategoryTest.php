@@ -9,7 +9,7 @@ require_once(dirname(__DIR__) . "/autoload.php");
 //grab the uuid generator
 require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 
-/**C
+/**
  * Full PHPUnit text for the Category class. It is complete
  * because *ALL* mySQL/PDO enabled methods are tested for both
  * invalid and valid inputs.
