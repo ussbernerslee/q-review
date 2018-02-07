@@ -1,20 +1,17 @@
 <?php
-/**
- * created class for card
- *
- **/
-namespace Edu\Cnm\Capstone;
+
+namespace Edu\Cnm\Kmaru;
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 /**
+ *created class for card
  *
  * @author Freddy Crawford <fcrawford@cnm.edu>
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  * @version 3.0.0
  **/
 class Card implements \JsonSerializable {
-	use ValidateDate;
 	use ValidateUuid;
 	/**
 	 * id for this card; this is the primary key
@@ -80,9 +77,9 @@ class Card implements \JsonSerializable {
 	/**
 	 * mutator method for card id
 	 *
-	 * @param Uuid/string $newCardId new value of card id
+	 * @param Uuid|string $newCardId new value of card id
 	 * @throws \RangeException if $newCardId is null
-	 * @throws \TypeError if $newCardId is not a uuid.e
+	 * @throws \TypeError if $newCardId is not a uuid
 	 **/
 	public function setCardId( $newCardId) : void {
 		try {
@@ -105,9 +102,9 @@ class Card implements \JsonSerializable {
 	/**
 	 * mutator method for card category id
 	 *
-	 * @param string | Uuid $newCardCategoryId new value of card category id
+	 * @param string|Uuid $newCardCategoryId new value of card category id
 	 * @throws \RangeException if $newCardCategory is not positive
-	 * @throws \TypeError if $newCardCategoryId is not an UUI
+	 * @throws \TypeError if $newCardCategoryId is not an uuid
 	 **/
 	public function setCardCategoryId( $newCardCategoryId) : void {
 		try {
@@ -124,7 +121,7 @@ class Card implements \JsonSerializable {
 	 *
 	 * @return string value for card answer
 	 **/
-	public function getCardAnswer() :string {
+	public function getCardAnswer() : string {
 		return($this->cardAnswer);
 	}
 	/**
@@ -132,7 +129,7 @@ class Card implements \JsonSerializable {
 	 *
 	 * @param string $newCardAnswer new value of card answer
 	 * @throws \InvalidArgumentException if $newCardAnswer is not a string or insecure
-	 * @throws \RangeException if $newCardAnswer is > 140 characters
+	 * @throws \RangeException if $newCardAnswer is > 255 characters
 	 * @throws \TypeError if $newCardAnswer is not a string
 	 **/
 	public function setCardAnswer(string $newCardAnswer) : void {
@@ -192,7 +189,7 @@ class Card implements \JsonSerializable {
 		 * mutator method for card question
 		 *
 		 * @param string $newCardQuestion new card question
-		 * @throws \RangeException if $newCardId is null
+		 * @throws \RangeException if $newCardId is greater than 255
 		 * @throws \TypeError if $newCardQuestion is not a string
 		 **/
 		public function setCardQuestion( $newCardQuestion) : void {
@@ -200,6 +197,11 @@ class Card implements \JsonSerializable {
 			$newCardQuestion = filter_var($newCardQuestion, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 			if(empty($newCardQuestion) === true) {
 				throw(new \InvalidArgumentException("card question is empty or insecure"));
+			}
+
+			// verify the card question will fit in the database
+			if(strlen($newCardQuestion) > 255) {
+				throw(new \RangeException("card question is too large"));
 			}
 
 			// convert and store the card question
@@ -215,7 +217,7 @@ class Card implements \JsonSerializable {
 	 **/
 	public function insert(\PDO $pdo) : void {
 		// create query template
-		$query = "INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion) VALUES(:cardId, :CardCategoryId, :cardAnswer, :cardPoints, cardQuestion)";
+		$query = "INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion) VALUES(:cardId, :cardCategoryId, :cardAnswer, :cardPoints, cardQuestion)";
 		$statement = $pdo->prepare($query);
 		// bind the member variables to the place holders in the template
 		$parameters = ["cardId" => $this->cardId->getBytes(), "cardCategoryId" => $this->cardCategoryId->getBytes(), "cardAnswer" => $this->cardAnswer, "cardPoints" => $this->cardPoints, "cardQuestion" => $this->cardQuestion];
@@ -290,7 +292,7 @@ class Card implements \JsonSerializable {
 	 * gets the Card by card category id
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param string $cardCategoryId profile id to search by
+	 * @param Uuid|string $cardCategoryId profile id to search by
 	 * @return \SplFixedArray SplFixedArray of Cards found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
@@ -304,7 +306,7 @@ class Card implements \JsonSerializable {
 		// create query template
 		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card WHERE cardCategoryId = :cardCategoryId";
 		$statement = $pdo->prepare($query);
-		// bind the card profile id to the place holder in the template
+		// bind the card category id to the place holder in the template
 		$parameters = ["cardCategoryId" => $cardCategoryId->getBytes()];
 		$statement->execute($parameters);
 		// build an array of cards
@@ -322,46 +324,9 @@ class Card implements \JsonSerializable {
 		}
 		return($cards);
 	}
-	/**
-	 * gets the card by content
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param string $cardCategory card  category to search for
-	 * @return \SplFixedArray SplFixedArray of cards found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
-	public static function getCardByCardCategory(\PDO $pdo, string $cardCategory) : \SPLFixedArray {
-		// sanitize the description before searching
-		$cardCategory = trim($cardCategory);
-		$cardCategory = filter_var($cardCategory, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($cardCategory) === true) {
-			throw(new \PDOException("card content is invalid"));
-		}
-		// escape any mySQL wild cards
-		$cardCategory = str_replace("_", "\\_", str_replace("%", "\\%", $cardCategory));
-		// create query template
-		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card WHERE cardCategory LIKE :cardCategory";
-		$statement = $pdo->prepare($query);
-		// bind the card category to the place holder in the template
-		$cardCategory = "%$cardCategory%";
-		$parameters = ["cardCategory" => $cardCategory];
-		$statement->execute($parameters);
-		// build an array of cards
-		$cards = new \SplFixedArray($statement->rowCount());
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
-			try {
-				$card = new card($row["cardId"], $row["cardCategoryId"], $row["cardAnswer"], $row["cardPoints"], $row["cardQuestion"]);
-				$cards[$cards->key()] = $card;
-				$cards->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		}
-		return($cards);
-	}
+
+	//TODO: write getCardByCardPoints
+
 	/**
 	 * gets all cards
 	 *
@@ -398,7 +363,7 @@ class Card implements \JsonSerializable {
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 		$fields["cardId"] = $this->cardId;
-		$fields["cardCategoryId"] = $this->cardCategoryId;t
+		$fields["cardCategoryId"] = $this->cardCategoryId;
 		return($fields);
 	}
 }
