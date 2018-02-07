@@ -14,7 +14,7 @@ use Ramsey\Uuid\Uuid;
  * This is what data is stored when a user creates a profile.
  * This is top-level entity, categories, boards, cards and ledgers cannot exist without a profile
  *
- * @author Kenneth Keyes kkeyes1@cnm.edu updated for /~kkeyes1/data-design
+ * @author Kenneth Keyes kkeyes1@cnm.edu updated for Kmaru
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  * @version 4.0.0
  * @package Edu\Cnm\DataDesign
@@ -22,7 +22,6 @@ use Ramsey\Uuid\Uuid;
 
 class Profile implements \JsonSerializable {
 	use ValidateUuid;
-
 	/**
 	 * id for this profile: primary key
 	 * @var Uuid $profileId
@@ -63,11 +62,10 @@ class Profile implements \JsonSerializable {
 	 * @var string $profileUsername
 	 **/
 	private $profileUsername;
-
 	/**
 	 * constructor for this Profile
 	 *
-	 * @param string|Uuid $newProfileId id of this Profile or null if a new Profile
+	 * @param Uuid|String $newProfileId id of this Profile or null if a new Profile
 	 * @param string $newProfileActivationToken activation token to safe guard against malicious accounts
 	 * @param string $newProfileEmail string containing email
 	 * @param string $newProfileHash string containing password hash
@@ -284,8 +282,8 @@ class Profile implements \JsonSerializable {
 			throw(new \InvalidArgumentException("profile password hash is empty or insecure"));
 		}
 		//enforce that the salt is exactly 64 characters.
-		if(strlen($newProfileSalt) !== 255) {
-			throw(new \RangeException("profile salt must be 128 characters"));
+		if(strlen($newProfileSalt) !== 64) {
+			throw(new \RangeException("profile salt must be 64 characters"));
 		}
 		//store the hash
 		$this->profileSalt = $newProfileSalt;
@@ -320,7 +318,6 @@ class Profile implements \JsonSerializable {
 		// store the username
 		$this->profileUsername = $newProfileUsername;
 	}
-
 	/**
 	 * inserts this Profile into mySQL
 	 *
