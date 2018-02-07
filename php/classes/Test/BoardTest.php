@@ -116,7 +116,7 @@ public function testInsertValidBoard() : void {
 
 		//create a new Board and insert it into mySQL
 		$boardId = generateUuidV4();
-		$board = new Board($boardId, $this->profile->getBoardId(), $this->VALID_BOARDNAME);
+		$board = new Board($boardId, $this->profile->getProfileId(), $this->VALID_BOARDNAME);
 		$board->insert($this->getPDO());
 
 		//delete the Board from mySQL
@@ -133,7 +133,7 @@ public function testInsertValidBoard() : void {
 	 * test grabbing a Board that does not exist
 	 **/
 	public function testGetInvalidBoardByBoardId() : void {
-		//grab a profile id that exceeds the maximum allowable profile id
+		//grab a board id that exceeds the maximum allowable board id
 		$board = Board::getBoardByBoardId($this->getPDO(), generateUuidV4());
 		$this->assertNull($board);
 	}
@@ -160,8 +160,8 @@ public function testInsertValidBoard() : void {
 		$pdoBoard = $results[0];
 
 		$this->assertEquals($pdoBoard->getBoardId(), $boardId);
-		$this->assertEquals($pdoBoard->getBoardProfileId(), $boardId);
-		$this->assertEquals($pdoBoard->getBoardContent(), $this->VALID_BOARDNAME);
+		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME);
 	}
 
 	/**
@@ -176,7 +176,7 @@ public function testInsertValidBoard() : void {
 	/**
 	 * test grabbing a Board by board name
 	 **/
-	public function testGetValidBoardByBoardContent() : void {
+	public function testGetValidBoardByBoardName() : void {
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("board");
 

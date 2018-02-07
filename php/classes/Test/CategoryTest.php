@@ -114,71 +114,71 @@ class CategoryTest extends KmaruTest {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("category");
 
-		//create a new Board and insert it into mySQL
-		$boardId = generateUuidV4();
-		$board = new Board($boardId, $this->profile->getBoardId(), $this->VALID_BOARDNAME);
-		$board->insert($this->getPDO());
+		//create a new Category and insert it into mySQL
+		$categoryId = generateUuidV4();
+		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
+		$category->insert($this->getPDO());
 
-		//delete the Board from mySQL
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("board"));
+		//delete the Category from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
 		$this->delete($this->getPDO());
 
-		//grab the data from mySQL and enforce the Board does not exist
-		$pdoBoard = Board::getBoardByBoardId($this->getPDO(), $board->getBoardId());
-		$this->assertNull($pdoBoard);
-		$this->asserEquals($numRows, $this->getConnection()->getRowCount("board"));
+		//grab the data from mySQL and enforce the Category does not exist
+		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
+		$this->assertNull($pdoCategory);
+		$this->asserEquals($numRows, $this->getConnection()->getRowCount("category"));
 	}
 
 	/**
-	 * test grabbing a Board that does not exist
+	 * test grabbing a Category that does not exist
 	 **/
-	public function testGetInvalidBoardByBoardId() : void {
-		//grab a profile id that exceeds the maximum allowable profile id
-		$board = Board::getBoardByBoardId($this->getPDO(), generateUuidV4());
-		$this->assertNull($board);
+	public function testGetInvalidCategoryByCategoryId() : void {
+		//grab a category id that exceeds the maximum allowable category id
+		$category = Category::getCategoryByCategoryId($this->getPDO(), generateUuidV4());
+		$this->assertNull($category);
 	}
 
 	/**
-	 * test inserting a Board and re-grabbing it from mySQL
+	 * test inserting a Category and re-grabbing it from mySQL
 	 **/
-	public function testGetValidBoardIdByBoardProfileId() {
+	public function testGetValidCategoryByCategoryProfileId() {
 		//count the number of rows and save it for later
-		$numRows = $this->getConnection()>getRowCount("board");
+		$numRows = $this->getConnection()>getRowCount("category");
 
-		//create a new Board and insert it in to mySQL
-		$boardId = generateUuidV4();
-		$board = new Board($boardId, $this->profile->getProfileId());
-		$board->insert($this->getPDO());
+		//create a new Category and insert it in to mySQL
+		$categoryId = generateUuidV4();
+		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
+		$category->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$results = Board::getBoardByBoardProfileId($this->getPDO(), $board->getBoardProfileId());
-		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("board"));
+		$results = Category::getCatetegoryByCategoryProfileId($this->getPDO(), $category->getCategoryProfileId());
+		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("category"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Board", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Category", $results);
 
 		//grab the result from the array and validate it
-		$pdoBoard = $results[0];
+		$pdoCategory = $results[0];
 
-		$this->assertEquals($pdoBoard->getBoardId(), $boardId);
-		$this->assertEquals($pdoBoard->getBoardProfileId(), $boardId);
-		$this->assertEquals($pdoBoard->getBoardContent(), $this->VALID_BOARDNAME);
+		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
+		$this->assertEquals($pdoCategory->getCategoryProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
 	}
 
 	/**
-	 * test grabbing a Board that does not exist
+	 * test grabbing a Category that does not exist
 	 **/
-	public function testGetInvalidBoardByBoardProfileId(): void {
+	public function testGetInvalidCategoryByCategoryProfileId(): void {
 		// grab a profile id that exceeds the maximum allowable profile id
-		$board = Board::getBoardByBoardProfileId($this->getPDO(), generateUuidV4());
-		$this->assertCount(0, $board);
+		$category = Category::getCatetegoryByCategoryProfileId($this->getPDO(), generateUuidV4());
+		$this->assertCount(0, $category);
 	}
 
 	/**
-	 * test grabbing a Board by board name
+	 * test grabbing a Category by category name
 	 **/
-	public function testGetValidBoardByBoardContent() : void {
+	public function testGetValidCategoryByCategoryName() : void {
 		//count the number of rows and save for later
-		$numRows = $this->getConnection()->getRowCount("board");
+		$numRows = $this->getConnection()->getRowCount("category");
 
 		//create a new Board and insert it into mySQL
 		$boardId = generateUuidV4();
