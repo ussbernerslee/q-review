@@ -43,8 +43,8 @@ class Category implements \JsonSerializable {
 	/**
 	 * constructor for this Category
 	 *
-	 * @param string|Uuid $newCategoryId id of this Category or null if new Category
-	 * @param string|Uuid $newCategoryProfileId id of the Profile of the creator of this Category
+	 * @param Uuid|string $newCategoryId id of this Category or null if new Category
+	 * @param Uuid|string $newCategoryProfileId id of the Profile of the creator of this Category
 	 * @param string $newCategoryName the Name of this Category
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds(ie strings too long, integers negative)
@@ -75,7 +75,7 @@ class Category implements \JsonSerializable {
 	/**
 	 * mutator method for category id
 	 *
-	 * @param string|Uuid $newCategoryId
+	 * @param Uuid|string $newCategoryId
 	 * @throws \RangeException if $newCategoryId is not positive
 	 * @throws \TypeError if $newCategoryId is not a uuid or string
 	 **/
@@ -101,7 +101,7 @@ class Category implements \JsonSerializable {
 	/**
 	 * mutator method for category profile id
 	 *
-	 * @param string|Uuid $newCategoryProfileId new value of category profile id
+	 * @param Uuid|string $newCategoryProfileId new value of category profile id
 	 * @throws \RangeException if $newCategoryProfileId is not positive
 	 * @throws \TypeError if the $newCategoryProfileId is not a uuid or string
 	 **/
@@ -194,7 +194,7 @@ class Category implements \JsonSerializable {
 	 * gets the Category by categoryId
 	 *
 	 * @param \PDO $pdo PDO connection objct
-	 * @param string|Uuid $categoryId category id to search for
+	 * @param Uuid|string $categoryId category id to search for
 	 * @return Category|null Category found or null if not found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not correct data type
@@ -230,7 +230,7 @@ class Category implements \JsonSerializable {
 	 * gets the category by profile id
 	 *
 	 * @param |PDO $pdo PDO connection object
-	 * @param string|Uuid $categoryProfileId category profile id to search by
+	 * @param Uuid|string $categoryProfileId category profile id to search by
 	 * @return \SplFixedArray SplFixedArray of categories found
 	 * @throws \PDOExceptionwhen mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type

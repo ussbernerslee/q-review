@@ -43,8 +43,8 @@ class Board implements \JsonSerializable {
 	/**
 	 * constructor for this Board
 	 *
-	 * @param string|Uuid $newBoardId id of this Board or null if new Board
-	 * @param string|Uuid $newBoardProfileId id of the Profile of the creator of this Board
+	 * @param Uuid|string $newBoardId id of this Board or null if new Board
+	 * @param Uuid|string $newBoardProfileId id of the Profile of the creator of this Board
 	 * @param string $newBoardName the Name of this Board
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds(ie strings too long, integers negative)
@@ -75,7 +75,7 @@ class Board implements \JsonSerializable {
 	/**
 	 * mutator method for board id
 	 *
-	 * @param string|Uuid $newBoardId
+	 * @param Uuid|string $newBoardId
 	 * @throws \RangeException if $newBoardId is not positive
 	 * @throws \TypeError if $newBoardId is not a uuid or string
 	 **/
@@ -101,7 +101,7 @@ class Board implements \JsonSerializable {
 	/**
 	 * mutator method for board profile id
 	 *
-	 * @param string|Uuid $newBoardProfileId new value of board profile id
+	 * @param Uuid|string $newBoardProfileId new value of board profile id
 	 * @throws \RangeException if $newBoardProfileId is not positive
 	 * @throws \TypeError if the $newBoardProfileId is not a uuid or string
 	 **/
@@ -194,7 +194,7 @@ class Board implements \JsonSerializable {
 	 * gets the Board by boardId
 	 *
 	 * @param \PDO $pdo PDO connection objct
-	 * @param string|Uuid $boardId board id to search for
+	 * @param Uuid|string $boardId board id to search for
 	 * @return Board|null Board found or null if not found
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not correct data type
@@ -230,7 +230,7 @@ class Board implements \JsonSerializable {
 	 * gets the board by profile id
 	 *
 	 * @param |PDO $pdo PDO connection object
-	 * @param string|Uuid $boardProfileId board profile id to search by
+	 * @param Uuid|string $boardProfileId board profile id to search by
 	 * @return \SplFixedArray SplFixedArray of board found
 	 * @throws \PDOExceptionwhen mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
