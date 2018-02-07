@@ -1,7 +1,7 @@
 <?php
 namespace Edu\Cnm\Kmaru\Test;
 
-use Edu\Cnm\Kmaru\{Profile, Board};
+use Edu\Cnm\Kmaru\{Profile, Category};
 
 //grab the class under scrutiny: Board
 require_once(dirname(__DIR__) . "/autoload.php");
@@ -10,7 +10,7 @@ require_once(dirname(__DIR__) . "/autoload.php");
 require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 
 /**
- * Full PHPUnit text for the Board class. It is complete
+ * Full PHPUnit text for the Category class. It is complete
  * because *ALL* mySQL/PDO enabled methods are tested for both
  * invalid and valid inputs.
  *
@@ -18,9 +18,9 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  * @author Anna Khamsamran <akhamsamran1@cnm.edu>
  **/
-class BoardTest extends KmaruTest {
+class CategoryTest extends KmaruTest {
 	/**
-	 * Profile that created the Board; this is for foreign key relations
+	 * Profile that created the Category; this is for foreign key relations
 	 * @var Profile profile
 	 **/
 	protected $profile = null;
@@ -39,15 +39,15 @@ class BoardTest extends KmaruTest {
 
 	/**
 	 * name of the Board
-	 * @var string $VALID_BOARDNAME
+	 * @var string $VALID_CATEGORYNAME
 	 **/
-	protected $VALID_BOARDNAME = "PHPUnit test passing";
+	protected $VALID_CATEGORYNAME = "PHPUnit test passing";
 
 	/**
-	 * name of the updated Board
-	 * @var string $VALID_BOARDNAME2
+	 * name of the updated Category
+	 * @var string $VALID_CATEGORYNAME2
 	 **/
-	protected $VALID_BOARDNAME2 = "PHPUnit test still passing";
+	protected $VALID_CATEGORYNAME2 = "PHPUnit test still passing";
 
 	/**
 	 * create dependent objects before running each test
@@ -64,31 +64,31 @@ class BoardTest extends KmaruTest {
 		$this->profile->insert($this->getPDO());
 	}
 	/**
-	 * test inserting a valid Board and verify that the actual mySQL data matches
+	 * test inserting a valid Category and verify that the actual mySQL data matches
 	 **/
-	public function testInsertValidBoard() : void {
+	public function testInsertValidCategory() : void {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("board");
+		$numRows = $this->getConnection()->getRowCount("category");
 
 
-		// create a new Board and insert to into mySQL
-		$boardId = generateUuidV4();
-		$board = new Board($boardId, $this->profile->getProfileId(), $this->VALID_BOARDNAME);
-		$board->insert($this->getPDO());
+		// create a new Category and insert to into mySQL
+		$categoryId = generateUuidV4();
+		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
+		$category->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$pdoBoard = Board::getBoardByBoardId($this->getPDO(), $board->getBoardId());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("board"));
-		$this->assertEquals($pdoBoard->getBoardId(), $boardId);
-		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME);
+		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
+		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
+		$this->assertEquals($pdoCategory->getCategoryProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
 	}
 	/**
-	 * test inserting a Board, editing it, and then updating it
+	 * test inserting a Category, editing it, and then updating it
 	 **/
-	public function testUpdateValidBoard() : void {
+	public function testUpdateValidCategory() : void {
 		//count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("board");
+		$numRows = $this->getConnection()->getRowCount("category");
 
 		//create a new Board and insert into mySQL
 		$boardId = generateUuidV4();
