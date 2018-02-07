@@ -351,6 +351,52 @@ class Ledger implements \JsonSerializable {
 	}
 
 //*******************************************************************************************************************
+
+	/**
+	 * gets ledger by ledger profile id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $ledgerProfileId ledger profile id to search by
+	 * @return Ledger|null Ledger found or null if not found
+	 * @throws \PDOException when mySQL related error occurs
+	 * @throws \TypeError when a variable is not the correct data type
+	 **/
+	public static function getLedgerByLedgerProfileId(\PDO $pdo, $ledgerProfileId) : ?Ledger {
+		// sanitize the ledgerProfileId before searching
+		try {
+			$ledgerProfileId = self::validateUuid($ledgerProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		// create query template
+		$query = "SELECT ledgerBoardId, ledgerCardId, ledgerProfileId, ledgerPoints, ledgerType FROM ledger WHERE ledgerCardId = :ledgerCardId";
+
+		// stops direct access to database for formatting
+		$statement = $pdo->prepare($query);
+
+		// bind the ledger card id to the place holder in the template
+		$parameters = ["ledgerProfileId" => $ledgerProfileId->getBytes()];
+		$statement->execute($parameters);
+
+		// grab the Ledger from mySQL
+		try {
+			$ledger = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow the exception
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($ledger);
+	}
+
+
+
+//*******************************************************************************************************************
 	/**
 	 * formats the state variables for JSON serialization
 	 *
