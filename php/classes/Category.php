@@ -35,7 +35,7 @@ class Category implements \JsonSerializable {
 	 **/
 	private $categoryProfileId;
 	/**
-	 * name of the board-this is to distinguish between games within the ledger
+	 * name of the category-this is to distinguish between games within the ledger
 	 * @var string $categoryName
 	 **/
 	private $categoryName;
@@ -101,7 +101,7 @@ class Category implements \JsonSerializable {
 	/**
 	 * mutator method for category profile id
 	 *
-	 * @param string|Uuid $newCategoryProfileId new value of board profile id
+	 * @param string|Uuid $newCategoryProfileId new value of category profile id
 	 * @throws \RangeException if $newCategoryProfileId is not positive
 	 * @throws \TypeError if the $newCategoryProfileId is not a uuid or string
 	 **/
@@ -124,17 +124,17 @@ class Category implements \JsonSerializable {
 	/**
 	 * mutator method for category name
 	 *
-	 * @param string $newCategoryName new value of board name
-	 * @throws \InvalidArgumentException if $newBoardName is not a string or insecure
-	 * @throws \RangeException if $newBoardName is >64 characters
-	 * @throws \TypeError if $newBoardNam is not a string
+	 * @param string $newCategoryName new value of category name
+	 * @throws \InvalidArgumentException if $newCategoryName is not a string or insecure
+	 * @throws \RangeException if $newCategoryName is >64 characters
+	 * @throws \TypeError if $newCategoryName is not a string
 	 **/
 	public function setCategoryName(string $newCategoryName) : void {
 		//verify the category name is secure
 		$newCategoryName = trim($newCategoryName);
 		$newCategoryName = filter_var($newCategoryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newCategoryName) === true) {
-			throw(new \InvalidArgumentException("board name is empty or insecure"));
+			throw(new \InvalidArgumentException("category name is empty or insecure"));
 		}
 		//verify the category name will fit in the database
 		if(strlen($newCategoryName) > 64) {
