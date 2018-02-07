@@ -453,7 +453,7 @@ public static function getLedgerByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, str
 	}
 
 //******************************************************************************************************************
-//TODO: create
+
 	/**
 	 * gets the Ledger by ledger board id and ledger card id
 	 *
