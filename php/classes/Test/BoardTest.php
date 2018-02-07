@@ -167,7 +167,39 @@ public function testInsertValidBoard() : void {
 	/**
 	 * test grabbing a Board that does not exist
 	 **/
+	public function testGetInvalidBoardByBoardProfileId(): void {
+		// grab a profile id that exceeds the maximum allowable profile id
+		$board = Board::getBoardByBoardProfileId($this->getPDO(), generateUuidV4());
+		$this->assertCount(0, $board);
+	}
 
+	/**
+	 * test grabbing a Board by board name
+	 **/
+	public function testGetValidBoardByBoardContent() : void {
+		//count the number of rows and save for later
+		$numRows = $this->getConnection()->getRowCount("board");
+
+		//create a new Board and insert it into mySQL
+		$boardId = generateUuidV4();
+		$board = new Board($boardId, $this->profile->getProfileId(), $this->VALID_BOARDNAME);
+		$board->insert($this->getPDO());
+
+		//grab the data from mySQL and enforce the fields match our expectations
+		$results = Board::getBoardByBoardName($this->getPDO(), $board->getBoardName());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("board"));
+		$this->assertCount(1, $results);
+
+		//enforce no other objects are bleeding into the test
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Board", $results);
+
+		//grab the result from the array and validate it
+		$pdoBoard = $results[0];
+		$this->assertEquals($pdoBoard->getBoardId(), $boardId);
+		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME);
+
+	}
 
 
 }
