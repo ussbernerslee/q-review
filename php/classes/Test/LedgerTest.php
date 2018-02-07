@@ -2,6 +2,7 @@
 
 namespace Edu\Cnm\Kmaru\Test;
 
+use Edu\Cnm\Kmaru\Profile;
 use Edu\Cnm\Kmaru\Board;
 use Edu\Cnm\Kmaru\Card;
 use Edu\Cnm\Kmaru\Ledger;
