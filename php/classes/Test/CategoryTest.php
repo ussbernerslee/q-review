@@ -92,7 +92,7 @@ class CategoryTest extends KmaruTest {
 
 		//create a new Category and insert into mySQL
 		$categoryId = generateUuidV4();
-		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME, $this->VALID_CATEGORYNAME);
+		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
 
 		//edit the Category and update it in mySQL
