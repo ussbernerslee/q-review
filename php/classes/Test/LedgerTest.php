@@ -8,10 +8,10 @@ use Edu\Cnm\Kmaru\Card;
 use Edu\Cnm\Kmaru\Ledger;
 
 // grab autoloader to load classes for testing
-require_once(dirname(__DIR__) . "/autoload.php");
+require_once(dirname(__DIR__, 1) . "/autoload.php");
 
 // grab the uuid generator
-require_once(dirname(__DIR__, 2) . "/lib/uuid/php");
+require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 
 /**
  * Full PHPUnit test for the Profile class
