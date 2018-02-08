@@ -161,7 +161,6 @@ class Card implements \JsonSerializable {
 		 * @throws \RangeException if $newCardPoints is > 255 characters
 		 * @throws \TypeError if $newCardPoints is not an int
 		 **/
-
 	public function setCardPoints(int $newCardPoints): void {
 		// verify the card points are secure
 		$newCardPoints = trim($newCardPoints);
@@ -176,7 +175,6 @@ class Card implements \JsonSerializable {
 		// store the card points
 		$this->cardPoints = $newCardPoints;
 	}
-
 		/**
 		 * accessor method for card question
 		 *
@@ -207,7 +205,6 @@ class Card implements \JsonSerializable {
 			// convert and store the card question
 			$this->cardQuestion = $newCardQuestion;
 		}
-
 	/**
 	 * inserts this Card into mySQL
 	 *
@@ -360,8 +357,6 @@ class Card implements \JsonSerializable {
 		}
 		return($card);
 	}
-
-
 	/**
 	 * gets all cards
 	 *
