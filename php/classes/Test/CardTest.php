@@ -1,7 +1,6 @@
 <?php
-namespace Edu\Cnm\KmaruTest\Test;
-use Edu\Cnm\Kmaru\Test\KmaruTest;
-use Edu\Cnm\KmaruTest\{Card};
+namespace Edu\Cnm\Kmaru\Test;
+use Edu\Cnm\Kmaru\{Category, Card};
 // grab the class under scrutiny
 require_once(dirname(__DIR__) . "/autoload.php");
 // grab the uuid generator
@@ -18,34 +17,36 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  **/
 class CardTest extends KmaruTest {
 	/**
-	 * cardCategoryId that populates the Card; this is for foreign key relations
-	 * @var  cardCategoryId $CardCategoryId
+	 * Category that populates the Card; this is for foreign key relations
+	 * @var  Category category
 	 **/
-	protected $CardCategoryId;
+	protected $category = null;
 	/**
-	 * valid hash to use
-	 * @var $VALID_HASH
+	 * valid answer to use
+	 * @var $VALID_CARD_ANSWER
 	 */
-	protected $VALID_HASH;
+	protected $VALID_CARD_ANSWER;
 	/**
-	 * valid salt to use to create the profile object to own the test
-	 * @var string $VALID_SALT
+	 * valid point value for the card
+	 * @var string $VALID_CARD_POINTS
 	 */
-	protected $VALID_SALT;
+	protected $VALID_CARD_POINTS;
 	/**
-	 * valid activationToken to create the profile object to own the test
-	 * @var string $VALID_ACTIVATION
+	 * valid question for the card
+	 * @var string $VALID_CARD_QUESTION
 	 */
-	protected $VALID_ACTIVATION;
-
+	protected $VALID_CARD_QUESTION;
+	/**
+	* question for the updated card
+	* @var string $VALID_CARD_QUESTION2
+	*/
+	protected $VALID_CARD_QUESTION2;
 	/**
 	 * create dependent objects before running each test
 	 **/
 	public final function setUp(): void {
 		// run the default setUp() method first
 		parent::setUp();
-		// create a salt and hash for the mocked card
-		$password = "abc123";
 		$this->VALID_SALT = bin2hex(random_bytes(32));
 		$this->VALID_HASH = hash_pbkdf2("sha512", $password, $this->VALID_SALT, 262144);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
