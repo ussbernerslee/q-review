@@ -24,7 +24,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid/php");
  **/
 
 class LedgerTest extends KmaruTest {
-// TODO: do i need things from profile or from ledger?
+
 	/**
 	 *  board of the game being played. This is a foreign key relationship
 	 * @var Board $board
@@ -44,22 +44,40 @@ class LedgerTest extends KmaruTest {
 	protected $profile;
 
 	/**
+	 * placeholder until account activation is created
+	 * @var string $VALID_ACTIVATION
+	 */
+	protected $VALID_ACTIVATION;
+
+	/**
+	 * valid hash to use
+	 * @var $VALID_HASH
+	 */
+	protected $VALID_HASH;
+
+	/**
+	 * valid salt to use to create the profile object to own the test
+	 * @var string $VALID_SALT
+	 */
+	protected $VALID_SALT;
+
+	/**
 	 * valid points to use
 	 * @var int $VALID_POINTS
 	 **/
-	protected $VALID_POINTS;
+	protected $VALID_LEDGER_POINTS;
 
 	/**
 	 * valid type to use
 	 * @var int $VALID_TYPE
 	 **/
-	protected $VALID_TYPE;
+	protected $VALID_LEDGER_TYPE;
 
 
 	/**
- 	* create dependant objects before running each test
- 	**/
-	public final function setUp() : void {
+	 * create dependant objects before running each test
+	 **/
+	public final function setUp(): void {
 
 		//run default setUp method first from parent KmaruTest
 		parent::setUp();
@@ -71,10 +89,9 @@ class LedgerTest extends KmaruTest {
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
 
 		//create and insert a Profile to answer the cards on the ledger
-		$this->profile = new Profile(generateUuidV4(), null, "tbennett19@cnm.edu", $this->VALID_HASH, "Captain Jean-Luc Picard", "123",$this->VALID_SALT, "FinallyWeek5");
+		$this->profile = new Profile(generateUuidV4(), null, "tbennett19@cnm.edu", $this->VALID_HASH, "Captain Jean-Luc Picard", "123", $this->VALID_SALT, "FinallyWeek5");
 		$this->profile->insert($this->getPDO());
 
-		//TODO: can you use genUuid for player ID or do you pull with $this?
 		// create and insert a Board to contain the cards contained in the ledger
 		$this->profile = new Board(generateUuidV4(), generateUuidV4(), "Treking");
 		$this->profile->insert($this->getPDO());
@@ -87,34 +104,42 @@ class LedgerTest extends KmaruTest {
 	/**
 	 * test inserting a valid ledger and verify that the actual mySQL data matches
 	 */
-	public function testInsertValidLedger () : void {
+	public function testInsertValidLedger(): void {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("ledger");
 
 		// create a new ledger and insert it into MySQL
 		$ledger = new Ledger($this->ledger->getLedgerBoardId(),
-									$this->ledger->getLedgerCardId(),
-									$this->ledger->getLedgerProfileId(),
-									200, 1);
-									$ledger->insert($this->getPDO());
+			$this->ledger->getLedgerCardId(),
+			$this->ledger->getLedgerProfileId(),
+			200, 1);
+		$ledger->insert($this->getPDO());
 
 		// grab the data from MySQL and enforce the fields match our expectations
 		$pdoLedger = Ledger::getLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(
-									$this->getPDO(),
-									$this->board->getBoardId(),
-									$this->card->getCardId(),
-									$this->profile->getProfileId(),
-			// TODO: do i need to get ledger points and type?
-									$this->ledger->getLedgerPoints(),
-									$this->ledger->getLedgerType());
+			$this->getPDO(),
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
+			$this->ledger->getLedgerPoints(),
+			$this->ledger->getLedgerType());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("ledger"));
 		$this->assertEquals($pdoLedger->getLegerBoardId(), $this->board->getBoardId());
 		$this->assertEquals($pdoLedger->getLegerCardId(), $this->card->getCardId());
 		$this->assertEquals($pdoLedger->getLegerProfileId(), $this->profile->getBoardId());
+		$this->assertEquals($pdoLedger->getLedgerPoints(), $this->VALID_LEDGER_POINTS);
+		$this->assertEquals($pdoLedger->getLedgerType(), $this->VALID_LEDGER_TYPE);
+	}
 
-		// TODO: do i need to compare points in ledger to card?
+	/**
+	 * test
+	 **/
 
-		$this->assertEquals($pdoLedger->getLedger)
+
+
+
+
+
 
 
 
