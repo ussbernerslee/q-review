@@ -28,11 +28,6 @@ class CardTest extends KmaruTest {
 	 */
 	protected $VALID_HASH;
 	/**
-	 * timestamp of the Card; this starts as null and is assigned later
-	 * @var \DateTime $VALID_CardDATE
-	 **/
-	protected $VALID_CARDDATE;
-	/**
 	 * valid salt to use to create the profile object to own the test
 	 * @var string $VALID_SALT
 	 */
