@@ -92,7 +92,7 @@ public function testInsertValidBoard() : void {
 
 		//create a new Board and insert into mySQL
 		$boardId = generateUuidV4();
-		$board = new Board($boardId, $this->profile->getProfileId(), $this->VALID_BOARDNAME, $this->VALID_BOARDNAME);
+		$board = new Board($boardId, $this->profile->getProfileId(), $this->VALID_BOARDNAME);
 		$board->insert($this->getPDO());
 
 		//edit the Board and update it in mySQL
