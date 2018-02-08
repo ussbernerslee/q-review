@@ -49,7 +49,7 @@ class Profile implements \JsonSerializable {
 	private $profileName;
 	/**
 	 * user role privilege - Captain or Student
-	 * @var string $profilePrivilege
+	 * @var int $profilePrivilege
 	 **/
 	private $profilePrivilege;
 	/**
@@ -70,7 +70,7 @@ class Profile implements \JsonSerializable {
 	 * @param string $newProfileEmail string containing email
 	 * @param string $newProfileHash string containing password hash
 	 * @param string $newProfileName string containing new profile name
-	 * @param string $newProfilePrivilege string containing new profile privilege: captain or student
+	 * @param int $newProfilePrivilege string containing new profile privilege: captain or student
 	 * @param string $newProfileSalt string containing password salt
 	 * @param string $newProfileUsername string containing username
 	 * @throws \InvalidArgumentException if data types are not valid
@@ -79,7 +79,7 @@ class Profile implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 * @Documentation https://php.net/manual/en/language.oop5.decon.php
 	 **/
-	public function __construct($newProfileId, ?string $newProfileActivationToken, string $newProfileEmail, string $newProfileHash, string $newProfileName, string $newProfilePrivilege, string $newProfileSalt, string $newProfileUsername) {
+	public function __construct($newProfileId, ?string $newProfileActivationToken, string $newProfileEmail, string $newProfileHash, string $newProfileName, int $newProfilePrivilege, string $newProfileSalt, string $newProfileUsername) {
 		try {
 			$this->setProfileId($newProfileId);
 			$this->setProfileActivationToken($newProfileActivationToken);
@@ -265,6 +265,16 @@ class Profile implements \JsonSerializable {
 		// store the value
 		$this->profilePrivilege = $newProfilePrivilege;
 	}
+
+	/**
+	 *accessor method for profile salt
+	 *
+	 * @return string representation of the salt hexadecimal
+	 */
+	public function getProfileSalt(): string {
+		return $this->profileSalt;
+	}
+
 	/**
 	 * mutator method for profile salt
 	 *

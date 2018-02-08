@@ -43,7 +43,7 @@ class ProfileTest extends KmaruTest {
 	 * valid privilege to use
 	 * @var int $VALID_PRIVILIEGE
 	 **/
-	protected $VALID_PRIVILEGE;
+	protected $VALID_PRIVILEGE = 2;
 	/**
 	 * valid salt to use to create the profile object to own the test
 	 * @var string $VALID_SALT
@@ -113,7 +113,7 @@ class ProfileTest extends KmaruTest {
 		$this->assertEquals($pdoProfile->getProfileName(), $this->VALID_NAME);
 		$this->assertEquals($pdoProfile->getProfilePrivilege(), $this->VALID_PRIVILEGE);
 		$this->assertEquals($pdoProfile->getProfileSalt(), $this->VALID_SALT);
-		$this->assertEquals($pdoProfile->getProfileUsername(), $this->VALID_USERNAME);
+		$this->assertEquals($pdoProfile->getProfileUsername(), $this->VALID_USERNAME2);
 	}
 	/**
 	 * test creating a Profile and then deleting it
