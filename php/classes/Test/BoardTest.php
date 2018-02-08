@@ -1,7 +1,8 @@
 <?php
 namespace Edu\Cnm\Kmaru\Test;
 
-use Edu\Cnm\Kmaru\{Profile, Board};
+use Edu\Cnm\Kmaru\Profile;
+use Edu\Cnm\Kmaru\Board;
 
 //grab the class under scrutiny: Board
 require_once(dirname(__DIR__) . "/autoload.php");
@@ -60,7 +61,7 @@ class BoardTest extends KmaruTest {
 		$this->VALID_PROFILE_HASH = hash_pbkdf2("sha512", $password, $this->VALID_PROFILE_SALT, 262144);
 
 		//create and insert a Profile to own this test Board
-		$this->profile = new Profile(generateUuidV4(), null, "email@board.com", $this->VALID_PROFILE_HASH, "John Smith", 3,$this->VALID_PROFILE_SALT);
+		$this->profile = new Profile(generateUuidV4(), null, "email@board.com", $this->VALID_PROFILE_HASH, "John Smith", 3,$this->VALID_PROFILE_SALT, "jsmith");
 		$this->profile->insert($this->getPDO());
  	}
 /**
@@ -77,9 +78,9 @@ public function testInsertValidBoard() : void {
 	$board->insert($this->getPDO());
 
 	//grab the data from mySQL and enforce the fields match our expectations
-	$pdoBoard = Board::getBoardByBoardId($this->getPDO(), $board->getBoardId());
+	$pdoBoard = Board::getBoardByBoardId($this->getPDO(), $this->board->getBoardId());
 	$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("board"));
-	$this->assertEquals($pdoBoard->getBoardId(), $boardId);
+	$this->assertEquals($pdoBoard->getBoardId(), $this->board->getBoardId());
 	$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
 	$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME);
 }
@@ -100,8 +101,8 @@ public function testInsertValidBoard() : void {
 		$board->update($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$pdoBoard = Board::getBoardByBoardId($this->getPDO(), $board->getBoardId());
-		$this->asssertEquals($pdoBoard->getBoardId(), $boardId);
+		$pdoBoard = Board::getBoardByBoardId($this->getPDO(), $this->board->getBoardId());
+		$this->assertEquals($pdoBoard->getBoardId(), $this->board->getBoardId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("board"));
 		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME2);
@@ -143,15 +144,15 @@ public function testInsertValidBoard() : void {
 	 **/
 	public function testGetValidBoardIdByBoardProfileId() {
 		//count the number of rows and save it for later
-		$numRows = $this->getConnection()>getRowCount("board");
+		$numRows = $this->getConnection()->getRowCount("board");
 
 		//create a new Board and insert it in to mySQL
 		$boardId = generateUuidV4();
-		$board = new Board($boardId, $this->profile->getProfileId());
+		$board = new Board($boardId, $this->profile->getProfileId(), $this->VALID_BOARDNAME);
 		$board->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$results = Board::getBoardByBoardProfileId($this->getPDO(), $board->getBoardProfileId());
+		$results = Board::getBoardByBoardProfileId($this->getPDO(), $this->board->getBoardProfileId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("board"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Board", $results);
@@ -159,7 +160,7 @@ public function testInsertValidBoard() : void {
 		//grab the result from the array and validate it
 		$pdoBoard = $results[0];
 
-		$this->assertEquals($pdoBoard->getBoardId(), $boardId);
+		$this->assertEquals($pdoBoard->getBoardId(), $this->board->getBoardId());
 		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME);
 	}
@@ -195,7 +196,7 @@ public function testInsertValidBoard() : void {
 
 		//grab the result from the array and validate it
 		$pdoBoard = $results[0];
-		$this->assertEquals($pdoBoard->getBoardId(), $boardId);
+		$this->assertEquals($pdoBoard->getBoardId(), $this->board->getBoardId());
 		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME);
 	}
@@ -229,7 +230,7 @@ public function testInsertValidBoard() : void {
 
 		//grab the result from the array and validate it
 		$pdoBoard = $results[0];
-		$this->assertEquals($pdoBoard->getBoardId(), $boardId);
+		$this->assertEquals($pdoBoard->getBoardId(), $this->board->getBoardId());
 		$this->assertEquals($pdoBoard->getBoardProfileId(), $this->profile->getprofileId());
 		$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME);
 	}

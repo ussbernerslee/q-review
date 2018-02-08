@@ -248,7 +248,7 @@ class Board implements \JsonSerializable {
 		$parameters = ["boardProfileId" => $boardProfileId->getBytes()];
 		$statement->execute($parameters);
 		//build an array of boards
-		$board = new \SplFixedArray($statement->rowCount());
+		$boards = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
