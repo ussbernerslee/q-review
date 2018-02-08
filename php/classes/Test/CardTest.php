@@ -72,7 +72,6 @@ class CardTest extends KmaruTest {
 			$this->assertEquals($pdoCard->getCardCategoryId(), $this->category->getCardCategoryId());
 			$this->assertEquals($pdoCard->getCardId(), $this->card->getCardId());
 			//format the date too seconds since the beginning of time to avoid round off error
-			$this->assertEquals($pdoCard->getCardDate()->getTimeStamp(), $this->VALID_CARDDATE->getTimestamp());
 		}
 
 		/**
