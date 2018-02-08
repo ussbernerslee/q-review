@@ -141,7 +141,8 @@ class LedgerTest extends KmaruTest {
 		$numRows = $this->getConnection()->getRowCount("ledger");
 
 		// create a new ledger and insert it into MySQL
-		$ledger = new Ledger($this->ledger->getLedgerBoardId(),
+		$ledger = new Ledger(
+			$this->ledger->getLedgerBoardId(),
 			$this->ledger->getLedgerCardId(),
 			$this->ledger->getLedgerProfileId(),
 			200,
@@ -167,9 +168,55 @@ class LedgerTest extends KmaruTest {
 	}
 
 	/**
-	 * test inserting a Ledger and regrabing it from MySQL
+	 * test grabbing a Ledger that does not exist
 	 **/
- y
+	public function testGetInvalidLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId() : void {
+
+		// try to grab a Leger by an incorrect ledger board Id and ledger card id and ledger profile id
+		$ledger = Ledger::getLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(
+				$this->getPDO(), generateUuidV4(), generateUuidV4(), generateUuidV4());
+
+		//asserting that it is incorrect
+		$this->assertNull($ledger);
+	}
+
+	/**
+	 * test grabbing a Ledger by ledger board id
+	 **/
+	public function testGetValidLedgerByLedgerBoardId() : void {
+
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("ledger");
+
+		// create a new ledger and insert it into MySQL
+		$ledger = new Ledger(
+			$this->ledger->getLedgerBoardId(),
+			$this->ledger->getLedgerCardId(),
+			$this->ledger->getLedgerProfileId(),
+			200,
+			1);
+		$ledger->insert($this->getPDO());
+
+		// grab the data from MySQL and make sure the fields match our expectations
+		$results = Ledger::getLedgerByLedgerBoardId($this->getPDO(), $this->ledger->getLedgerBoardId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("ledger"));
+		$this->assertCount(1, $results);
+
+		// enforce no other objects are bleeding into the test
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Ledger", $results);
+
+		// grab the result from the array and validate it
+		$pdoLedger = $results[0];
+		$this->assertEquals($pdoLedger->getLedgerBoardId(), $this->board->getBoardId());
+		$this->assertEquals($pdoLedger->getLedgerCardId(), $this->card->getCardId());
+		$this->assertEquals($pdoLedger->getLedgerProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoLedger->getLedgerPoints(), $this->VALID_LEDGER_POINTS);
+		$this->assertEquals($pdoLedger->getLedgerType(), $this->VALID_LEDGER_TYPE);
+	}
+
+	/**
+	 * test grabbing Ledger by a ledger board Id that does not exist
+	 **/
 
 
 
