@@ -157,7 +157,7 @@ class Board implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place-holders on the template
-		$parameters = ["boardId" => $this->boardId->getBytes(),"boardProfileId" =>$this->boardProfileId->getBytes(), "boardName" => $this->boardName];
+		$parameters = ["boardId" => $this->boardId->getBytes(),"boardProfileId" => $this->boardProfileId->getBytes(), "boardName" => $this->boardName];
 		$statement->execute($parameters);
 	}
 	/**
@@ -172,7 +172,7 @@ class Board implements \JsonSerializable {
 		$query = "DELETE FROM board WHERE boardId = :boardId";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holder in the template
-		$parameters =["boardId => $this->boardId->getBytes()"];
+		$parameters =["boardId" => $this->boardId->getBytes()];
 		$statement->execute($parameters);
 	}
 	/**
@@ -280,7 +280,7 @@ class Board implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$board = new Board ($row["boardId"], $row["boardProfileId"], $row["boardName"]);
+				$board = new Board($row["boardId"], $row["boardProfileId"], $row["boardName"]);
 				$boards[$boards->key()] = $board;
 				$boards->next();
 			} catch(\Exception $exception) {
@@ -300,7 +300,6 @@ class Board implements \JsonSerializable {
 
 			$fields["boardId"] = $this->boardId->toString();
 			$fields["boardProfileId"] = $this->boardProfileId->toString();
-			$fields["boardName"] = $this->boardName->toString();
 
 			return($fields);
 	}
