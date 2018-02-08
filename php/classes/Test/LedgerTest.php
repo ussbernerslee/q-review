@@ -24,7 +24,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid/php");
  **/
 
 class LedgerTest extends KmaruTest {
-
+// TODO: do i need things from profile or from ledger?
 	/**
 	 *  board of the game being played. This is a foreign key relationship
 	 * @var Board $board
@@ -83,6 +83,56 @@ class LedgerTest extends KmaruTest {
 		$this->profile = new Card(generateUuidV4(), generateUuidV4(), "Read the Documentation!", 200, "If you are unsure of what you are writing...what should you do next?");
 		$this->profile->insert($this->getPDO());
 	}
+
+	/**
+	 * test inserting a valid ledger and verify that the actual mySQL data matches
+	 */
+	public function testInsertValidLedger () : void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("ledger");
+
+		// create a new ledger and insert it into MySQL
+		$ledger = new Ledger($this->ledger->getLedgerBoardId(),
+									$this->ledger->getLedgerCardId(),
+									$this->ledger->getLedgerProfileId(),
+									200, 1);
+									$ledger->insert($this->getPDO());
+
+		// grab the data from MySQL and enforce the fields match our expectations
+		$pdoLedger = Ledger::getLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(
+									$this->getPDO(),
+									$this->board->getBoardId(),
+									$this->card->getCardId(),
+									$this->profile->getProfileId(),
+			// TODO: do i need to get ledger points and type?
+									$this->ledger->getLedgerPoints(),
+									$this->ledger->getLedgerType());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("ledger"));
+		$this->assertEquals($pdoLedger->getLegerBoardId(), $this->board->getBoardId());
+		$this->assertEquals($pdoLedger->getLegerCardId(), $this->card->getCardId());
+		$this->assertEquals($pdoLedger->getLegerProfileId(), $this->profile->getBoardId());
+
+		// TODO: do i need to compare points in ledger to card?
+
+		$this->assertEquals($pdoLedger->getLedger)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
