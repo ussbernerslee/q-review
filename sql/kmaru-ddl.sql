@@ -15,9 +15,8 @@ CREATE TABLE profile(
 	profileHash CHAR(128) NOT NULL,
 	profileName VARCHAR(50),
 	profilePrivilege TINYINT UNSIGNED,
-	profileUsername VARCHAR(50),
-	-- verification attributes for entity:
 	profileSalt CHAR(64) NOT NULL,
+	profileUsername VARCHAR(50),
 	-- unique index created:
 	UNIQUE (profileEmail),
 	UNIQUE (profileUsername),

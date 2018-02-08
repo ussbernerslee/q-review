@@ -60,7 +60,7 @@ class CategoryTest extends KmaruTest {
 		$this->VALID_PROFILE_HASH = hash_pbkdf2("sha512", $password, $this->VALID_PROFILE_SALT, 262144);
 
 		//create and insert a Profile to own this test Category
-		$this->profile = new Profile(generateUuidV4(), null, "@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH, "+12125551212", $this->VALID_PROFILE_SALT);
+		$this->profile = new Profile(generateUuidV4(), null, "@handle", $this->VALID_PROFILE_HASH, "harvey dent", "1", $this->VALID_PROFILE_SALT,"happygirl");
 		$this->profile->insert($this->getPDO());
 	}
 	/**
@@ -73,7 +73,7 @@ class CategoryTest extends KmaruTest {
 
 		// create a new Category and insert to into mySQL
 		$categoryId = generateUuidV4();
-		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
+		$category = new Category($categoryId, $this->getCategoryProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
