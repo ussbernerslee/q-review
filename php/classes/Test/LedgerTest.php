@@ -20,7 +20,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid/php");
  * are tested for both invalid and valid inputs.
  *
  * @see Ledger
- * @author Kenneth Keyes tbennett19@cnm.edu
+ * @author Tristan Bennett tbennett19@cnm.edu
  **/
 
 class LedgerTest extends KmaruTest {
@@ -123,19 +123,53 @@ class LedgerTest extends KmaruTest {
 			$this->profile->getProfileId(),
 			$this->ledger->getLedgerPoints(),
 			$this->ledger->getLedgerType());
+
+		// assuming these now exist, checking values to originals
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("ledger"));
 		$this->assertEquals($pdoLedger->getLegerBoardId(), $this->board->getBoardId());
 		$this->assertEquals($pdoLedger->getLegerCardId(), $this->card->getCardId());
-		$this->assertEquals($pdoLedger->getLegerProfileId(), $this->profile->getBoardId());
+		$this->assertEquals($pdoLedger->getLegerProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoLedger->getLedgerPoints(), $this->VALID_LEDGER_POINTS);
 		$this->assertEquals($pdoLedger->getLedgerType(), $this->VALID_LEDGER_TYPE);
 	}
 
 	/**
-	 * test
+	 * test creating and then deleting valid ledger
 	 **/
+	public function testDeleteValidLedger() : void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("ledger");
 
+		// create a new ledger and insert it into MySQL
+		$ledger = new Ledger($this->ledger->getLedgerBoardId(),
+			$this->ledger->getLedgerCardId(),
+			$this->ledger->getLedgerProfileId(),
+			200,
+			1);
+		$ledger->insert($this->getPDO());
 
+		// Delete the Ledger from MySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("ledger"));
+		$ledger->delete($this->getPDO());
+
+		// grab the data from MySQL and check to see if the Ledger does still exist
+		$pdoLedger = Ledger::getLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(
+			$this->getPDO(),
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
+			$this->ledger->getLedgerPoints(),
+			$this->ledger->getLedgerType());
+
+		// assuming it does not exit anymore
+		$this->assertNull($pdoLedger);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("ledger"));
+	}
+
+	/**
+	 * test inserting a Ledger and regrabing it from MySQL
+	 **/
+ y
 
 
 
