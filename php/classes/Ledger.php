@@ -527,7 +527,7 @@ public static function getLedgersByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, st
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getLedgerByLedgerBoardId(\PDO $pdo, $ledgerBoardId) : \SplFixedArray {
+	public static function getLedgersByLedgerBoardId(\PDO $pdo, $ledgerBoardId) : \SplFixedArray {
 		// sanitize the ledgerBoardId before searching
 		try {
 			$ledgerBoardId = self::validateUuid($ledgerBoardId);
@@ -572,7 +572,7 @@ public static function getLedgersByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, st
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getLedgerByLedgerCardId(\PDO $pdo, $ledgerCardId) : \SplFixedArray {
+	public static function getLedgersByLedgerCardId(\PDO $pdo, $ledgerCardId) : \SplFixedArray {
 		// sanitize the ledgerCardId before searching
 		try {
 			$ledgerCardId = self::validateUuid($ledgerCardId);
@@ -617,7 +617,7 @@ public static function getLedgersByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, st
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
-	public static function getLedgerByLedgerProfileId(\PDO $pdo, $ledgerProfileId) : \SplFixedArray {
+	public static function getLedgersByLedgerProfileId(\PDO $pdo, $ledgerProfileId) : \SplFixedArray {
 		// sanitize the ledgerProfileId before searching
 		try {
 			$ledgerProfileId = self::validateUuid($ledgerProfileId);
