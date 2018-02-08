@@ -102,107 +102,140 @@ class CardTest extends KmaruTest {
 
 		}
 
-		/**
-		 * test inserting a Card and regrabbing it from mySQL
-		 **/
-		public
-		function testGetValidCardByCardIdAndCardCategoryId(): void {
-			// count the number of rows and save it for later
-			$numRows = $this->getConnection()->getRowCount("card");
-			// create a new Card and insert to into mySQL
 
-			$cardId = generateUuidV4();
-			$cardCategoryId = generateUuidV4();
-			$card = new Card($cardId, $cardCategoryId, $this->VALID_CARD_ANSWER, $this->VALID_CARD_POINTS, $this->VALID_CARD_QUESTION2);
-			$card->update($this->getPDO());
+/**
+* test inserting a Card and regrabbing it from mySQL
+**/
+	public function testGetValidCardByCardCategoryId() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("card");
 
-			$pdoCard = Card::getCardByCardId($this->getPDO(), $card->getCardId());
-			$this->assertEquals($pdoCard->getCardId(), $cardId);
-			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
-			$this->assertEquals($pdoCard->getCardId(), $this->category->getCardId());
-			$this->assertEquals($pdoCard->getCardCategoryId(), $this->card->getCardCategoryId());
-			$this->assertEquals($pdoCard->getCardAnswer(), $this->card->getCardAnswer());
-			$this->assertEquals($pdoCard->getCardPoints(), $this->card->getCardPoints());
-			$this->assertEquals($pdoCard->getCardQuestion(), $this->card->getCardQuestion());
+		// create a new Card and insert to into mySQL
 
 
-		}
+		$cardId = generateUuidV4();
+		$cardCategoryId = generateUuidV4();
+		$card = new Card($cardId, $cardCategoryId, $this->VALID_CARD_ANSWER, $this->VALID_CARD_POINTS, $this->VALID_CARD_QUESTION2);
+		$card->insert($this->getPDO());
 
-		/**
-		 * test grabbing a Card that does not exist
-		 **/
-		public
-		function testGetInvalidCardByCardIdAndCardCategoryId() {
-			// grab a card id and card category id that exceeds the maximum allowable card id and category id
-			$card = Card::getCardByCardIdAndCardCardCategoryId($this->getPDO(), generateUuidV4(), generateUuidV4());
-			$this->assertNull($card);
-		}
+		// grab the data from mySQL and enforce the fields match our expectations
+		$results = Card::getCardByCardCategoryId($this->getPDO(), $card->getCardCategoryId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Card", $results);
 
-		/**
-		 * test grabbing a Card by card id
-		 **/
-		public
-		function testGetValidCardByCardId(): void {
-			// count the number of rows and save it for later
-			$numRows = $this->getConnection()->getRowCount("card");
-			// create a new Card and insert to into mySQL
-			$Card = new Card($this->category->getCardCategoryId(), $this->card->getCardId(), $this->VALID_CARDDATE);
-			$Card->insert($this->getPDO());
-			// grab the data from mySQL and enforce the fields match our expectations
-			$results = Card::getCardByCardId($this->getPDO(), $this->Card->getCardId());
-			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
-			$this->assertCount(1, $results);
-			$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Card", $results);
-			// grab the result from the array and validate it
-			$pdoCard = $results[0];
-			$this->assertEquals($pdoCard->getCardCategoryId(), $this->category->getCardCategoryId());
-			$this->assertEquals($pdoCard->getCardId(), $this->card->getCardId());
-			//format the date too seconds since the beginning of time to avoid round off error
-			$this->assertEquals($pdoCard->getCardDate()->getTimeStamp(), $this->VALID_CARDDATE->getTimestamp());
-		}
+		// grab the result from the array and validate it
+		$pdoCard = $results[0];
+		$this->assertEquals($pdoCard->getCardId(), $this->category->getCardId());
+		$this->assertEquals($pdoCard->getCardCategoryId(), $this->card->getCardCategoryId());
+		$this->assertEquals($pdoCard->getCardAnswer(), $this->card->getCardAnswer());
+		$this->assertEquals($pdoCard->getCardPoints(), $this->card->getCardPoints());
+		$this->assertEquals($pdoCard->getCardQuestion(), $this->card->getCardQuestion());
 
-		/**
-		 * test grabbing a Card by a card id that does not exist
-		 **/
-		public
-		function testGetInvalidCardByCardId(): void {
-			// grab a card id that exceeds the maximum allowable card id
-			$card = Card::getCardByCardId($this->getPDO(), generateUuidV4());
-			$this->assertCount(0, $card);
-		}
-
-		/**
-		 * test grabbing a Card by cardCategory id
-		 **/
-		public
-		function testGetValidCardByCardCategoryId(): void {
-			// count the number of rows and save it for later
-			$numRows = $this->getConnection()->getRowCount("card");
-			// create a new Card and insert to into mySQL
-			$card = new Card($this->category->getCardCategoryId(), $this->card->getCardId(), $this->VALID_LIKEDATE);
-			$card->insert($this->getPDO());
-			// grab the data from mySQL and enforce the fields match our expectations
-			$results = Card::getCardByCardCategoryId($this->getPDO(), $this->category->getCardCategoryId());
-			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
-			$this->assertCount(1, $results);
-			// enforce no other objects are bleeding into the test
-			$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Card", $results);
-			// grab the result from the array and validate it
-			$pdoCard = $results[0];
-			$this->assertEquals($pdoCard->getCardCategoryId(), $this->category->getCardCategoryId());
-			$this->assertEquals($pdoCard->getCardCategoryId(), $this->card->getCardId());
-			//format the date too seconds since the beginning of time to avoid round off error
-		}
 	}
 
-		/**
-		 * test grabbing a Card by a cardCategory id that does not exist
-		 **/
-		public
-		function testGetInvalidCardByCardCategoryId(): void {
-			// grab a card by cardCategoryId that exceeds the maximum allowable cardCategoryId
-			$card = Card::getCardByCardCategoryId($this->getPDO(), generateUuidV4());
-			$this->assertCount(0, $card);
-		}
+	/**
+	 * test grabbing a Card by cardCategoryId that does not exist
+	 **/
+	public function testGetInvalidCardByCardCategoryId() : void {
+		// grab a card id that does not exist
+		$card = Card::getCardByCardCategoryId($this->getPDO(), generateUuidV4());
+		$this->assertNull($card);
 	}
+
+
+	/**
+	 * test inserting a Card and regrabbing it from mySQL
+	 **/
+	public function testGetValidCardByCardId() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("card");
+
+		// create a new Card and insert to into mySQL
+		$cardId = generateUuidV4();
+		$cardCategoryId = generateUuidV4();
+		$card = new Card($cardId, $cardCategoryId, $this->VALID_CARD_ANSWER, $this->VALID_CARD_POINTS, $this->VALID_CARD_QUESTION2);
+		$card->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoCard = Card::getCardByCardId($this->getPDO(), $card->getCardId());
+		$this->assertEquals($pdoCard->getCardId(), $cardId);
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Card", $results);
+
+		// grab the result from the array and validate it
+		$pdoCard = Card::getCardByCardId($this->getPDO(), $card->getCardId());
+		$this->assertEquals($pdoCard->getCardId(), $cardId);
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
+		$this->assertEquals($pdoCard->getCardId(), $this->category->getCardId());
+		$this->assertEquals($pdoCard->getCardCategoryId(), $this->card->getCardCategoryId());
+		$this->assertEquals($pdoCard->getCardAnswer(), $this->card->getCardAnswer());
+		$this->assertEquals($pdoCard->getCardPoints(), $this->card->getCardPoints());
+		$this->assertEquals($pdoCard->getCardQuestion(), $this->card->getCardQuestion());
+
+
+	}
+
+	/**
+	 * test grabbing a Card that does not exist
+	 **/
+	public function testGetInvalidCardByCardId() : void {
+		// grab a card id that does not exist
+		$card = Card::getCardByCardId($this->getPDO(), generateUuidV4());
+		$this->assertNull($card);
+	}
+
+	/**
+	 * test inserting a Card and regrabbing it from mySQL
+	 **/
+	public function testGetValidCardByCardPoints() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("card");
+
+		// create a new Card and insert to into mySQL
+
+
+		$cardId = generateUuidV4();
+		$cardCategoryId = generateUuidV4();
+		$card = new Card($cardId, $cardCategoryId, $this->VALID_CARD_ANSWER, $this->VALID_CARD_POINTS, $this->VALID_CARD_QUESTION2);
+		$card->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$results = Card::getCardByCardPoints($this->getPDO(), $card->getCardPoints());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
+
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Card", $results);
+		// grab the result from the array and validate it
+
+
+		$pdoCard = $results[0];
+		$this->assertEquals($pdoCard->getCardId(), $this->category->getCardId());
+		$this->assertEquals($pdoCard->getCardCategoryId(), $this->card->getCardCategoryId());
+		$this->assertEquals($pdoCard->getCardAnswer(), $this->card->getCardAnswer());
+		$this->assertEquals($pdoCard->getCardPoints(), $this->card->getCardPoints());
+		$this->assertEquals($pdoCard->getCardQuestion(), $this->card->getCardQuestion());
+
+	}
+
+	/**
+	 * test grabbing a Card by points that does not exist
+	 **/
+	public function testGetInvalidCardByCardPoints() : void {
+		// grab a card id that does not exist
+		$card = Card::getCardByCardPoints($this->getPDO(), generateUuidV4());
+		$this->assertNull($card);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 }
