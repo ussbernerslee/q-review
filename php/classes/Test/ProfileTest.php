@@ -58,13 +58,12 @@ class ProfileTest extends KmaruTest {
 	 * second valid username to use
 	 * @var string $VALID_USERNAME2
 	 **/
-	protected $VALID_USERNAME2 = "JuneBug18";
+	protected $VALID_USERNAME2 = "kkeyes1";
 	/**
 	 * run the default setup operation to create salt and hash.
 	 */
 	public final function setUp() : void {
 		parent::setUp();
-		//
 		$password = "master";
 		$this->VALID_SALT = bin2hex(random_bytes(32));
 		$this->VALID_HASH = hash_pbkdf2("qwertyuiop", $password, $this->VALID_SALT, 262144);
