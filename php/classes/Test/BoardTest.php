@@ -60,7 +60,7 @@ class BoardTest extends KmaruTest {
 		$this->VALID_PROFILE_HASH = hash_pbkdf2("sha512", $password, $this->VALID_PROFILE_SALT, 262144);
 
 		//create and insert a Profile to own this test Board
-		$this->profile = new Profile(generateUuidV4(), null, "@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH, "+12125551212", $this->VALID_PROFILE_SALT);
+		$this->profile = new Profile(generateUuidV4(), null, "email@board.com", $this->VALID_PROFILE_HASH, "John Smith", 3,$this->VALID_PROFILE_SALT);
 		$this->profile->insert($this->getPDO());
  	}
 /**

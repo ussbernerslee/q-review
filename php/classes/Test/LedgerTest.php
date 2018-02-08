@@ -93,12 +93,12 @@ class LedgerTest extends KmaruTest {
 		$this->profile->insert($this->getPDO());
 
 		// create and insert a Board to contain the cards contained in the ledger
-		$this->profile = new Board(generateUuidV4(), generateUuidV4(), "Treking");
-		$this->profile->insert($this->getPDO());
+		$this->board = new Board(generateUuidV4(), generateUuidV4(), "Treking");
+		$this->board->insert($this->getPDO());
 
 		// create and insert a Card to be answered by the profile on the board for the ledger
-		$this->profile = new Card(generateUuidV4(), generateUuidV4(), "Read the Documentation!", 200, "If you are unsure of what you are writing...what should you do next?");
-		$this->profile->insert($this->getPDO());
+		$this->card = new Card(generateUuidV4(), generateUuidV4(), "Read the Documentation!", 200, "If you are unsure of what you are writing...what should you do next?");
+		$this->card->insert($this->getPDO());
 	}
 
 	/**
