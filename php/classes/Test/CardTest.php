@@ -48,7 +48,7 @@ class CardTest extends KmaruTest {
 		// run the default setUp() method first
 		parent::setUp();
 		// create and insert a category to own the test card
-		$this->category = new category(generateUuidV4(), generateUuidV4(), "CSS");
+		$this->category = new Category(generateUuidV4(), generateUuidV4(), "CSS");
 		$this->category->insert($this->getPDO());
 		// create the card and insert the mocked card
 	}
@@ -158,8 +158,8 @@ class CardTest extends KmaruTest {
 		$card->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoCard = Card::getCardByCardId($this->getPDO(), $card->getCardId());
-		$this->assertEquals($pdoCard->getCardId(), $cardId);
+		$results = Card::getCardByCardId($this->getPDO(), $card->getCardId());
+		$this->assertEquals($results->getCardId(), $cardId);
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Card", $results);
 
