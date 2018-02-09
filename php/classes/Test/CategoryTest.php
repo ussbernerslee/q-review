@@ -23,7 +23,7 @@ class CategoryTest extends KmaruTest {
 	 * Profile that created the Category; this is for foreign key relations
 	 * @var Profile profile
 	 **/
-	protected $profile = null;
+	protected $profile;
 
 	/**
 	 * valid profile hash to create the profile object to own the test
@@ -55,7 +55,7 @@ class CategoryTest extends KmaruTest {
 	public final function setUp() : void {
 		// run the default setUp() method first
 		parent::setUp();
-		$password = "abc123";
+		$password = "qwertyuiop";
 		$this->VALID_PROFILE_SALT = bin2hex(random_bytes(32));
 		$this->VALID_PROFILE_HASH = hash_pbkdf2("sha512", $password, $this->VALID_PROFILE_SALT, 262144);
 
@@ -73,13 +73,13 @@ class CategoryTest extends KmaruTest {
 
 		// create a new Category and insert to into mySQL
 		$categoryId = generateUuidV4();
-		$category = new Category($categoryId, $this->getCategoryProfileId(), $this->VALID_CATEGORYNAME);
+		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
+		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $categoryId);
+		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId->getCategoryId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
-		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
 		$this->assertEquals($pdoCategory->getCategoryProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
 	}
@@ -90,7 +90,7 @@ class CategoryTest extends KmaruTest {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("category");
 
-		//create a new Category and insert into mySQL
+		// create a new Category and insert to into mySQL
 		$categoryId = generateUuidV4();
 		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
@@ -101,7 +101,7 @@ class CategoryTest extends KmaruTest {
 
 		//grab the data from mySQL and enforce the fields match our expectations
 		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
-		$this->asssertEquals($pdoCategory->getCategoryId(), $categoryId);
+		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("category"));
 		$this->assertEquals($pdoCategory->getCategoryProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME2);
@@ -114,7 +114,7 @@ class CategoryTest extends KmaruTest {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("category");
 
-		//create a new Category and insert it into mySQL
+		// create a new Category and insert to into mySQL
 		$categoryId = generateUuidV4();
 		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
@@ -126,7 +126,7 @@ class CategoryTest extends KmaruTest {
 		//grab the data from mySQL and enforce the Category does not exist
 		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
 		$this->assertNull($pdoCategory);
-		$this->asserEquals($numRows, $this->getConnection()->getRowCount("category"));
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("category"));
 	}
 
 	/**
@@ -143,9 +143,9 @@ class CategoryTest extends KmaruTest {
 	 **/
 	public function testGetValidCategoryByCategoryProfileId() {
 		//count the number of rows and save it for later
-		$numRows = $this->getConnection()>getRowCount("category");
+		$numRows = $this->getConnection()->getRowCount("category");
 
-		//create a new Category and insert it in to mySQL
+		// create a new Category and insert to into mySQL
 		$categoryId = generateUuidV4();
 		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
@@ -180,7 +180,7 @@ class CategoryTest extends KmaruTest {
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("category");
 
-		//create a new Category and insert it into mySQL
+		// create a new Category and insert to into mySQL
 		$categoryId = generateUuidV4();
 		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());
@@ -216,7 +216,7 @@ class CategoryTest extends KmaruTest {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("category");
 
-		//create a new Category and insert it into mySQL
+		// create a new Category and insert to into mySQL
 		$categoryId = generateUuidV4();
 		$category = new Category($categoryId, $this->profile->getProfileId(), $this->VALID_CATEGORYNAME);
 		$category->insert($this->getPDO());

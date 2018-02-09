@@ -6,7 +6,6 @@ namespace Edu\Cnm\Kmaru;
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 
-use PHPUnit\Exception;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -172,7 +171,7 @@ class Category implements \JsonSerializable {
 		$query = "DELETE FROM category WHERE categoryId = :categoryId";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holder in the template
-		$parameters =["categoryId => $this->categoryId->getBytes()"];
+		$parameters =["categoryId" => $this->categoryId->getBytes()];
 		$statement->execute($parameters);
 	}
 	/**
@@ -207,7 +206,7 @@ class Category implements \JsonSerializable {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		//create query template
-		$query = "SELECT categorydId, categoryProfileId, categoryName FROM category WHERE categoryId = :categoryId";
+		$query = "SELECT categoryId, categoryProfileId, categoryName FROM category WHERE categoryId = :categoryId";
 		$statement = $pdo->prepare($query);
 		//bind the category id to the place holder in the template
 		$parameters = ["categoryId" => $categoryId->getBytes()];
@@ -248,7 +247,7 @@ class Category implements \JsonSerializable {
 		$parameters = ["categoryProfileId" => $categoryProfileId->getBytes()];
 		$statement->execute($parameters);
 		//build an array of categories
-		$category = new \SplFixedArray($statement->rowCount());
+		$categories = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
