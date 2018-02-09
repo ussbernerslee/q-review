@@ -100,7 +100,7 @@ class Ledger implements \JsonSerializable {
 	 *
 	 * @return Uuid value for $ledgerBoardId
 	 **/
-	public function getLedgerBoardId () : Uuid {
+	public function getLedgerBoardId() : Uuid {
 		return($this->ledgerBoardId);
 	}
 
@@ -273,7 +273,7 @@ class Ledger implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		// bind values of variables to respective placeholders in template
-		$parameters = ["ledgerBoardId" => $this->ledgerBoardId->getBytes(), "ledgerCardId" => $this->ledgerCardId->getBytes(), "ledgerProfileId" => $this->ledgerProfileId->getBytes(), "ledgerPoints" => $this->ledgerPoints, "ledgerType => $this->ledgerType"];
+		$parameters = ["ledgerBoardId" => $this->ledgerBoardId->getBytes(), "ledgerCardId" => $this->ledgerCardId->getBytes(), "ledgerProfileId" => $this->ledgerProfileId->getBytes(), "ledgerPoints" => $this->ledgerPoints, "ledgerType" => $this->ledgerType];
 		$statement->execute($parameters);
 	}
 
@@ -309,7 +309,7 @@ class Ledger implements \JsonSerializable {
 	 * @param Uuid|string $ledgerBoardId ledger board id to search by
 	 * @param Uuid|string $ledgerCardId ledger card id to search
 	 * @param Uuid|string $ledgerProfileId ledger profile id to search
-	 * @return \SplFixedArray SplFixedArray of ledgers found
+	 * @return Ledger|null Ledger found or null if not
 	 * @throws \PDOException when mySQL related error occurs
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
