@@ -18,17 +18,17 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 class CardTest extends KmaruTest {
 	/**
 	 * Category that populates the Card; this is for foreign key relations
-	 * @var  Category $category
+	 * @var  Category category
 	 **/
 	protected $category = null;
 	/**
 	 * valid answer to use
-	 * @var string $VALID_CARD_ANSWER
+	 * @var $VALID_CARD_ANSWER
 	 */
 	protected $VALID_CARD_ANSWER;
 	/**
 	 * valid point value for the card
-	 * @var int $VALID_CARD_POINTS
+	 * @var string $VALID_CARD_POINTS
 	 */
 	protected $VALID_CARD_POINTS;
 	/**
@@ -37,9 +37,9 @@ class CardTest extends KmaruTest {
 	 */
 	protected $VALID_CARD_QUESTION;
 	/**
-	* question for the updated card
-	* @var string $VALID_CARD_QUESTION2
-	*/
+	 * question for the updated card
+	 * @var string $VALID_CARD_QUESTION2
+	 */
 	protected $VALID_CARD_QUESTION2;
 	/**
 	 * create dependent objects before running each test
@@ -52,60 +52,60 @@ class CardTest extends KmaruTest {
 		$this->category->insert($this->getPDO());
 		// create the card and insert the mocked card
 	}
-		/**
-		 * test inserting a valid Card and verify that the actual mySQL data matches
-		 **/
-		public
-		function testInsertValidCard(): void {
-			// count the number of rows and save it for later
-			$numRows = $this->getConnection()->getRowCount("card");
-			// create a new Card and insert to into mySQL
-			$cardId = generateUuidV4();
-			$cardCategoryId = generateUuidV4();
-			$card = new Card($cardId, $cardCategoryId, $this->VALID_CARD_ANSWER, $this->VALID_CARD_POINTS, $this->VALID_CARD_QUESTION2);
-			$card->insert($this->getPDO());
-			// grab the data from mySQL and enforce the fields match our expectations
-			$pdoCard = Card::getCardByCardId($this->getPDO(), $card->getCardId());
-			$this->assertEquals($pdoCard->getCardId(), $cardId);
-			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
-			$this->assertEquals($pdoCard->getCardId(), $this->category->getCardId());
-			$this->assertEquals($pdoCard->getCardCategoryId(), $this->card->getCardCategoryId());
-			$this->assertEquals($pdoCard->getCardAnswer(), $this->card->getCardAnswer());
-			$this->assertEquals($pdoCard->getCardPoints(), $this->card->getCardPoints());
-			$this->assertEquals($pdoCard->getCardQuestion(), $this->card->getCardQuestion());
+	/**
+	 * test inserting a valid Card and verify that the actual mySQL data matches
+	 **/
+	public
+	function testInsertValidCard(): void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("card");
+		// create a new Card and insert to into mySQL
+		$cardId = generateUuidV4();
+		$cardCategoryId = generateUuidV4();
+		$card = new Card($cardId, $cardCategoryId, $this->VALID_CARD_ANSWER, $this->VALID_CARD_POINTS, $this->VALID_CARD_QUESTION2);
+		$card->insert($this->getPDO());
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoCard = Card::getCardByCardId($this->getPDO(), $card->getCardId());
+		$this->assertEquals($pdoCard->getCardId(), $cardId);
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
+		$this->assertEquals($pdoCard->getCardId(), $this->category->getCardId());
+		$this->assertEquals($pdoCard->getCardCategoryId(), $this->card->getCardCategoryId());
+		$this->assertEquals($pdoCard->getCardAnswer(), $this->card->getCardAnswer());
+		$this->assertEquals($pdoCard->getCardPoints(), $this->card->getCardPoints());
+		$this->assertEquals($pdoCard->getCardQuestion(), $this->card->getCardQuestion());
 
-		}
+	}
 
-		/**
-		 * test creating a Card and then deleting it
-		 **/
-		public
-		function testDeleteValidCard(): void {
-			// count the number of rows and save it for later
-			$numRows = $this->getConnection()->getRowCount("card");
-			// create a new Card and insert to into mySQL
+	/**
+	 * test creating a Card and then deleting it
+	 **/
+	public
+	function testDeleteValidCard(): void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("card");
+		// create a new Card and insert to into mySQL
 
-			$cardId = generateUuidV4();
-			$cardCategoryId = generateUuidV4();
-			$card = new Card($cardId, $cardCategoryId, $this->VALID_CARD_ANSWER, $this->VALID_CARD_POINTS, $this->VALID_CARD_QUESTION2);
-			$card->insert($this->getPDO());
-
-
-
-			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
-			$card->delete($this->getPDO());
-
-			$pdoCard = Card::getCardByCardId($this->getPDO(), $card->getCardId());
-			$this->assertNull($pdoCard);
-			$this->assertEquals($numRows, $this->getConnection()->getRowCount("card"));
+		$cardId = generateUuidV4();
+		$cardCategoryId = generateUuidV4();
+		$card = new Card($cardId, $cardCategoryId, $this->VALID_CARD_ANSWER, $this->VALID_CARD_POINTS, $this->VALID_CARD_QUESTION2);
+		$card->insert($this->getPDO());
 
 
-		}
+
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("card"));
+		$card->delete($this->getPDO());
+
+		$pdoCard = Card::getCardByCardId($this->getPDO(), $card->getCardId());
+		$this->assertNull($pdoCard);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("card"));
 
 
-/**
-* test inserting a Card and regrabbing it from mySQL
-**/
+	}
+
+
+	/**
+	 * test inserting a Card and regrabbing it from mySQL
+	 **/
 	public function testGetValidCardByCardCategoryId() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("card");
