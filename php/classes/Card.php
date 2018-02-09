@@ -30,22 +30,22 @@ class Card implements \JsonSerializable {
 	private $cardAnswer;
 	/**
 	 * card point value assigned to card
-	 * @var Int $cardPoints
+	 * @var int $cardPoints
 	 **/
 	private $cardPoints;
 	/**
 	 *card question that is assigned to card
 	 * @var string $cardQuestion
 	 **/
-	 private $cardQuestion;
-	 /**
+	private $cardQuestion;
+	/**
 	 * constructor for this card
 	 *
 	 * @param string|Uuid $newCardId id of this Card or null if a new card
 	 * @param string|Uuid $newCardCategoryId id of the category for this card
 	 * @param string $newCardAnswer string containing actual card answer
-	  * @param Int $newCardPoints int containing assigned card value
-	  * @param string $newCardQuestion string containing question assigned to card
+	 * @param Int $newCardPoints int containing assigned card value
+	 * @param string $newCardQuestion string containing question assigned to card
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -147,20 +147,20 @@ class Card implements \JsonSerializable {
 		$this->cardAnswer = $newCardAnswer;
 	}
 	/**
-	*accessor method for card points
-	* @return int for card points
-	**/
+	 *accessor method for card points
+	 * @return int for card points
+	 **/
 	public function getCardPoints() : int {
 		return ($this->cardPoints);
 	}
-		/**
-		 * mutator method for card points
-		 *
-		 * @param int $newCardPoints new value of card points
-		 * @throws \InvalidArgumentException if $newCardPoints is not an int or insecure
-		 * @throws \RangeException if $newCardPoints is > 255 characters
-		 * @throws \TypeError if $newCardPoints is not an int
-		 **/
+	/**
+	 * mutator method for card points
+	 *
+	 * @param int $newCardPoints new value of card points
+	 * @throws \InvalidArgumentException if $newCardPoints is not an int or insecure
+	 * @throws \RangeException if $newCardPoints is > 255 characters
+	 * @throws \TypeError if $newCardPoints is not an int
+	 **/
 	public function setCardPoints(int $newCardPoints): void {
 		// verify the card points are secure
 		$newCardPoints = trim($newCardPoints);
@@ -175,36 +175,36 @@ class Card implements \JsonSerializable {
 		// store the card points
 		$this->cardPoints = $newCardPoints;
 	}
-		/**
-		 * accessor method for card question
-		 *
-		 * @return string value for cardQuestion
-		 **/
-		public function getCardQuestion() : string {
-			return($this->cardQuestion);
+	/**
+	 * accessor method for card question
+	 *
+	 * @return string value for cardQuestion
+	 **/
+	public function getCardQuestion() : string {
+		return($this->cardQuestion);
+	}
+	/**
+	 * mutator method for card question
+	 *
+	 * @param string $newCardQuestion new card question
+	 * @throws \RangeException if $newCardId is greater than 255
+	 * @throws \TypeError if $newCardQuestion is not a string
+	 **/
+	public function setCardQuestion( $newCardQuestion) : void {
+		$newCardQuestion = trim($newCardQuestion);
+		$newCardQuestion = filter_var($newCardQuestion, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCardQuestion) === true) {
+			throw(new \InvalidArgumentException("card question is empty or insecure"));
 		}
-		/**
-		 * mutator method for card question
-		 *
-		 * @param string $newCardQuestion new card question
-		 * @throws \RangeException if $newCardId is greater than 255
-		 * @throws \TypeError if $newCardQuestion is not a string
-		 **/
-		public function setCardQuestion( $newCardQuestion) : void {
-			$newCardQuestion = trim($newCardQuestion);
-			$newCardQuestion = filter_var($newCardQuestion, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-			if(empty($newCardQuestion) === true) {
-				throw(new \InvalidArgumentException("card question is empty or insecure"));
-			}
 
-			// verify the card question will fit in the database
-			if(strlen($newCardQuestion) > 255) {
-				throw(new \RangeException("card question is too large"));
-			}
-
-			// convert and store the card question
-			$this->cardQuestion = $newCardQuestion;
+		// verify the card question will fit in the database
+		if(strlen($newCardQuestion) > 255) {
+			throw(new \RangeException("card question is too large"));
 		}
+
+		// convert and store the card question
+		$this->cardQuestion = $newCardQuestion;
+	}
 	/**
 	 * inserts this Card into mySQL
 	 *
@@ -214,7 +214,7 @@ class Card implements \JsonSerializable {
 	 **/
 	public function insert(\PDO $pdo) : void {
 		// create query template
-		$query = "INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion) VALUES(:cardId, :cardCategoryId, :cardAnswer, :cardPoints, cardQuestion)";
+		$query = "INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion) VALUES(:cardId, :cardCategoryId, :cardAnswer, :cardPoints, :cardQuestion)";
 		$statement = $pdo->prepare($query);
 		// bind the member variables to the place holders in the template
 		$parameters = ["cardId" => $this->cardId->getBytes(), "cardCategoryId" => $this->cardCategoryId->getBytes(), "cardAnswer" => $this->cardAnswer, "cardPoints" => $this->cardPoints, "cardQuestion" => $this->cardQuestion];
@@ -321,42 +321,56 @@ class Card implements \JsonSerializable {
 		}
 		return($cards);
 	}
-/**
-* gets the Card by cardPoints
-*
-* @param \PDO $pdo PDO connection object
-* @param string|Uuid $cardId card id to search for
-* @return Card|null Card found or null if not found
-* @throws \PDOException when mySQL related errors occur
-* @throws \TypeError when a variable are not the correct data type
-**/
-	public static function getCardByCardPoints(\PDO $pdo, $cardId) : ?Card {
-		// sanitize the cardId before searching
-		try {
-			$cardId = self::validateUuid($cardId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
+
+	/**
+	 * gets the card by card points
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $cardPoints card points to search by
+	 * @return \SplFixedArray SplFixedArray of cards found
+	 * @throws \PDOExceptionwhen mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 */
+	public static function getCardByCardPoints(\PDO $pdo, $newCardPoints) : \SplFixedArray {
+		$newCardPoints = filter_var($newCardPoints, FILTER_VALIDATE_INT);
+		//check to see if points is empty or insecure
+		if(empty($newCardPoints) === true) {
+			throw(new \PDOException("card points empty or insecure"));
+		}
+		//check to see if points is int
+		if(is_int($newCardPoints) !== true) {
+			throw(new \InvalidArgumentException("card points is not an integer"));
+		}
+		// verify the ledger points will fit in the database
+		if($newCardPoints > 255) {
+			throw(new \RangeException("card points is too large"));
 		}
 		// create query template
-		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card WHERE cardId = :cardId";
+		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card WHERE cardPoints = :cardPoints";
 		$statement = $pdo->prepare($query);
-		// bind the card id to the place holder in the template
-		$parameters = ["cardId" => $cardId->getBytes()];
+		//bind the categoryProfileId to the place holder in the template
+		$parameters = ["cardPoints" => $newCardPoints];
 		$statement->execute($parameters);
-		// grab the card from mySQL
-		try {
-			$card = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
+		//build an array of cards
+		$cards = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
 				$card = new Card($row["cardId"], $row["cardCategoryId"], $row["cardAnswer"], $row["cardPoints"], $row["cardQuestion"]);
+				$cards[$cards->key()] = $card;
+				$cards->next();
+			} catch(\Exception $exception) {
+				//if the row could not be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			// if the row couldn't be converted, rethrow it
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($card);
+		return($cards);
 	}
+
+
+
+
+
 	/**
 	 * gets all cards
 	 *

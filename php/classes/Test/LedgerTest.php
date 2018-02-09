@@ -2,9 +2,11 @@
 
 namespace Edu\Cnm\Kmaru\Test;
 
+
 use Edu\Cnm\Kmaru\Profile;
-use Edu\Cnm\Kmaru\Board;
+use Edu\Cnm\Kmaru\Category;
 use Edu\Cnm\Kmaru\Card;
+use Edu\Cnm\Kmaru\Board;
 use Edu\Cnm\Kmaru\Ledger;
 
 // grab autoloader to load classes for testing
@@ -38,10 +40,22 @@ class LedgerTest extends KmaruTest {
 	protected $card;
 
 	/**
-	 *  profile that is answering the question. This is a foreign key relationship
+	 *  profile (player) that is answering the question. This is a foreign key relationship
 	 * @var Profile $profile
 	 **/
 	protected $profile;
+
+
+	/**
+	 *  category that is holds the cards
+	 * @var Category $category
+	 **/
+	protected $category;
+
+	/**
+	 * profile of creator of category, card, and board; this is the captain
+	 **/
+	protected $profileCaptain;
 
 	/**
 	 * placeholder until account activation is created
@@ -50,16 +64,34 @@ class LedgerTest extends KmaruTest {
 	protected $VALID_ACTIVATION;
 
 	/**
-	 * valid hash to use
+	 * placeholder until account activation is created of captain
+	 * @var string $VALID_ACTIVATION
+	 */
+	protected $VALID_ACTIVATION_CAPTAIN;
+
+	/**
+	 * valid hash to use of player
 	 * @var $VALID_HASH
 	 */
 	protected $VALID_HASH;
 
 	/**
-	 * valid salt to use to create the profile object to own the test
+	 * valid hash to use for captain
+	 * @var $VALID_HASH
+	 */
+	protected $VALID_HASH_CAPTAIN;
+
+	/**
+	 * valid salt to use to create the profile of player
 	 * @var string $VALID_SALT
 	 */
 	protected $VALID_SALT;
+
+	/**
+	 * valid salt to use to create the profile for captain
+	 * @var string $VALID_SALT
+	 */
+	protected $VALID_SALT_CAPTAIN;
 
 	/**
 	 * valid points to use
@@ -82,23 +114,40 @@ class LedgerTest extends KmaruTest {
 		//run default setUp method first from parent KmaruTest
 		parent::setUp();
 
-		// create a salt and hash for the mocked profile
-		$password = "poodledoodle2";
+		// create a salt and hash for the mocked captain profile
+		$passwordCaptain = "poodledoodle2";
+		$this->VALID_SALT_CAPTAIN = bin2hex(random_bytes(32));
+		$this->VALID_HASH_CAPTAIN = hash_pbkdf2("sha512", $passwordCaptain, $this->VALID_SALT_CAPTAIN, 262144);
+		$this->VALID_ACTIVATION_CAPTAIN = bin2hex(random_bytes(16));
+
+		//create and insert a Profile to create the category, card, and board
+		$this->profileCaptain = new Profile(generateUuidV4(), null, "deepdivedylan@cnm.edu", $this->VALID_HASH_CAPTAIN, "Captain Jean-Luc Picard", 123, $this->VALID_SALT_CAPTAIN, "FinallyWeek5");
+		$this->profileCaptain->insert($this->getPDO());
+
+		// create a salt and hash for the mocked player profile
+		$password = "resistance";
 		$this->VALID_SALT = bin2hex(random_bytes(32));
 		$this->VALID_HASH = hash_pbkdf2("sha512", $password, $this->VALID_SALT, 262144);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
 
-		//create and insert a Profile to answer the cards on the ledger
-		$this->profile = new Profile(generateUuidV4(), null, "tbennett19@cnm.edu", $this->VALID_HASH, "Captain Jean-Luc Picard", "123", $this->VALID_SALT, "FinallyWeek5");
+		//create and insert a Profile to play the game and answer questions
+		$this->profile = new Profile(generateUuidV4(), null, "nat@cnm.edu", $this->VALID_HASH, "Nat in the Brig", 0, $this->VALID_SALT, "BrigPartyHost");
 		$this->profile->insert($this->getPDO());
 
-		// create and insert a Board to contain the cards contained in the ledger
-		$this->board = new Board(generateUuidV4(), generateUuidV4(), "Treking");
-		$this->board->insert($this->getPDO());
+		// create and insert a Category to house the cards in the ledger
+		$this->category = new Category(generateUuidV4(), $this->profileCaptain->getProfileId(), "CSS");
+		$this->category->insert($this->getPDO());
 
 		// create and insert a Card to be answered by the profile on the board for the ledger
-		$this->card = new Card(generateUuidV4(), generateUuidV4(), "Read the Documentation!", 200, "If you are unsure of what you are writing...what should you do next?");
+		$this->card = new Card(generateUuidV4(), $this->category->getCategoryId(), "Read the Documentation!", 200, "If you are unsure of what you are writing...what should you do next?");
 		$this->card->insert($this->getPDO());
+
+
+		// create and insert a Board to contain the cards contained in the ledger
+		$this->board = new Board(generateUuidV4(), $this->profileCaptain->getProfileId(), "Treking");
+		$this->board->insert($this->getPDO());
+
+
 	}
 
 	/**
@@ -109,20 +158,19 @@ class LedgerTest extends KmaruTest {
 		$numRows = $this->getConnection()->getRowCount("ledger");
 
 		// create a new ledger and insert it into MySQL
-		$ledger = new Ledger($this->ledger->getLedgerBoardId(),
-			$this->ledger->getLedgerCardId(),
-			$this->ledger->getLedgerProfileId(),
+		$ledger = new Ledger(
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
 			200, 1);
 		$ledger->insert($this->getPDO());
 
 		// grab the data from MySQL and enforce the fields match our expectations
 		$pdoLedger = Ledger::getLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(
 			$this->getPDO(),
-			$this->board->getBoardId(),
-			$this->card->getCardId(),
-			$this->profile->getProfileId(),
-			$this->ledger->getLedgerPoints(),
-			$this->ledger->getLedgerType());
+			$ledger->getLedgerBoardId(),
+			$ledger->getLedgerCardId(),
+			$ledger->getLedgerProfileId());
 
 		// assuming these now exist, checking values to originals
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("ledger"));
@@ -142,11 +190,10 @@ class LedgerTest extends KmaruTest {
 
 		// create a new ledger and insert it into MySQL
 		$ledger = new Ledger(
-			$this->ledger->getLedgerBoardId(),
-			$this->ledger->getLedgerCardId(),
-			$this->ledger->getLedgerProfileId(),
-			200,
-			1);
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
+			200, 1);
 		$ledger->insert($this->getPDO());
 
 		// Delete the Ledger from MySQL
@@ -159,8 +206,7 @@ class LedgerTest extends KmaruTest {
 			$this->board->getBoardId(),
 			$this->card->getCardId(),
 			$this->profile->getProfileId(),
-			$this->ledger->getLedgerPoints(),
-			$this->ledger->getLedgerType());
+			$this->ledger->getLedgerPoints());
 
 		// assuming it does not exit anymore
 		$this->assertNull($pdoLedger);
@@ -190,15 +236,14 @@ class LedgerTest extends KmaruTest {
 
 		// create a new ledger and insert it into MySQL
 		$ledger = new Ledger(
-			$this->ledger->getLedgerBoardId(),
-			$this->ledger->getLedgerCardId(),
-			$this->ledger->getLedgerProfileId(),
-			200,
-			1);
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
+			200, 1);
 		$ledger->insert($this->getPDO());
 
 		// grab the data from MySQL and make sure the fields match our expectations
-		$results = Ledger::getLedgersByLedgerBoardId($this->getPDO(), $this->ledger->getLedgerBoardId());
+		$results = Ledger::getLedgersByLedgerBoardId($this->getPDO(), $ledger->getLedgerBoardId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("ledger"));
 		$this->assertCount(1, $results);
 
@@ -236,11 +281,10 @@ class LedgerTest extends KmaruTest {
 
 		// create a new ledger and insert it into MySQL
 		$ledger = new Ledger(
-			$this->ledger->getLedgerBoardId(),
-			$this->ledger->getLedgerCardId(),
-			$this->ledger->getLedgerProfileId(),
-			200,
-			1);
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
+			200, 1);
 		$ledger->insert($this->getPDO());
 
 		// grab the data from MySQL and make sure the fields match our expectations
@@ -282,11 +326,10 @@ class LedgerTest extends KmaruTest {
 
 		// create a new ledger and insert it into MySQL
 		$ledger = new Ledger(
-			$this->ledger->getLedgerBoardId(),
-			$this->ledger->getLedgerCardId(),
-			$this->ledger->getLedgerProfileId(),
-			200,
-			1);
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
+			200, 1);
 		$ledger->insert($this->getPDO());
 
 		// grab the data from MySQL and make sure the fields match our expectations

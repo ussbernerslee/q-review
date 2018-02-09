@@ -314,7 +314,7 @@ class Ledger implements \JsonSerializable {
 	 * @throws \TypeError when a variable is not the correct data type
 	 **/
 
-	public static function getLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(\PDO $pdo, string $ledgerBoardId, string $ledgerCardId, string $ledgerProfileId) : \SplFixedArray {
+	public static function getLedgerByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(\PDO $pdo, string $ledgerBoardId, string $ledgerCardId, string $ledgerProfileId) : ?Ledger  {
 		// sanitize the ledgerBoardId before searching
 		try {
 			$ledgerBoardId = self::validateUuid($ledgerBoardId);
@@ -344,20 +344,19 @@ class Ledger implements \JsonSerializable {
 		$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes(), "ledgerCardId" => $ledgerCardId->getBytes(), "ledgerProfileId" => $ledgerProfileId->getBytes()];
 		$statement->execute($parameters);
 
-		//build an array of ledgers
-		$ledgers = new \SplFixedArray(($statement->rowCount()));
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
-			try {
-				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
-				$ledgers[$ledgers->key()] = $ledger;
-				$ledgers->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
+		// grab the like from mySQL
+		try {
+			$ledger = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$like = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
 			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($ledgers);
+		return ($ledger);
 	}
 
 //*******************************************************************************************************************
@@ -411,110 +410,6 @@ public static function getLedgersByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, st
 	}
 	return ($ledgers);
 }
-
-//*******************************************************************************************************************
-
-	/**
-	 * gets the Ledgers by ledger card id and ledger profile id
-	 *
-	 * @param Uuid|string $ledgerCardId ledger card id to search by
-	 * @param Uuid|string $ledgerProfileId ledger profile id to search by
-	 * @return \SplFixedArray SplFixedArray of ledgers found
-	 * @throws \PDOException when mySQL related error occurs
-	 * @throws \TypeError when a variable is not the correct data type
-	 **/
-
-	public static function getLedgersByLedgerCardIdAndLedgerProfileId(\PDO $pdo, string $ledgerCardId, string $ledgerProfileId) : \SplFixedArray {
-		// sanitize the ledgerCardId
-		try {
-			$ledgerCardId = self::validateUuid($ledgerCardId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-
-		// sanitize the ledgerProfileId before searching
-		try {
-			$ledgerProfileId = self::validateUuid($ledgerProfileId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-
-		// create query template
-		$query = "SELECT ledgerBoardId, ledgerCardId, ledgerProfileId, ledgerPoints, ledgerType FROM ledger WHERE ledgerCardId = :ledgerCardId AND ledgerProfileId = :ledgerProfileId";
-		$statement = $pdo->prepare($query);
-
-		//bind the ledger card id  and ledger profile id to the place holder in the template
-		$parameters = ["ledgerCardId" => $ledgerCardId->getBytes(), "ledgerProfileId" => $ledgerProfileId->getBytes()];
-		$statement->execute($parameters);
-
-		//build an array of ledgers
-		$ledgers = new \SplFixedArray(($statement->rowCount()));
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
-			try {
-				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
-				$ledgers[$ledgers->key()] = $ledger;
-				$ledgers->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		}
-		return ($ledgers);
-	}
-
-//******************************************************************************************************************
-
-	/**
-	 * gets the Ledgers by ledger board id and ledger card id
-	 *
-	 * @param Uuid|string $ledgerBoardId ledger board id to search by
-	 * @param Uuid|string $ledgerCardId ledger card id to search by
-	 * @return \SplFixedArray SplFixedArray of ledgers found
-	 * @throws \PDOException when mySQL related error occurs
-	 * @throws \TypeError when a variable is not the correct data type
-	 **/
-
-	public static function getLedgersByLedgerBoardIdAndLedgerCardId(\PDO $pdo, string $ledgerBoardId, string $ledgerCardId) : \SplFixedArray {
-
-		// sanitize the ledgerBoardId before searching
-		try {
-			$ledgerBoardId = self::validateUuid($ledgerBoardId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-
-		// sanitize the ledgerCardId
-		try {
-			$ledgerCardId = self::validateUuid($ledgerCardId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-
-		// create query template
-		$query = "SELECT ledgerBoardId, ledgerCardId, ledgerProfileId, ledgerPoints, ledgerType FROM ledger WHERE ledgerBoardId = :ledgerBoardId AND ledgerCardId = :ledgerCardId";
-		$statement = $pdo->prepare($query);
-
-		//bind the ledger board id  and ledger card id to the place holder in the template
-		$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes(), "ledgerCardId" => $ledgerCardId->getBytes()];
-		$statement->execute($parameters);
-
-		//build an array of ledgers
-		$ledgers = new \SplFixedArray(($statement->rowCount()));
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
-			try {
-				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
-				$ledgers[$ledgers->key()] = $ledger;
-				$ledgers->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		}
-		return ($ledgers);
-
-	}
 
 //*******************************************************************************************************************
 
