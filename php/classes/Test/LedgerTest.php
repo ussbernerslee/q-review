@@ -264,7 +264,7 @@ class LedgerTest extends KmaruTest {
 	 * test grabbing Ledger by a ledger card Id that does not exist
 	 **/
 	public function testGetInvalidLedgerByLedgerCardId() : void {
-		// try to grab a Leger by an incorrect ledger board Id
+		// try to grab a Leger by an incorrect ledger card Id
 		$ledger = Ledger::getLedgersByLedgerCardId(
 			$this->getPDO(), generateUuidV4());
 
@@ -310,7 +310,7 @@ class LedgerTest extends KmaruTest {
 	 * test grabbing Ledger by a ledger profile Id that does not exist
 	 **/
 	public function testGetInvalidLedgerByLedgerProfileId() : void {
-		// try to grab a Leger by an incorrect ledger board Id
+		// try to grab a Leger by an incorrect ledger profile Id
 		$ledger = Ledger::getLedgersByLedgerProfileId(
 			$this->getPDO(), generateUuidV4());
 

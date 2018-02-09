@@ -18,17 +18,17 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 class CardTest extends KmaruTest {
 	/**
 	 * Category that populates the Card; this is for foreign key relations
-	 * @var  Category category
+	 * @var  Category $category
 	 **/
 	protected $category = null;
 	/**
 	 * valid answer to use
-	 * @var $VALID_CARD_ANSWER
+	 * @var string $VALID_CARD_ANSWER
 	 */
 	protected $VALID_CARD_ANSWER;
 	/**
 	 * valid point value for the card
-	 * @var string $VALID_CARD_POINTS
+	 * @var int $VALID_CARD_POINTS
 	 */
 	protected $VALID_CARD_POINTS;
 	/**
