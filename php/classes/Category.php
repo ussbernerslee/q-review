@@ -189,7 +189,7 @@ class Category implements \JsonSerializable {
 		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryProfileId" => $this->categoryProfileId->getBytes(), "categoryName" => $this->categoryName];
 		$statement->execute($parameters);
 	}
-	//TODO : get category by category name
+
 	/**
 	 * gets the Category by categoryId
 	 *
@@ -226,7 +226,8 @@ class Category implements \JsonSerializable {
 		}
 		return($category);
 	}
-	}	/**
+
+	/**
 	 * gets the category by profile id
 	 *
 	 * @param |PDO $pdo PDO connection object
@@ -246,6 +247,43 @@ class Category implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 		//bind the categoryProfileId to the place holder in the template
 		$parameters = ["categoryProfileId" => $categoryProfileId->getBytes()];
+		$statement->execute($parameters);
+		//build an array of categories
+		$categories = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$category = new Category($row["categoryId"], $row["categoryProfileId"], $row["categoryName"]);
+				$categories[$categories->key()] = $category;
+				$categories->next();
+			} catch(\Exception $exception) {
+				//if the row could not be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($categories);
+	}
+	/**
+	 * gets the category by category name
+	 *
+	 * @param |PDO $pdo PDO connection object
+	 * @param string $categoryName category name to search by
+	 * @return \SplFixedArray SplFixedArray of categories found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 */
+	public static function getCatetegoryByCategoryName(\PDO $pdo, $categoryName) : \SplFixedArray {
+		//saintize the strin before searching
+		$categoryName = trim($categoryName);
+		$categoryName = filter_var($categoryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($categoryName) === true) {
+			throw(new \PDOException("not a valid name"));
+		}
+		// create query template
+		$query = "SELECT categoryId, categoryProfileId, categoryName FROM category WHERE categoryName = :categoryName";
+		$statement = $pdo->prepare($query);
+		//bind the category name to the place holder in the template
+		$parameters = ["categoryName" => $categoryName];
 		$statement->execute($parameters);
 		//build an array of categories
 		$categories = new \SplFixedArray($statement->rowCount());
