@@ -85,7 +85,7 @@ public function testInsertValidBoard() : void {
 	$this->assertEquals($pdoBoard->getBoardName(), $this->VALID_BOARDNAME);
 }
 	/**
-	 * test inserting a Board, editing it, and then updating it
+	 * test inserting a Board, then editing it, and then updating it
 	 **/
 	public function testUpdateValidBoard() : void {
 		//count the number of rows and save it for later
