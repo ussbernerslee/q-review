@@ -189,7 +189,7 @@ class Category implements \JsonSerializable {
 		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryProfileId" => $this->categoryProfileId->getBytes(), "categoryName" => $this->categoryName];
 		$statement->execute($parameters);
 	}
-	//TODO get category by category name
+	//TODO : get category by category name
 	/**
 	 * gets the Category by categoryId
 	 *
