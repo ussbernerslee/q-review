@@ -236,7 +236,7 @@ class Category implements \JsonSerializable {
 	 * @throws \PDOExceptionwhen mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 */
-	public static function getCatetegoryByCategoryProfileId(\PDO $pdo, $categoryProfileId) : \SplFixedArray {
+	public static function getCategoryByCategoryProfileId(\PDO $pdo, $categoryProfileId) : \SplFixedArray {
 		try {
 			$categoryProfileId = self::validateUuid($categoryProfileId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
@@ -272,7 +272,7 @@ class Category implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 */
-	public static function getCatetegoryByCategoryName(\PDO $pdo, $categoryName) : \SplFixedArray {
+	public static function getCategoryByCategoryName(\PDO $pdo, $categoryName) : \SplFixedArray {
 		//saintize the strin before searching
 		$categoryName = trim($categoryName);
 		$categoryName = filter_var($categoryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);

@@ -78,7 +78,7 @@ class CategoryTest extends KmaruTest {
 
 		//grab the data from mySQL and enforce the fields match our expectations
 		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $categoryId);
-		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId->getCategoryId());
+		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
 		$this->assertEquals($pdoCategory->getCategoryProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
@@ -121,7 +121,7 @@ class CategoryTest extends KmaruTest {
 
 		//delete the Category from mySQL
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
-		$this->delete($this->getPDO());
+		$category->delete($this->getPDO());
 
 		//grab the data from mySQL and enforce the Category does not exist
 		$pdoCategory = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
@@ -151,7 +151,7 @@ class CategoryTest extends KmaruTest {
 		$category->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$results = Category::getCatetegoryByCategoryProfileId($this->getPDO(), $category->getCategoryProfileId());
+		$results = Category::getCategoryByCategoryProfileId($this->getPDO(), $category->getCategoryProfileId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("category"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Category", $results);
@@ -169,7 +169,7 @@ class CategoryTest extends KmaruTest {
 	 **/
 	public function testGetInvalidCategoryByCategoryProfileId(): void {
 		// grab a profile id that exceeds the maximum allowable profile id
-		$category = Category::getCatetegoryByCategoryProfileId($this->getPDO(), generateUuidV4());
+		$category = Category::getCategoryByCategoryProfileId($this->getPDO(), generateUuidV4());
 		$this->assertCount(0, $category);
 	}
 
@@ -196,7 +196,7 @@ class CategoryTest extends KmaruTest {
 		//grab the result from the array and validate it
 		$pdoCategory = $results[0];
 		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
-		$this->assertEquals($pdoCategory->getCategoryByProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCategory->getCategoryProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
 	}
 
