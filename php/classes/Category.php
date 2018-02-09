@@ -189,6 +189,7 @@ class Category implements \JsonSerializable {
 		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryProfileId" => $this->categoryProfileId->getBytes(), "categoryName" => $this->categoryName];
 		$statement->execute($parameters);
 	}
+	//TODO get category by category name
 	/**
 	 * gets the Category by categoryId
 	 *
@@ -225,7 +226,7 @@ class Category implements \JsonSerializable {
 		}
 		return($category);
 	}
-	/**
+	}	/**
 	 * gets the category by profile id
 	 *
 	 * @param |PDO $pdo PDO connection object
