@@ -147,7 +147,6 @@ class LedgerTest extends KmaruTest {
 		$this->board = new Board(generateUuidV4(), $this->profileCaptain->getProfileId(), "Treking");
 		$this->board->insert($this->getPDO());
 
-
 	}
 
 	/**

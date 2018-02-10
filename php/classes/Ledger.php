@@ -350,7 +350,7 @@ class Ledger implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$like = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
+				$ledger = new Ledger($row["ledgerBoardId"], $row["ledgerCardId"], $row["ledgerProfileId"], $row["ledgerPoints"], $row["ledgerType"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it
