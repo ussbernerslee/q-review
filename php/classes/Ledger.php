@@ -547,6 +547,43 @@ public static function getLedgersByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, st
 	}
 
 
+//********************************************************************************************************
+
+	/**
+	 * gets points by ledger board id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param Uuid|string $ledgerBoardId ledger board id to search by
+	 * @return \SplFixedArray SplFixedArray of ledgers found
+	 * @throws \PDOException when mySQL related error occurs
+	 * @throws \TypeError when a variable is not the correct data type
+	 **/
+	public static function getPointsByLedgerBoardId(\PDO $pdo, $ledgerBoardId) : \SplFixedArray {
+		// sanitize the ledgerBoardId before searching
+		try {
+			$ledgerBoardId = self::validateUuid($ledgerBoardId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+
+		$result = mysqli_query($connection, "CALL getPointsOnBoard") or die("Query fail: " . mysqli_error());
+
+
+		// stops direct access to database for formatting
+		$statement = $pdo->prepare($result);
+
+		// bind the ledger board id to the place holder in the template
+		$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes()];
+		$statement->execute($parameters);
+
+
+		while ($row = mysqli_fetch_array($result)) {
+			echo $row[0] . " - " . + $row[1];
+		}
+
+	}
+
 
 //*******************************************************************************************************************
 	/**

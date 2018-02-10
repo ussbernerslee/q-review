@@ -182,6 +182,12 @@ class LedgerTest extends KmaruTest {
 	}
 
 	/**
+	 * test inserting a ledger and grabbing it by ledger board id and ledger profile id
+	 **/
+
+
+
+	/**
 	 * test creating and then deleting valid ledger
 	 **/
 	public function testDeleteValidLedger() : void {
@@ -225,6 +231,11 @@ class LedgerTest extends KmaruTest {
 		//asserting that it is incorrect
 		$this->assertEquals(0, $ledger);
 }
+
+
+
+
+
 
 	/**
 	 * test grabbing a Ledger by ledger board id

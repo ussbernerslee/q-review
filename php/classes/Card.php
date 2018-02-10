@@ -389,8 +389,8 @@ class Card implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$cards = new Card($row["cardId"], $row["cardCategoryId"], $row["cardAnswer"], $row["cardPoints"], $row["cardQuestion"]);
-				$cards[$cards->key()] = $cards;
+				$card = new Card($row["cardId"], $row["cardCategoryId"], $row["cardAnswer"], $row["cardPoints"], $row["cardQuestion"]);
+				$cards[$cards->key()] = $card;
 				$cards->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
