@@ -488,33 +488,33 @@ class Profile implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getProfileByProfileName(\PDO $pdo, string $profileName) : \SPLFixedArray {
-		// sanitize the name before searching
-		$profileName = trim($profileName);
-		$profileName = filter_var($profileName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($profileName) === true) {
-			throw(new \PDOException("not a valid name"));
-		}
-		// create query template
-		$query = "SELECT  profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileSalt, profileUsername FROM profile WHERE profileName = :profileName";
-		$statement = $pdo->prepare($query);
-		// bind the profile name to the place holder in the template
-		$parameters = ["profileName" => $profileName];
-		$statement->execute($parameters);
-		$profiles = new \SPLFixedArray($statement->rowCount());
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while (($row = $statement->fetch()) !== false) {
-			try {
-				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileSalt"], $row["profileUsername"]);
-				$profiles[$profiles->key()] = $profile;
-				$profiles->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		}
-		return ($profiles);
-	}
+//	public static function getProfileByProfileName(\PDO $pdo, string $profileName) : \SPLFixedArray {
+//		 sanitize the name before searching
+//		$profileName = trim($profileName);
+//		$profileName = filter_var($profileName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+//		if(empty($profileName) === true) {
+//			throw(new \PDOException("not a valid name"));
+//		}
+//		 create query template
+//		$query = "SELECT  profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, profileSalt, profileUsername FROM profile WHERE profileName = :profileName";
+//		$statement = $pdo->prepare($query);
+//		 bind the profile name to the place holder in the template
+//		$parameters = ["profileName" => $profileName];
+//		$statement->execute($parameters);
+//		$profiles = new \SPLFixedArray($statement->rowCount());
+//		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+//		while (($row = $statement->fetch()) !== false) {
+//			try {
+//				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileSalt"], $row["profileUsername"]);
+//				$profiles[$profiles->key()] = $profile;
+//				$profiles->next();
+//			} catch(\Exception $exception) {
+//				 if the row couldn't be converted, rethrow it
+//				throw(new \PDOException($exception->getMessage(), 0, $exception));
+//			}
+//		}
+//		return ($profiles);
+//	}
 	/**
 	 * gets the Profile by username
 	 *

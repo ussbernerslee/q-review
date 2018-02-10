@@ -1,11 +1,11 @@
 <phpunit>
 	<testsuites>
 		<testsuite name="Kmaru Test">
-			<!--<file>ProfileTest.php</file>-->
+			<file>ProfileTest.php</file>
 			<!--<file>CategoryTest.php</file>-->
 			<!--<file>CardTest.php</file>-->
 			<!--<file>BoardTest.php</file>-->
-			<file>LedgerTest.php</file>
+			<!--<file>LedgerTest.php</file>-->
 		</testsuite>
 	</testsuites>
 	<filter>
