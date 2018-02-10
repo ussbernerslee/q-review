@@ -371,34 +371,34 @@ class Card implements \JsonSerializable {
 
 
 
-	/**
-	 * gets all cards
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @return \SplFixedArray SplFixedArray of cards found or null if not found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
-	public static function getAllCards(\PDO $pdo) : \SPLFixedArray {
-		// create query template
-		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card";
-		$statement = $pdo->prepare($query);
-		$statement->execute();
-		// build an array of cards
-		$cards = new \SplFixedArray($statement->rowCount());
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
-			try {
-				$card = new Card($row["cardId"], $row["cardCategoryId"], $row["cardAnswer"], $row["cardPoints"], $row["cardQuestion"]);
-				$cards[$cards->key()] = $card;
-				$cards->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		}
-		return ($cards);
-	}
+//	/**
+//	 * gets all cards
+//	 *
+//	 * @param \PDO $pdo PDO connection object
+//	 * @return \SplFixedArray SplFixedArray of cards found or null if not found
+//	 * @throws \PDOException when mySQL related errors occur
+//	 * @throws \TypeError when variables are not the correct data type
+//	 **/
+//	public static function getAllCards(\PDO $pdo) : \SPLFixedArray {
+//		// create query template
+//		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card";
+//		$statement = $pdo->prepare($query);
+//		$statement->execute();
+//		// build an array of cards
+//		$cards = new \SplFixedArray($statement->rowCount());
+//		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+//		while(($row = $statement->fetch()) !== false) {
+//			try {
+//				$card = new Card($row["cardId"], $row["cardCategoryId"], $row["cardAnswer"], $row["cardPoints"], $row["cardQuestion"]);
+//				$cards[$cards->key()] = $card;
+//				$cards->next();
+//			} catch(\Exception $exception) {
+//				// if the row couldn't be converted, rethrow it
+//				throw(new \PDOException($exception->getMessage(), 0, $exception));
+//			}
+//		}
+//		return ($cards);
+//	}
 	/**
 	 * formats the state variables for JSON serialization
 	 *
