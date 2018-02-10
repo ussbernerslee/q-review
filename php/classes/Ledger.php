@@ -7,6 +7,7 @@ namespace Edu\Cnm\Kmaru;
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 
+use const Grpc\CALL_ERROR;
 use Ramsey\Uuid\Uuid;
 
 
@@ -566,21 +567,30 @@ public static function getLedgersByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, st
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 
+		// create query template
+		$query = "CALL getPointsOnBoard(boardId)";
 
-		$result = mysqli_query($connection, "CALL getPointsOnBoard") or die("Query fail: " . mysqli_error());
+		// stops direct deletion
+		$statement = $pdo->prepare($query);
 
-
-		// stops direct access to database for formatting
-		$statement = $pdo->prepare($result);
-
-		// bind the ledger board id to the place holder in the template
+		// binds binary value of articleId to placeholder for profileId
 		$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes()];
 		$statement->execute($parameters);
 
-
-		while ($row = mysqli_fetch_array($result)) {
-			echo $row[0] . " - " . + $row[1];
-		}
+		//build an array of players with their respective score
+		$scores = new \SplFixedArray(($statement->rowCount()));
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+//		while(($row = $statement->fetch()) !== false) {
+//			try {
+//				$score = new leaderBoard($row["ledgerProfileId"], $row["ledgerPoints"]);
+//				$ledgers[$scores->key()] = $score;
+//				$scores->next();
+//			} catch(\Exception $exception) {
+//				// if the row couldn't be converted, rethrow it
+//				throw(new \PDOException($exception->getMessage(), 0, $exception));
+//			}
+//		}
+		return ($scores);
 
 	}
 

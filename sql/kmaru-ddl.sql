@@ -100,12 +100,12 @@ CREATE TABLE ledger(
 
 -- stored procedure to sum points by profile from ledger
 DELIMITER //
-CREATE PROCEDURE getPointsOnBoard(IN board VARCHAR(32))
+CREATE PROCEDURE getPointsOnBoard(IN board BINARY(16))
 	BEGIN
 
 		-- declare the variables used withing the procedure
 		DECLARE done INT DEFAULT FALSE;
-		DECLARE currentProfileId VARCHAR(32);
+		DECLARE currentProfileId BINARY(16);
 		DECLARE currentPoints MEDIUMINT SIGNED;
 
 		-- cursor to navigate through ledger getting ledgerBoardId
@@ -119,7 +119,7 @@ CREATE PROCEDURE getPointsOnBoard(IN board VARCHAR(32))
 
 		-- creating temp table for points by profileId on board
 		CREATE TEMPORARY TABLE leaderBoard (
-			ledgerProfileId VARCHAR(32) NOT NULL,
+			ledgerProfileId BINARY(16) NOT NULL,
 			ledgerPoints MEDIUMINT SIGNED
 		);
 
@@ -132,7 +132,7 @@ CREATE PROCEDURE getPointsOnBoard(IN board VARCHAR(32))
 				LEAVE boardLoop;
 			END IF;
 
-			SELECT ledgerProfileId, SUM(ledgerPoints) FROM ledger GROUP BY ledgerProfileId;
+			SELECT ledgerProfileId, SUM(ledgerPoints) INTO currentProfileId, currentPoints FROM ledger GROUP BY ledgerProfileId;
 
 			-- insert values of current profile id and points into temp table
 			INSERT INTO leaderBoard(ledgerProfileId, ledgerPoints) VALUES (currentProfileId, currentPoints);
