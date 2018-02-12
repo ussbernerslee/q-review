@@ -375,4 +375,30 @@ class LedgerTest extends KmaruTest {
 		$this->assertCount(0, $ledger);
 	}
 
+
+	/**
+	 * test the getting the points on the ledger by a valid ledger board id
+	 **/
+	public function testGetPointsOnBoard() {
+		// create a query template to CALL the stored procedure
+		$pdo = $this->getPDO();
+		$query = "SELECT getPointsOnBoard(:boardId) AS points";
+		$statement = $pdo->prepare($query);
+
+		// bind the parameters to the stored procedure
+		$parameters = array("boardId" => $this->board->getBoardId());
+		$statement->execute($parameters);
+
+		// returns the values in each place of the array
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		$result = $statement->fetch();
+		$points = $result["points"];
+
+		// assert the answer is the expected answer within a margin of error (needed for doubles)
+
+		//TODO: make this a state variable? to test...
+		$this->assertEquals($points, $this->VALID_LEADERBOARD_POINTS);
+
+	}
+
 }

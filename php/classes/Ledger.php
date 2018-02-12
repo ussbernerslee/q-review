@@ -568,9 +568,9 @@ public static function getLedgersByLedgerBoardIdAndLedgerProfileId(\PDO $pdo, st
 		}
 
 		// create query template
-		$query = "CALL getPointsOnBoard(boardId)";
+		$query = "SELECT getPointsOnBoard(:boarId) AS points";
 
-		// stops direct deletion
+		// stops direct access to database
 		$statement = $pdo->prepare($query);
 
 		// binds binary value of articleId to placeholder for profileId
