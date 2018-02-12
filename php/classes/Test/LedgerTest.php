@@ -234,9 +234,6 @@ class LedgerTest extends KmaruTest {
 
 
 
-
-
-
 	/**
 	 * test grabbing a Ledger by ledger board id
 	 **/
@@ -395,8 +392,6 @@ class LedgerTest extends KmaruTest {
 		$points = $result["points"];
 
 		// assert the answer is the expected answer within a margin of error (needed for doubles)
-
-		//TODO: make this a state variable? to test...
 		$this->assertEquals($points, $this->VALID_LEADERBOARD_POINTS);
 
 	}
