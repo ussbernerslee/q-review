@@ -11,7 +11,13 @@ CREATE PROCEDURE getPointsOnBoard(IN board BINARY(16))
 		DECLARE currentPoints MEDIUMINT SIGNED;
 
 		-- cursor to navigate through ledger getting ledgerBoardId
-		DECLARE boardCursor CURSOR FOR SELECT ledgerBoardId FROM ledger WHERE ledgerBoardId = board;
+		DECLARE boardCursor CURSOR FOR SELECT
+													 ledgerProfileId,
+													 SUM(ledgerPoints)
+												 FROM ledger
+												 WHERE ledgerBoardId = board
+												 GROUP BY ledgerProfileId
+												ORDER BY ledgerPoints ASC;
 
 		-- avoid error by hitting end of table
 		DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
@@ -22,28 +28,25 @@ CREATE PROCEDURE getPointsOnBoard(IN board BINARY(16))
 		-- creating temp table for points by profileId on board
 		CREATE TEMPORARY TABLE leaderBoard (
 			ledgerProfileId BINARY(16) NOT NULL,
-			ledgerPoints MEDIUMINT SIGNED
+			ledgerPoints    MEDIUMINT SIGNED
 		);
 
 		-- use cursor
 		OPEN boardCursor;
 		boardLoop: LOOP
-			FETCH boardCursor INTO currentProfileId, currentPoints;
+			FETCH boardCursor
+			INTO currentProfileId, currentPoints;
 
-			IF done THEN
+			IF done
+			THEN
 				LEAVE boardLoop;
-			ELSE
-
-
-				# 			SELECT ledgerProfileId, SUM(ledgerPoints) INTO currentProfileId, currentPoints FROM ledger GROUP BY ledgerProfileId;
-
-				-- alternate version with results placed in descending order
-				# 			SELECT ledgerProfileId, SUM(ledgerPoints) total INTO currentProfileId, currentPoints FROM ledger GROUP BY ledgerProfileId ORDER BY SUM(ledgerPoints) DESC;
-
-				-- insert values of current profile id and points into temp table
-				INSERT INTO leaderBoard(ledgerProfileId, ledgerPoints) VALUES (currentProfileId, currentPoints);
-
 			END IF;
+
+			-- alternate version with results placed in descending order
+			# 			SELECT ledgerProfileId, SUM(ledgerPoints) total INTO currentProfileId, currentPoints FROM ledger GROUP BY ledgerProfileId ORDER BY SUM(ledgerPoints) DESC;
+
+			-- insert values of current profile id and points into temp table
+			INSERT INTO leaderBoard (ledgerProfileId, ledgerPoints) VALUES (currentProfileId, currentPoints);
 		END LOOP;
 
 		CLOSE boardCursor;
@@ -51,6 +54,10 @@ CREATE PROCEDURE getPointsOnBoard(IN board BINARY(16))
 		# 		SELECT ledgerProfileId, ledgerPoints FROM leaderBoard;
 
 		-- alternate select using descending order by points
-		SELECT ledgerProfileId, ledgerPoints from leaderBoard ORDER BY ledgerPoints DESC;
+		SELECT
+			ledgerProfileId,
+			ledgerPoints
+		FROM leaderBoard
+		ORDER BY ledgerPoints DESC;
 
 	END //
