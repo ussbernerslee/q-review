@@ -6,7 +6,7 @@ namespace Edu\Cnm\Kmaru;
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 
-use const Grpc\CALL_ERROR;
+use Edu\Cnm\Kmaru\JsonObjectStorage;
 use Ramsey\Uuid\Uuid;
 
 
@@ -363,6 +363,7 @@ class Ledger implements \JsonSerializable {
 	/**
 	 * gets the Ledgers by ledger board id and ledger profile id
 	 *
+	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $ledgerBoardId ledger board id to search by
 	 * @param Uuid|string $ledgerProfileId ledger profile id to search
 	 * @return \SplFixedArray SplFixedArray of ledgers found
@@ -578,7 +579,7 @@ class Ledger implements \JsonSerializable {
 								SUM(ledgerPoints) AS points
 					FROM ledger
 					INNER JOIN profile ON ledger.ledgerProfileId = profile.profileId
-					WHERE ledgerBoardId = 0x787B433EBBAA4AA5B57D3D49E0757E6D
+					WHERE ledgerBoardId = :ledgerBoardId
 					GROUP BY ledgerProfileId
 					ORDER BY points DESC";
 

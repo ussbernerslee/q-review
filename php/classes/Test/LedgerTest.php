@@ -16,7 +16,7 @@ require_once(dirname(__DIR__, 1) . "/autoload.php");
 require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 
 /**
- * Full PHPUnit test for the Profile class
+ * Full PHPUnit test for the Ledger class
  *
  * This is a complete PHPUnit test of the Ledger class. It is complete because *ALL* mySQL/PDO enabled methods
  * are tested for both invalid and valid inputs.
@@ -24,7 +24,6 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  * @see Ledger
  * @author Tristan Bennett tbennett19@cnm.edu
  **/
-
 class LedgerTest extends KmaruTest {
 
 	/**
@@ -181,16 +180,11 @@ class LedgerTest extends KmaruTest {
 		$this->assertEquals($pdoLedger->getLedgerType(), $this->VALID_LEDGER_TYPE);
 	}
 
-	/**
-	 * test inserting a ledger and grabbing it by ledger board id and ledger profile id
-	 **/
-
-
 
 	/**
 	 * test creating and then deleting valid ledger
 	 **/
-	public function testDeleteValidLedger() : void {
+	public function testDeleteValidLedger(): void {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("ledger");
 
@@ -222,22 +216,21 @@ class LedgerTest extends KmaruTest {
 	/**
 	 * test grabbing a Ledger that does not exist
 	 **/
-	public function testGetInvalidLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId() : void {
+	public function testGetInvalidLedgersByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(): void {
 
 		// try to grab a Leger by an incorrect ledger board Id and ledger card id and ledger profile id
 		$ledger = Ledger::getLedgerByLedgerBoardIdAndLedgerCardIdAndLedgerProfileId(
-				$this->getPDO(), generateUuidV4(), generateUuidV4(), generateUuidV4());
+			$this->getPDO(), generateUuidV4(), generateUuidV4(), generateUuidV4());
 
 		//asserting that it is incorrect
 		$this->assertEquals(0, $ledger);
-}
-
+	}
 
 
 	/**
 	 * test grabbing a Ledger by ledger board id
 	 **/
-	public function testGetValidLedgerByLedgerBoardId() : void {
+	public function testGetValidLedgerByLedgerBoardId(): void {
 
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("ledger");
@@ -271,7 +264,7 @@ class LedgerTest extends KmaruTest {
 	/**
 	 * test grabbing Ledger by a ledger  board Id that does not exist
 	 **/
-	public function testGetInvalidLedgerByLedgerBoardId() : void {
+	public function testGetInvalidLedgerByLedgerBoardId(): void {
 		// try to grab a Leger by an incorrect ledger board Id
 		$ledger = Ledger::getLedgersByLedgerBoardId(
 			$this->getPDO(), generateUuidV4());
@@ -283,7 +276,7 @@ class LedgerTest extends KmaruTest {
 	/**
 	 * test grabbing a Ledger by ledger card id
 	 **/
-	public function testGetValidLedgerByLedgerCardId() : void {
+	public function testGetValidLedgerByLedgerCardId(): void {
 
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("ledger");
@@ -317,7 +310,7 @@ class LedgerTest extends KmaruTest {
 	/**
 	 * test grabbing Ledger by a ledger card Id that does not exist
 	 **/
-	public function testGetInvalidLedgerByLedgerCardId() : void {
+	public function testGetInvalidLedgerByLedgerCardId(): void {
 		// try to grab a Leger by an incorrect ledger card Id
 		$ledger = Ledger::getLedgersByLedgerCardId(
 			$this->getPDO(), generateUuidV4());
@@ -329,7 +322,7 @@ class LedgerTest extends KmaruTest {
 	/**
 	 * test grabbing a Ledger by ledger profile id
 	 **/
-	public function testGetValidLedgerByLedgerProfileId() : void {
+	public function testGetValidLedgerByLedgerProfileId(): void {
 
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("ledger");
@@ -363,7 +356,7 @@ class LedgerTest extends KmaruTest {
 	/**
 	 * test grabbing Ledger by a ledger profile Id that does not exist
 	 **/
-	public function testGetInvalidLedgerByLedgerProfileId() : void {
+	public function testGetInvalidLedgerByLedgerProfileId(): void {
 		// try to grab a Leger by an incorrect ledger profile Id
 		$ledger = Ledger::getLedgersByLedgerProfileId(
 			$this->getPDO(), generateUuidV4());
@@ -374,26 +367,129 @@ class LedgerTest extends KmaruTest {
 
 
 	/**
-	 * test the getting the points on the ledger by a valid ledger board id
+	 * test inserting a ledger and grabbing it by ledger board id and ledger profile id
 	 **/
-	public function testGetPointsOnBoard() {
-		// create a query template to CALL the stored procedure
-		$pdo = $this->getPDO();
-		$query = "SELECT getPointsOnBoard(:boardId) AS points";
-		$statement = $pdo->prepare($query);
+	public function testGetValidLedgerByLedgerBoardIdAndLedgerProfileId(): void {
 
-		// bind the parameters to the stored procedure
-		$parameters = array("boardId" => $this->board->getBoardId());
-		$statement->execute($parameters);
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("ledger");
 
-		// returns the values in each place of the array
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		$result = $statement->fetch();
-		$points = $result["points"];
+		// create a new ledger and insert it into MySQL
+		$ledger = new Ledger(
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
+			$this->VALID_LEDGER_POINTS,
+			$this->VALID_LEDGER_TYPE);
+		$ledger->insert($this->getPDO());
 
-		// assert the answer is the expected answer within a margin of error (needed for doubles)
-		$this->assertEquals($points, $this->VALID_LEADERBOARD_POINTS);
+		// grab the data from MySQL and make sure the fields match our expectations
+		$results = Ledger::getLedgersByLedgerBoardIdAndLedgerProfileId($this->getPDO(), $ledger->getLedgerBoardId(), $ledger->getLedgerProfileId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("ledger"));
+
+		$this->assertCount(1, $results);
+
+		// enforce no other objects are bleeding into the test
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Kmaru\\Ledger", $results);
+
+		// grab the result from the array and validate it
+		$pdoLedger = $results[0];
+		$this->assertEquals($pdoLedger->getLedgerBoardId(), $this->board->getBoardId());
+		$this->assertEquals($pdoLedger->getLedgerCardId(), $this->card->getCardId());
+		$this->assertEquals($pdoLedger->getLedgerProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoLedger->getLedgerPoints(), $this->VALID_LEDGER_POINTS);
+		$this->assertEquals($pdoLedger->getLedgerType(), $this->VALID_LEDGER_TYPE);
+	}
+
+
+	/**
+	 * test getting the sum of profile points per profile on a board by board id
+	 **/
+	public function testGetPointsByLedgerBoardId() : void {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("ledger");
+
+		// create a salt and hash for the mocked captain profile
+			$passwordCaptain = "poodledoodle2";
+			$VALID_SALT_CAPTAIN = bin2hex(random_bytes(32));
+			$VALID_HASH_CAPTAIN = hash_pbkdf2("sha512", $passwordCaptain, $VALID_SALT_CAPTAIN, 262144);
+
+		//create and insert a Profile to create the category, card, and board
+			$profileCaptain = new Profile(generateUuidV4(), null, "jcrew@cnm.edu", $VALID_HASH_CAPTAIN, "Captain Jean-Luc Picard", 123, $VALID_SALT_CAPTAIN, "jcrew");
+			$profileCaptain->insert($this->getPDO());
+
+		// player profile 1
+			$password = "resistance";
+			$SALT = bin2hex(random_bytes(32));
+			$HASH = hash_pbkdf2("sha512", $password, $SALT, 262144);
+
+		//create and insert a Profile to play the game and answer questions
+			$profile1 = new Profile(generateUuidV4(), null, "anna@cnm.edu", $HASH, "Anna", 0, $SALT, "host");
+			$profile1->insert($this->getPDO());
+
+
+		// player profile2
+			$password = "isFutile";
+			$SALT = bin2hex(random_bytes(32));
+			$HASH = hash_pbkdf2("sha512", $password, $SALT, 262144);
+
+		//create and insert a Profile to play the game and answer questions
+			$profile2 = new Profile(generateUuidV4(), null, "marty@cnm.edu", $HASH, "I know shit", 0, $SALT, "Mknows");
+			$profile2->insert($this->getPDO());
+
+
+		// create and insert a Category to house the cards in the ledger
+			$category = new Category(generateUuidV4(), $profileCaptain->getProfileId(), "CSS");
+			$category->insert($this->getPDO());
+
+
+		// create and insert a Card to be answered by the profile on the board for the ledger
+			$pointsOnCard1 = 200;
+			$card1 = new Card(generateUuidV4(), $category->getCategoryId(), "Read the Documentation!", $pointsOnCard1, "If you are unsure of what you are writing...what should you do next?");
+		$card1->insert($this->getPDO());
+
+
+		// create and insert a Card to be answered by the profile on the board for the ledger
+			$pointsOnCard2 = 500;
+			$card2 = new Card(generateUuidV4(), $category->getCategoryId(), "No", $pointsOnCard1, "Do you know what your are doing?");
+			$card2->insert($this->getPDO());
+
+
+
+		// create and insert a Board to contain the cards contained in the ledger
+			$board = new Board(generateUuidV4(), $profileCaptain->getProfileId(), "Treking");
+			$board->insert($this->getPDO());
+
+
+
+		// create new ledger for procedure to use
+			$ledger1 = new Ledger($board->getBoardId(), $card1->getCardId(), $profile1->getProfileId(), $pointsOnCard1, 3);
+			$ledger1->insert($this->getPDO());
+
+
+		// create new ledger for procedure to use
+			$ledger2 = new Ledger($board->getBoardId(), $card2->getCardId(), $profile1->getProfileId(), -500, 2);
+			$ledger2->insert($this->getPDO());
+
+
+		// create new ledger for procedure to use
+			$ledger3 = new Ledger($board->getBoardId(), $card2->getCardId(), $profile2->getProfileId(), $pointsOnCard2, 1);
+			$ledger3->insert($this->getPDO());
+
+		// create a new ledger and insert it into MySQL
+		$ledger = new Ledger(
+			$this->board->getBoardId(),
+			$this->card->getCardId(),
+			$this->profile->getProfileId(),
+			$this->VALID_LEDGER_POINTS,
+			$this->VALID_LEDGER_TYPE);
+		$ledger->insert($this->getPDO());
+
+		// grab the data from MySQL and make sure the fields match our expectations
+		$results = Ledger::getPointsByLedgerBoardId($this->getPDO(), $ledger->getLedgerBoardId());
+		var_dump($results->toArray());
 
 	}
+
 
 }
