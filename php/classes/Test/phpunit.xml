@@ -5,7 +5,7 @@
 			<file>CategoryTest.php</file>
 			<file>CardTest.php</file>
 			<file>BoardTest.php</file>
-			<file>LedgerTest.php</file>
+			<!--<file>LedgerTest.php</file>-->
 		</testsuite>
 	</testsuites>
 	<filter>
