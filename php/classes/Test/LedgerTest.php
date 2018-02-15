@@ -519,7 +519,7 @@ class LedgerTest extends KmaruTest {
 //			$this->assertEquals($obj->getLedgerBoardId(), $this->board->getBoardId());
 //		}
 
-		$pdoLedger1 = $results{0};
+		$pdoLedger1 = $results[0];
 		$this->assertEquals($pdoLedger1->getLedgerProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoLedger1->getProfileActivationToken(), $this->profile->getProfileActivationToken());
 		$this->assertEquals($pdoLedger1->getProfileEmail(), $this->profile->getProfileEmail());
