@@ -446,7 +446,7 @@ class LedgerTest extends KmaruTest {
 		// create and insert a Card to be answered by the profile on the board for the ledger
 			$pointsOnCard1 = 200;
 			$card1 = new Card(generateUuidV4(), $category->getCategoryId(), "Read the Documentation!", $pointsOnCard1, "If you are unsure of what you are writing...what should you do next?");
-		$card1->insert($this->getPDO());
+			$card1->insert($this->getPDO());
 
 
 		// create and insert a Card to be answered by the profile on the board for the ledger
@@ -489,6 +489,27 @@ class LedgerTest extends KmaruTest {
 		// grab the data from MySQL and make sure the fields match our expectations
 		$results = Ledger::getPointsByLedgerBoardId($this->getPDO(), $board->getBoardId());
 
+		var_dump($results);
+
+		foreach($results as $profile) {
+			var_dump($profile, $results->key());
+			$this->assertEquals(${"profile" . (2 - $results->key())}, $profile);
+		}
+//		var_dump($results[$profile1]);
+//		var_dump($results[$profile2]);
+
+
+//
+//		$idk = new \SplObjectStorage();
+//		$idk[0] = $results{$fields};
+//		var_dump($idk[0]);
+
+
+
+//		var_dump($results->offsetGet($results[0]));
+
+
+//		var_dump($results[$profile1]);
 
 //		$results2 = Ledger::getPointsByLedgerBoardId($this->getPDO(), $ledger1->getLedgerBoardId());
 //		var_dump($results2);
@@ -519,30 +540,30 @@ class LedgerTest extends KmaruTest {
 //			$this->assertEquals($obj->getLedgerBoardId(), $this->board->getBoardId());
 //		}
 
-		$pdoLedger1 = $results[0];
-		$this->assertEquals($pdoLedger1->getLedgerProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoLedger1->getProfileActivationToken(), $this->profile->getProfileActivationToken());
-		$this->assertEquals($pdoLedger1->getProfileEmail(), $this->profile->getProfileEmail());
-		$this->assertEquals($pdoLedger1->getProfileHash(), $this->profile->getProfileHash());
-		$this->assertEquals($pdoLedger1->getProfileName(), $this->profile->getProfileName());
-		$this->assertEquals($pdoLedger1->getProfilePrivilege(), $this->profile->getProfilePrivilege());
-		$this->assertEquals($pdoLedger1->getProfileSalt(), $this->profile->getProfileSalt());
-		$this->assertEquals($pdoLedger1->getProfileUsername(), $this->profile->getProfileUsername());
-
-		$this->assertEquals($pdoLedger1->getLedgerBoardId(), $this->board->getBoardId());
-
-
-		$pdoLedger2 = $results{1};
-		$this->assertEquals($pdoLedger2->getLedgerProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoLedger2->getProfileActivationToken(), $this->profile->getProfileActivationToken());
-		$this->assertEquals($pdoLedger2->getProfileEmail(), $this->profile->getProfileEmail());
-		$this->assertEquals($pdoLedger2->getProfileHash(), $this->profile->getProfileHash());
-		$this->assertEquals($pdoLedger2->getProfileName(), $this->profile->getProfileName());
-		$this->assertEquals($pdoLedger2->getProfilePrivilege(), $this->profile->getProfilePrivilege());
-		$this->assertEquals($pdoLedger2->getProfileSalt(), $this->profile->getProfileSalt());
-		$this->assertEquals($pdoLedger2->getProfileUsername(), $this->profile->getProfileUsername());
-
-		$this->assertEquals($pdoLedger2->getLedgerBoardId(), $this->board->getBoardId());
+//		$pdoLedger1 = $results[0];
+//		$this->assertEquals($pdoLedger1->getLedgerProfileId(), $this->profile->getProfileId());
+//		$this->assertEquals($pdoLedger1->getProfileActivationToken(), $this->profile->getProfileActivationToken());
+//		$this->assertEquals($pdoLedger1->getProfileEmail(), $this->profile->getProfileEmail());
+//		$this->assertEquals($pdoLedger1->getProfileHash(), $this->profile->getProfileHash());
+//		$this->assertEquals($pdoLedger1->getProfileName(), $this->profile->getProfileName());
+//		$this->assertEquals($pdoLedger1->getProfilePrivilege(), $this->profile->getProfilePrivilege());
+//		$this->assertEquals($pdoLedger1->getProfileSalt(), $this->profile->getProfileSalt());
+//		$this->assertEquals($pdoLedger1->getProfileUsername(), $this->profile->getProfileUsername());
+//
+//		$this->assertEquals($pdoLedger1->getLedgerBoardId(), $this->board->getBoardId());
+//
+//
+//		$pdoLedger2 = $results{1};
+//		$this->assertEquals($pdoLedger2->getLedgerProfileId(), $this->profile->getProfileId());
+//		$this->assertEquals($pdoLedger2->getProfileActivationToken(), $this->profile->getProfileActivationToken());
+//		$this->assertEquals($pdoLedger2->getProfileEmail(), $this->profile->getProfileEmail());
+//		$this->assertEquals($pdoLedger2->getProfileHash(), $this->profile->getProfileHash());
+//		$this->assertEquals($pdoLedger2->getProfileName(), $this->profile->getProfileName());
+//		$this->assertEquals($pdoLedger2->getProfilePrivilege(), $this->profile->getProfilePrivilege());
+//		$this->assertEquals($pdoLedger2->getProfileSalt(), $this->profile->getProfileSalt());
+//		$this->assertEquals($pdoLedger2->getProfileUsername(), $this->profile->getProfileUsername());
+//
+//		$this->assertEquals($pdoLedger2->getLedgerBoardId(), $this->board->getBoardId());
 
 
 	}

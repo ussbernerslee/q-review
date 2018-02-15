@@ -526,7 +526,6 @@ class Ledger implements \JsonSerializable {
 		// stops direct access to database for formatting
 		$statement = $pdo->prepare($query);
 
-		// bind the ledger card id to the place holder in the template
 		$parameters = ["ledgerProfileId" => $ledgerProfileId->getBytes()];
 		$statement->execute($parameters);
 
