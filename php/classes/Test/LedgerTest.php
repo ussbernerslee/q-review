@@ -406,8 +406,8 @@ class LedgerTest extends KmaruTest {
 	 * test getting the sum of profile points per profile on a board by board id
 	 **/
 	public function testGetPointsByLedgerBoardId() : void {
-		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("ledger");
+//		// count the number of rows and save it for later
+//		$numRows = $this->getConnection()->getRowCount("ledger");
 
 		// create a salt and hash for the mocked captain profile
 			$passwordCaptain = "poodledoodle2";
@@ -488,6 +488,20 @@ class LedgerTest extends KmaruTest {
 			$this->assertEquals($currentProfile, $profile);
 			$this->assertEquals($results[$profile], $expectedPoints[$results->key()]);
 		}
+
+	}
+
+	/**
+	 * test getting the sum of profile points per profile on a board by an invalid board id
+	 **/
+	public function testInvalidGetPointsByLedgerBoardId() : void {
+		// try to grab points on ledger by an incorrect ledger board Id
+		$ledger = Ledger::getPointsByLedgerBoardId(
+			$this->getPDO(), generateUuidV4());
+
+		//asserting that it is incorrect
+		$this->assertCount(0, $ledger);
+
 
 	}
 
