@@ -468,7 +468,7 @@ class LedgerTest extends KmaruTest {
 
 
 		// create new ledger for procedure to use
-			$ledger2 = new Ledger($board->getBoardId(), $card2->getCardId(), $profile1->getProfileId(), -500, 2);
+			$ledger2 = new Ledger($board->getBoardId(), $card2->getCardId(), $profile1->getProfileId(), -$pointsOnCard2, 2);
 			$ledger2->insert($this->getPDO());
 
 
@@ -476,95 +476,18 @@ class LedgerTest extends KmaruTest {
 			$ledger3 = new Ledger($board->getBoardId(), $card2->getCardId(), $profile2->getProfileId(), $pointsOnCard2, 1);
 			$ledger3->insert($this->getPDO());
 
-//		// create a new ledger and insert it into MySQL
-//		$ledger = new Ledger(
-//			$this->board->getBoardId(),
-//			$this->card->getCardId(),
-//			$this->profile->getProfileId(),
-//			$this->VALID_LEDGER_POINTS,
-//			$this->VALID_LEDGER_TYPE);
-//		$ledger->insert($this->getPDO());
-
-
 		// grab the data from MySQL and make sure the fields match our expectations
 		$results = Ledger::getPointsByLedgerBoardId($this->getPDO(), $board->getBoardId());
 
-		var_dump($results);
+
+		$expectedPoints = [$pointsOnCard2, $pointsOnCard1 - $pointsOnCard2];
+
 
 		foreach($results as $profile) {
-			var_dump($profile, $results->key());
-			$this->assertEquals(${"profile" . (2 - $results->key())}, $profile);
+			$currentProfile = ${"profile" . (2 - $results->key())};
+			$this->assertEquals($currentProfile, $profile);
+			$this->assertEquals($results[$profile], $expectedPoints[$results->key()]);
 		}
-//		var_dump($results[$profile1]);
-//		var_dump($results[$profile2]);
-
-
-//
-//		$idk = new \SplObjectStorage();
-//		$idk[0] = $results{$fields};
-//		var_dump($idk[0]);
-
-
-
-//		var_dump($results->offsetGet($results[0]));
-
-
-//		var_dump($results[$profile1]);
-
-//		$results2 = Ledger::getPointsByLedgerBoardId($this->getPDO(), $ledger1->getLedgerBoardId());
-//		var_dump($results2);
-
-//		$pdoLedger = new \SplObjectStorage($results);
-//
-//
-//		$VALID_LEDGER_POINTS = 500;
-//
-//		foreach ($results as $value) {
-//			$index = $value->key();
-//			$obj = $value->current(); // current object
-//			$assoc_key  = $value->getInfo(); // return, if exists, associated with cur. obj. data; else NULL
-//
-//			var_dump($obj);
-//			var_dump($assoc_key);
-//
-//			$this->assertEquals($obj->getProfileId(), $this->profile->getProfileId());
-//			$this->assertEquals($obj->getProfileActivationToken(), $this->profile->getProfileActivationToken());
-//			$this->assertEquals($obj->getProfileEmail(), $this->profile->getProfileEmail());
-//			$this->assertEquals($obj->getProfileHash(), $this->profile->getProfileHash());
-//			$this->assertEquals($obj->getProfileName(), $this->profile->getProfileName());
-//			$this->assertEquals($obj->getProfilePrivilege(), $this->profile->getProfilePrivilege());
-//			$this->assertEquals($obj->getProfileSalt(), $this->profile->getProfileSalt());
-//			$this->assertEquals($obj->getProfileUsername(), $this->profile->getProfileUsername());
-//			$this->assertEquals($assoc_key, $VALID_LEDGER_POINTS);
-//
-//			$this->assertEquals($obj->getLedgerBoardId(), $this->board->getBoardId());
-//		}
-
-//		$pdoLedger1 = $results[0];
-//		$this->assertEquals($pdoLedger1->getLedgerProfileId(), $this->profile->getProfileId());
-//		$this->assertEquals($pdoLedger1->getProfileActivationToken(), $this->profile->getProfileActivationToken());
-//		$this->assertEquals($pdoLedger1->getProfileEmail(), $this->profile->getProfileEmail());
-//		$this->assertEquals($pdoLedger1->getProfileHash(), $this->profile->getProfileHash());
-//		$this->assertEquals($pdoLedger1->getProfileName(), $this->profile->getProfileName());
-//		$this->assertEquals($pdoLedger1->getProfilePrivilege(), $this->profile->getProfilePrivilege());
-//		$this->assertEquals($pdoLedger1->getProfileSalt(), $this->profile->getProfileSalt());
-//		$this->assertEquals($pdoLedger1->getProfileUsername(), $this->profile->getProfileUsername());
-//
-//		$this->assertEquals($pdoLedger1->getLedgerBoardId(), $this->board->getBoardId());
-//
-//
-//		$pdoLedger2 = $results{1};
-//		$this->assertEquals($pdoLedger2->getLedgerProfileId(), $this->profile->getProfileId());
-//		$this->assertEquals($pdoLedger2->getProfileActivationToken(), $this->profile->getProfileActivationToken());
-//		$this->assertEquals($pdoLedger2->getProfileEmail(), $this->profile->getProfileEmail());
-//		$this->assertEquals($pdoLedger2->getProfileHash(), $this->profile->getProfileHash());
-//		$this->assertEquals($pdoLedger2->getProfileName(), $this->profile->getProfileName());
-//		$this->assertEquals($pdoLedger2->getProfilePrivilege(), $this->profile->getProfilePrivilege());
-//		$this->assertEquals($pdoLedger2->getProfileSalt(), $this->profile->getProfileSalt());
-//		$this->assertEquals($pdoLedger2->getProfileUsername(), $this->profile->getProfileUsername());
-//
-//		$this->assertEquals($pdoLedger2->getLedgerBoardId(), $this->board->getBoardId());
-
 
 	}
 
