@@ -191,7 +191,6 @@ class ProfileTest extends KmaruTest {
 	public function testGetInvalidProfileByUsername() : void {
 		// grab a username that does not exist
 		$profile = Profile::getProfileByProfileUsername($this->getPDO(), "starwarsrules");
-		var_dump($profile);
 		$this->assertCount(0, $profile);
 	}
 	/**
