@@ -102,11 +102,6 @@ try {
 			throw(new \InvalidArgumentException ("No card answer.", 405));
 		}
 
-		//make sure card category is available (required field)
-		if(empty($requestObject->cardCategory) === true) {
-			throw(new \InvalidArgumentException ("No card category.", 405));
-		}
-
 		//make sure card points is available (required field)
 		if(empty($requestObject->cardPoints) === true) {
 			throw(new \InvalidArgumentException ("No card points.", 405));
@@ -139,7 +134,16 @@ try {
 
 			//update all attributes
 			$card->setCardAnswer($requestObject->cardAnswer);
-			$card->
+			$card->setCardAnswer($requestObject->cardPoints);
+			$card->setCardAnswer($requestObject->cardQuestion);
+			$card->update($pdo);
+
+			// reply
+			$reply->message = "Card updated OK";
+
+		} else if($method === "POST") {
+
+
 		}
 	}
 }
