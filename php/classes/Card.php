@@ -409,6 +409,6 @@ class Card implements \JsonSerializable {
 		$fields = get_object_vars($this);
 		$fields["cardId"] = $this->cardId;
 		$fields["cardCategoryId"] = $this->cardCategoryId;
-		return($fields);
+		return ($fields);
 	}
 }

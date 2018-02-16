@@ -246,4 +246,9 @@ class CardTest extends KmaruTest {
 		$this->assertCount(0, $card);
 	}
 
+
+
+
+
+
 }
