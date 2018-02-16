@@ -129,7 +129,6 @@ try {
 			}
 
 
-
 			validateJwtHeader();
 
 			//update all attributes
@@ -141,9 +140,67 @@ try {
 			// reply
 			$reply->message = "Card updated OK";
 
+
+
 		} else if($method === "POST") {
 
+			// enforce the user is signed in
+			if(empty($_SESSION["profile"]) === true) {
+				throw(new \InvalidArgumentException("you must be logged in to write cards", 403));
+			}
 
+			//enforce the end user has a JWT token
+			validateJwtHeader();
+
+			// create a new card and insert it into the database
+			$card = new Card(generateUuidV4(), $_SESSION["category"]->getCategoryId(), $requestObject->cardAnswer, null, $requestObject->cardQuestion);
+			$card->insert($pdo);
+
+			// update reply
+			$reply->message = "Card created OK";
 		}
+
+		// delete method
+	} else if($method === "DELETE") {
+
+		//enforce that the end user has a XSRF token
+		verifyXsrf();
+
+		// retrieve the Card to be deleted
+		$card = Card::getCardByCardId($pdo, $id);
+		if($card === null) {
+			throw(new RuntimeException("Card does not exist", 404));
+		}
+
+		//enforce the user is signed in and only trying to edit their own category
+		if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $category->getCategoryProfileId()->toString()) {
+			throw(new \InvalidArgumentException("You are not allowed to delete this category", 403));
+		}
+		//enforce the category id matches the cardCategoryId to ensure that the user is trying to edit their own card
+		if(empty($_SESSION["category"] === true || $_SESSION["category"]->getCategoryId()->toString() !== $card->getCardCategoryId()->toString())) {
+			throw(new \InvalidArgumentException("You are not allowed to delete this card", 403));
+		}
+		//enforce the end user has a JWT token
+		validateJwtHeader();
+
+		// delete card
+		$card->delete($pdo);
+		// update reply
+		$reply->message = "Card deleted OK";
+	} else {
+		throw (new InvalidArgumentException("Invalid HTTP method request", 418));
 	}
+// update the $reply->status $reply->message
+} catch(\Exception | \TypeError $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
 }
+header("Content-type: application/json");
+if($reply->data === null) {
+	unset($reply->data);
+}
+// encode and return reply to front end caller
+echo json_encode($reply);
+
+
+
