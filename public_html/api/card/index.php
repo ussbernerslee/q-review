@@ -88,5 +88,23 @@ try {
 		if(empty($_SESSION["category"]) === true) {
 			throw(new \InvalidArgumentException("you must be logged in to write a card", 401));
 		}
+
+		verifyXsrf();
+		$requestContent = file_get_contents("php://input");
+		// retrieves the JSON package that the front end sent and stores it in $requestContentHere we are using file_get_contents("php://input") to get the request from the front end. file_get_contents() is a PHP function that reads a file into a string. The argument for the function, here, is "php://input". This is a read only stream that allows raw data to be read from the front end request which is, in this case, a JSON package.
+		$requestObject = json_decode($requestContent);
+		// this like above decodes the JSON package and stores the result in $requestObject
+
+		//make sure card content is available (required field)
+		if(empty($requestObject->tweetContent) === true) {
+			$requestObject->tweetDate = null;
+		}
+
+		//perform the actual put or post
+		if($method == "PUT") {
+
+			//retrieve the tweet to update
+			$card = Card::getCardByCardId
+		}
 	}
 }
