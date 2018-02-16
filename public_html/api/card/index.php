@@ -124,10 +124,22 @@ try {
 			if($card === null) {
 				throw(new RuntimeException("Card does not exist", 404));
 			}
-			//enforce the user is signed in and only trying to edit their own Card in their own Category
-			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $card->getCategoryProfileId()->toString()) {
+			//enforce the user is signed in and only trying to edit their own category
+			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $category->getCategoryProfileId()->toString()) {
 				throw(new \InvalidArgumentException("You are not allowed to edit this category", 403));
 			}
+			//enforce the category id matches the cardCategoryId to ensure that the user is trying to edit their own card
+			if(empty($_SESSION["category"] === true || $_SESSION["category"]->getCategoryId()->toString() !== $card->getCardCategoryId()->toString())) {
+				throw(new \InvalidArgumentException("You are not allowed to edit this card", 403));
+			}
+
+
+
+			validateJwtHeader();
+
+			//update all attributes
+			$card->setCardAnswer($requestObject->cardAnswer);
+			$card->
 		}
 	}
 }
