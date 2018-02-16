@@ -7,8 +7,10 @@ require_once dirname(__DIR__, 3) . "/php/lib/jwt.php";
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use Edu\Cnm\Kmaru\{
 	Card,
-	// use the Category class for testing only
-	Category
+	// use the Category class for testing only (card is dependent on category)
+	Category,
+	// use the Profile class for testing only (category is dependent on profile)
+	Profile
 };
 
 /**
@@ -85,7 +87,7 @@ try {
 	} else if($method === "PUT" || $method === "POST") {
 
 		//enforce the user is signed in
-		if(empty($_SESSION["category"]) === true) {
+		if(empty($_SESSION["profile"]) === true) {
 			throw(new \InvalidArgumentException("you must be logged in to write a card", 401));
 		}
 
@@ -95,16 +97,37 @@ try {
 		$requestObject = json_decode($requestContent);
 		// this like above decodes the JSON package and stores the result in $requestObject
 
-		//make sure card content is available (required field)
-		if(empty($requestObject->tweetContent) === true) {
-			$requestObject->tweetDate = null;
+		//make sure card answer is available (required field)
+		if(empty($requestObject->cardAnswer) === true) {
+			throw(new \InvalidArgumentException ("No card answer.", 405));
+		}
+
+		//make sure card category is available (required field)
+		if(empty($requestObject->cardCategory) === true) {
+			throw(new \InvalidArgumentException ("No card category.", 405));
+		}
+
+		//make sure card points is available (required field)
+		if(empty($requestObject->cardPoints) === true) {
+			throw(new \InvalidArgumentException ("No card points.", 405));
+
+		}		//make sure card question is available (required field)
+		if(empty($requestObject->cardQuestion) === true) {
+			throw(new \InvalidArgumentException ("No card question.", 405));
 		}
 
 		//perform the actual put or post
 		if($method == "PUT") {
 
-			//retrieve the tweet to update
-			$card = Card::getCardByCardId
+			//retrieve the card to update
+			$card = Card::getCardByCardId($pdo, $id);
+			if($card === null) {
+				throw(new RuntimeException("Card does not exist", 404));
+			}
+			//enforce the user is signed in and only trying to edit their own Card in their own Category
+			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $card->getCategoryProfileId()->toString()) {
+				throw(new \InvalidArgumentException("You are not allowed to edit this category", 403));
+			}
 		}
 	}
 }
