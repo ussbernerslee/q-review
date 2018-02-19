@@ -5,7 +5,7 @@ require_once(dirname(__DIR__, 3) . "/php/lib/jwt.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/xsrf.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/uuid.php");
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
-use Edu\Cnm\Kmaru\ {};
+use Edu\Cnm\Kmaru\ {Board};
 
 /**
  * API for the Board
@@ -42,7 +42,7 @@ try {
 
 	// make sure the id is valid
 	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true)) {
-		throw(new InvalidArgumentException("id cannot be empty or negative, 400"));
+		throw(new InvalidArgumentException("Id cannot be empty or negative, 400"));
 	}
 
 	// handle get request. If id is valid, return name of board and creator
@@ -55,45 +55,47 @@ try {
 			if($board !== null) {
 				$reply->data = $board;
 			}
+			// else gets the board by the profile that crated it
 		} else if(empty($boardProfileId) === false) {
 			$boardProfileId = Board::getBoardByBoardProfileId($pdo, $boardProfileId);
 			if($boardProfileId !== null) {
 				$reply->data = $boardProfileId;
 			}
+			// if no board id or board creator, gets board by board name
 		} else if(empty($boardName) === false) {
 			$boardName = Board::getBoardByBoardName($pdo, $boardName);
 			if($boardName !== null) {
+				// board name can be empty
 				$reply->data = $boardName;
 			}
 		} else if($method === "PUT") {
 			//enforce that the XSRF token is present in the header
 			verifyXsrf();
 			//enforce the end user has a JWT token
-			//validateJwtHeader();
+			validateJwtHeader();
 			//enforce the user is signed in and only trying to edit their own board
 			if(empty($_SESSION["board"]) === true || $_SESSION["board"]->getBoardId()->toString() !== $id) {
 				throw(new \InvalidArgumentException("You are not allowed to access this board", 400));
 			}
 		}
+		//enforce the end user has a JWT token
 		validateJwtHeader();
 		//decode the response from the front end
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
 		//retrieve the board to be updated
 		$board = Board::getBoardByBoardId($pdo, $id);
+		//check to see if board exists
 		if($board === null) {
 			throw(new RuntimeException("Board does not exist", 400));
 		}
-		//board profile id
+		//checking creator of board
 		if(empty($requestObject->boardProfileId) === true) {
 			throw(new \InvalidArgumentException ("No board profile", 400));
 		}
-		//board name
-		if(empty($requestObject->boardName) === true) {
-			throw(new \InvalidArgumentException ("No board name present", 400));
-		}
-		$board->setBoardProfileId($requestObject->categoryProfileId);
-		$board->setBoardName($requestObject->categoryName);
+		//setting board profile and board name as long as board exists
+		$board->setBoardProfileId($requestObject->boardProfileId);
+		$board->setBoardName($requestObject->boardName);
 		$board->update($pdo);
 
 		// update reply
@@ -103,10 +105,10 @@ try {
 		verifyXsrf();
 
 		//enforce the end user has a JWT token
-		//validateJwtHeader();
+		validateJwtHeader();
 		$board = Board::getBoardByBoardId($pdo, $id);
 		if($board === null) {
-			throw (new RuntimeException("Board does not exist"));
+			throw(new RuntimeException("Board does not exist"));
 		}
 		//enforce the user is signed in and only trying to edit their own board
 		if(empty($_SESSION["board"]) === true || $_SESSION["board"]->getBoardId()->toString() !== $board->getBoardId()->toString()) {

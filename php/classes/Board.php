@@ -146,7 +146,7 @@ class Board implements \JsonSerializable {
 	/**
 	 * inserts this Board into mySQL
 	 *
-	 * @param \PDO $pdp PDO connection object
+	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
@@ -229,10 +229,10 @@ class Board implements \JsonSerializable {
 	/**
 	 * gets the board by profile id
 	 *
-	 * @param |PDO $pdo PDO connection object
+	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $boardProfileId board profile id to search by
 	 * @return \SplFixedArray SplFixedArray of board found
-	 * @throws \PDOExceptionwhen mySQL related errors occur
+	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 */
 	public static function getBoardByBoardProfileId(\PDO $pdo, $boardProfileId) : \SplFixedArray {
