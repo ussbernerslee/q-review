@@ -35,7 +35,7 @@ try {
 
 	//sanitize input
 
-	//id reffering to boardId
+	//id refers to boardId
 	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$boardProfileId = filter_input(INPUT_GET, "boardProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$boardName = filter_input(INPUT_GET, "boardName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
