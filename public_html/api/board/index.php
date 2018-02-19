@@ -62,12 +62,6 @@ try {
 				$reply->data = $boardProfileId;
 			}
 			// if no board id or board creator, gets board by board name
-		} else if(empty($boardName) === false) {
-			$boardName = Board::getBoardByBoardName($pdo, $boardName);
-			if($boardName !== null) {
-				// board name can be empty
-				$reply->data = $boardName;
-			}
 		} else if($method === "PUT") {
 			//enforce that the XSRF token is present in the header
 			verifyXsrf();
