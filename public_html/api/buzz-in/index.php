@@ -7,8 +7,9 @@ require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 //grab the MySQL connection
 $pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/deepDiveOauth.ini");
-$config = readConfig("/etc/apache2/capstone-mysql/deepDiveOauth.ini");
-$oauth = json_decode($config["github"]);
+$config = readConfig("/etc/apache2/capstone-mysql/kmaru.ini");
+$pubnub= json_decode($config["pubnub"]);
 
 $pubnubConfig = new \OAuth2\Client($oauth->clientId, $oauth->clientKey);
 $pubNub = new PubNub($pubNubConfig);
+
