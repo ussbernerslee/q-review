@@ -30,7 +30,7 @@ $reply->data = null;
 
 try {
 	// grab the mySQL connection
-	$pdo = connectToEncryptedMySql("/etc/apache2/capstone-mysql/Kmaru.ini");
+	$pdo = connectToEncryptedMySql("/etc/apache2/capstone-mysql/kmaru.ini");
 
 	// determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];

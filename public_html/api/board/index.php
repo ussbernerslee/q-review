@@ -106,7 +106,7 @@ try {
 			throw(new RuntimeException("Board does not exist"));
 		}
 		//enforce the user is signed in and only trying to edit their own board
-		if(empty($_SESSION["board"]) === true || $_SESSION["board"]->getBoardId()->toString() !== $board->getBoardId()->toString()) {
+		if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $profile->getBoardId()->toString()) {
 			throw(new \InvalidArgumentException("You are not allowed to access this Board", 400));
 		}
 
