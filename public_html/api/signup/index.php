@@ -63,7 +63,7 @@ try {
 
 
 	//create the profile object and prepare to insert into the database
-	$profile = new Profile(generateUuidV4(), $profileActivationToken, $requestObject->profileEmail, $profileHash, $requestObject->profileName, "null", $profileSalt, $requestObject->profileUserName);
+	$profile = new Profile(generateUuidV4(), $profileActivationToken, $requestObject->profileEmail, $profileHash, $requestObject->profileName, 0, $profileSalt, $requestObject->profileUserName);
 	//insert the profile into the database
 	$profile->insert($pdo);
 	//compose the email message to send with the activation token
@@ -90,7 +90,7 @@ EOF;
 	 * attach recipients to the message
 	 * notice this is an array that can include or omit the recipient's name
 	 * use the recipient's real name where possible;
-	 * this reduces the probability willsterof the email is marked as spam
+	 * this reduces the probability of the email is marked as spam
 	 */
 	//define who the recipient is
 	$recipients = [$requestObject->profileEmail];
