@@ -7,7 +7,7 @@ require_once dirname(__DIR__, 3) . "/php/lib/uuid.php";
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use Edu\Cnm\Kmaru\Profile;
 /**
- * api for signing up for q-review
+ * api for signing up for KMaru
  *
  * @author Freddy Crawford <fcrawford@cnm.edu>
  * @coauthor Gkephart <GKephart@cnm.edu>
@@ -29,13 +29,9 @@ try {
 		//decode the json and turn it into a php object
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
-		//profile first name is a required field
-		if(empty($requestObject->profileFirstName) === true) {
-			throw(new \InvalidArgumentException ("No profile first name present", 405));
-		}
-		//profile last name is a required field
-		if(empty($requestObject->profileLastName) === true) {
-			throw(new \InvalidArgumentException ("No profile last name present", 405));
+		//profile name is a required field
+		if(empty($requestObject->profileName) === true) {
+			throw(new \InvalidArgumentException ("No profile name present", 405));
 		}
 		//profile username is a required field
 		if(empty($requestObject->profileUserName) === true) {
@@ -57,7 +53,7 @@ try {
 			if($requestObject->profilePassword !== $requestObject->profilePasswordConfirm) {
 				throw(new \InvalidArgumentException("passwords do not match"));
 			}
-			$profileImage = "../image/profileFiller.jpg";
+
 			$profileSalt = bin2hex(random_bytes(32));
 			$profileHash = hash_pbkdf2("sha512", $requestObject->profilePassword, $profileSalt, 262144);
 			$profileActivationToken = bin2hex(random_bytes(16));
@@ -65,11 +61,11 @@ try {
 
 		}
 		//create the profile object and prepare to insert into the database
-		$profile = new Profile($profileId, $profileActivationToken, $requestObject->profileBio, $requestObject->profileEmail, $requestObject->profileFirstName, $profileHash, $profileImage, $requestObject->profileLastName, $profileSalt, $requestObject->profileUserName);
+		$profile = new Profile($profileId, $profileActivationToken, $requestObject->profileEmail, $profileHash, $requestObject->profileName, $requestObject->profilePrivilege, $profileSalt, $requestObject->profileUserName);
 		//insert the profile into the database
 		$profile->insert($pdo);
 		//compose the email message to send with the activation token
-		$messageSubject = "One more step before you can start playing q-review, just confirm your account through your email.";
+		$messageSubject = "One more step before you can start playing Kmaru, just confirm your account through your email.";
 		//building the activation link that can travel to another server and still work. This is the link that will be clicked to confirm the account.
 		//make sure URL is /public_html/api/activation/$activation
 		$basePath = dirname($_SERVER["SCRIPT_NAME"], 3);
@@ -80,7 +76,7 @@ try {
 		//compose message to send with email
 		$message = <<< EOF
 <h2>Welcome to q-review.</h2>
-<p>In order to start using q-review, you must confirm your account.</p>
+<p>In order to start using KMaru, you must confirm your account.</p>
 <p><a href="$confirmLink">$confirmLink</a></p>
 EOF;
 		//create swift email
