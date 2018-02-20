@@ -90,7 +90,7 @@ EOF;
 	 * attach recipients to the message
 	 * notice this is an array that can include or omit the recipient's name
 	 * use the recipient's real name where possible;
-	 * this reduces the probability of the email is marked as spam
+	 * this reduces the probability of the email being marked as spam
 	 */
 	//define who the recipient is
 	$recipients = [$requestObject->profileEmail];
