@@ -95,3 +95,8 @@ CREATE TABLE ledger(
 	-- Primary Key (compound key):
 	PRIMARY KEY (ledgerBoardId, ledgerCardId, ledgerProfileId)
 );
+
+
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', '')), UNHEX(REPLACE('F4A45FF8-8458-49F1-AC46-7A7DC9E1882E', '-', '')), 'Star Trek Villains');
+
