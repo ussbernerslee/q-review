@@ -5,7 +5,14 @@ require_once(dirname(__DIR__, 3) . "/php/lib/jwt.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/xsrf.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/uuid.php");
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
+
 use Edu\Cnm\Kmaru\Board;
+use PubNub\PNConfiguration;
+use PubNub\PubNub;
+
+
+$config = readConfig("/etc/apache2/capstone-mysql/kmaru.ini");
+$pubnub = json_decode($config["pubnub"]);
 
 /**
  * API for the Board
@@ -30,6 +37,7 @@ $reply->data = null;
 try {
 	//grab the mySQL connection
 	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/kmaru.ini");
+
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
