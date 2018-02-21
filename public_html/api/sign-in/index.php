@@ -1,5 +1,6 @@
 
 <?php
+require_once dirname(__DIR__, 3) . "/vendor/autoload.php";
 require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
 require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
 require_once dirname(__DIR__, 3) . "/php/lib/jwt.php";
@@ -63,7 +64,7 @@ try {
 		//create the Auth payload
 		$authObject = (object) [
 			"profileId" =>$profile->getProfileId(),
-			"profileAtHandle" => $profile->getProfileAtHandle()
+			"profileEmail" => $profile->getProfileEmail()
 		];
 		// create and set th JWT TOKEN
 		setJwtAndAuthHeader("auth",$authObject);
