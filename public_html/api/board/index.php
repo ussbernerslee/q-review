@@ -6,13 +6,25 @@ require_once(dirname(__DIR__, 3) . "/php/lib/xsrf.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/uuid.php");
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 
-use Edu\Cnm\Kmaru\Board;
+use Edu\Cnm\Kmaru\{Board};
 use PubNub\PNConfiguration;
 use PubNub\PubNub;
 
-
+/**
+ * Accessing pubnub for the Board
+ **/
 $config = readConfig("/etc/apache2/capstone-mysql/kmaru.ini");
-$pubnub = json_decode($config["pubnub"]);
+$pubNub = json_decode($config["pubnub"]);
+
+$pubNubConf = new PNConfiguration();
+
+$pubNubConf->setSubscribeKey("$pubNub->subscribeKey");
+$pubNubConf->setPublishKey("$pubNub->publishKey");
+$pubNubConf->setSecretKey("$pubNub->secretKey");
+$pubNubConf->setSecure(true);
+
+$pubNubBoard = new PubNub($pubNubConf);
+
 
 /**
  * API for the Board
@@ -20,11 +32,6 @@ $pubnub = json_decode($config["pubnub"]);
  * @author Tristan Bennett tbennett19@cnm.edu
  */
 //verify the session, if it is not active start it
-if(session_status() !== PHP_SESSION_ACTIVE) {
-	session_start();
-}
-
-//verify the session, start if not active
 if(session_status() !== PHP_SESSION_ACTIVE) {
 	session_start();
 }
@@ -41,9 +48,7 @@ try {
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
-	//sanitize input
-
-	//id refers to boardId
+	//sanitize input; id is boardId
 	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$boardProfileId = filter_input(INPUT_GET, "boardProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	//can be empty
@@ -114,7 +119,7 @@ try {
 			throw(new RuntimeException("Board does not exist"));
 		}
 		//enforce the user is signed in and only trying to edit their own board
-		if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $profile->getBoardId()->toString()) {
+		if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $board->getBoardProfileId()->toString()) {
 			throw(new \InvalidArgumentException("You are not allowed to access this Board", 400));
 		}
 
