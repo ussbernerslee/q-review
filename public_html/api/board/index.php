@@ -26,6 +26,7 @@ $pubNubConf->setSecure(true);
 $pubNubBoard = new PubNub($pubNubConf);
 
 
+
 /**
  * API for the Board
  *
@@ -85,6 +86,22 @@ try {
 			if(empty($_SESSION["board"]) === true || $_SESSION["board"]->getBoardId()->toString() !== $id) {
 				throw(new \InvalidArgumentException("You are not allowed to access this board", 400));
 			}
+		} else if($method === "POST") {
+			//enforce that the XSRF token is present in the header
+			verifyXsrf();
+			//enforce the end user has a JWT token
+			validateJwtHeader();
+			//enforce the user is signed in and only trying to edit their own board
+			if(empty($_SESSION["board"]) === true || $_SESSION["board"]->getBoardId()->toString() !== $id) {
+				throw(new \InvalidArgumentException("You are not allowed to access this board", 400));
+			}
+
+			// creating channel for board
+			$pubNubBoard->addChannelToChannelGroup()
+				->channels($_SESSION["board"]->getBoardId())
+				->channelGroup("ddc")
+				->sync();
+
 		}
 		//enforce the end user has a JWT token
 		validateJwtHeader();
@@ -107,7 +124,9 @@ try {
 		$board->update($pdo);
 
 		// update reply
-		$reply->message = "Board information updated";
+		$reply->message = "Board Created" . $id;
+		var_dump($reply);
+
 	} elseif($method === "DELETE") {
 		//verify the XSRF Token
 		verifyXsrf();
