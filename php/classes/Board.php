@@ -193,7 +193,7 @@ class Board implements \JsonSerializable {
 	/**
 	 * gets the Board by boardId
 	 *
-	 * @param \PDO $pdo PDO connection objct
+	 * @param \PDO $pdo PDO connection object
 	 * @param Uuid|string $boardId board id to search for
 	 * @return Board|null Board found or null if not found
 	 * @throws \PDOException when mySQL related error occurs

@@ -9,7 +9,7 @@ require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use Edu\Cnm\Kmaru\{Board};
 use PubNub\PNConfiguration;
 use PubNub\PubNub;
-
+//TODO: decode sucks
 /**
  * Accessing pubnub for the Board
  **/
@@ -49,16 +49,17 @@ try {
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
+
 	//sanitize input; id is boardId
 	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$boardProfileId = filter_input(INPUT_GET, "boardProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	//can be empty
 	$boardName = filter_input(INPUT_GET, "boardName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-
+//TODO: this is always empty...FAIL
 	// make sure the id is valid
-	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true)) {
-		throw(new InvalidArgumentException("Id cannot be empty or negative, 400"));
-	}
+//	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true)) {
+//		throw(new InvalidArgumentException("Id cannot be empty or invalid, 400"));
+//	}
 
 	// handle get request. If id is valid, return name of board and creator
 	if($method === "GET") {
@@ -76,8 +77,9 @@ try {
 			if($boardProfileId !== null) {
 				$reply->data = $boardProfileId;
 			}
-			// if no board id or board creator, gets board by board name
-		} else if($method === "PUT") {
+
+		}
+	}else if($method === "PUT") {
 			//enforce that the XSRF token is present in the header
 			verifyXsrf();
 			//enforce the end user has a JWT token
@@ -86,7 +88,10 @@ try {
 			if(empty($_SESSION["board"]) === true || $_SESSION["board"]->getBoardId()->toString() !== $id) {
 				throw(new \InvalidArgumentException("You are not allowed to access this board", 400));
 			}
-		} else if($method === "POST") {
+
+
+
+	} else if($method === "POST") {
 			//enforce that the XSRF token is present in the header
 			verifyXsrf();
 			//enforce the end user has a JWT token
@@ -102,7 +107,8 @@ try {
 				->channelGroup("ddc")
 				->sync();
 
-		}
+			$reply->message = "Board Created" . $id;
+
 		//enforce the end user has a JWT token
 		validateJwtHeader();
 		//decode the response from the front end
@@ -124,8 +130,8 @@ try {
 		$board->update($pdo);
 
 		// update reply
-		$reply->message = "Board Created" . $id;
-		var_dump($reply);
+		$reply->message = "Board information updated";
+
 
 	} elseif($method === "DELETE") {
 		//verify the XSRF Token
