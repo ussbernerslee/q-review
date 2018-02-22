@@ -6,7 +6,7 @@ require_once(dirname(__DIR__, 3) . "/php/lib/xsrf.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/uuid.php");
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 
-use Edu\Cnm\Kmaru\{Board};
+use Edu\Cnm\Kmaru\{Profile, Board};
 use PubNub\PNConfiguration;
 use PubNub\PubNub;
 
@@ -47,6 +47,9 @@ $reply->data = null;
 try {
 	//grab the mySQL connection
 	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/kmaru.ini");
+	$_SESSION["profile"] = Profile::getProfileByProfileEmail($pdo, "tbennett19@cnm.edu");
+	$authObject = (object)["profileId" => $_SESSION["profile"]->getProfileId()->toString()];
+	setJwtAndAuthHeader("authObject", $authObject);
 
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
@@ -94,11 +97,12 @@ try {
 			throw(new \InvalidArgumentException ("No board profile", 400));
 		}
 
-			if(empty($_SESSION["profile"] === true)) {
-				throw(new \InvalidArgumentException("You are not allowed to access this board", 400));
-			}
+//			if(empty($_SESSION["profile"] === true)) {
+//				throw(new \InvalidArgumentException("You are not allowed to access this board", 401));
+//			}
 
 			$board = new Board(generateUuidV4(), $_SESSION["profile"]->getProfileId(), $requestObject->boardName);
+		$board->insert($pdo);
 			//enforce the user is signed in and only trying to edit their own board
 //			if(empty($_SESSION["board"]) === true || $_SESSION["board"]->getBoardId()->toString() !== $id) {
 //				throw(new \InvalidArgumentException("You are not allowed to access this board", 400));
