@@ -20,9 +20,9 @@ $pubNub = json_decode($config["pubnub"]);
 
 $pubNubConf = new PNConfiguration();
 
-$pubNubConf->setSubscribeKey("$pubNub->subscribeKey");
-$pubNubConf->setPublishKey("$pubNub->publishKey");
-$pubNubConf->setSecretKey("$pubNub->secretKey");
+$pubNubConf->setSubscribeKey($pubNub->subscribeKey);
+$pubNubConf->setPublishKey($pubNub->publishKey);
+$pubNubConf->setSecretKey($pubNub->secretKey);
 $pubNubConf->setSecure(true);
 
 $pubNubBoard = new PubNub($pubNubConf);
@@ -143,6 +143,7 @@ try {
 } catch(\Exception | \TypeError $exception) {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
+	$reply->trace = $exception->getTrace();
 }
 header("Content-type: application/json");
 if($reply->data === null) {
