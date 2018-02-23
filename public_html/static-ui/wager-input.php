@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!--this is the leaderboard html template for KMaru.
-This will be used on player views so that cadets/players can keep track of their score
-in relation to the scores of others.
-This will also be used by the captain/person who runs the game to keep track of current student scores.
+		<!--this is the final wager input for players html template for KMaru.
+This will be used by the players to enter their wagers and final answer to KMaru
 author: Anna Khamsamran <akhamsamran1@cnm.edu>
 -->
 		<meta charset="UTF-8">
@@ -32,37 +30,23 @@ author: Anna Khamsamran <akhamsamran1@cnm.edu>
 	</head>
 
 	<body>
-<div class="container">
-	<!--the table below has 3 players, as a sample. In the final version, we need javascript
-	that creates a row for each player and displays their name and score-->
-	<h1>Leaderboard</h1>
-	<table class="table table-hover table-dark table-sm">
-		<thead>
-			<tr>
-				<th scope="col">#</th>
-				<th scope="col">Name</th>
-				<th scope="col">Points</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<th scope="row">1</th>
-				<td>Kevin</td>
-				<td>256</td>
+		<div class="container">
+			<!--This form is used for the student to enter a final wager amount of points
+			and to enter their answer to the final KMaru question-->
+			<h1>Final Wager</h1>
+			<form>
+				<div class="form-group">
+					<label for="number">Points Wagered</label>
+					<input type="number" class="form-control" id="number" name="number" placeholder="0">
+					<small id="wagerHelp" class="form-text text-muted">You may wager up to the number of points you have OR 32, whichever is higher.</small>
+				</div>
+				<div class="form-group">
+					<label for="studentAnswer">Your Answer</label>
+					<textarea class="form-control" rows="5" id="studentAnswer" name="studentAnswer" placeholder="Answer the question here (2000 characters max)"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
 
-			</tr>
-			<tr>
-				<th scope="row">2</th>
-				<td>Anna</td>
-				<td>-666</td>
-			</tr>
-			<tr>
-				<th scope="row">3</th>
-				<td>Kirk</td>
-				<td>1000</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+
+
 	</body>
-
