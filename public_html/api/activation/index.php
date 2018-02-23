@@ -7,7 +7,7 @@ use Edu\Cnm\Kmaru\Profile;
 /**
  * api for the Profile Activation class
  *
- * @author fredy crawford <fcrawford@cnm.edu.com>
+ * @author freddy crawford <fcrawford@cnm.edu.com>
  */
 //verify the session status. start session if not active
 if(session_status() !== PHP_SESSION_ACTIVE) {
