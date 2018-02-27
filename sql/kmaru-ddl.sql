@@ -102,3 +102,5 @@ VALUES(UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', '')), UNHEX(RE
 
 INSERT INTO board(boardId, boardProfileId, boardName) VALUES (UNHEX(REPLACE('0c1c711e-e2e4-439d-9975-9658851b1781', '-', '')), UNHEX(REPLACE('F4A45FF8845849F1AC467A7DC9E1882E', '-', '')), 'DDC');
 
+INSERT INTO profile(profileId, profileActivationToken, profileEmail, profileHash, profileName, profilePrivilege, ProfileSalt, profileUsername)
+VALUES (UNHEX(REPLACE(
