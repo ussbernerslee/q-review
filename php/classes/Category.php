@@ -338,7 +338,7 @@ class Category implements \JsonSerializable {
 
 		$fields["categoryId"] = $this->categoryId->toString();
 		$fields["categoryProfileId"] = $this->categoryProfileId->toString();
-		$fields["categoryName"] = $this->categoryName->toString();
+
 
 		return($fields);
 	}

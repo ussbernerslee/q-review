@@ -60,29 +60,15 @@ try {
 		} else if(empty($cardCategoryId) === false) {
 			$card = Card::getCardByCardCategoryId($pdo, $cardCategoryId)->toArray();
 			if($card !== null) {
-				$reply->data = $tweet;
-			}
-		} else if(empty($cardAnswer) === false) {
-			$cards = Card::getCardByCardAnswer($pdo, $cardAnswer)->toArray();
-			if($cards !== null) {
-				$reply->data = $cards;
+				$reply->data = $card;
 			}
 		} else if(empty($cardPoints) === false) {
-			$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
-			if($cards !== null) {
-				$reply->data = $cards;
-			}
-		} else if(empty($cardQuestion) === false) {
-			$cards = Card::getCardByCardQuestion($pdo, $cardQuestion)->toArray();
-			if($cards !== null) {
-				$reply->data = $cards;
-			}
-		} else {
-			$cards = Card::getAllCards($pdo)->toArray();
-			if($cards !== null) {
-				$reply->data = $cards;
-			}
+		$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
+		if($cards !== null) {
+			$reply->data = $cards;
 		}
+	}
+
 
 	} else if($method === "PUT" || $method === "POST") {
 
