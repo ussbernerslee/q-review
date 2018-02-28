@@ -97,13 +97,9 @@ CREATE TABLE ledger(
 );
 
 
-INSERT INTO category(categoryId, categoryProfileId, categoryName)
-VALUES(UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', '')), UNHEX(REPLACE('F4A45FF8-8458-49F1-AC46-7A7DC9E1882E', '-', '')), 'Star Trek Villains');
-
-INSERT INTO board(boardId, boardProfileId, boardName) VALUES (UNHEX(REPLACE('0c1c711e-e2e4-439d-9975-9658851b1781', '-', '')), UNHEX(REPLACE('F4A45FF8845849F1AC467A7DC9E1882E', '-', '')), 'DDC');
 
 
-
+-- categories:
 
 INSERT INTO category(categoryId, categoryProfileId, categoryName)
 VALUES(UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'Star Trek Villains');
@@ -119,7 +115,7 @@ INSERT INTO category(categoryId, categoryProfileId, categoryName)
 VALUES(UNHEX(REPLACE('4e7fc1e6-3c3b-43d7-9a7e-6b97b25e6593', '-', '')), UNHEX(REPLACE('C2954660F27B45578F2DC68E8B2D8AA8', '-', '')), 'Star Trek Ships');
 
 
-
+-- boards:
 
 
 INSERT INTO board(boardId, boardProfileId, boardName)
@@ -128,7 +124,7 @@ VALUES (UNHEX(REPLACE('0c1c711e-e2e4-439d-9975-9658851b1781', '-', '')), UNHEX(R
 INSERT INTO board(boardId, boardProfileId, boardName)
 VALUES (UNHEX(REPLACE('129c71cf-89e0-4d5d-9968-3c4cf079fd46', '-', '')), UNHEX(REPLACE('C2954660F27B45578F2DC68E8B2D8AA8', '-', '')), 'great game');
 
-
+-- cards:
 
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX(REPLACE('32577dd4-4853-4054-a868-d119663f1106', '-', '')), UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', '')), 'who is villain 1', '1' , 'The name of the villain 1');
