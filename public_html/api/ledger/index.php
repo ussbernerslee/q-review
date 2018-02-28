@@ -27,7 +27,25 @@ try {
 	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/kmaru.ini");
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
-	if($method === "POST") {
+	if ($method === "GET") {
+		if(empty($_SESSION["profile"]) === true) {
+			throw(new \InvalidArgumentException("invalid profile", 401));
+		}
+		verifyXsrf();
+		validateJwtHeader();
+		$requestContent = file_get_contents("php://input");
+		// retrieves the JSON package that the front end sent and stores it in $requestContentHere we are using file_get_contents("php://input") to get the request from the front end. file_get_contents() is a PHP function that reads a file into a string. The argument for the function, here, is "php://input". This is a read only stream that allows raw data to be read from the front end request which is, in this case, a JSON package.
+		$requestObject = json_decode($requestContent);
+		//
+		if(empty($requestObject->ledgerBoardId) === false) {
+			$ledgerLeaderBoard = Ledger::getPointsByLedgerBoardId($pdo, $requestObject->ledgerBoardId);
+			if($ledgerLeaderBoard !== null) {
+				$reply->data = $ledgerLeaderBoard;
+			}
+		}
+		//
+
+   }else if($method === "POST") {
 
 		if(empty($_SESSION["profile"]) === true) {
 			throw(new \InvalidArgumentException("invalid profile", 401));
@@ -38,12 +56,9 @@ try {
 		// retrieves the JSON package that the front end sent and stores it in $requestContentHere we are using file_get_contents("php://input") to get the request from the front end. file_get_contents() is a PHP function that reads a file into a string. The argument for the function, here, is "php://input". This is a read only stream that allows raw data to be read from the front end request which is, in this case, a JSON package.
 		$requestObject = json_decode($requestContent);
 
-		var_dump($requestObject);
-
-
 		//
 		if(empty($requestObject->ledgerBoardId) === true) {
-			throw(new \InvalidArgumentException ("No Ledger Board Id found", 405));
+			throw(new \InvalidArgumentException ("No Board Id found", 405));
 		}
 		//
 		if(empty($requestObject->ledgerCardId) === true) {
