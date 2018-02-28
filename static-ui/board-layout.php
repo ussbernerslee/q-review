@@ -16,10 +16,9 @@
 	<body>
 
 		<div class="container mt-5">
-			<table class="table table-bordered">
+			<table class="table table-bordered text-center">
 				<thead>
 					<tr>
-						<th>#</th>
 						<th>Category 1</th>
 						<th>Category 2</th>
 						<th>Category 3</th>
@@ -28,46 +27,34 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row">1</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td><button type="button" class="btn btn-light btn-block">1</button></td>
+						<td><a href="https://hackerthemes.com/bootstrap-cheatsheet/#!" class="btn btn-light container-fluid" role="button">2</a></td>
+						<td><button type="button" class="btn btn-light btn-block">3</button></td>
+						<td><button type="button" class="btn btn-light btn-block">4</button></td>
 					</tr>
 					<tr>
-						<th scope="row">2</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
 					</tr>
 					<tr>
-						<th scope="row">4</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
 					</tr>
 					<tr>
-						<th scope="row">8</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
 					</tr>
 					<tr>
-						<th scope="row">16</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<th scope="row">32</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
 					</tr>
 				</tbody>
 			</table>
