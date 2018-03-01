@@ -27,13 +27,13 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><a href="#!" class="btn btn-light container-fluid" role="button">1</a></td>
-						<td><a href="#!" class="btn btn-light container-fluid" role="button">1</a></td>
-						<td><a href="#!" class="btn btn-light container-fluid" role="button">1</a></td>
-						<td><a href="#!" class="btn btn-light container-fluid" role="button">1</a></td>
+						<td><a href="#!" class="btn btn-outline-light container-fluid" role="button">1</a></td>
+						<td><a href="#!" class="btn btn-outline-light container-fluid" role="button">1</a></td>
+						<td><a href="#!" class="btn btn-outline-light container-fluid" role="button">1</a></td>
+						<td><a href="#!" class="btn btn-outline-light container-fluid" role="button">1</a></td>
 					</tr>
 					<tr>
-						<td>2</td>
+						<td><button type="button" name="" id="" class="btn btn-block btn-light">2</button></td>
 						<td>2</td>
 						<td>2</td>
 						<td>2</td>
