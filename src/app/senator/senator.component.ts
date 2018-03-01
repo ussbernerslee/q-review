@@ -1,4 +1,4 @@
-// remember to rename/reconfigure for our project as this was made for SenArlo
+// remember to rename/reconfigure for our project as this was made for SenArlo (senator.service,etc)
 import {Component} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PubNubAngular} from "pubnub-angular2";
