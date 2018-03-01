@@ -27,34 +27,40 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><button type="button" class="btn btn-light btn-block">1</button></td>
-						<td><a href="https://hackerthemes.com/bootstrap-cheatsheet/#!" class="btn btn-light container-fluid" role="button">2</a></td>
-						<td><button type="button" class="btn btn-light btn-block">3</button></td>
-						<td><button type="button" class="btn btn-light btn-block">4</button></td>
+						<td><a href="#!" class="btn btn-light container-fluid" role="button">1</a></td>
+						<td><a href="#!" class="btn btn-light container-fluid" role="button">1</a></td>
+						<td><a href="#!" class="btn btn-light container-fluid" role="button">1</a></td>
+						<td><a href="#!" class="btn btn-light container-fluid" role="button">1</a></td>
 					</tr>
 					<tr>
-						<td>1</td>
 						<td>2</td>
-						<td>3</td>
+						<td>2</td>
+						<td>2</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>4</td>
+						<td>4</td>
 						<td>4</td>
 					</tr>
 					<tr>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
+						<td>8</td>
+						<td>8</td>
+						<td>8</td>
+						<td>8</td>
 					</tr>
 					<tr>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
+						<td>16</td>
+						<td>16</td>
+						<td>16</td>
+						<td>16</td>
 					</tr>
 					<tr>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
+						<td>32</td>
+						<td>32</td>
+						<td>32</td>
+						<td>32</td>
 					</tr>
 				</tbody>
 			</table>
