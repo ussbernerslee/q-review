@@ -3,6 +3,12 @@ require_once("HailingFrequencies.php");
 require_once("vendor/autoload.php");
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use PubNub\{PNConfiguration, PubNub};
+/**
+ * PubNub configuration object
+ * @var PubNub $pubNub
+ * @author Dylan McDonald <>
+ *
+ **/
 //prepare an empty reply
 $reply = new stdClass();
 $reply->status = 200;
