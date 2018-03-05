@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 import {Status} from "../classes/status";
 import {Board} from "../classes/board";
@@ -20,12 +20,13 @@ export class BoardService {
 
 		//call the board API and get a Board object by its Id
 		getBoard(boardId: string) : Observable<Board> {
-			return(this.http.get<Board>(this.boardUrl + boardId));
+			return(this.http.get<Board>(this.boardUrl, {params: new HttpParams().set("boardId", boardId)}));
 		}
 
 		//call the board API and get the Board by Board Profile Id
 		getBoardByBoardProfileId(boardProfileId: string) : Observable<Board> {
-			return(this.http.get<Board>(this.boardUrl + boardProfileId));
+
+			return(this.http.get<Board>(this.boardUrl, {params: new HttpParams().set("boardProfileId", boardProfileId)}));
 		}
 
 	}
