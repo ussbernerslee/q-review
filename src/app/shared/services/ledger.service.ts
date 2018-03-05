@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {Status} from "../classes/status";
 import {Ledger} from "../classes/ledger";
@@ -21,9 +21,9 @@ export class LedgerService {
 	}
 
 // call to the ledger API and GET ledgerPoints based on its ledgerBoardId
-	getLedger(ledgerBoardId : string) : Observable<Ledger> {
-		return (this.http.get<Ledger>(this.ledgerUrl + ledgerBoardId));
+	getLedgerByLedgerBoardId(ledgerBoardId : string) : Observable<Ledger[]> {
+		return(this.http.get<Ledger[]>(this.ledgerUrl, {params: new HttpParams().set("ledgeBoardId", ledgerBoardId)});
 	}
 }
-	//return(this.http.get<Foo[]>(this.fooUrl, {params: new HttpParms().set("fuzzyId", "senator-arlo").set("numLives", 9)}))
+
 
