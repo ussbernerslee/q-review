@@ -21,10 +21,9 @@ export class LedgerService {
 	}
 
 // call to the ledger API and GET ledgerPoints based on its ledgerBoardId
-	getLedger(ledgerBoardId : number) : Observable<Ledger> {
+	getLedger(ledgerBoardId : string) : Observable<Ledger> {
 		return (this.http.get<Ledger>(this.ledgerUrl + ledgerBoardId));
 	}
-
-
-
 }
+	//return(this.http.get<Foo[]>(this.fooUrl, {params: new HttpParms().set("fuzzyId", "senator-arlo").set("numLives", 9)}))
+

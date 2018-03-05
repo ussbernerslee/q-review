@@ -19,12 +19,12 @@ export class BoardService {
 		}
 
 		//call the board API and get a Board object by its Id
-		getBoard(boardId: number) : Observable<Board> {
+		getBoard(boardId: string) : Observable<Board> {
 			return(this.http.get<Board>(this.boardUrl + boardId));
 		}
 
 		//call the board API and get the Board by Board Profile Id
-		getBoardByBoardProfileId(boardProfileId: number) : Observable<Board> {
+		getBoardByBoardProfileId(boardProfileId: string) : Observable<Board> {
 			return(this.http.get<Board>(this.boardUrl + boardProfileId));
 		}
 
