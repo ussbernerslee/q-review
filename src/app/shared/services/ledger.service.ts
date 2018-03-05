@@ -22,7 +22,7 @@ export class LedgerService {
 
 // call to the ledger API and GET ledgerPoints based on its ledgerBoardId
 	getLedgerByLedgerBoardId(ledgerBoardId : string) : Observable<Ledger[]> {
-		return(this.http.get<Ledger[]>(this.ledgerUrl, {params: new HttpParams().set("ledgeBoardId", ledgerBoardId)}));
+		return(this.http.get<Ledger[]>(this.ledgerUrl, {params: new HttpParams().set("ledgerBoardId", ledgerBoardId)}));
 	}
 }
 
