@@ -56,37 +56,56 @@ try {
 				$reply->data = $categoryName;
 			}
 		}
-	} elseif($method === "PUT") {
+	} elseif($method === "PUT" || $method === "POST") {
 		//enforce that the XSRF token is present in the header
 		verifyXsrf();
 		//enforce the end user has a JWT token
-		//validateJwtHeader();
-		//enforce the user is signed in and only trying to edit their own category
-		if(empty($_SESSION["category"]) === true || $_SESSION["category"]->getCategoryId()->toString() !== $id) {
-			throw(new \InvalidArgumentException("You are not allowed to access this category", 403));
-		}
 		validateJwtHeader();
 		//decode the response from the front end
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
-		//retrieve the category to be updated
-		$category = Category::getCategoryByCategoryId($pdo, $id);
-		if($category === null) {
-			throw(new RuntimeException("Category does not exist", 404));
+
+		if($method === "PUT") {
+			//enforce the user is signed in and only trying to edit their own category
+			if(empty($_SESSION["category"]) === true || $_SESSION["category"]->getCategoryId()->toString() !== $id) {
+				throw(new \InvalidArgumentException("You are not allowed to access this category", 403));
+			}
+
+			//retrieve the category to be updated
+			$category = Category::getCategoryByCategoryId($pdo, $id);
+			if($category === null) {
+				throw(new RuntimeException("Category does not exist", 404));
+			}
+			//category profile id
+			if(empty($requestObject->categoryProfileId) === true) {
+				throw(new \InvalidArgumentException ("No category profile", 405));
+			}
+			//category name is a required field
+			if(empty($requestObject->categoryName) === true) {
+				throw(new \InvalidArgumentException ("No category name present", 405));
+			}
+			$category->setCategoryProfileId($requestObject->categoryProfileId);
+			$category->setCategoryName($requestObject->categoryName);
+			$category->update($pdo);
+			// update reply
+			$reply->message = "Category information updated";
+
+		} elseif($method === "POST") {
+
+			// enforce the user is signed in
+			if(empty($_SESSION["profile"]) === true) {
+				throw(new \InvalidArgumentException("you must be logged in to create a category", 403));
+			}
+
+			// create a new card and insert it into the database
+			$category = new Category(generateUuidV4(), $_SESSION["profile"]->getProfileId(), $requestObject->categoryName);
+			$category->insert($pdo);
+
+			// update reply
+			$reply->message = "Category created OK";
 		}
-		//category profile id
-		if(empty($requestObject->categoryProfileId) === true) {
-			throw(new \InvalidArgumentException ("No category profile", 405));
-		}
-		//category name is a required field
-		if(empty($requestObject->categoryName) === true) {
-			throw(new \InvalidArgumentException ("No category name present", 405));
-		}
-		$category->setCategoryProfileId($requestObject->categoryProfileId);
-		$category->setCategoryName($requestObject->categoryName);
-		$category->update($pdo);
-		// update reply
-		$reply->message = "Category information updated";
+
+		// delete method
 	} elseif($method === "DELETE") {
 		//verify the XSRF Token
 		verifyXsrf();
