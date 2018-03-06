@@ -30,11 +30,6 @@ $reply = new stdClass();
 $reply->status = 200;
 $reply->data = null;
 
-
-$object = (object) [
-	"foo" => $card->getCardId(),
-];
-
 try {
 	// grab the mySQL connection
 	$pdo = connectToEncryptedMySql("/etc/apache2/capstone-mysql/kmaru.ini");
@@ -71,28 +66,29 @@ try {
 
 				$cardsInTable = [];
 				for($i=0; $i < count($cards); $i++) {
-					array_push($cardsInTable, (object)["cardId" => $cards[$i]->cardId, "cardPoints" => $cards[$i]->cardPoints]);
+					$cardsInTable[] = (object)["cardId" => $cards[$i]->getCardId(), "cardPoints" => $cards[$i]->getCardPoints()];
 				}
 
-			// sorts $cards by point value from least to greatest
-			usort($cardsInTable, function($leftCard, $rightCard) {
-				// spaceship operator checks less than, equal to, and greater than returning -1,0,and 1 respectively
-				return($leftCard->cardPoints <=> $rightCard->cardPoints);
-			});
+				var_dump($cardsInTable);
 
-			$currPoints = 0;
-			$numCards = 0;
-			for($i = 0; $i < count($cardsInTable) - 1; $i++) {
-				if($cardsInTable[$i]->cardPoints === $cardsInTable[$i + 1]->cardPoints) {
-					$deleteIndex = random_int(0, 1) + $i;
-					unset($cardsInTable[$deleteIndex]);
-					$cardsInTable = array_combine(range(0, count($cardsInTable) - 1), $cardsInTable);
+				// sorts $cards by point value from least to greatest
+				usort($cardsInTable, function($leftCard, $rightCard) {
+					// spaceship operator checks less than, equal to, and greater than returning -1,0,and 1 respectively
+					return($leftCard->cardPoints <=> $rightCard->cardPoints);
+				});
+
+				$currPoints = 0;
+				$numCards = 0;
+				for($i = 0; $i < count($cardsInTable) - 1; $i++) {
+					if($cardsInTable[$i]->cardPoints === $cardsInTable[$i + 1]->cardPoints) {
+						$deleteIndex = random_int(0, 1) + $i;
+						unset($cardsInTable[$deleteIndex]);
+						$cardsInTable = array_combine(range(0, count($cardsInTable) - 1), $cardsInTable);
+					}
 				}
+
+				$reply->data = $cardsInTable;
 			}
-
-
-			$reply->data = $cardsInTable;
-		}
 		} else if(empty($cardPoints) === false) {
 		$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
 			$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
