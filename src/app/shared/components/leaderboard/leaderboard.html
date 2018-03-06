@@ -1,0 +1,37 @@
+<div class="container">
+	<!--the table below has 3 players, as a sample. In the final version, we need javascript
+	that creates a row for each player and displays their name and score-->
+	<h2>Leaderboard</h2>
+	<table class="table table-hover table-dark table-sm">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Name</th>
+				<th scope="col">Points</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of users">
+				<th scope="row">1</th>
+				<td>{{ ledgerProfileId }}</td>
+				<td>added up points by ledgerBoardId and ledgerProfileId</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<h2>Splash Component</h2>
+<table class="table table-bordered table-responsive">
+	<tr>
+		<th>User Id</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Phone</th>
+	</tr>
+	<tr *ngFor="let user of users">
+		<td>{{ user.id }}</td>
+		<td>{{ user.name }}</td>
+		<td><a [href]="'mailto:'+ user.email">{{ user.email }}</a></td>
+		<td>{{ user.phone }}</td>
+	</tr>
+</table>
