@@ -4,7 +4,6 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Status} from "../classes/status";
 import {Category} from "../classes/category";
 import {Observable} from "rxjs/Observable";
-import {Board} from "../classes/board";
 
 @Injectable ()
 export class CategoryService {
