@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import {Status} from "../../classes/status";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CookieService} from "ng2-cookies";
-
 import {SessionService} from "../../services/session.service";
 import {SignInService} from "../../services/sign.in.service";
 import {SignIn} from "../../classes/sign.in";
