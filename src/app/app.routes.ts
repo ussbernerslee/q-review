@@ -14,6 +14,7 @@ import {BoardComponent} from "./board/board.component";
 //import {ConstituentService} from "./shared/services/constituent.service";
 //import {SenatorService} from "./shared/services/senator.service";
 import {BoardService} from "./shared/services/board.service";
+import {SessionService} from "./shared/services/session.service";
 
 //import interceptors
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
@@ -39,7 +40,8 @@ export const routes: Routes = [
 
 //create array of services
 const services: any[] = [
-	BoardService
+	BoardService,
+	SessionService
 ];
 
 //array of providers
