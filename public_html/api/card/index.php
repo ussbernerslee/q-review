@@ -17,7 +17,9 @@ use Edu\Cnm\Kmaru\{
  * api for the Card class
  *
  * @author Anna Khamsamran <akhamsamran1@cnm.edu>
- * @author George Kephart <>
+ * @author Tristan Bennett <tbennett19@cnm.edu>
+ * @author Dylan McDonald
+ * @author George Kephart
  */
 //verify the session status. start session if not active
 if(session_status() !== PHP_SESSION_ACTIVE) {
@@ -27,6 +29,11 @@ if(session_status() !== PHP_SESSION_ACTIVE) {
 $reply = new stdClass();
 $reply->status = 200;
 $reply->data = null;
+
+
+$object = (object) [
+	"foo" => $card->getCardId(),
+];
 
 try {
 	// grab the mySQL connection
@@ -58,18 +65,43 @@ try {
 				$reply->data = $card;
 			}
 		} else if(empty($cardCategoryId) === false) {
-			$card = Card::getCardByCardCategoryId($pdo, $cardCategoryId)->toArray();
-			if($card !== null) {
-				$reply->data = $card;
+
+			$cards = Card::getCardByCardCategoryId($pdo, $cardCategoryId)->toArray();
+			if($cards !== null) {
+
+				$cardsInTable = [];
+				for($i=0; $i < count($cards); $i++) {
+					array_push($cardsInTable, (object)["cardId" => $cards[$i]->cardId, "cardPoints" => $cards[$i]->cardPoints]);
+				}
+
+			// sorts $cards by point value from least to greatest
+			usort($cardsInTable, function($leftCard, $rightCard) {
+				// spaceship operator checks less than, equal to, and greater than returning -1,0,and 1 respectively
+				return($leftCard->cardPoints <=> $rightCard->cardPoints);
+			});
+
+			$currPoints = 0;
+			$numCards = 0;
+			for($i = 0; $i < count($cardsInTable) - 1; $i++) {
+				if($cardsInTable[$i]->cardPoints === $cardsInTable[$i + 1]->cardPoints) {
+					$deleteIndex = random_int(0, 1) + $i;
+					unset($cardsInTable[$deleteIndex]);
+					$cardsInTable = array_combine(range(0, count($cardsInTable) - 1), $cardsInTable);
+				}
 			}
+
+
+			$reply->data = $cardsInTable;
+		}
 		} else if(empty($cardPoints) === false) {
 		$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
-		if($cards !== null) {
-			$reply->data = $cards;
+			$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
+			if($cards !== null) {
+				$reply->data = $cards;
+			}
 		}
-	}
 
-
+		//put or post
 	} else if($method === "PUT" || $method === "POST") {
 
 		//enforce the user is signed in
