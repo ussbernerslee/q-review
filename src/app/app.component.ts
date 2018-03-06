@@ -10,7 +10,7 @@ export class AppComponent {}
 */
 
 
-//the version below is from gkephart's example: ng-templating
+//the version below is from gkephart's example: ng-templating-needs to be changed for KMaru's views
 
 //import needed @angularDependencies
 import {RouterModule, Routes} from "@angular/router";
