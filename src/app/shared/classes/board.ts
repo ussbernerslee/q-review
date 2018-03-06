@@ -1,7 +1,7 @@
 export class Board {
 	constructor(
-		public boardId: number,
-		public boardProfileId: number,
+		public boardId: string,
+		public boardProfileId: string,
 		public boardName: string
 	) {}
 }
