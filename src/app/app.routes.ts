@@ -9,12 +9,14 @@ import {PubNubAngular} from "pubnub-angular2";
 //import {SenatorComponent} from "./senator/senator.component";
 import {HomeComponent} from "./home/home.component";
 import {BoardComponent} from "./board/board.component";
+import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 
 //import services
 //import {ConstituentService} from "./shared/services/constituent.service";
 //import {SenatorService} from "./shared/services/senator.service";
 import {BoardService} from "./shared/services/board.service";
 import {SessionService} from "./shared/services/session.service";
+import {LedgerService} from "./shared/services/ledger.service";
 
 //import interceptors
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
@@ -23,7 +25,8 @@ import {APP_BASE_HREF} from "@angular/common";
 //create array of components
 export const allAppComponents = [
 	HomeComponent,
-	BoardComponent
+	BoardComponent,
+	LeaderboardComponent
 	//ConstituentComponent,
 	//SenatorComponent,
 	//SplashComponent
@@ -32,7 +35,8 @@ export const allAppComponents = [
 //setup routes
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
-	{path: "board", component: BoardComponent}
+	{path: "board", component: BoardComponent},
+	{path: "leaderboard", component: LeaderboardComponent}
 	//{path: "constituent", component: ConstituentComponent},
 	//{path: "senator", component: SenatorComponent},
 	//{path: "", component: SplashComponent}

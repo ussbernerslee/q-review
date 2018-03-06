@@ -67,3 +67,63 @@
 		</div>
 	</body>
 </html>
+
+
+<div class="container mt-5">
+	<h2 *ngFor="let board of boards">{{ board.boardName }}</h2>
+	<table class="table table-bordered text-center">
+		<thead>
+			<tr *ngFor="let category of categories">
+				<th>{{ category.categoryName }}1</th>
+				<th>{{ category.categoryName }}2</th>
+				<th>{{ category.categoryName }}3</th>
+				<th>{{ category.categoryName }}4</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><a href="#!" class="btn btn-outline-light container-fluid" role="button">1</a></td>
+				<td><a href="#!" class="btn btn-outline-light container-fluid" role="button">1</a></td>
+				<td><a href="#!" class="btn btn-outline-light container-fluid" role="button">1</a></td>
+				<td><a href="#!" class="btn btn-outline-light container-fluid" role="button">1</a></td>
+			</tr>
+			<tr *ngFor="let card of cards">
+				<td><button type="button" name="" id="" class="btn btn-block btn-light">2</button></td>
+				<td>{{ card.cardPoints=for(i=0;i<=array.length;i++) (getCardByCardCategoryId (category 1))}}</td>
+				<td>{{ cardPoints=1 (getCardByCardCategoryId (category2))}}</td>
+				<td>{{ cardPoints=1 (getCardByCardCategoryId (category 3))}}</td>
+				<td>{{ cardPoints=1 (getCardByCardCategoryId (category 4))}}</td>
+			</tr>
+			<tr>
+				<td>{{ cardPoints=2 (getCardByCardCategoryId (category 1))}}</td>
+				<td>{{ cardPoints=2 (getCardByCardCategoryId (category 2))}}</td>
+				<td>{{ cardPoints=2 (getCardByCardCategoryId (category 3))}}</td>
+				<td>{{ cardPoints=2 (getCardByCardCategoryId (category 4))}}</td>
+			</tr>
+			<tr>
+				<td>{{ cardPoints=4 (getCardByCardCategoryId (category 1))}}</td>
+				<td>{{ cardPoints=4 (getCardByCardCategoryId (category 2))}}</td>
+				<td>{{ cardPoints=4 (getCardByCardCategoryId (category 3))}}</td>
+				<td>{{ cardPoints=4 (getCardByCardCategoryId (category 4))}}</td>
+			</tr>
+			<tr>
+				<td>{{ cardPoints=8 (getCardByCardCategoryId (category 1))}}</td>
+				<td>{{ cardPoints=8 (getCardByCardCategoryId (category 2))}}</td>
+				<td>{{ cardPoints=8 (getCardByCardCategoryId (category 3))}}</td>
+				<td>{{ cardPoints=8 (getCardByCardCategoryId (category 4))}}</td>
+			</tr>
+			<tr>
+				<td>{{ cardPoints=16 (getCardByCardCategoryId (category 1))}}</td>
+				<td>{{ cardPoints=16 (getCardByCardCategoryId (category 2))}}</td>
+				<td>{{ cardPoints=16 (getCardByCardCategoryId (category 3))}}</td>
+				<td>{{ cardPoints=16 (getCardByCardCategoryId (category 4))}}</td>
+			</tr>
+			<tr>
+				<td>{{ cardPoints=32 (getCardByCardCategoryId (category 1))}}</td>
+				<td>{{ cardPoints=32 (getCardByCardCategoryId (category 2))}}</td>
+				<td>{{ cardPoints=32 (getCardByCardCategoryId (category 3))}}</td>
+				<td>{{ cardPoints=32 (getCardByCardCategoryId (category 4))}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
