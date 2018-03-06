@@ -1,9 +1,9 @@
 
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
-import {SessionService} from "../../services/session.service";
-import {LedgerService} from "../../services/ledger.service";
-import {Ledger} from "../../classes/ledger";
+import {SessionService} from "../shared/services/session.service";
+import {LedgerService} from "../shared/services/ledger.service";
+import {Ledger} from "../shared/classes/ledger";
 import "rxjs/add/observable/from";
 import "rxjs/add/operator/switchMap";
 

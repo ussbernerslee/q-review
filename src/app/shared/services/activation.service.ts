@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Status} from "../classes/status";
 import {Observable} from "rxjs/Observable";
-import {Activation} from "../classes/activation.ts";
+import {Activation} from "../classes/activation";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable()
