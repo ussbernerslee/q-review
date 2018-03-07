@@ -24,12 +24,15 @@ import {APP_BASE_HREF} from "@angular/common";
 import {LedgerService} from "./shared/services/ledger.service";
 import {CategoryService} from "./shared/services/category.service";
 import {CardService} from "./shared/services/card.service";
+import {SignUpService} from "./shared/services/signup.service";
+import {SignUpComponent} from "./signup/signup.component";
 
 //create array of components
 export const allAppComponents = [
 	HomeComponent,
 	BoardComponent,
-	LeaderboardComponent
+	LeaderboardComponent,
+	SignUpComponent
 	//ConstituentComponent,
 	//SenatorComponent,
 	//SplashComponent
@@ -39,7 +42,8 @@ export const allAppComponents = [
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
 	{path: "board", component: BoardComponent},
-	{path: "leaderboard", component: LeaderboardComponent}
+	{path: "leaderboard", component: LeaderboardComponent},
+	{path: "signup", component: SignUpComponent}
 	//{path: "constituent", component: ConstituentComponent},
 	//{path: "senator", component: SenatorComponent},
 	//{path: "", component: SplashComponent}
@@ -59,6 +63,7 @@ export const providers: any[] = [
 	BoardService,
 	CategoryService,
 	CardService,
+	SignUpService,
 	PubNubAngular
 ];
 
