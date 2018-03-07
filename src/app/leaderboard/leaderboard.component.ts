@@ -23,7 +23,7 @@ import {Profile} from "../shared/classes/profile";
 })
 
 export class LeaderboardComponent implements OnInit {
-
+	gameId: string = "0c1c711e-e2e4-439d-9975-9658851b1781";
 	ngOnInit(): void {}
 
 }

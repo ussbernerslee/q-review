@@ -28,12 +28,12 @@ try {
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 	if ($method === "GET") {
-		if(empty($_SESSION["profile"]) === true) {
-			throw(new \InvalidArgumentException("invalid profile", 401));
-		}
+//		if(empty($_SESSION["profile"]) === true) {
+//			throw(new \InvalidArgumentException("invalid profile", 401));
+//		}
 //		validateJwtHeader();
 
-		//
+		$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($id) === false) {
 			$ledgerLeaderBoard = Ledger::getPointsByLedgerBoardId($pdo, $id);
 			if($ledgerLeaderBoard !== null) {
