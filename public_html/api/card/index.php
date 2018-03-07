@@ -69,8 +69,6 @@ try {
 					$cardsInTable[] = (object)["cardId" => $cards[$i]->getCardId(), "cardPoints" => $cards[$i]->getCardPoints()];
 				}
 
-				var_dump($cardsInTable);
-
 				// sorts $cards by point value from least to greatest
 				usort($cardsInTable, function($leftCard, $rightCard) {
 					// spaceship operator checks less than, equal to, and greater than returning -1,0,and 1 respectively
