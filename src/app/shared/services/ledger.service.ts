@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {Status} from "../classes/status";
 import {Ledger} from "../classes/ledger";
+import {Profile} from "../classes/profile";
 
 @Injectable()
 export class LedgerService {
@@ -21,8 +22,8 @@ export class LedgerService {
 	}
 
 // call to the ledger API and GET ledgerPoints based on its ledgerBoardId
-	getLedgerByLedgerBoardId(ledgerBoardId : string) : Observable<Ledger[]> {
-		return(this.http.get<Ledger[]>(this.ledgerUrl, {params: new HttpParams().set("id", ledgerBoardId)}));
+	getLedgerByLedgerBoardId(ledgerBoardId : string) : Observable<Profile[]> {
+		return(this.http.get<Profile[]>(this.ledgerUrl, {params: new HttpParams().set("id", ledgerBoardId)}));
 	}
 }
 
