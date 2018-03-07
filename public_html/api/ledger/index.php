@@ -31,9 +31,7 @@ try {
 		if(empty($_SESSION["profile"]) === true) {
 			throw(new \InvalidArgumentException("invalid profile", 401));
 		}
-		$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		verifyXsrf();
-		validateJwtHeader();
+//		validateJwtHeader();
 
 		//
 		if(empty($id) === false) {

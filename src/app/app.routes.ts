@@ -16,7 +16,7 @@ import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 //import {SenatorService} from "./shared/services/senator.service";
 import {BoardService} from "./shared/services/board.service";
 import {SessionService} from "./shared/services/session.service";
-import {LedgerService} from "./shared/services/ledger.service";
+
 
 //import interceptors
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
