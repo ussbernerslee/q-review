@@ -46,7 +46,7 @@ try {
 				$reply->data = $category;
 			}
 		} else if(empty($categoryProfileId) === false) {
-			$categoryProfileId = Category::getCategoryByCategoryProfileId($pdo, $categoryProfileId);
+			$categoryProfileId = Category::getCategoryByCategoryProfileId($pdo, $categoryProfileId)->toArray();
 			if($categoryProfileId !== null) {
 				$reply->data = $categoryProfileId;
 			}
