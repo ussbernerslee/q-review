@@ -21,6 +21,7 @@ import {SessionService} from "./shared/services/session.service";
 //import interceptors
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 import {APP_BASE_HREF} from "@angular/common";
+import {LedgerService} from "./shared/services/ledger.service";
 
 //create array of components
 export const allAppComponents = [
@@ -52,6 +53,7 @@ const services: any[] = [
 export const providers: any[] = [
 	{provide: APP_BASE_HREF, useValue: window["_base_href"]},
 	{provide: HTTP_INTERCEPTORS, useClass: DeepDiveInterceptor, multi: true},
+	LedgerService,
 	PubNubAngular
 ];
 
