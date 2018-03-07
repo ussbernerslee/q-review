@@ -21,12 +21,14 @@ export class BoardComponent implements OnInit {
 
 	categories: Category[] = [];
 
-	gameBoardId: string = "0c1c711e-e2e4-439d-9975-9658851b1781";
+	cards: Card[] = [];
+
+	gameCategoryId: string = "0A253DC2-54A1-4985-AE66-DD5AED20B601";
 
 	creatorId: string = "C2954660-F27B-4557-8F2D-C68E8B2D8AA8";
 
 
-	constructor(protected categoryService: CategoryService) {}
+	constructor(protected categoryService: CategoryService, protected cardService: CardService) {}
 
 	ngOnInit(): void {
 
@@ -34,6 +36,9 @@ export class BoardComponent implements OnInit {
 			.getCategoryByCategoryProfileId(this.creatorId)
 			.subscribe(categories => this.categories = categories);
 
+		this.cardService
+			.getCardByCardCategoryId(this.gameCategoryId)
+			.subscribe(cards => this.cards = cards);
 
 	};
 

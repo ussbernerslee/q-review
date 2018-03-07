@@ -23,6 +23,7 @@ import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 import {APP_BASE_HREF} from "@angular/common";
 import {LedgerService} from "./shared/services/ledger.service";
 import {CategoryService} from "./shared/services/category.service";
+import {CardService} from "./shared/services/card.service";
 
 //create array of components
 export const allAppComponents = [
@@ -57,6 +58,7 @@ export const providers: any[] = [
 	LedgerService,
 	BoardService,
 	CategoryService,
+	CardService,
 	PubNubAngular
 ];
 

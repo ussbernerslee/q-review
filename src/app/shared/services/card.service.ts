@@ -33,8 +33,8 @@ export class CardService {
 	}
 
 	// call card API and get cards by card category id
-	getCardByCardCategoryId(cardCategoryId: number) : Observable<Card[]> {
-		return(this.http.get<Card[]>(this.cardUrl + cardCategoryId));
+	getCardByCardCategoryId(cardCategoryId: string) : Observable<Card[]> {
+		return(this.http.get<Card[]>(this.cardUrl + "?cardCategoryId=" + cardCategoryId));
 	}
 
 	// call card API and get cards by card points

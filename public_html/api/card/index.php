@@ -89,7 +89,6 @@ try {
 			}
 		} else if(empty($cardPoints) === false) {
 		$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
-			$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
 			if($cards !== null) {
 				$reply->data = $cards;
 			}

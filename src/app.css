@@ -1,0 +1,11 @@
+.border-bottom.category-name {
+	height: 70px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.border-bottom:last-child {
+	border: none!important;
+}

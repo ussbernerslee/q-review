@@ -1,16 +1,14 @@
 board view
-<div class="container mt-5">
-	<h2 *ngFor="let board of boards">{{ board.boardName }}</h2>
-	<table class="table table-bordered text-center">
-		<thead>
-			<tr >
-				<th *ngFor="let category of categories">{{ category.categoryName }}</th>
 
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-			</tr>
-		</tbody>
-	</table>
-</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 border" *ngFor="let category of categories">
+				<div class="border-bottom category-name">{{ category.categoryName }}</div>
+				<div class="border-bottom" *ngFor="let card of cards">{{ card.cardPoints }}</div>
+			</div>
+		</div>
+	</div>
+
+
+
