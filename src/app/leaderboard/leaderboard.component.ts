@@ -22,6 +22,8 @@ import {Profile} from "../shared/classes/profile";
 	template: require("./leaderboard.html")
 })
 
-export class leaderboardComponent implements OnInit {
+export class LeaderboardComponent implements OnInit {
+
+	ngOnInit(): void {}
 
 }
