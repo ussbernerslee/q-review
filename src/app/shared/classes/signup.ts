@@ -4,7 +4,7 @@ export class SignUp {
 		public profileName: string,
 		public profilePassword: string,
 		public profilePasswordConfirm: string,
-		public profileUsername: string
+		public profileUserName: string
 
 	) {}
 }

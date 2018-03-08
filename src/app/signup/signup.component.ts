@@ -21,7 +21,7 @@ declare const $: any;
 export class SignUpComponent implements OnInit{
 
 	signUpForm: FormGroup;
-	profile: SignUp = new SignUp(null, null, null, null, null);
+
 	status: Status = null;
 
 	constructor(
@@ -33,28 +33,23 @@ export class SignUpComponent implements OnInit{
 	ngOnInit() : void {
 		this.signUpForm = this.formBuilder.group({
 			profileName: ["", [Validators.maxLength(50), Validators.required]],
-			profileUsername: ["", [Validators.maxLength(64), Validators.required]],
+			profileUserName: ["", [Validators.maxLength(64), Validators.required]],
 			profileEmail: ["", [Validators.maxLength(64), Validators.required]],
 			profilePassword: ["", [Validators.maxLength(250), Validators.required]],
 			profileConfirmPassword: ["", [Validators.maxLength(250), Validators.required]]
 		});
-		this.applyFormChanges();
+
 	}
 
-	applyFormChanges() : void {
-		this.signUpForm.valueChanges.subscribe(values => {
-			for(let field in values) {
-				this.profile[field] = values[field];
-			}
-		});
-	}
+
 
 	signUp() : void {
-		this.signUpService.createProfile(this.profile)
+		let profile: SignUp = new SignUp(this.signUpForm.value.profileEmail, this.signUpForm.value.profileName, this.signUpForm.value.profilePassword, this.signUpForm.value.profileConfirmPassword, this.signUpForm.value.profileUserName);
+		this.signUpService.createProfile(profile)
 			.subscribe(status => {
 				this.status = status;
 				if(this.status.status === 200) {
-					this.signUpService.createProfile(this.profile);
+					this.signUpService.createProfile(profile);
 					this.signUpForm.reset();
 					console.log("signup successful");
 					setTimeout(function(){$("#signUpForm").modal("hide");}, 5000);

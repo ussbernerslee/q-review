@@ -10,29 +10,34 @@ import {PubNubAngular} from "pubnub-angular2";
 import {HomeComponent} from "./home/home.component";
 import {BoardComponent} from "./board/board.component";
 import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
+import {SignUpComponent} from "./signup/signup.component";
+import {SignInComponent} from "./shared/components/sign-in/sign-in.component";
 
 //import services
 //import {ConstituentService} from "./shared/services/constituent.service";
 //import {SenatorService} from "./shared/services/senator.service";
 import {BoardService} from "./shared/services/board.service";
 import {SessionService} from "./shared/services/session.service";
+import {LedgerService} from "./shared/services/ledger.service";
+import {CategoryService} from "./shared/services/category.service";
+import {CardService} from "./shared/services/card.service";
+import {SignUpService} from "./shared/services/signup.service";
+import {SignInService} from "./shared/services/sign.in.service";
 
 
 //import interceptors
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 import {APP_BASE_HREF} from "@angular/common";
-import {LedgerService} from "./shared/services/ledger.service";
-import {CategoryService} from "./shared/services/category.service";
-import {CardService} from "./shared/services/card.service";
-import {SignUpService} from "./shared/services/signup.service";
-import {SignUpComponent} from "./signup/signup.component";
+
+
 
 //create array of components
 export const allAppComponents = [
 	HomeComponent,
 	BoardComponent,
 	LeaderboardComponent,
-	SignUpComponent
+	SignUpComponent,
+	SignInComponent
 	//ConstituentComponent,
 	//SenatorComponent,
 	//SplashComponent
@@ -64,6 +69,7 @@ export const providers: any[] = [
 	CategoryService,
 	CardService,
 	SignUpService,
+	SignInService,
 	PubNubAngular
 ];
 
