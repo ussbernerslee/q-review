@@ -11,7 +11,7 @@ import {HomeComponent} from "./home/home.component";
 import {BoardComponent} from "./board/board.component";
 import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 import {SignUpComponent} from "./signup/signup.component";
-import {SignInComponent} from "./shared/components/sign-in/sign-in.component";
+import {SignInComponent} from "./sign-in/sign-in.component";
 
 //import services
 //import {ConstituentService} from "./shared/services/constituent.service";
@@ -28,6 +28,7 @@ import {SignInService} from "./shared/services/sign.in.service";
 //import interceptors
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 import {APP_BASE_HREF} from "@angular/common";
+import {CookieService} from "ng2-cookies";
 
 
 
@@ -48,7 +49,8 @@ export const routes: Routes = [
 	{path: "", component: HomeComponent},
 	{path: "board", component: BoardComponent},
 	{path: "leaderboard", component: LeaderboardComponent},
-	{path: "signup", component: SignUpComponent}
+	{path: "signup", component: SignUpComponent},
+	{path: "sign-in", component: SignInComponent}
 	//{path: "constituent", component: ConstituentComponent},
 	//{path: "senator", component: SenatorComponent},
 	//{path: "", component: SplashComponent}
@@ -70,6 +72,7 @@ export const providers: any[] = [
 	CardService,
 	SignUpService,
 	SignInService,
+	CookieService,
 	PubNubAngular
 ];
 

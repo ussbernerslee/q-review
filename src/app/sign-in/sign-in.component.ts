@@ -1,11 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
-import {Status} from "../../classes/status";
+import {Status} from "../shared/classes/status";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CookieService} from "ng2-cookies";
-import {SessionService} from "../../services/session.service";
-import {SignInService} from "../../services/sign.in.service";
-import {SignIn} from "../../classes/sign.in";
+import {SessionService} from "../shared/services/session.service";
+import {SignInService} from "../shared/services/sign.in.service";
+import {SignIn} from "../shared/classes/sign.in";
 
 //enable jquery $ alias
 declare const $: any;
@@ -19,7 +19,7 @@ declare const $: any;
 export class SignInComponent implements OnInit {
 
 	signInForm: FormGroup;
-	signin: SignIn = new SignIn(null, null);
+
 	status: Status = null;
 
 	constructor(
@@ -40,19 +40,20 @@ export class SignInComponent implements OnInit {
 	applyFormChanges() : void {
 		this.signInForm.valueChanges.subscribe(values => {
 			for(let field in values) {
-				this.signin[field] = values[field];
+				this.signIn[field] = values[field];
 			}
 		});
 	}
 
 	signIn() : void {
-		this.signInService.postSignIn(this.signin)
+		let signin: SignIn = new SignIn(this.signInForm.value.profileEmail, this.signInForm.value.profilePassword);
+		this.signInService.postSignIn(signin)
 			.subscribe(status => {
 				this.status = status;
 				if(this.status.status === 200) {
 					this.sessionService.setSession();
 					this.signInForm.reset();
-					this.router.navigate(["posts"]);
+					this.router.navigate(["board"]);
 					console.log("signin successful");
 					setTimeout(function(){$("#signin-modal").modal('hide');},1000);
 				} else {

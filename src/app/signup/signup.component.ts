@@ -4,7 +4,7 @@ import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SignUp} from "../shared/classes/signup";
-import {CookieService} from "ng2-cookies";
+
 import {SignUpService} from "../shared/services/signup.service";
 import {Status} from "../shared/classes/status";
 
