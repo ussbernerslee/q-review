@@ -12,6 +12,8 @@ import {BoardComponent} from "./board/board.component";
 import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
 import {SignUpComponent} from "./signup/signup.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
+import {CaptainComponent} from "./captain/captain.component";
+import {CardComponent} from "./card/card.component";
 
 //import services
 //import {ConstituentService} from "./shared/services/constituent.service";
@@ -29,7 +31,8 @@ import {SignInService} from "./shared/services/sign.in.service";
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 import {APP_BASE_HREF} from "@angular/common";
 import {CookieService} from "ng2-cookies";
-import {CardComponent} from "./card/card.component";
+
+
 
 
 
@@ -40,7 +43,8 @@ export const allAppComponents = [
 	LeaderboardComponent,
 	SignUpComponent,
 	SignInComponent,
-	CardComponent
+	CardComponent,
+	CaptainComponent
 	//ConstituentComponent,
 	//SenatorComponent,
 	//SplashComponent
@@ -53,7 +57,8 @@ export const routes: Routes = [
 	{path: "leaderboard", component: LeaderboardComponent},
 	{path: "signup", component: SignUpComponent},
 	{path: "sign-in", component: SignInComponent},
-	{path: "card", component: CardComponent}
+	{path: "card", component: CardComponent},
+	{path: "captain", component: CaptainComponent}
 	//{path: "constituent", component: ConstituentComponent},
 	//{path: "senator", component: SenatorComponent},
 	//{path: "", component: SplashComponent}

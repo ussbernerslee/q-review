@@ -66,7 +66,7 @@ try {
 
 				$cardsInTable = [];
 				for($i=0; $i < count($cards); $i++) {
-					$cardsInTable[] = (object)["cardId" => $cards[$i]->getCardId(), "cardPoints" => $cards[$i]->getCardPoints()];
+					$cardsInTable[] = (object)["cardId" => $cards[$i]->getCardId(), "cardAnswer" => $cards[$i]->getCardAnswer(), "cardPoints" => $cards[$i]->getCardPoints(), "cardQuestion" => $cards[$i]->getCardQuestion()];
 				}
 
 				// sorts $cards by point value from least to greatest

@@ -9,25 +9,26 @@ import {Category} from "../shared/classes/category";
 	template: require("./card.html")
 })
 
-export class CardComponent implements OnInit {
+export class CardComponent {
 
-	card: Card;
-	category: Category;
+	card: Card = new Card(null, null, null, null, null);
+	category: Category = new Category(null, null, null);
 	categoryId: string = "dd02034e-2f70-4ca8-a4bc-416c3eaa0db3";
 	cardId: string = "155456a2-5926-4071-bfa8-5e21fb5402ae";
 
 	constructor(protected cardService: CardService, protected categoryService: CategoryService) {}
 
-	ngOnInit(): void {
 
+	getCard(){
 		this.cardService
 			.getCard(this.cardId)
 			.subscribe(card => this.card = card);
+	}
 
+	getCategory() {
 		this.categoryService
 			.getCategory(this.categoryId)
 			.subscribe(category => this.category = category);
-
 	}
 
 }

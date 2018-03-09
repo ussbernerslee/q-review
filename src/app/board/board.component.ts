@@ -1,14 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-
-import {Board} from "../shared/classes/board";
-import {BoardService} from "../shared/services/board.service";
+import {Component, OnInit, EventEmitter, Output} from "@angular/core";
 import {Card} from "../shared/classes/card";
 import {CardService} from "../shared/services/card.service";
-
 import {Category} from "../shared/classes/category";
 import {CategoryService} from "../shared/services/category.service";
-import {Profile} from "../shared/classes/profile";
-import {LedgerService} from "../shared/services/ledger.service";
+
 
 
 
@@ -18,6 +13,9 @@ import {LedgerService} from "../shared/services/ledger.service";
 })
 
 export class BoardComponent implements OnInit {
+
+	@Output ()
+		cardChange = new EventEmitter<Card>();
 
 	categories: Category[] = [];
 
@@ -39,6 +37,7 @@ export class BoardComponent implements OnInit {
 		this.cardService
 			.getCardByCardCategoryId(this.gameCategoryId)
 			.subscribe(cards => this.cards = cards);
+
 
 	};
 
