@@ -25,7 +25,7 @@ export class CategoryService {
 
 	//call the category API and get a category object by its Id
 	getCategory(categoryId: string) : Observable<Category> {
-		return(this.http.get<Category>(this.categoryUrl, {params: new HttpParams().set("categoryId", categoryId)}));
+		return(this.http.get<Category>(this.categoryUrl, {params: new HttpParams().set("id", categoryId)}));
 	}
 
 	//call the category API and get the Category by Category Profile Id

@@ -28,7 +28,7 @@ export class CardService {
 	}
 
 	// call card API and get a card by card id
-	getCard(cardId: number) : Observable<Card> {
+	getCard(cardId: string) : Observable<Card> {
 		return(this.http.get<Card>(this.cardUrl + cardId));
 	}
 

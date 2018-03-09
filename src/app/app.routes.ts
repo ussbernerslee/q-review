@@ -29,6 +29,7 @@ import {SignInService} from "./shared/services/sign.in.service";
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 import {APP_BASE_HREF} from "@angular/common";
 import {CookieService} from "ng2-cookies";
+import {CardComponent} from "./card/card.component";
 
 
 
@@ -38,7 +39,8 @@ export const allAppComponents = [
 	BoardComponent,
 	LeaderboardComponent,
 	SignUpComponent,
-	SignInComponent
+	SignInComponent,
+	CardComponent
 	//ConstituentComponent,
 	//SenatorComponent,
 	//SplashComponent
@@ -50,7 +52,8 @@ export const routes: Routes = [
 	{path: "board", component: BoardComponent},
 	{path: "leaderboard", component: LeaderboardComponent},
 	{path: "signup", component: SignUpComponent},
-	{path: "sign-in", component: SignInComponent}
+	{path: "sign-in", component: SignInComponent},
+	{path: "card", component: CardComponent}
 	//{path: "constituent", component: ConstituentComponent},
 	//{path: "senator", component: SenatorComponent},
 	//{path: "", component: SplashComponent}
