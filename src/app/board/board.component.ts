@@ -3,6 +3,7 @@ import {Card} from "../shared/classes/card";
 import {CardService} from "../shared/services/card.service";
 import {Category} from "../shared/classes/category";
 import {CategoryService} from "../shared/services/category.service";
+import
 
 
 
@@ -26,7 +27,8 @@ export class BoardComponent implements OnInit {
 	creatorId: string = "C2954660-F27B-4557-8F2D-C68E8B2D8AA8";
 
 
-	constructor(protected categoryService: CategoryService, protected cardService: CardService) {}
+	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected jwtHelper: JwtHelper) {}
+
 
 	ngOnInit(): void {
 
