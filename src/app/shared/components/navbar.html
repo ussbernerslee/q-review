@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<a class="navbar-brand text-danger" href="#">
+		<img src="kmaru-v4-sm.svg" alt="kmaru logo"> &nbsp K Maru
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto">
+
+			<li class="nav-item">
+				<button class="btn btn-warning my-0 mr-sm-2" data-toggle="modal" data-target="#signin-modal"><i class="fas fa-sign-in-alt"></i>&nbsp;Sign In</button>
+			</li>
+
+			<li class="nav-item">
+				<button class="btn btn-danger my-0 mr-sm-2" data-toggle="modal" data-target="#signup-modal"><i class="fas fa-paw"></i>&nbsp;Sign Up!</button>
+			</li>
+
+			<li> <button class="btn btn-info my-0 mr-sm-2" (click)="logOut();">Logout</button></li>
+
+		</ul>
+	</div>
+</nav>
