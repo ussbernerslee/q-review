@@ -58,17 +58,28 @@ try {
 		if($hash !== $profile->getProfileHash()) {
 			throw(new \InvalidArgumentException("Password or email is incorrect.", 401));
 		}
-		//grab profile from database and put into a session
-		$profile = Profile::getProfileByProfileId($pdo, $profile->getProfileId());
-		$_SESSION["profile"] = $profile;
-		//create the Auth payload
-		$authObject = (object) [
-			"profileId" =>$profile->getProfileId(),
-			"profileEmail" => $profile->getProfileEmail()
-		];
-		// create and set th JWT TOKEN
-		setJwtAndAuthHeader("auth",$authObject);
-		$reply->message = "Sign in was successful.";
+		if($profile->getProfilePrivilege() == "1") {
+			$_SESSION["profile"] = $profile;
+			$authObject = (object) [
+				"profileId" =>$profile->getProfileId(),
+				"profilePrivilege" => $profile->getProfilePrivilege()
+			];
+			// create and set th JWT TOKEN
+			setJwtAndAuthHeader("auth",$authObject);
+			$reply->message = "Sign in was successful.";
+		} else {
+			//grab profile from database and put into a session
+			$profile = Profile::getProfileByProfileId($pdo, $profile->getProfileId());
+			$_SESSION["profile"] = $profile;
+			//create the Auth payload
+			$authObject = (object) [
+				"profileId" =>$profile->getProfileId(),
+				"profileEmail" => $profile->getProfileEmail()
+			];
+			// create and set th JWT TOKEN
+			setJwtAndAuthHeader("auth",$authObject);
+			$reply->message = "Sign in was successful.";
+		}
 	} else {
 		throw(new \InvalidArgumentException("Invalid HTTP method request", 418));
 	}

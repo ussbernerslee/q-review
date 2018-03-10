@@ -46,6 +46,7 @@ export class SignInComponent implements OnInit {
 	}
 
 	signIn() : void {
+		localStorage.clear();
 		let signin: SignIn = new SignIn(this.signInForm.value.profileEmail, this.signInForm.value.profilePassword);
 		this.signInService.postSignIn(signin)
 			.subscribe(status => {

@@ -3,9 +3,8 @@ import {Card} from "../shared/classes/card";
 import {CardService} from "../shared/services/card.service";
 import {Category} from "../shared/classes/category";
 import {CategoryService} from "../shared/services/category.service";
-import
-
-
+import {AuthService} from "../shared/services/auth.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 
 @Component({
@@ -24,24 +23,35 @@ export class BoardComponent implements OnInit {
 
 	gameCategoryId: string = "0A253DC2-54A1-4985-AE66-DD5AED20B601";
 
-	creatorId: string = "C2954660-F27B-4557-8F2D-C68E8B2D8AA8";
+	creatorId: string = this.authService.decodeJwt().auth.profileId;
 
+	selectedCategories: string[] =[];
 
-	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected jwtHelper: JwtHelper) {}
+	selectForm: FormGroup;
+
+	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected authService: AuthService, protected formBuilder: FormBuilder) {}
 
 
 	ngOnInit(): void {
+
+		this.selectForm = this.formBuilder.group({
+			select:["",[Validators.required]]
+		});
 
 		this.categoryService
 			.getCategoryByCategoryProfileId(this.creatorId)
 			.subscribe(categories => this.categories = categories);
 
+
+
+
+ 	};
+	dropdownId() : void {
+		this.selectedCategories.push(this.selectForm.value.select);
 		this.cardService
-			.getCardByCardCategoryId(this.gameCategoryId)
+			.getCardByCardCategoryId(this.selectForm.value.select)
 			.subscribe(cards => this.cards = cards);
-
-
-	};
+	}
 
 
 }

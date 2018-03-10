@@ -25,6 +25,8 @@ import {CategoryService} from "./shared/services/category.service";
 import {CardService} from "./shared/services/card.service";
 import {SignUpService} from "./shared/services/signup.service";
 import {SignInService} from "./shared/services/sign.in.service";
+import {AuthService} from "./shared/services/auth.service";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 
 //import interceptors
@@ -64,11 +66,7 @@ export const routes: Routes = [
 	//{path: "", component: SplashComponent}
 ];
 
-//create array of services
-const services: any[] = [
-	BoardService,
-	SessionService
-];
+
 
 //array of providers
 export const providers: any[] = [
@@ -81,9 +79,12 @@ export const providers: any[] = [
 	SignUpService,
 	SignInService,
 	CookieService,
+	AuthService,
+	SessionService,
+	JwtHelperService,
 	PubNubAngular
 ];
 
-export const appRoutingProviders: any[] = [providers, services];
+export const appRoutingProviders: any[] = [providers];
 
 export const routing = RouterModule.forRoot(routes);
