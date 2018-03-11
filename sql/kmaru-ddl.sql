@@ -174,3 +174,4 @@ VALUES (UNHEX (REPLACE('584f6c15-6dbc-420f-854e-35d552235042', '-', '')),UNHEX(R
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('39b12f66-f8ab-4ea4-b9cf-c18a202e466b', '-', '')),UNHEX(REPLACE('4e7fc1e6-3c3b-43d7-9a7e-6b97b25e6593', '-', '')),'who is ship 4', '4', 'The name of ship 4');
 
+

@@ -14,6 +14,7 @@ import {SignUpComponent} from "./signup/signup.component";
 import {SignInComponent} from "./sign-in/sign-in.component";
 import {CaptainComponent} from "./captain/captain.component";
 import {CardComponent} from "./card/card.component";
+import {OptionsComponent} from "./options/options.component";
 
 //import services
 //import {ConstituentService} from "./shared/services/constituent.service";
@@ -46,7 +47,8 @@ export const allAppComponents = [
 	SignUpComponent,
 	SignInComponent,
 	CardComponent,
-	CaptainComponent
+	CaptainComponent,
+	OptionsComponent
 	//ConstituentComponent,
 	//SenatorComponent,
 	//SplashComponent
@@ -60,7 +62,8 @@ export const routes: Routes = [
 	{path: "signup", component: SignUpComponent},
 	{path: "sign-in", component: SignInComponent},
 	{path: "card", component: CardComponent},
-	{path: "captain", component: CaptainComponent}
+	{path: "captain", component: CaptainComponent},
+	{path: "options", component: OptionsComponent}
 	//{path: "constituent", component: ConstituentComponent},
 	//{path: "senator", component: SenatorComponent},
 	//{path: "", component: SplashComponent}
