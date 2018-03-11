@@ -34,6 +34,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 import {APP_BASE_HREF} from "@angular/common";
 import {CookieService} from "ng2-cookies";
+import {JoinService} from "./shared/services/join.service";
 
 
 
@@ -85,6 +86,7 @@ export const providers: any[] = [
 	AuthService,
 	SessionService,
 	JwtHelperService,
+	JoinService,
 	PubNubAngular
 ];
 

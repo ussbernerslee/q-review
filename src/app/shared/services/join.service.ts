@@ -2,11 +2,12 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Status} from "../classes/status";
 import {Observable} from "rxjs/Observable";
+import {Join} from "../classes/join";
 
 @Injectable()
 
 
-export class SessionService {
+export class JoinService {
 
 
 	constructor(protected http:HttpClient) {}
@@ -14,7 +15,9 @@ export class SessionService {
 	private sessionUrl = "api/join/";
 
 	joinBoard(boardId : string): Observable<Status> {
-		return (this.http.post<Status>(this.sessionUrl, boardId));
+		let board = new Join(boardId);
+		return (this.http.post<Status>(this.sessionUrl, board));
+
 
 	}
 
