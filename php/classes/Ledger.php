@@ -200,14 +200,14 @@ class Ledger implements \JsonSerializable {
 	public function setLedgerPoints(int $newLedgerPoints): void {
 		// verify the ledger points are integers
 		$newLedgerPoints = filter_var($newLedgerPoints, FILTER_VALIDATE_INT);
-		//check to see if points is empty or insecure
-		if(empty($newLedgerPoints) === true) {
-			throw(new \PDOException("ledger points empty or insecure"));
-		}
-		//check to see if ledger points is int
-		if(is_int($newLedgerPoints) !== true) {
-			throw(new \InvalidArgumentException("ledger points is not an integer"));
-		}
+//		//check to see if points is empty or insecure
+//		if(empty($newLedgerPoints) === true) {
+//			throw(new \PDOException("ledger points empty or insecure"));
+//		}
+//		//check to see if ledger points is int
+//		if(is_int($newLedgerPoints) !== true) {
+//			throw(new \InvalidArgumentException("ledger points is not an integer"));
+//		}
 		// verify the ledger points will fit in the database
 		if($newLedgerPoints > 100000) {
 			throw(new \RangeException("ledger points is too large"));

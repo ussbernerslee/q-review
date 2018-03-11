@@ -23,12 +23,13 @@ export class OptionsComponent implements OnInit {
 
 	constructor(
 		private formBuilder: FormBuilder,
-		protected authService: AuthService,
-		protected ledgerService: LedgerService,
+		private authService: AuthService,
+		private ledgerService: LedgerService,
 		private router: Router) {}
 
 	ngOnInit() : void {
 		this.joinForm = this.formBuilder.group({
+			id: [""]
 		});
 	}
 captainOption() : void {
@@ -38,6 +39,7 @@ captainOption() : void {
 studentOption() : void {
 	let ledger: Ledger = new Ledger(this.joinForm.value.id, this.joinId, this.playerId, 0, "1");
 	this.ledgerService.postLedger(ledger);
-		this.router.navigate(["student"]);
+	console.log("joined!")
+		//this.router.navigate(["student"]);
 		}
 }

@@ -93,7 +93,7 @@ try {
 		$board = new Board(generateUuidV4(), $_SESSION["profile"]->getProfileId(), $requestObject->boardName);
 		$board->insert($pdo);
 		// update reply
-		$reply->message = "Board created";
+		$reply->message = $board->getBoardId();
 	}
 
 
