@@ -47,7 +47,7 @@ captainOption() : void {
 		.subscribe(status => {
 			this.status = status;
 			if(this.status.status === 200) {
-				this.router.navigate(["/board/",status.message]);
+				this.router.navigate(["/captain/",status.message]);
 				console.log("board created");
 			} else {
 				console.log("failed board creation");

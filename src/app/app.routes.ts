@@ -65,7 +65,7 @@ export const routes: Routes = [
 	{path: "signup", component: SignUpComponent},
 	{path: "sign-in", component: SignInComponent},
 	{path: "card", component: CardComponent},
-	{path: "captain", component: CaptainComponent},
+	{path: "captain/:boardId", component: CaptainComponent},
 	{path: "options", component: OptionsComponent},
 	{path: "joined", component: JoinedComponent}
 	//{path: "constituent", component: ConstituentComponent},
