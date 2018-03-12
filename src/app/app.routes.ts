@@ -75,6 +75,7 @@ export const routes: Routes = [
 
 
 
+
 //array of providers
 export const providers: any[] = [
 	{provide: APP_BASE_HREF, useValue: window["_base_href"]},

@@ -9,7 +9,6 @@ import {BoardService} from "../shared/services/board.service";
 import {Status} from "../shared/classes/status";
 import {ActivatedRoute} from "@angular/router";
 import {Profile} from "../shared/classes/profile";
-import {LedgerService} from "../shared/services/ledger.service";
 
 @Component({
 	selector: "game",
@@ -35,7 +34,7 @@ export class BoardComponent implements OnInit {
 
 	selectForm: FormGroup;
 
-	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected authService: AuthService, protected formBuilder: FormBuilder,protected boardService:BoardService,protected route:ActivatedRoute,protected ledgerService:LedgerService) {}
+	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected authService: AuthService, protected formBuilder: FormBuilder,protected boardService:BoardService,protected route:ActivatedRoute) {}
 
 
 	ngOnInit(): void {
@@ -50,9 +49,6 @@ export class BoardComponent implements OnInit {
 			.subscribe(categories => this.categories = categories);
 
 
-		this.ledgerService
-			.getLedgerByLedgerBoardId(this.boardId)
-			.subscribe(profiles => this.players = profiles);
 
 
 
