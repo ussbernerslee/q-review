@@ -7,7 +7,9 @@ import {AuthService} from "../shared/services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BoardService} from "../shared/services/board.service";
 import {Status} from "../shared/classes/status";
-
+import {ActivatedRoute} from "@angular/router";
+import {Profile} from "../shared/classes/profile";
+import {LedgerService} from "../shared/services/ledger.service";
 
 @Component({
 	selector: "game",
@@ -22,21 +24,22 @@ export class BoardComponent implements OnInit {
 	categories: Category[] = [];
 
 	cards: Card[] = [];
+	players: Profile[] = [];
 
 
-	gameCategoryId: string = "0A253DC2-54A1-4985-AE66-DD5AED20B601";
 
 	creatorId: string = this.authService.decodeJwt().auth.profileId;
-	boardId: Status;
+	boardId: string;
 
 	selectedCategories: string[] =[];
 
 	selectForm: FormGroup;
 
-	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected authService: AuthService, protected formBuilder: FormBuilder,protected boardService:BoardService) {}
+	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected authService: AuthService, protected formBuilder: FormBuilder,protected boardService:BoardService,protected route:ActivatedRoute,protected ledgerService:LedgerService) {}
 
 
 	ngOnInit(): void {
+		this.boardId=this.route.snapshot.params.boardId;
 
 		this.selectForm = this.formBuilder.group({
 			select:["",[Validators.required]]
@@ -46,6 +49,10 @@ export class BoardComponent implements OnInit {
 			.getCategoryByCategoryProfileId(this.creatorId)
 			.subscribe(categories => this.categories = categories);
 
+
+		this.ledgerService
+			.getLedgerByLedgerBoardId(this.boardId)
+			.subscribe(profiles => this.players = profiles);
 
 
 

@@ -13,7 +13,7 @@ export class LeaderboardComponent implements OnInit {
 
 	players: Profile[] = [];
 
-	gameId: string = "0c1c711e-e2e4-439d-9975-9658851b1781";
+	gameId: string ;
 
 	constructor(protected ledgerService: LedgerService) {}
 

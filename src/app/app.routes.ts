@@ -58,7 +58,7 @@ export const allAppComponents = [
 //setup routes
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
-	{path: "board", component: BoardComponent},
+	{path: "board/:boardId", component: BoardComponent},
 	{path: "leaderboard", component: LeaderboardComponent},
 	{path: "signup", component: SignUpComponent},
 	{path: "sign-in", component: SignInComponent},
