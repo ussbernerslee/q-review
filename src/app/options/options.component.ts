@@ -6,6 +6,8 @@ import {AuthService} from "../shared/services/auth.service";
 import {LedgerService} from "../shared/services/ledger.service";
 import {JoinService} from "../shared/services/join.service";
 import {Status} from "../shared/classes/status";
+import {BoardService} from "../shared/services/board.service";
+import {Board} from "../shared/classes/board";
 
 
 @Component({
@@ -18,6 +20,7 @@ export class OptionsComponent implements OnInit {
 	joinForm: FormGroup;
 	status: Status;
 
+
 	//currentBoardId: string = "0c1c711e-e2e4-439d-9975-9658851b1781";
 	//correct board Id a91aa671-95f8-4627-99cd-cdca3f05aa16
 
@@ -26,7 +29,9 @@ export class OptionsComponent implements OnInit {
 		private authService: AuthService,
 		private ledgerService: LedgerService,
 		private router: Router,
-		private joinService: JoinService) {}
+		private joinService: JoinService,
+		private boardService: BoardService) {}
+
 
 
 	ngOnInit() : void {
@@ -35,7 +40,20 @@ export class OptionsComponent implements OnInit {
 		});
 	}
 captainOption() : void {
-	this.router.navigate(["board"]);
+		let board=new Board(null,null,"kmaru")
+	this.boardService
+		.createBoard(board)
+
+		.subscribe(status => {
+			this.status = status;
+			if(this.status.status === 200) {
+				this.router.navigate(["board"]);
+				console.log("board created");
+			} else {
+				console.log("failed board creation");
+			}
+			});
+
 
 		}
 studentOption() : void {
@@ -44,8 +62,8 @@ studentOption() : void {
 	console.log("joined!");
 		// this.router.navigate(["student"]);
 		}
-}
 
+}
 
 
 

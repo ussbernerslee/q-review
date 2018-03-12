@@ -5,6 +5,8 @@ import {Category} from "../shared/classes/category";
 import {CategoryService} from "../shared/services/category.service";
 import {AuthService} from "../shared/services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {BoardService} from "../shared/services/board.service";
+import {Status} from "../shared/classes/status";
 
 
 @Component({
@@ -21,15 +23,17 @@ export class BoardComponent implements OnInit {
 
 	cards: Card[] = [];
 
+
 	gameCategoryId: string = "0A253DC2-54A1-4985-AE66-DD5AED20B601";
 
 	creatorId: string = this.authService.decodeJwt().auth.profileId;
+	boardId: Status;
 
 	selectedCategories: string[] =[];
 
 	selectForm: FormGroup;
 
-	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected authService: AuthService, protected formBuilder: FormBuilder) {}
+	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected authService: AuthService, protected formBuilder: FormBuilder,protected boardService:BoardService) {}
 
 
 	ngOnInit(): void {
@@ -41,6 +45,9 @@ export class BoardComponent implements OnInit {
 		this.categoryService
 			.getCategoryByCategoryProfileId(this.creatorId)
 			.subscribe(categories => this.categories = categories);
+
+
+
 
 
 
