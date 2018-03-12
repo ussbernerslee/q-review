@@ -4,9 +4,14 @@ import {Status} from "../classes/status";
 import {Card} from "../classes/card";
 import {Observable} from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable ()
 export class CardService {
+	card : Card = new Card(null, null, null, null, null);
+	protected cardSubject : BehaviorSubject<Card> = new BehaviorSubject<Card>(this.card);
+
+	public cardObserver : Observable<Card> = this.cardSubject.asObservable();
 
 	constructor(protected http : HttpClient) {}
 
@@ -41,4 +46,6 @@ export class CardService {
 	getCardByCardPoints(cardPoints: number) : Observable<Card[]> {
 		return(this.http.get<Card[]>(this.cardUrl + cardPoints));
 	}
+
+
 }

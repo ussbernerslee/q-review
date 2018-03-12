@@ -23,18 +23,24 @@ export class BoardComponent implements OnInit {
 	categories: Category[] = [];
 
 	cards: Card[] = [];
+
 	players: Profile[] = [];
 
-
-
 	creatorId: string = this.authService.decodeJwt().auth.profileId;
+
 	boardId: string;
 
 	selectedCategories: string[] =[];
 
 	selectForm: FormGroup;
 
-	constructor(protected categoryService: CategoryService, protected cardService: CardService, protected authService: AuthService, protected formBuilder: FormBuilder,protected boardService:BoardService,protected route:ActivatedRoute) {}
+	constructor(
+		protected categoryService: CategoryService,
+		protected cardService: CardService,
+		protected authService: AuthService,
+		protected formBuilder: FormBuilder,
+		protected boardService:BoardService,
+		protected route:ActivatedRoute) {}
 
 
 	ngOnInit(): void {
@@ -47,15 +53,8 @@ export class BoardComponent implements OnInit {
 		this.categoryService
 			.getCategoryByCategoryProfileId(this.creatorId)
 			.subscribe(categories => this.categories = categories);
-
-
-
-
-
-
-
-
  	};
+
 	dropdownId() : void {
 		this.selectedCategories.push(this.selectForm.value.select);
 		this.cardService
@@ -63,6 +62,10 @@ export class BoardComponent implements OnInit {
 			.subscribe(cards => this.cards = cards);
 	}
 
-
+	getCardId(card : Card) : void {
+		let array : any[];
+		this.cardService.cardObserver.next(card);
+	}
+// idea: create the "subject" in board.component instead of in the card.service
 }
 
