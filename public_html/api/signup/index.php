@@ -78,8 +78,8 @@ try {
 		$confirmLink = "https://" . $_SERVER["SERVER_NAME"] . $urlglue;
 		//compose message to send with email
 		$message = <<< EOF
-<h2>Welcome to q-review.</h2>
-<p>In order to start using KMaru, you must confirm your account.</p>
+<h2>Welcome to KMARU.</h2>
+<p>In order to start using KMARU, you must confirm your account.</p>
 <p><a href="$confirmLink">$confirmLink</a></p>
 EOF;
 		//create swift email
