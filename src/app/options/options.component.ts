@@ -60,7 +60,7 @@ studentOption() : void {
 	this.joinService.joinBoard(this.joinForm.value.id)
 	.subscribe(status => this.status=status);
 	console.log("joined!");
-		// this.router.navigate(["student"]);
+		 this.router.navigate(["joined"]);
 		}
 
 }
