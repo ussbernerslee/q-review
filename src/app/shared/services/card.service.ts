@@ -47,5 +47,10 @@ export class CardService {
 		return(this.http.get<Card[]>(this.cardUrl + cardPoints));
 	}
 
+	//adds card to card subject observable
+	addCard(card :Card) {
+		this.cardSubject.next(card);
+	}
+
 
 }

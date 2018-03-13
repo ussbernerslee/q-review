@@ -30,6 +30,8 @@ export class BoardComponent implements OnInit {
 
 	boardId: string;
 
+	card : Card;
+
 	selectedCategories: string[] =[];
 
 	selectForm: FormGroup;
@@ -62,9 +64,9 @@ export class BoardComponent implements OnInit {
 			.subscribe(cards => this.cards = cards);
 	}
 
-	getCardId(card : Card) : void {
+	getCardId() : void {
 		let array : any[];
-		this.cardService.cardObserver.next(card);
+		this.cardService.cardObserver.subscribe(cards => this.card = cards);
 	}
 // idea: create the "subject" in board.component instead of in the card.service
 }
