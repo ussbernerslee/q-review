@@ -45,12 +45,13 @@ export class CaptainComponent implements OnInit{
 		let ledger: Ledger = new Ledger(this.boardId, this.card.cardId, this.ledgerForm.value.select, this.card.cardPoints, "1");
 		this.ledgerService
 			.postLedger(ledger)
-			.subscribe(status => {this.status = status
-			if (status.status===200){
-				$("#ledger-modal").modal('hide');
-				$('#'+ this.card.cardId).addClass('disabled');
-				this.loadLeaderboard();
-			}
+			.subscribe(status => {
+				this.status = status;
+				if (status.status===200){
+					$("#ledger-modal").modal('hide');
+					$('#'+ this.card.cardId).prop('disabled', true);
+					this.loadLeaderboard();
+				}
 			});
 }
 
