@@ -1,15 +1,28 @@
-<button (click)="captainOption()" type="button" class="btn btn-primary btn-lg">Create Board</button>
-
-
-
-<form name="joinForm" id="joinForm" [formGroup]="joinForm" (submit)="studentOption();" class="form-horizontal" novalidate>
-	<div class="row align-items-center justify-content-center">
-		<div class="form-group col-6">
-			<label for="id" class="sr-only">Board Id</label>
-			<input type="string" class="form-control" id="id" name="id" formControlName="id" placeholder="BoardId">
+<div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header">
+	<div class="container" id="optionsForm">
+		<div class="row align-items-center justify-content-center">
+				<button (click)="captainOption()" type="button" class="btn btn-primary btn-lg w-100 rounded-0 my-3 py-3" id="createBoardButton">
+					Create Board
+				</button>
 		</div>
-		<div class="form-group col-4">
-			<button type="submit" id="submit" [disabled]="joinForm.invalid" class="btn btn-info"><i class="fa fa-sign-in"></i>Join Board</button>
-		</div>
+		<form name="joinForm" id="joinForm" [formGroup]="joinForm" (submit)="studentOption();" class="form-horizontal"
+				novalidate>
+			<div class="row align-items-center justify-content-center">
+				<div class="input-group">
+					<input type="string" class="form-control rounded-0" id="id" name="id" formControlName="id" placeholder="You must get the board Id from your instructor!">
+					<span class="input-group-btn">
+        <button class="btn btn-lg rounded-0 py-3" type="submit" id="joinBoardButton" [disabled]="joinForm.invalid">Join Board</button>
+      </span>
+				</div>
+			</div>
+		</form>
 	</div>
-</form>
+</div>
+
+<!--<div class="form-group col-12">-->
+	<!--<label for="id" class="sr-only">Board Id</label>-->
+	<!--<input type="string" class="form-control" id="id" name="id" formControlName="id" placeholder="BoardId">-->
+	<!--<button type="submit" id="joinBoardButton" [disabled]="joinForm.invalid" class="btn btn-info"><i-->
+		<!--class="fa fa-sign-in"></i>Join Board-->
+	<!--</button>-->
+<!--</div>-->

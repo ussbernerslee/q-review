@@ -49,7 +49,7 @@ export class CaptainComponent implements OnInit{
 				this.status = status;
 				if (status.status===200){
 					$("#ledger-modal").modal('hide');
-					$('#'+ this.card.cardId).prop('disabled', true);
+					$('.'+ this.card.cardId).prop('disabled', true);
 					this.loadLeaderboard();
 				}
 			});

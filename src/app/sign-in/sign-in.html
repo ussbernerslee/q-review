@@ -70,32 +70,32 @@
 
 
 
-<div class="jumbotron jumbotron-fluid">
 	<div class="row align-items-center justify-content-center">
-		<h1 class="display-3">Sign In</h1>
 	</div>
 	<form name="signInForm" id="signInForm" [formGroup]="signInForm" (submit)="signIn();" class="form-horizontal" novalidate>
-		<div class="row align-items-center justify-content-center">
-			<div class="form-group col-6">
+		<div class="row align-items-center justify-content-center mx-2">
+			<div class="form-group col-12">
 				<label for="profileEmail" class="sr-only">Email</label>
-				<input type="email" class="form-control" id="profileEmail" name="profileEmail" formControlName="profileEmail" placeholder="Email">
+				<input type="email" class="form-control rounded-0" id="profileEmail" name="profileEmail" formControlName="profileEmail" placeholder="Email">
 			</div>
 			<div *ngIf="signInForm.controls.profileEmail?.invalid && signInForm.controls.profileEmail?.touched" class="alert alert-danger" role="alert">
 				<div *ngIf="signInForm.controls.profileEmail?.errors.required">Email is required.</div>
 				<div *ngIf="signInForm.controls.profileEmail?.errors.maxlength">Email is too long. {{signInForm.controls.profileEmail?.errors.maxlength.actualLength - signInForm.controls.profileEmail?.errors.maxlength.requiredLength}} too many characters.</div>
 			</div>
 		</div>
-		<div class="row align-items-center justify-content-center">
-			<div class="form-group col-6">
+		<div class="row align-items-center justify-content-center mx-2">
+			<div class="form-group col-12">
 				<label for="profilePassword" class="sr-only">Password</label>
-				<input type="password" class="form-control" id="profilePassword" name="profilePassword" formControlName="profilePassword" placeholder="Password">
+				<input type="password" class="form-control rounded-0" id="profilePassword" name="profilePassword" formControlName="profilePassword" placeholder="Password">
 			</div>
 			<div *ngIf="signInForm.controls.profilePassword?.invalid && signInForm.controls.profilePassword?.touched" class="alert alert-danger" role="alert">
 				<div *ngIf="signInForm.controls.profilePassword?.errors.required">Password is required.</div>
 				<div *ngIf="signInForm.controls.profilePassword?.errors.maxlength">Password is too long. {{signInForm.controls.profilePassword?.errors.maxlength.actualLength - signInForm.controls.profilePassword?.errors.maxlength.requiredLength}} too many characters.</div>
 			</div>
-			<div class="form-group col-4">
-				<button type="submit" id="submit" [disabled]="signInForm.invalid" class="btn btn-info"><i class="fa fa-sign-in"></i>&nbsp;Log in</button>
+		</div>
+		<div class="row align-items-center justify-content-center mx-2">
+			<div class="form-group col-12">
+				<button type="submit" id="signInBtn" [disabled]="signInForm.invalid" class="btn btn-info border-0 rounded-0 py-3">Sign In</button>
 			</div>
 		</div>
 	</form>
@@ -103,6 +103,5 @@
 		<button type="button" class="close" aria-label="Close" (click)="status = null;"><span aria-hidden="true">&times;</span></button>
 		{{ status.message }}
 	</div>
-</div>
 
 

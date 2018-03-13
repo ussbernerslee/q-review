@@ -1,3 +1,17 @@
+html, body {
+	height:100%;
+}
+
+.sfooter {
+	height: 100%;
+}
+
+.jumbotron {
+	height:100%;
+	padding: 0;
+	margin: 0;
+}
+
 .border-bottom.category-name {
 	height: 70px;
 	text-align: center;
@@ -10,26 +24,94 @@
 	border: none!important;
 }
 
-button {
-	animation: colorchange 50s; /* animation-name followed by duration in seconds*/
-	/* you could also use milliseconds (ms) or something like 2.5s */
-	-webkit-animation: colorchange 50s; /* Chrome and Safari */
+/*button {*/
+	/*animation: colorchange 50s; !* animation-name followed by duration in seconds*!*/
+	/*!* you could also use milliseconds (ms) or something like 2.5s *!*/
+	/*-webkit-animation: colorchange 50s; !* Chrome and Safari *!*/
+/*}*/
+
+/*@keyframes colorchange*/
+/*{*/
+	/*0%   {background: red;}*/
+	/*25%  {background: yellow;}*/
+	/*50%  {background: blue;}*/
+	/*75%  {background: green;}*/
+	/*100% {background: red;}*/
+/*}*/
+
+/*@-webkit-keyframes colorchange !* Safari and Chrome - necessary duplicate *!*/
+/*{*/
+	/*0%   {background: red;}*/
+	/*25%  {background: yellow;}*/
+	/*50%  {background: blue;}*/
+	/*75%  {background: green;}*/
+	/*100% {background: red;}*/
+/*}*/
+
+
+/*sign in and sign up card*/
+.card {
+	border-radius: 1rem;
+	box-shadow: 0 0 30px black;
+	color: mediumturquoise;
+	border: none;
 }
 
-@keyframes colorchange
-{
-	0%   {background: red;}
-	25%  {background: yellow;}
-	50%  {background: blue;}
-	75%  {background: green;}
-	100% {background: red;}
+.tab-content {
+	padding-top: 3rem;
+	padding-bottom: 1rem;
+	background-color: #D6BA1C;
+	border-bottom-left-radius: 1rem;
+	border-bottom-right-radius: 1rem;
 }
 
-@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
-{
-	0%   {background: red;}
-	25%  {background: yellow;}
-	50%  {background: blue;}
-	75%  {background: green;}
-	100% {background: red;}
+.nav-tabs .nav-link.active {
+	background-color: #D6BA1C;
+	color: white;
+}
+
+a.nav-link {
+	color: blueviolet;
+}
+
+.card-img-top {
+	padding: 2rem 3rem 2rem 3rem;
+}
+
+#signInBtn {
+	width: 100%;
+	margin-top: 2rem;
+	background: blueviolet;
+}
+
+#signUpBtn {
+	width: 100%;
+	margin-top: 2rem;
+	background: blueviolet;
+}
+
+.alert {
+	background-color: transparent;
+	color: darkred;
+	padding: 0;
+	border: none;
+	width: 100%;
+	text-align: left;
+}
+
+
+/*options*/
+#optionsForm {
+	width: 50%;
+}
+
+#createBoardButton {
+	display: inline-block;
+	background-color: blueviolet;
+	border: none;
+}
+
+#joinBoardButton {
+	background-color: #D6BA1C;
+	color: white;
 }

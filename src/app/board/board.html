@@ -22,7 +22,7 @@ board view
 							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" [href]="'#' + card.cardId">
 								{{card.cardQuestion}} {{card.cardPoints}}
 							</a>
-							<button class="btn btn-info my-0 mr-sm-2" data-toggle="modal" data-target="#ledger-modal" [id]="card.cardId">&nbsp;modal</button>
+							<button class="btn btn-info my-0 mr-sm-2" data-toggle="modal" data-target="#ledger-modal" [class]="card.cardId">&nbsp;modal</button>
 						</h5>
 					</div>
 					<div [id]="card.cardId" class="collapse" role="tabpanel">
