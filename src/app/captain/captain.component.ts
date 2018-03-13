@@ -69,6 +69,7 @@ export class CaptainComponent implements OnInit{
 		let array : any[];
 		this.cardService.cardObserver.subscribe(cards => this.card = cards);
 	}
+
  	loadLeaderboard() : void {
 		this.ledgerService
 			.getLedgerByLedgerBoardId(this.boardId)
