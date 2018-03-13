@@ -50,7 +50,7 @@
 					<div class="input-group mb-3">
 							<select class="custom-select" id="inputGroupSelect01" formControlName="select">
 								<option selected>Choose a player to answer the question</option>
-								<option id="activePlayer" [value]= "player.profileUsername" *ngFor="let player of players">{{ player.profileUsername }}</option>
+								<option id="activePlayer" [value]= "player.profileId" *ngFor="let player of players">{{ player.profileUsername }}</option>
 							</select>
 							<button type="button" class="btn btn-success btn-sm" (click)="plus()">+</button>
 							<button type="button" class="btn btn-danger btn-sm" (click)="subtract()">-</button>

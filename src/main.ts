@@ -4,7 +4,7 @@ import { enableProdMode } from '@angular/core';
 
 window.addEventListener("DOMContentLoaded", event => {
 	if(process.env.ENV === "live") {
-		enableProdMode();
+	//	enableProdMode();
 	}
 	const platform = platformBrowserDynamic();
 	platform.bootstrapModule(AppModule);

@@ -16,44 +16,25 @@ board view
 			</div>
 
 			<div id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let card of cards">
-				<div class="card">
+				<div class="card" (click)="grabCard(card);">
 					<div class="card-header" role="tab" id="1">
 						<h5 class="mb-0">
 							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" [href]="'#' + card.cardId">
 								{{card.cardQuestion}} {{card.cardPoints}}
 							</a>
+							<button class="btn btn-info my-0 mr-sm-2" data-toggle="modal" data-target="#ledger-modal" [id]="card.cardId">&nbsp;modal</button>
 						</h5>
 					</div>
 					<div [id]="card.cardId" class="collapse" role="tabpanel">
 						<div class="card-block">
 							<p>{{card.cardAnswer}}</p>
 						</div>
-						<button class="btn btn-info my-0 mr-sm-2" data-toggle="modal" data-target="#ledger-modal">&nbsp;modal</button>
+
 					</div>
 				</div>
 			</div>
 
 
 
-
-
-<!--<div class="container">-->
-
-	<!--<h2>Leaderboard</h2>-->
-	<!--<table class="table table-hover table-dark table-sm">-->
-		<!--<thead>-->
-			<!--<tr>-->
-				<!--<th scope="col">Name</th>-->
-				<!--<th scope="col">Points</th>-->
-			<!--</tr>-->
-		<!--</thead>-->
-		<!--<tbody>-->
-			<!--<tr *ngFor="let player of players">-->
-				<!--<td>{{ player.profileName }}</td>-->
-				<!--<td>{{ player.info }}</td>-->
-			<!--</tr>-->
-		<!--</tbody>-->
-	<!--</table>-->
-<!--</div>-->
 
 

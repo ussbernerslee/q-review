@@ -64,10 +64,10 @@ export class BoardComponent implements OnInit {
 			.subscribe(cards => this.cards = cards);
 	}
 
-	getCardId() : void {
-		let array : any[];
-		this.cardService.cardObserver.subscribe(cards => this.card = cards);
+
+
+	grabCard(card:Card) : void {
+		this.cardService.addCard(card);
 	}
-// idea: create the "subject" in board.component instead of in the card.service
 }
 
