@@ -175,3 +175,148 @@ INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('39b12f66-f8ab-4ea4-b9cf-c18a202e466b', '-', '')),UNHEX(REPLACE('4e7fc1e6-3c3b-43d7-9a7e-6b97b25e6593', '-', '')),'who is ship 4', '4', 'The name of ship 4');
 
 
+
+
+-- Bootstrap Category:
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'Bootstrap');
+
+-- Bootstrap Cards 1:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('39b12f66-f8ab-4ea4-b9cf-c18a202e466b', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is 12?', '1', 'The number of columns in the Bootstrap Grid System');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('685a86b2-d2a8-4110-b4cf-514ee0df6a6f', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is .container or .container-fluid?', '1', 'The number of columns in the Bootstrap Grid System');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('5e42ef55-dfb4-4745-aae5-cbd08a1b4509', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')),'What is jQuery and Popper.js?', '1', 'Bootstrap requires these two JavaScript dependencies in order for the all built-in JavaScript components to function properly');
+-- Bootstrap Cards 2:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('6b5f8d58-a4e0-4cac-b44f-c3a8a842ff65', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')),'What is 768 - 991px?', '2', 'This is the range of screen widths for the MD breakpoint');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('2ec0ae72-61fc-45f3-bbec-87eddab2692a', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')),'What is .container-fluid?', '2', 'Use this Bootstrap class to create a container that will fill the entire width of the viewport');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('8784e938-7016-4b6c-86b6-95103939ae94', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is .img-fluid?', '2', 'This Bootstrap class will scale an image proportionally within its parent element');
+-- Bootstrap Cards 4:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('d3d971c8-be30-4c7a-a3a9-d4ba1a393eaa', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is <576 px?', '4', 'This is the width range of the XS breakpoint');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('3f63ab67-57b9-457d-a8ad-2ab4b5d4c2e0', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What are .btn and .btn-danger?', '4', 'place these two Bootstrap classes on a <button> tag to create a red button');
+-- Bootstrap Cards 8:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('a43c1014-4766-4598-91fe-8b8b5eebc270', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is .col-lg-6?', '8', 'This is the Bootstrap grid class to use to make an element 6 columns wide on screens that are larger than 991px wide');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('4b646a7c-6363-4942-9925-0315c5def1b0', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is  box-sizing: border-box;?', '8', 'Bootstrap applies this CSS rule to all elements, which changes the default CSS Box Model');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('a84cf6fc-74ab-46f3-ae2c-c21401a43ef7', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is 16px?', '8', 'This is Bootstrap\'s global default font-size');
+-- Bootstrap Cards 16:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('16d4cf1a-a3a3-4e3d-b9c2-62ffcb015fa0', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is 1140 px?', '16', 'This is the size of the fixed-width Bootstrap .container on screens 1200px wide and larger');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('6e42f90d-8281-4d8a-9ee7-95c7ae53fb64', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is .table?', '16', 'To enable basic Bootstrap table styling, add this class to the <table> tag');
+-- Bootstrap Cards 32:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('268c8315-128b-4011-8a23-98d05cb9de25', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is .form-control?', '32', 'Use this Bootstrap class to automatically style <input> form fields');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('e1bfb1e2-f06c-4121-979d-f8b7228f1745', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is 768-991px?', '32', 'This is the range of screen widths for the MD breakpoint);');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('bdbdf44a-6d7e-4824-88d9-8c5f3c9ca592', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is .sr-only?', '32', 'You would apply this Bootstrap class on HTML tags that contain content for screen readers only');
+
+-- CSS Category:
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'CSS');
+
+-- CSS Cards 1:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('9c394792-be8c-4dc3-83c5-3faf05bbbe89', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is margin?', '1', 'This is the outermost element in the CSS box model');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('bd327b70-ce40-4c14-a80a-491a1c539b72', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is Selector?', '1', 'This part of a CSS rule targets which elements in your HTML document documents the style will apply to');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('794e87c3-29ad-41b9-a080-14b4c63320d7', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is the Color attribute?', '1', 'This CSS property will alter the color of text');
+-- CSS Cards 2:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('4e298473-adf0-4e22-955a-e300c06a109a', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is float: right;?', '2', 'This CSS rule will push an element as far as possible to the right inside its container, and allows other elements to wrap around it');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('4cd4a046-ab02-4c16-b8d9-fc6f2d13310d', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is inline CSS?', '2', 'These kinds of CSS rules are the most specific, and will override any and all other conflicting style rules');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('4f79e8fb-0a4a-4885-9715-c097dbdea325', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is CSS Specificity?', '2', 'This term refers to the rules that determine what CSS styles get applied based on how and where they are written');
+-- CSS Cards 4:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('23beab9f-5a8a-4ebb-b775-25c5e445280e', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is the Alpha channel? (Opacity or Transparency also acceptable)', '4', 'The "a" in rgba and hsla color values stands for this');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('fb060eb7-8e62-4c42-ab04-4c3484985b97', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is :last-child?', '4', 'This CSS pseudo-class will target any element that is the last child of its parent');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('796dd201-f79e-4faf-928b-48ff33a69619', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What are media queries?', '4', 'Using these, we can limit certain styles based on the media type and device characteristics, such as screen width');
+-- CSS Cards 8:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('d8f899cc-360c-4bfa-9aaa-c4fead7c42bb ', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is display: inline-block;?', '8', 'Setting this CSS display value will enable an element to sit inline, while at the same time preserving the box model margins and padding like that of a block element');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('41e0229c-806c-4d76-ba32-2ef98e1ea62f', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is an Attribute Selector?', '8', 'This kind of CSS Selector allows you to target HTML elements with a specific attribute and/or value');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('eb9848bd-5020-467b-979c-25e55b9e126f', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is clear: both; (or clearfix hack)?', '8', 'This CSS rule will clear all space on the left and right sides of block elements');
+-- CSS Cards 16:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('9be9d10b-08e7-4808-bc94-d09c44cdc534', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is position: static;?', '16', 'This is the default CSS position for all HTML elements');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('68546015-e8cd-446a-ad31-262271a493c6', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What are user-agent styles or user-agent stylesheets?', '16', 'This is the technical term for browser default styles');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('fcddadff-9ad5-4aa6-9c95-8bc4a0c6927f', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is box-sizing: border-box?', '16', 'This CSS rule changes the default box model by moving the border and padding to the inside of an element\'s box');
+-- CSS Cards 32:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('69069085-202a-47d2-b6ae-e0e0e2f1ae9c', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is :nth-child(3)?', '32', 'This CSS pseudo-class will target any element that is the 3rd child of its parent');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('1152d15c-ec4d-4e73-b137-fce9fcdb1080', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is z-index?', '32', 'This CSS property specifies the stack order of elements that are positioned absolute, relative, or fixed');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('72dbce57-9cf1-4005-bf2a-1350a05015f7', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What are inline elements?', '32', 'On these kinds of HTML elements, vertical margins, padding and borders will NOT push away other elements above or below');
+
+-- UX Category:
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'UX');
+-- UX Class 1:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('19063b93-c2bb-4752-b563-e8ed399cad4f', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is UX or User Experience?', '1', 'This term/acronym refers to all aspects of an end-user\'s interaction with a product, system, or service');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('6afb205d-2b7d-489b-9430-2fc5796fd587', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is a persona?', '1', 'This term refers to a hypothetical model of a user of your product');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('55869cff-e632-4255-843d-526a5bfe300e', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is a Use Case?', '1', 'This term refers to a model of how, when, where a user will interact with your product');
+-- UX Class 2:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('a5588577-0223-41e5-90df-632d655ac670', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is a UI or User Interface?', '2', 'This term or acronym refers to the graphical elements of your site or app that a user sees and interacts with on the screen');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('6fd4ff28-6625-43ef-bf10-9e603c4b0442', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is Ease of Use or Usability?', '2', 'This term refers to the ease with which a user can employ a tool, product or service to achieve a specific goal');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('9c2d1390-7e5b-47ab-88b0-c6986c7938b9', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is MVP or Minimum Viable Product?', '2', 'This term or acronym refers to a product development strategy where a new product is developed with only sufficient features necessary to satisfy early adopters');
+-- UX Class 4:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('10c0259c-2b90-4a05-8b02-0fc6daca3304', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is Responsive Web Design/Development? (NOTE: Mobile First is NOT Acceptable answer?', '4', 'This term refers to the design and development of websites that scale according to screen size of the device they are accessed with');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('e149d3ca-2a9e-4a5d-9447-b3c0751d8840', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is target market, existing users, or early adopters?(other acceptable answers: Market Research Data, Analytics Data?', '4', 'An ideal persona should be created based upon this');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('a55d18ba-b8c6-4e9b-b4c5-4f5325cb70b4', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'Who is EVERYONE on the team?', '4', 'hese are the individuals on a web development team that are responsible for the UX of a website or application');
+-- UX Class 8:
