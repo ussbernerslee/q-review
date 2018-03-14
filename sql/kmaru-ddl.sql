@@ -383,6 +383,29 @@ VALUES (UNHEX (REPLACE('f827c940-a54c-4637-9dd5-5796fee4a132', '-', '')),UNHEX(R
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('d80d9f35-de02-46f2-ad1d-12c88dc02e62', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <textarea> tag?', '4', 'Used in forms, this HTML tag creates a multiline text input area');
 -- HTML Cards 8:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('cc34f8f8-8024-4b3f-a696-72bbd2236499', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the alt attribute?', '8', 'This attribute is required on all image tags, and provides alternate text for screen readers');
 
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('0477abb6-454d-4ec5-9280-5d12dad80faa', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is &amp;?', '8', 'This is the HTML entity code for the "&" symbol');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('c562643c-967e-47e7-9ae6-cd8f60d13e51', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <pre> tag?', '8', 'This HTML tag preserves all spaces and line breaks in text content exactly as they are typed');
 -- HTML CARDS 16:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('8856ed52-3ccf-4591-bff3-fdf74fbdbe8b', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the rel attribute?', '16', 'This attribute, which is required when linking to CSS stylesheets, specifies the relationship between the current document and the linked resource');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('3dbb1324-87c0-40e9-9dd3-1e09bed10ae2', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the DOM or Document Object Model?', '16', 'This model maps the hierarchy of the elements on a web page and provides a programming interface for HTML');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('2f41f7f4-3489-4849-a851-1540ddbc1340', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <meta name="viewport".../> tag?', '16', 'This specific HTML tag tells the browser to set the width of the viewport to the width of the device');
 -- HTML Cards 32:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('ef7acd35-6d1c-4704-aae8-229037b35545', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What are custom data attributes?', '32', 'These kinds of HTML attributes are used to store custom data private to the page or application');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('f32e0011-d372-4661-a680-b656c050af2f', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <canvas> tag??', '32', 'Use this HTML tag as a container for drawing graphics using JavaScript');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('69e94d29-999c-435b-a984-23336612b316', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <marquee> tag?', '32', 'This obsolete HTML tag was used in the 90s to create a scrolling line of text');
