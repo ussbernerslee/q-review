@@ -409,3 +409,146 @@ VALUES (UNHEX (REPLACE('f32e0011-d372-4661-a680-b656c050af2f', '-', '')),UNHEX(R
 
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('69e94d29-999c-435b-a984-23336612b316', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <marquee> tag?', '32', 'This obsolete HTML tag was used in the 90s to create a scrolling line of text');
+
+
+
+
+
+-- Angular Category:
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'Angular');
+-- Angular
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('b1a27888-dd64-4239-8ebd-eaa4a5b41bf3', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is TypeScript?', 1, 'Angular primarily uses this language');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('26e4d3d0-1907-4174-acf0-d97c8b25cb48', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is webpack?', 1, 'Task runner used to package Angular code');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('d8da3a95-c137-4410-9adb-4e06639aca37', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is an observer?', 2, 'Design pattern embraced by Angular for REST calls or a spectator at an event');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('14d99a49-3ec7-418c-9a99-e859d2063888', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is Google?', 2, 'Company that bankrolls the Angular project');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('1a82123a-531f-4516-bc3f-15f46e019f77', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is a decorator?', 4, 'Denoted by an @ character, this will delegate additional responsibilities to an Angular class or who you call to spruce up a room');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('c9a303aa-80ce-4dac-aa87-b01ea1f5d98f', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is HttpClient?', 4, 'Angular\'s AJAX runner is called this');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('143c0cce-258f-4c5d-9294-ca2ee3b98720', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is an interceptor?', 8, 'Create one of these to customize HttpClient\'s handling of incoming or outgoing AJAX calls');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('99553f9b-c91a-4277-808c-e654f1ee6b0b', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is banana in a box?', 8, 'Fruity packaged metaphor for two way binding, which Angular uses to sync the DOM and component automatically');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('1a88203a-c164-4b1e-af7f-9cb10b112f8c', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is one way binding?', 16, 'A conduit through which data can flow from one component to another');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('45c78f1e-cf6d-4e5c-9c4b-fc99c7adfc36', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is ViewChild?', 16, 'This decorator povides Angular direct access to a dependent component or a kindergartener looking in a mirror');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('b4c2bc34-318d-413b-8469-47a0f1642950', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is BehaviorSubject?', 32, 'Use this class to encapsulate data consumed by a local observer');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('871b6d93-c5e0-4e48-a2e4-926001382ab3', '-', '')), UNHEX(REPLACE('c4ae08ef-c319-4fd3-9b4a-c0388fa4725f', '-', '')), 'What is EventEmitter?', 32, 'Use this one way binding to send data from a child component to be received as an event in the parent component');
+
+-- Object Oriented Category:
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'Object Oriented');
+
+-- Object Oriented
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('d863628d-79fe-4920-a5fc-7ca363417b26', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is class?', 1, 'The first word of every object oriented class');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('8e9330fa-7d5a-48c6-9aad-4c516b5f0365', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is a method?', 1, 'A function within a class');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('026613bb-a111-4af2-982f-fdb5a914397f', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is an accessor method?', 2, 'A method that provides read only access to a state variable');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('ac1a8ee2-2527-480b-bde1-00dcb84eec94', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is a mutator method?', 2, 'A method that provides limited write access to a state variable');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('8af89b94-1cd3-482a-8764-ce08a2072f56', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is state?', 4, 'An object\'s internal variables or New Mexico');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('1385cb44-7f79-458c-b8ed-600be9c9ba23', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'Who are the Gang of 4?', 4, 'Authors of Deign Patterns: Elements of Reusable Software that had no place in Chinese history');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('560cc290-1046-44e5-ae32-fd4fa950f620', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is an interface?', 8, 'A code block with empty methods meant to enforce consistent behavior among implementing classes');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('531a22b5-9006-49b2-bcac-67c6b5553872', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is __construct?', 8, 'Implement this method to customize the behavior of the new keyword');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('882ea1de-d1af-4adf-b1ff-88eca229f30f', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is a contract?', 16, 'Java term for implementing a class to conform to certain standards or a legal agreement');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('ef94caa9-b871-4e07-9e77-e329d1fc203a', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is the diamond problem?', 16, 'A problem of conflicting methods from multiple inheritance that can be caused in PHP by importing multiple traits with the same method name');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('3fcac15c-f681-4349-98d3-5a98e359bc5b', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What are O(n log(n)) and O(n**2)?', 32, 'Average and worse case run time for quicksort');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('31c460a6-ec4b-4627-bc88-85cc1a904857', '-', '')), UNHEX(REPLACE('1c444979-6c4e-497d-8381-5b6dd49c29c6', '-', '')), 'What is factory?', 32, 'This design pattern uses a single interface for object creation implemented by the children or a large source of pollution in an industrial area');
+
+-- Star Trek Category:
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'Star Trek');
+-- Star Trek
+
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('6c999243-ddb9-4f81-9d0a-034a110b13f6', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'Who is Jean-Luc Picard?', 1, 'Captain of the USS Enterprise NCC-1701-D');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('b3d56a5b-7f5b-4232-874c-2d71d5181103', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'What is the borg?', 1, 'Species that wanders the galaxy assimilating races declaring resistance is futile');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('81505ca2-8a60-4c46-abe8-fa66b27e234c', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'What is Q?', 2, 'Omnipotent Star Trek entity that can fit in a CHAR(1) field');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('f4f3bc16-f212-4b24-af0e-d7c47f15350c', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'Who is Kathryn Janeway?', 2, 'Captain of USS Voyager');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('7e4ef954-76aa-4432-9a20-5b2d86b206cf', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'What is sovereign?', 4, 'Class of the USS Enterprise NCC-1701-E or a term for an independent nation');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('126385de-5bb9-416a-bb85-92e4c6414753', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'Who are Betazoids?', 4, 'Star Trek race known for empathic abilities and black eyes; for example, Lwaxana Troi');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('36fd284d-1a49-4304-8905-323b0f2b17f7', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'Who are the Kazon?', 8, 'Known to the borg as species 329 and unworthy of assimilation, this is the first species to oppose Captain Janeway');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('550a0c8c-e003-4359-87b0-6ed841f97bf6', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'What is Wolf 359?', 8, 'Planet where the Borg massacred 39 federation ships');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('7ed5b57a-d683-4163-836a-f5917885007d', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'WHAT IS THERE ARE FOUR LIGHTS?', 16, 'The number of lights in the room Jean-Luc Picard was interrogated in');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('69798b58-48eb-4cf5-ae64-4c1b399e55de', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'What is poker?', 16, 'Card game favored by both the authors of this capstone and Will Riker');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('22d8f8ec-1df7-4b78-88f8-103145e9f857', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'What is poetry?', 32, 'Artistic prose that both chief engineers B\'Elanna Torres and Geordi La Forge have in common');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('9f131ba9-8e1d-4ae1-9959-2b7c22f3fac0', '-', '')), UNHEX(REPLACE('e15773ae-32bd-4a1f-b4da-6899168af96a', '-', '')), 'What is Negh\'Var?', 32, 'Class of ship for the flagship of the Klingon Empire');
+
+-- People Category:
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'People');
+-- People
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('49395863-f664-4de0-8498-c37375a4a72d', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Senator Arlo?', 1, 'The only Romulan Senator with nine lives');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('01cd832f-a436-4bab-9b9a-d7bb2d35ab98', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is John Mierzwa?', 1, 'Founder of Deep Dive Coding and Emperor of Emperors');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('8fa12ae4-32cc-4d40-a31c-04e3fd4c4e53', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Sir Tim Berners-Lee?', 2, 'Inventor of HTML who opened the 2012 London Olympics by tweeting \'this is for you\'');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('6c6c839f-ac71-4514-9f6b-fa64ddbf9355', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Richard Stallman?', 2, 'Founder of the Free Software Foundation who is often made fun of in the web comic XKCD');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('44bfd68c-9066-49db-b911-d68853fc1831', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who are Dennis Ritchie and Ken Thompson?', 4, 'Inventors of C and Unix');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('a0b6f676-3cf0-4270-8de1-7640863036bf', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Eric S Raymond?', 4, 'Author of the Cathedral on the Bazaar');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('f125c389-8435-4fe3-9e23-fae89a374732', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Jon Stewart?', 8, 'First Daily Show alumni to raise awareness of net neutrality on the show');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('f2a862be-c333-4601-998c-7540fb3001b2', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Daniel Heron?', 8, 'Biggest Polyglot in the CNM STEMulus Center');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('fe21f736-65cd-4bc8-b8b2-1b6f06814c07', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is James Barksdale?', 16, 'CEO of Netscape who testified in congress in the Microsoft antitrust trial');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('0f71d861-7064-4a81-b727-1ff0fa6b817c', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Steve Ballmer?', 16, 'Chair throwing former Microsoft CEO with his own \'peak\'');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('c3d15b55-4cb6-40ce-9a43-2101b90587c7', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Ajit Pai?', 32, 'Reeses loving, net neutrality hating chairman');
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX(REPLACE('2d070b7e-193f-48fa-8328-a7def2c5d8ef', '-', '')), UNHEX(REPLACE('c2a7af6e-e2b5-45fe-8c1e-b7300f85852c', '-', '')), 'Who is Paul Vixie?', 32, '2014 Internet Hall of Fame inductee known for his work on DNS and anitspam measures');
