@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Ledger} from "../shared/classes/ledger";
 import {AuthService} from "../shared/services/auth.service";
 import {LedgerService} from "../shared/services/ledger.service";
 import {JoinService} from "../shared/services/join.service";
@@ -36,7 +35,7 @@ export class OptionsComponent implements OnInit {
 
 	ngOnInit() : void {
 		this.joinForm = this.formBuilder.group({
-			id: ""
+			id:["", [Validators.maxLength(36), Validators.required]]
 		});
 	}
 captainOption() : void {
