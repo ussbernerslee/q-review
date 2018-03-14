@@ -319,4 +319,70 @@ VALUES (UNHEX (REPLACE('e149d3ca-2a9e-4a5d-9447-b3c0751d8840', '-', '')),UNHEX(R
 
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('a55d18ba-b8c6-4e9b-b4c5-4f5325cb70b4', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'Who is EVERYONE on the team?', '4', 'hese are the individuals on a web development team that are responsible for the UX of a website or application');
--- UX Class 8:
+
+
+
+
+-- UX Cards 8:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('c3b6bbd1-7650-434f-90e0-623ac1814fc2', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is Mobile-First Web Development?', '8', 'This term refers to a web development approach where the bare essentials of a website are loaded for smaller platforms first, before adding content, features and functionality for larger devices on an as-needed secondary basis');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('a5637b23-cbec-4b60-8613-69d25f403870', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is Wireframing?', '8', 'This term refers to the process where one begins to plan out the organization and layout of the UI elements in black and white, prior to the graphic design of the website or application');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('bd08aef3-e265-4e50-83b9-5760de10b6bf', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is Sitemapping?', '8', 'This process involves creating a graphical outline that details the grouping and hierarchical structure of the pages of a website or app');
+-- UX Class 16:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('97c4b11b-cb72-4195-a9e4-cca66706d3a0', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is Progressive Enhancement?', '16', 'This term refers to the addition of content, features and functionality to a website as it scales up for larger platforms');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('219d4bfa-7484-4486-bf23-3f4f741f4d12', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is Graceful Degradation?', '16', 'This term refers to the addition of content, features and functionality to a website as it scales down for small platforms');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('4144461d-c169-43b6-9175-25c4dc11352f', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is IxD, or Interaction Design?', '16', ' subset of UX design, this term or acronym refers specifically to designing human-computer interactions');
+-- UX Cards 32:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('bae855b7-7e4f-42de-89f6-abdffaea78f6', '-', '')),'What is A/B testing?', '32', 'This term refers to the process of testing two different versions of the same website or app, and gathering user interaction data to determine which one performs best');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('2d132161-c40b-4811-ba59-e8f67495253f', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is a Wireframe?', '32', 'This term refers to a visual representation of a user interface that is used to define the hierarchy of content on a screen');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('63af30c7-0929-458f-a088-5bff03f8690c', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is MVP or Minimum Viable Product?', '32', 'This term refers to the process of testing two different versions of the same website or app, and gathering user interaction data to determine which one performs best');
+
+
+-- HTML Category:
+INSERT INTO category(categoryId, categoryProfileId, categoryName)
+VALUES(UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')), UNHEX(REPLACE('C2954660-F27B-4557-8F2D-C68E8B2D8AA8', '-', '')), 'HTML');
+-- HTML Cards 1:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('b02f8a4a-9d81-4c53-8a28-21d26b071e2c', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is Hypertext Markup Language?', '1', 'This is what the acronym HTML stands for');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('c7f28e0b-eb09-49ff-af39-251a540969c2', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What are ids?', '1', 'These types of HTML attributes are used to uniquely identify an element and their values can only occur once per page');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('4fd04296-234c-4e06-b95a-a5dd78b5c485', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is a <div>?', '1', 'This HTML tag is a generic block container element');
+-- HTML Cards 2:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('a6538f32-bf7d-46dd-bb98-ab16c0450ea8', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is a <span> tag?', '2', 'This HTML tag is a generic inline container element');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('97b77690-8df3-4c86-8a76-f9bf27370365', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <nav> tag?', '2', 'This HTML tag is used to house links that function as page navigation');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('e5f6b02c-673b-43fb-ac94-47d8acedab98', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is Doctype Declaration, or <!DOCTYPE html>?', '2', 'laced at the top of every HTML document, this line of code tells the browser what version of HTML the document is written in');
+-- HTML Cards 4:
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('e6faa36e-d6b2-4539-8454-21ed5ea8dd64', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'Who is Tim Berners-Lee?', '4', 'The inventor of HTML');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('f827c940-a54c-4637-9dd5-5796fee4a132', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <title> tag?', '4', 'Text inside this HTML tag will appear inside a browser tab right next to the favicon');
+
+INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
+VALUES (UNHEX (REPLACE('d80d9f35-de02-46f2-ad1d-12c88dc02e62', '-', '')),UNHEX(REPLACE('f1ec3a33-e758-481e-8139-506ae284f5d3', '-', '')),'What is the <textarea> tag?', '4', 'Used in forms, this HTML tag creates a multiline text input area');
+-- HTML Cards 8:
+
+-- HTML CARDS 16:
+-- HTML Cards 32:
