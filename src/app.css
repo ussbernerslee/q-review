@@ -157,12 +157,13 @@ a.nav-link {
 	background-color: white;
 }
 
-#categorySubmit {
-	background: blueviolet;
+#captainsHeader img {
+	float: right;
+	margin: 0 2em 2em 0;
 }
 
-#captainBoard {
-
+#categorySubmit {
+	background: blueviolet;
 }
 
 #leaderboardButton {
