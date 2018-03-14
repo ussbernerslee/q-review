@@ -1,40 +1,65 @@
-board view
+<div class="input-group m-0 pr-2 pb-2">
+	<form class="w-100" [formGroup]="selectForm" (submit)="dropdownId();">
+		<select class="custom-select rounded-0" id="inputGroupSelect01" formControlName="select">
+			<option [value]="category.categoryId" *ngFor="let category of categories">{{ category.categoryName }}</option>
+		</select>
+		<button type="submit" id="categorySubmit" class="btn btn-primary w-100 rounded-0 border">Get Cards</button>
+	</form>
+</div>
 
-
-
-
-{{boardId}}
-
-			<div class="input-group mb-3">
-				<form [formGroup]="selectForm" (submit)="dropdownId();">
-					<select class="custom-select" id="inputGroupSelect01" formControlName="select">
-						<option selected>Choose...</option>
-						<option [value]= "category.categoryId" *ngFor="let category of categories">{{ category.categoryName }}</option>
-					</select>
-					<button type="submit" id="submit" class="btn btn-primary">Select</button>
-				</form>
-			</div>
-
-			<div id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let card of cards">
-				<div class="card" (click)="grabCard(card);">
-					<div class="card-header" role="tab" id="1">
+<div class="py-1 pr-2" id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let card of cards">
+	<div class="card rounded-0 jeopardyCard" (click)="grabCard(card);">
+		<div class="card-header" role="tab" id="1">
+			<h5 class="mb-0">
+				<a class="collapsed text-white" data-toggle="collapse" data-parent="#accordion"
+					[href]="'#' + card.cardId + 'question'">
+					<h1 class="d-inline">{{card.cardPoints}}</h1>
+				</a>
+				<button class="" data-toggle="modal" data-target="#ledger-modal"
+						  [class]="card.cardId" id="modalButton">modal
+				</button>
+			</h5>
+		</div>
+		<div [id]="card.cardId + 'question'" class="collapse" role="tabpanel">
+			<div id="accordionQAndA" role="tablist" aria-multiselectable="true">
+				<div class="card rounded-0 jeopardyCard" (click)="grabCard(card);">
+					<div class="card-header" role="tab" id="2">
 						<h5 class="mb-0">
-							<a class="collapsed" data-toggle="collapse" data-parent="#accordion" [href]="'#' + card.cardId">
-								{{card.cardQuestion}} {{card.cardPoints}}
+							<a class="collapsed  text-white" data-toggle="collapse" data-parent="#accordion"
+								[href]="'#' + card.cardId + 'Answer'">
+								{{card.cardQuestion}}
 							</a>
-							<button class="btn btn-info my-0 mr-sm-2" data-toggle="modal" data-target="#ledger-modal" [class]="card.cardId">&nbsp;modal</button>
 						</h5>
 					</div>
-					<div [id]="card.cardId" class="collapse" role="tabpanel">
-						<div class="card-block">
+					<div [id]="card.cardId + 'Answer'" class="collapse" role="tabpanel">
+						<div class="card-block text-dark jeopardyAnswer">
 							<p>{{card.cardAnswer}}</p>
 						</div>
-
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
 
+			<!--<div id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let card of cards">-->
+				<!--<div class="card" (click)="grabCard(card);">-->
+					<!--<div class="card-header" role="tab" id="1">-->
+						<!--<h5 class="mb-0">-->
+							<!--<a class="collapsed" data-toggle="collapse" data-parent="#accordion" [href]="'#' + card.cardId">-->
+								<!--{{card.cardQuestion}} {{card.cardPoints}}-->
+							<!--</a>-->
+							<!--<button class="btn btn-info my-0 mr-sm-2" data-toggle="modal" data-target="#ledger-modal" [class]="card.cardId">&nbsp;modal</button>-->
+						<!--</h5>-->
+					<!--</div>-->
+					<!--<div [id]="card.cardId" class="collapse" role="tabpanel">-->
+						<!--<div class="card-block">-->
+							<!--<p>{{card.cardAnswer}}</p>-->
+						<!--</div>-->
 
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
 
 
 

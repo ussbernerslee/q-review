@@ -50,19 +50,15 @@ html, body {
 
 
 /*sign in and sign up card*/
-.card {
-	border-radius: 1rem;
+.homePage {
 	box-shadow: 0 0 30px black;
 	color: mediumturquoise;
-	border: none;
 }
 
 .tab-content {
 	padding-top: 3rem;
 	padding-bottom: 1rem;
 	background-color: #D6BA1C;
-	border-bottom-left-radius: 1rem;
-	border-bottom-right-radius: 1rem;
 }
 
 .nav-tabs .nav-link.active {
@@ -107,11 +103,70 @@ a.nav-link {
 
 #createBoardButton {
 	display: inline-block;
-	background-color: blueviolet;
+	background-color: #D6BA1C;
 	border: none;
 }
 
 #joinBoardButton {
+	background-color: blueviolet;
+	color: white;
+}
+
+/*joined*/
+#badgeLogo {
+	height: 50%;
+}
+
+#header {
+	height: 100%;
+	background: linear-gradient(to bottom, blueviolet 50%, white 50%) no-repeat;
+}
+
+#joinedBackground {
+	background-color: blueviolet;
+}
+
+/*fixed bottom navbar*/
+
+.navbar.fixed-bottom {
+	background-color: blueviolet;
+	color: white;
+}
+
+.navbar-brand {
+	font-size: small;
+}
+
+/*captains view*/
+#categorySubmit {
+	background: blueviolet;
+}
+
+#captainBoard {
+
+}
+
+#leaderboardButton {
+	width: 100%;
+	background-color: #D6BA1C;
+}
+
+#modalButton {
+	float: right;
 	background-color: #D6BA1C;
 	color: white;
+}
+
+.jeopardyCard {
+	background-color: blueviolet;
+}
+
+.jeopardyAnswer {
+	background-color: #D6BA1C;
+	height: 100%;
+}
+
+#captainsHeader {
+	background-color: #D6BA1C;
+	padding: 2rem;
 }
