@@ -343,7 +343,7 @@ INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('4144461d-c169-43b6-9175-25c4dc11352f', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is IxD, or Interaction Design?', '16', ' subset of UX design, this term or acronym refers specifically to designing human-computer interactions');
 -- UX Cards 32:
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
-VALUES (UNHEX (REPLACE('bae855b7-7e4f-42de-89f6-abdffaea78f6', '-', '')),'What is A/B testing?', '32', 'This term refers to the process of testing two different versions of the same website or app, and gathering user interaction data to determine which one performs best');
+VALUES (UNHEX (REPLACE('bae855b7-7e4f-42de-89f6-abdffaea78f6', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is A/B testing?', '32', 'This term refers to the process of testing two different versions of the same website or app, and gathering user interaction data to determine which one performs best');
 
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('2d132161-c40b-4811-ba59-e8f67495253f', '-', '')),UNHEX(REPLACE('a73145d8-4253-451e-a3b8-ee963cc2ae89', '-', '')),'What is a Wireframe?', '32', 'This term refers to a visual representation of a user interface that is used to define the hierarchy of content on a screen');
