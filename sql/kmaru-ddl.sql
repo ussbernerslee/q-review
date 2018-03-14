@@ -97,7 +97,12 @@ CREATE TABLE ledger(
 );
 
 
+-- Deletions:
+DELETE FROM card
+WHERE cardCategoryId= UNHEX(REPLACE('30d28a7e-192b-4f54-b97d-ba6166eb7433', '-', ''));
 
+DELETE FROM card
+WHERE cardCategoryId= UNHEX(REPLACE('4e7fc1e6-3c3b-43d7-9a7e-6b97b25e6593', '-', ''));
 
 -- categories:
 
