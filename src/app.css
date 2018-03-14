@@ -1,5 +1,7 @@
 html, body {
 	height:100%;
+	padding-bottom: 5rem;
+	overflow: auto;
 }
 
 .sfooter {
@@ -50,6 +52,7 @@ html, body {
 
 
 /*sign in and sign up card*/
+
 .homePage {
 	box-shadow: 0 0 30px black;
 	color: mediumturquoise;
@@ -58,11 +61,11 @@ html, body {
 .tab-content {
 	padding-top: 3rem;
 	padding-bottom: 1rem;
-	background-color: #D6BA1C;
+	background-color: blueviolet;
 }
 
 .nav-tabs .nav-link.active {
-	background-color: #D6BA1C;
+	background-color: blueviolet;
 	color: white;
 }
 
@@ -77,13 +80,15 @@ a.nav-link {
 #signInBtn {
 	width: 100%;
 	margin-top: 2rem;
-	background: blueviolet;
+	background: white;
+	color: blueviolet;
 }
 
 #signUpBtn {
 	width: 100%;
 	margin-top: 2rem;
-	background: blueviolet;
+	background: white;
+	color: blueviolet;
 }
 
 .alert {
@@ -97,13 +102,17 @@ a.nav-link {
 
 
 /*options*/
+#optionsBackground {
+	background-color: white;
+}
+
 #optionsForm {
 	width: 50%;
 }
 
 #createBoardButton {
 	display: inline-block;
-	background-color: #D6BA1C;
+	background-color: blueviolet;
 	border: none;
 }
 
@@ -138,6 +147,10 @@ a.nav-link {
 }
 
 /*captains view*/
+#captainsPage {
+	background-color: white;
+}
+
 #categorySubmit {
 	background: blueviolet;
 }
@@ -148,13 +161,13 @@ a.nav-link {
 
 #leaderboardButton {
 	width: 100%;
-	background-color: #D6BA1C;
+	background-color: blueviolet;
 }
 
 #modalButton {
 	float: right;
-	background-color: #D6BA1C;
-	color: white;
+	background-color: white;
+	color: blueviolet;
 }
 
 .jeopardyCard {
@@ -162,11 +175,12 @@ a.nav-link {
 }
 
 .jeopardyAnswer {
-	background-color: #D6BA1C;
+	background-color: white;
+	color: blueviolet;
 	height: 100%;
 }
 
 #captainsHeader {
-	background-color: #D6BA1C;
+	color: blueviolet;
 	padding: 2rem;
 }
