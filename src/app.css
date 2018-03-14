@@ -170,10 +170,21 @@ a.nav-link {
 	background-color: blueviolet;
 }
 
+thead th {
+	background-color: transparent;
+	color: blueviolet;
+	border-bottom: solid 1px blueviolet;
+}
+
 #modalButton {
 	float: right;
 	background-color: white;
 	color: blueviolet;
+	margin: 0;
+}
+
+#modalButton h6 {
+	margin: 0;
 }
 
 .jeopardyCard {
@@ -188,5 +199,16 @@ a.nav-link {
 
 #captainsHeader {
 	color: blueviolet;
-	padding: 2rem;
 }
+
+/*modal*/
+.ledgerModalBox {
+	background-color: blueviolet;
+	color: white
+}
+
+.captainsModalHeader {
+	background-color: white;
+	color: blueviolet;
+}
+

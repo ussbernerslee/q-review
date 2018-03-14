@@ -62,6 +62,7 @@ export class CaptainComponent implements OnInit{
 
 			this.ledgerService.postLedger(ledger)
 			.subscribe(status => this.status = status);
+		this.loadLeaderboard();
 
 	}
 
