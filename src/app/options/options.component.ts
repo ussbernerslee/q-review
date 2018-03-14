@@ -35,7 +35,7 @@ export class OptionsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.joinForm = this.formBuilder.group({
-			id: ["", [Validators.maxLength(36), Validators.required]]
+			id: ""
 		});
 	}
 

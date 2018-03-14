@@ -14,12 +14,6 @@
         <button class="btn btn-lg rounded-0 py-3" type="submit" id="joinBoardButton" [disabled]="joinForm.invalid">Join Board</button>
       </span>
 				</div>
-				<div *ngIf="joinForm.controls.id?.invalid && joinForm.controls.id?.touched" class="alert alert-danger" role="alert">
-					<div *ngIf="joinForm.controls.id?.errors.required">Board Id Required.</div>
-					<div *ngIf="joinForm.controls.id?.errors.maxlength">Invalid ID Length.</div>
-					<div *ngIf="joinForm.controls.id?.errors.minlength">Invalid ID Length.</div>
-
-				</div>
 			</div>
 		</form>
 	</div>
