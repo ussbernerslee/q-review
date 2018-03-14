@@ -177,6 +177,10 @@ thead th {
 	border-bottom: solid 1px blueviolet;
 }
 
+tbody td {
+	color: blueviolet;
+}
+
 #modalButton {
 	float: right;
 	background-color: white;
