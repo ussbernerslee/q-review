@@ -183,7 +183,7 @@ VALUES(UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), UNHEX(RE
 
 -- Bootstrap Cards 1:
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
-VALUES (UNHEX (REPLACE('39b12f66-f8ab-4ea4-b9cf-c18a202e466b', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is 12?', '1', 'The number of columns in the Bootstrap Grid System');
+VALUES (UNHEX (REPLACE('8da0b37e-0f50-4237-b8e4-47c7ab717a54', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is 12?', '1', 'The number of columns in the Bootstrap Grid System');
 
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('685a86b2-d2a8-4110-b4cf-514ee0df6a6f', '-', '')),UNHEX(REPLACE('ee37cc48-ab4b-4f91-9845-86efea8f4af4', '-', '')), 'What is .container or .container-fluid?', '1', 'The number of columns in the Bootstrap Grid System');
@@ -263,7 +263,7 @@ INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('796dd201-f79e-4faf-928b-48ff33a69619', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What are media queries?', '4', 'Using these, we can limit certain styles based on the media type and device characteristics, such as screen width');
 -- CSS Cards 8:
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
-VALUES (UNHEX (REPLACE('d8f899cc-360c-4bfa-9aaa-c4fead7c42bb ', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is display: inline-block;?', '8', 'Setting this CSS display value will enable an element to sit inline, while at the same time preserving the box model margins and padding like that of a block element');
+VALUES (UNHEX (REPLACE('d8f899cc-360c-4bfa-9aaa-c4fead7c42bb', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is display: inline-block;?', '8', 'Setting this CSS display value will enable an element to sit inline, while at the same time preserving the box model margins and padding like that of a block element');
 
 INSERT INTO card(cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion)
 VALUES (UNHEX (REPLACE('41e0229c-806c-4d76-ba32-2ef98e1ea62f', '-', '')),UNHEX(REPLACE('d0e530dd-54e0-46b7-9918-1ead8876fa9c', '-', '')),'What is an Attribute Selector?', '8', 'This kind of CSS Selector allows you to target HTML elements with a specific attribute and/or value');
