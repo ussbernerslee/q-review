@@ -75,13 +75,12 @@ try {
 					return($leftCard->cardPoints <=> $rightCard->cardPoints);
 				});
 
-				$currPoints = 0;
-				$numCards = 0;
 				for($i = 0; $i < count($cardsInTable) - 1; $i++) {
 					if($cardsInTable[$i]->cardPoints === $cardsInTable[$i + 1]->cardPoints) {
 						$deleteIndex = random_int(0, 1) + $i;
 						unset($cardsInTable[$deleteIndex]);
 						$cardsInTable = array_combine(range(0, count($cardsInTable) - 1), $cardsInTable);
+						$i--;
 					}
 				}
 
