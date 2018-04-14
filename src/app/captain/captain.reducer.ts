@@ -5,13 +5,13 @@ import {BUZZ_IN, BUZZ_OFF, SCORE, FINAL, CaptainOrder} from "../shared/classes/c
 export const CaptainReducer: ActionReducer<any> = (state = [], action: CaptainOrder) => {
 	switch(action.type) {
 		case BUZZ_IN:
-			if(state.buzzes.available === true && state.buzzes.queue.findIndex((player: any) => player.username === action.payload.username) === -1) {
-				let newQueue = state.buzzes.queue.sort((player1: any, player2: any) => Math.sign(player1.timestamp - player2.timestamp));
-				return(Object.assign({}, state, {buzzes: {available: true, queue: newQueue}}));
+			if(state.queue.findIndex((player: any) => player.username === action.payload.username) === -1) {
+				let newQueue = state.queue.sort((player1: any, player2: any) => Math.sign(player1.timestamp - player2.timestamp));
+				return(Object.assign({}, state, {queue: newQueue}));
 			}
 			return state;
 		case BUZZ_OFF:
-			return(Object.assign({}, state, {available: false, queue: []}));
+			return(Object.assign({}, state, {queue: []}));
 		case SCORE:
 			if(state.id === action) {
 				return(Object.assign({}, state, {leaderboard: action.payload}));
