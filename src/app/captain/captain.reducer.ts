@@ -1,9 +1,11 @@
 import {ActionReducer} from "@ngrx/store";
-import {BUZZ_IN, BUZZ_OFF, SCORE, FINAL, CaptainOrder} from "../shared/classes/captain.order";
+import {BOARD, BUZZ_IN, BUZZ_OFF, SCORE, FINAL, CaptainOrder} from "../shared/classes/captain.order";
 
 
-export const CaptainReducer: ActionReducer<any> = (state = [], action: CaptainOrder) => {
+export const CaptainReducer: ActionReducer<any> = (state = {}, action: CaptainOrder) => {
 	switch(action.type) {
+		case BOARD:
+			return(Object.assign({}, state, {cards: action.payload}));
 		case BUZZ_IN:
 			if(state.queue.findIndex((player: any) => player.username === action.payload.username) === -1) {
 				let newQueue = state.queue;
