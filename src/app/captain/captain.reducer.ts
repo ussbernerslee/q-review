@@ -13,9 +13,7 @@ export const CaptainReducer: ActionReducer<any> = (state = [], action: CaptainOr
 		case BUZZ_OFF:
 			return(Object.assign({}, state, {queue: []}));
 		case SCORE:
-			if(state.id === action) {
-				return(Object.assign({}, state, {leaderboard: action.payload}));
-			}
+			return(Object.assign({}, state, {leaderboard: action.payload}));
 		case FINAL:
 			return state;
 		default:
