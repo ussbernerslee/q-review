@@ -6,7 +6,9 @@ export const CaptainReducer: ActionReducer<any> = (state = [], action: CaptainOr
 	switch(action.type) {
 		case BUZZ_IN:
 			if(state.queue.findIndex((player: any) => player.username === action.payload.username) === -1) {
-				let newQueue = state.queue.sort((player1: any, player2: any) => Math.sign(player1.timestamp - player2.timestamp));
+				let newQueue = state.queue;
+				newQueue.push(action.payload);
+				newQueue.sort((player1: any, player2: any) => Math.sign(player1.timestamp - player2.timestamp));
 				return(Object.assign({}, state, {queue: newQueue}));
 			}
 			return state;
