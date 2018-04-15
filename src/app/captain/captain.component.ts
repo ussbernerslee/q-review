@@ -30,6 +30,7 @@ export class CaptainComponent implements OnInit {
 	cards: Card[][] = [];
 	categories: Category[] = [];
 	gameState: any = {};
+	engaged: boolean = false;
 
 	@ViewChild(CardComponent) cardComponent: CardComponent;
 	@ViewChild(LeaderboardComponent) leaderboardComponent: LeaderboardComponent;
@@ -39,13 +40,14 @@ export class CaptainComponent implements OnInit {
 		this.gameState = {
 			boardName: "",
 			finalQuestion: "",
-			cards: new Array(this.numGames),
+			cards: [],
 			leaderboard: [],
 			queue: []
 		};
 		for(let i = 0; i < this.numGames; i++) {
 			this.cards[i] = [];
 			this.categories[i] = null;
+			this.gameState.cards.push({categoryName: "", availableCards: []});
 		}
 	}
 
@@ -75,8 +77,6 @@ export class CaptainComponent implements OnInit {
 
 	subtract () {
 		let ledger: Ledger = new Ledger(this.boardId, this.card.cardId, this.ledgerForm.value.select, -this.card.cardPoints, "1");
-		console.log (ledger);
-		console.log (this.card);
 
 			this.ledgerService.postLedger(ledger)
 			.subscribe(status => this.status = status);
@@ -87,6 +87,10 @@ export class CaptainComponent implements OnInit {
 	getCardId() : void {
 		let array : any[];
 		this.cardService.cardObserver.subscribe(cards => this.card = cards);
+	}
+
+	engage() : void {
+		console.log(this.gameState);
 	}
 
  	loadLeaderboard() : void {

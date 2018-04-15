@@ -26,6 +26,9 @@
 				</table>
 			</div>
 		</div>
+		<div *ngIf="!engaged">
+			<button class="btn btn-success" (click)="engage()"><i class="fas fa-flag-checkered"></i> Engage!</button>
+		</div>
 	</div>
 
 	<!--modal for current players to drop down and assign points for the specific card-->
