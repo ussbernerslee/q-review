@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from "@angular/core";
 import {CardComponent} from "../card/card.component";
 import {LeaderboardComponent} from "../leaderboard/leaderboard.component";
 import {BoardComponent} from "../board/board.component";
@@ -10,6 +10,8 @@ import {Card} from "../shared/classes/card";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Status} from "../shared/classes/status";
 import {CardService} from "../shared/services/card.service";
+import {Board} from "../shared/classes/board";
+import {Category} from "../shared/classes/category";
 
 
 declare const $: any;
@@ -17,19 +19,28 @@ declare const $: any;
 	template: require("./captain.html")
 })
 
-export class CaptainComponent implements OnInit{
+export class CaptainComponent implements OnInit {
 
 	boardId: string;
 	players: Profile[] = [];
 	ledgerForm: FormGroup;
 	status: Status = null;
 	card: Card;
+	numGames : number = 4;
+	placeholderArray : any[] = new Array(this.numGames);
+	cards: Card[][] = [];
+	categories: Category[] = [];
 
 	@ViewChild(CardComponent) cardComponent: CardComponent;
 	@ViewChild(LeaderboardComponent) leaderboardComponent: LeaderboardComponent;
-	@ViewChild(BoardComponent) boardComponent: BoardComponent;
+	@ViewChildren(BoardComponent) gameComponents: QueryList<BoardComponent>;
 
-	constructor(protected ledgerService:LedgerService,protected route:ActivatedRoute,protected formBuilder: FormBuilder, protected cardService:CardService) {}
+	constructor(protected ledgerService:LedgerService, protected route:ActivatedRoute, protected formBuilder: FormBuilder, protected cardService:CardService) {
+		for(let i = 0; i < this.numGames; i++) {
+			this.cards[i] = [];
+			this.categories[i] = null;
+		}
+	}
 
 	ngOnInit() : void {
 		this.boardId=this.route.snapshot.params.boardId;

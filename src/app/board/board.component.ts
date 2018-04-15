@@ -1,12 +1,10 @@
-import {Component, OnInit, EventEmitter, Output} from "@angular/core";
+import {Component, OnInit, EventEmitter, Output, Input} from "@angular/core";
 import {Card} from "../shared/classes/card";
 import {CardService} from "../shared/services/card.service";
 import {Category} from "../shared/classes/category";
 import {CategoryService} from "../shared/services/category.service";
 import {AuthService} from "../shared/services/auth.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {BoardService} from "../shared/services/board.service";
-import {Status} from "../shared/classes/status";
 import {ActivatedRoute} from "@angular/router";
 import {Profile} from "../shared/classes/profile";
 
@@ -17,6 +15,7 @@ import {Profile} from "../shared/classes/profile";
 
 export class BoardComponent implements OnInit {
 
+	@Input() index : number;
 	@Output ()
 		cardChange = new EventEmitter<Card>();
 
@@ -41,7 +40,6 @@ export class BoardComponent implements OnInit {
 		protected cardService: CardService,
 		protected authService: AuthService,
 		protected formBuilder: FormBuilder,
-		protected boardService:BoardService,
 		protected route:ActivatedRoute) {}
 
 
