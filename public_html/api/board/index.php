@@ -9,23 +9,23 @@ require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use Edu\Cnm\Kmaru\{
 	Profile, Board
 };
-//use PubNub\PNConfiguration;
-//use PubNub\PubNub;
+use PubNub\PNConfiguration;
+use PubNub\PubNub;
 
-///**
-// * Accessing pubnub for the Board
-// **/
-//$config = readConfig("/etc/apache2/capstone-mysql/kmaru.ini");
-//$pubNub = json_decode($config["pubnub"]);
-//
-//$pubNubConf = new PNConfiguration();
-//
-//$pubNubConf->setSubscribeKey($pubNub->subscribeKey);
-//$pubNubConf->setPublishKey($pubNub->publishKey);
-//$pubNubConf->setSecretKey($pubNub->secretKey);
-//$pubNubConf->setSecure(true);
-//
-//$pubNubBoard = new PubNub($pubNubConf);
+/**
+ * Accessing pubnub for the Board
+ **/
+$config = readConfig("/etc/apache2/capstone-mysql/kmaru.ini");
+$pubNub = json_decode($config["pubnub"]);
+
+$pubNubConf = new PNConfiguration();
+
+$pubNubConf->setSubscribeKey($pubNub->subscribeKey);
+$pubNubConf->setPublishKey($pubNub->publishKey);
+$pubNubConf->setSecretKey($pubNub->secretKey);
+$pubNubConf->setSecure(true);
+
+$pubNubBoard = new PubNub($pubNubConf);
 
 
 

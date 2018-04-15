@@ -4,6 +4,7 @@ use PubNub\PubNub;
 use PubNub\Callbacks\SubscribeCallback;
 use PubNub\Enums\PNStatusCategory;
 use PubNub\Exceptions\PubNubUnsubscribeException;
+
 class HailingFrequencies extends SubscribeCallback {
 	/**
 	 * PubNub configuration object
