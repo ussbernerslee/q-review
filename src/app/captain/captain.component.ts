@@ -61,9 +61,7 @@ export class CaptainComponent implements OnInit {
 	}
 
 	disableCard() :  void {
-		console.log(this.gameState);
 		$("#ledger-modal").modal('hide');
-		// $('.'+ this.card.cardId).prop('disabled', true);
 		this.gameComponents.forEach(game => {
 			let cardIndex = game.cards.findIndex(card => card.cardId === this.card.cardId);
 			if(cardIndex >= 0) {
@@ -106,7 +104,14 @@ export class CaptainComponent implements OnInit {
  	loadLeaderboard() : void {
 		this.ledgerService
 			.getLedgerByLedgerBoardId(this.boardId)
-			.subscribe(profiles => this.players = profiles);
+			.subscribe(profiles => {
+				this.players = profiles;
+				let newLeaderboard: any[] = [];
+				for(let player of this.players) {
+					newLeaderboard.push({username: player.profileUsername, points: player.info});
+				}
+				this.gameState.leaderboard = newLeaderboard;
+			});
 
 	}
 
