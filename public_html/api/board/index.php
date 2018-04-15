@@ -6,28 +6,9 @@ require_once(dirname(__DIR__, 3) . "/php/lib/xsrf.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/uuid.php");
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 
-use Edu\Cnm\Kmaru\{
-	Profile, Board
-};
+use Edu\Cnm\Kmaru\{Board, BoardSubscriber};
 use PubNub\PNConfiguration;
 use PubNub\PubNub;
-
-/**
- * Accessing pubnub for the Board
- **/
-$config = readConfig("/etc/apache2/capstone-mysql/kmaru.ini");
-$pubNub = json_decode($config["pubnub"]);
-
-$pubNubConf = new PNConfiguration();
-
-$pubNubConf->setSubscribeKey($pubNub->subscribeKey);
-$pubNubConf->setPublishKey($pubNub->publishKey);
-$pubNubConf->setSecretKey($pubNub->secretKey);
-$pubNubConf->setSecure(true);
-
-$pubNubBoard = new PubNub($pubNubConf);
-
-
 
 /**
  * API for the Board
@@ -92,6 +73,24 @@ try {
 
 		$board = new Board(generateUuidV4(), $_SESSION["profile"]->getProfileId(), $requestObject->boardName);
 		$board->insert($pdo);
+
+		/**
+		 * Accessing pubnub for the Board
+		 **/
+		$config = readConfig("/etc/apache2/capstone-mysql/kmaru.ini");
+		$pubNub = json_decode($config["pubnub"]);
+
+		$pubNubConf = new PNConfiguration();
+
+		$pubNubConf->setSubscribeKey($pubNub->subscribeKey);
+		$pubNubConf->setPublishKey($pubNub->publishKey);
+		$pubNubConf->setSecretKey($pubNub->secretKey);
+		$pubNubConf->setSecure(true);
+
+		$pubNubBoard = new PubNub($pubNubConf);
+		$pubNubBoard->addListener(new BoardSubscriber($board, $pubNubBoard));
+		$pubNubBoard->subscribe()->channels("kmaru-" . $board->getBoardId())->execute();
+
 		// update reply
 		$reply->message = $board->getBoardId();
 	}
