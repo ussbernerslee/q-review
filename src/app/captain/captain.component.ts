@@ -29,12 +29,20 @@ export class CaptainComponent implements OnInit {
 	placeholderArray : any[] = new Array(this.numGames);
 	cards: Card[][] = [];
 	categories: Category[] = [];
+	gameState: any = {};
 
 	@ViewChild(CardComponent) cardComponent: CardComponent;
 	@ViewChild(LeaderboardComponent) leaderboardComponent: LeaderboardComponent;
 	@ViewChildren(BoardComponent) gameComponents: QueryList<BoardComponent>;
 
 	constructor(protected ledgerService:LedgerService, protected route:ActivatedRoute, protected formBuilder: FormBuilder, protected cardService:CardService) {
+		this.gameState = {
+			boardName: "",
+			finalQuestion: "",
+			cards: new Array(this.numGames),
+			leaderboard: [],
+			queue: []
+		};
 		for(let i = 0; i < this.numGames; i++) {
 			this.cards[i] = [];
 			this.categories[i] = null;
@@ -42,7 +50,7 @@ export class CaptainComponent implements OnInit {
 	}
 
 	ngOnInit() : void {
-		this.boardId=this.route.snapshot.params.boardId;
+		this.boardId = this.route.snapshot.params.boardId;
 		this.loadLeaderboard();
 
 		this.ledgerForm = this.formBuilder.group({
@@ -89,11 +97,18 @@ export class CaptainComponent implements OnInit {
 	}
 
 	loadCards(cardData: any) : void {
-		this.cards[cardData.index] = cardData.cards;
+		let index = cardData.index;
+		this.cards[index] = cardData.cards;
+		this.gameState.cards[index].availableCards = [];
+		for(let card of this.cards[index]) {
+			this.gameState.cards[index].availableCards.push(card.cardPoints);
+		}
 	}
 
 	loadCategories(categoryData: any) : void {
-		this.categories[categoryData.index] = categoryData.category;
+		let index = categoryData.index;
+		this.categories[index] = categoryData.category;
+		this.gameState.cards[index].categoryName = this.categories[index].categoryName;
 	}
 
 }
