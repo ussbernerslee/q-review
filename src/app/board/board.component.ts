@@ -19,6 +19,8 @@ export class BoardComponent implements OnInit {
 	@Output() categoryChange = new EventEmitter<any>();
 	@Output() cardChange = new EventEmitter<any>();
 
+	availableCards: boolean[] = [];
+
 	categories: Category[] = [];
 
 	cards: Card[] = [];
@@ -63,6 +65,7 @@ export class BoardComponent implements OnInit {
 			.getCardByCardCategoryId(this.selectForm.value.select)
 			.subscribe(cards => {
 				this.cards = cards;
+				this.availableCards = Array(this.cards.length).fill(true);
 				this.cardChange.emit({cards: this.cards, index: this.index});
 			});
 	}
@@ -71,6 +74,10 @@ export class BoardComponent implements OnInit {
 
 	grabCard(card:Card) : void {
 		this.cardService.addCard(card);
+	}
+
+	getCardClass(index: number) : string {
+		return(this.availableCards[index] === true ? "jeopardyCard" : "jeopardyCardDisabled");
 	}
 }
 

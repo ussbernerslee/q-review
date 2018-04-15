@@ -7,25 +7,25 @@
 	</form>
 </div>
 
-<div class="py-1 pr-2" id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let card of cards">
-	<div class="card rounded-0 jeopardyCard" (click)="grabCard(card);">
-		<div class="card-header" role="tab" id="1">
+<div class="py-1 pr-2" id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let card of cards;index as $index">
+	<div class="card rounded-0" [class]="getCardClass($index)" (click)="grabCard(card);">
+		<div class="card-header" role="tab">
 			<h5 class="mb-0">
 				<a class="collapsed text-white" data-toggle="collapse" data-parent="#accordion"
 					[href]="'#' + card.cardId + 'question'">
 					<h1 class="d-inline">{{card.cardPoints}}</h1>
 				</a>
 				<button class="" data-toggle="modal" data-target="#ledger-modal"
-						  [class]="card.cardId" id="modalButton"><h6>Assign Points</h6>
+						  [class]="card.cardId" id="modalButton" *ngIf="availableCards[$index]"><h6>Assign Points</h6>
 				</button>
 			</h5>
 		</div>
-		<div [id]="card.cardId + 'question'" class="collapse" role="tabpanel">
+		<div [id]="card.cardId + 'question'" class="collapse" role="tabpanel" *ngIf="availableCards[$index]">
 			<div id="accordionQAndA" role="tablist" aria-multiselectable="true">
 				<div class="card rounded-0 jeopardyCard" (click)="grabCard(card);">
-					<div class="card-header" role="tab" id="2">
+					<div class="card-header" role="tab">
 						<h5 class="mb-0">
-							<a class="collapsed  text-white" data-toggle="collapse" data-parent="#accordion"
+							<a class="collapsed text-white" data-toggle="collapse" data-parent="#accordion"
 								[href]="'#' + card.cardId + 'answer'">
 								{{card.cardQuestion}}
 							</a>

@@ -196,6 +196,10 @@ tbody td {
 	background-color: blueviolet;
 }
 
+.jeopardyCardDisabled {
+	background-color: orange;
+}
+
 .jeopardyAnswer {
 	background-color: white;
 	color: blueviolet;

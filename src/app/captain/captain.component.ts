@@ -60,21 +60,33 @@ export class CaptainComponent implements OnInit {
 		this.getCardId();
 	}
 
-	plus () {
+	disableCard() :  void {
+		console.log(this.gameState);
+		$("#ledger-modal").modal('hide');
+		// $('.'+ this.card.cardId).prop('disabled', true);
+		this.gameComponents.forEach(game => {
+			let cardIndex = game.cards.findIndex(card => card.cardId === this.card.cardId);
+			if(cardIndex >= 0) {
+				this.gameState.cards[game.index].availableCards[cardIndex] = null;
+				game.availableCards[cardIndex] = false;
+			}
+		});
+	}
+
+	plus() : void {
 		let ledger: Ledger = new Ledger(this.boardId, this.card.cardId, this.ledgerForm.value.select, this.card.cardPoints, "1");
 		this.ledgerService
 			.postLedger(ledger)
 			.subscribe(status => {
 				this.status = status;
-				if (status.status===200){
-					$("#ledger-modal").modal('hide');
-					$('.'+ this.card.cardId).prop('disabled', true);
+				if (status.status === 200){
+					this.disableCard();
 					this.loadLeaderboard();
 				}
 			});
 }
 
-	subtract () {
+	subtract() : void {
 		let ledger: Ledger = new Ledger(this.boardId, this.card.cardId, this.ledgerForm.value.select, -this.card.cardPoints, "1");
 
 			this.ledgerService.postLedger(ledger)
@@ -84,7 +96,6 @@ export class CaptainComponent implements OnInit {
 	}
 
 	getCardId() : void {
-		let array : any[];
 		this.cardService.cardObserver.subscribe(cards => this.card = cards);
 	}
 
