@@ -10,7 +10,6 @@ import {Card} from "../shared/classes/card";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Status} from "../shared/classes/status";
 import {CardService} from "../shared/services/card.service";
-import {Board} from "../shared/classes/board";
 import {Category} from "../shared/classes/category";
 
 
@@ -87,6 +86,14 @@ export class CaptainComponent implements OnInit {
 			.getLedgerByLedgerBoardId(this.boardId)
 			.subscribe(profiles => this.players = profiles);
 
+	}
+
+	loadCards(cardData: any) : void {
+		this.cards[cardData.index] = cardData.cards;
+	}
+
+	loadCategories(categoryData: any) : void {
+		this.categories[categoryData.index] = categoryData.category;
 	}
 
 }

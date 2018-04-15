@@ -6,7 +6,7 @@
 	<div class="pt-2" id="captainBoard">
 		<div class="row w-100 p-0 m-0">
 			<div *ngFor="let placeholder of placeholderArray; index as index" class="col p-0 m-0">
-				<game [index]="index"></game>
+				<game (cardChange)="loadCards($event)" (categoryChange)="loadCategories($event)" [index]="index"></game>
 			</div>
 			<div class="col p-0 m-0">
 				<button class="btn btn-primary w-100 rounded-0 border" id="leaderboardButton" (click)="loadLeaderboard();">Leaderboard</button>

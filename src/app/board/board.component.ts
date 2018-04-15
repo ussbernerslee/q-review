@@ -16,8 +16,8 @@ import {Profile} from "../shared/classes/profile";
 export class BoardComponent implements OnInit {
 
 	@Input() index : number;
-	@Output ()
-		cardChange = new EventEmitter<Card>();
+	@Output() categoryChange = new EventEmitter<any>();
+	@Output() cardChange = new EventEmitter<any>();
 
 	categories: Category[] = [];
 
@@ -56,10 +56,15 @@ export class BoardComponent implements OnInit {
  	};
 
 	dropdownId() : void {
+		let category = this.categories.find(search => search.categoryId === this.selectForm.value.select);
+		this.categoryChange.emit({category: category, index: this.index});
 		this.selectedCategories.push(this.selectForm.value.select);
 		this.cardService
 			.getCardByCardCategoryId(this.selectForm.value.select)
-			.subscribe(cards => this.cards = cards);
+			.subscribe(cards => {
+				this.cards = cards;
+				this.cardChange.emit({cards: this.cards, index: this.index});
+			});
 	}
 
 
