@@ -12,7 +12,6 @@ import {Status} from "../shared/classes/status";
 import {CardService} from "../shared/services/card.service";
 import {Category} from "../shared/classes/category";
 
-
 declare const $: any;
 @Component({
 	template: require("./captain.html")
@@ -90,7 +89,7 @@ export class CaptainComponent implements OnInit {
 	}
 
 	engage() : void {
-		console.log(this.gameState);
+		this.engaged = true;
 	}
 
  	loadLeaderboard() : void {
