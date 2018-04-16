@@ -1,7 +1,7 @@
-
 <div class="jumbotron h-100">
 	<div class="d-flex align-items-center flex-column justify-content-center h-100 text-white" id="joinedBackground">
 		<img class="card-img-top" src="kmaru-white.svg" alt="Card image cap" id="badgeLogo">
 		<h1>You have joined the game.</h1>
+		<h1 *ngIf="canBuzzIn" (click)="buzzIn()"><button class="btn btn-lg"> Buzz In</button></h1>
 	</div>
 </div>
