@@ -8,6 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Ledger} from "../shared/classes/ledger";
 import {Card} from "../shared/classes/card";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {PlayerMessage} from "../shared/classes/player.message";
 import {Status} from "../shared/classes/status";
 import {CardService} from "../shared/services/card.service";
 import {Category} from "../shared/classes/category";
@@ -31,6 +32,7 @@ export class CaptainComponent implements OnInit {
 	categories: Category[] = [];
 	gameState: any = {};
 	engaged: boolean = false;
+	playerMessage: PlayerMessage = null;
 
 	@ViewChild(CardComponent) cardComponent: CardComponent;
 	@ViewChild(LeaderboardComponent) leaderboardComponent: LeaderboardComponent;
@@ -49,22 +51,26 @@ export class CaptainComponent implements OnInit {
 			this.categories[i] = null;
 			this.gameState.cards.push({categoryName: "", availableCards: []});
 		}
+
+		let parent = this;
 		this.pubnub.init({
 			publishKey: "pub-c-f4761826-34d5-4b1c-8977-ce66a5199a53",
 			subscribeKey: "sub-c-4c7ad82a-141f-11e8-acae-aa071d12b3f5",
 			ssl: true
 		});
+		this.pubnub.addListener({message: function(pubnubMessage: any) {
+			console.log(pubnubMessage);
+			parent.playerMessage = pubnubMessage;
+			}
+		});
 	}
 
 	ngOnInit() : void {
 		this.boardId = this.route.snapshot.params.boardId;
-		this.loadLeaderboard();
-
 		this.ledgerForm = this.formBuilder.group({
 			select:["",[Validators.required]]
 		});
 		this.getCardId();
-		this.pubnub.subscribe({channels: "kmaru-" + this.boardId});
 	}
 
 	disableCard() :  void {
@@ -107,6 +113,7 @@ export class CaptainComponent implements OnInit {
 	engage() : void {
 		this.engaged = true;
 		this.publishGameState();
+		this.pubnub.subscribe({channels: ["kmaru-" + this.boardId]});
 	}
 
  	loadLeaderboard() : void {
@@ -119,7 +126,9 @@ export class CaptainComponent implements OnInit {
 					newLeaderboard.push({username: player.profileUsername, points: player.info});
 				}
 				this.gameState.leaderboard = newLeaderboard;
-				this.publishGameState();
+				if(this.engaged === true) {
+					this.publishGameState();
+				}
 			});
 
 	}
@@ -140,7 +149,9 @@ export class CaptainComponent implements OnInit {
 	}
 
 	publishGameState() : void {
-		this.pubnub.publish({message: this.gameState, channel: "kmaru-" + this.boardId});
+		if(this.engaged === true) {
+			this.pubnub.publish({message: this.gameState, channel: "kmaru-" + this.boardId});
+		}
 	}
 
 }
