@@ -4,9 +4,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {PubNubAngular} from "pubnub-angular2";
 
 // import components
-//import {SplashComponent} from "./splash/splash.component";
-//import {ConstituentComponent} from "./constituent/constituent.component";
-//import {SenatorComponent} from "./senator/senator.component";
 import {HomeComponent} from "./home/home.component";
 import {BoardComponent} from "./board/board.component";
 import {LeaderboardComponent} from "./leaderboard/leaderboard.component";
@@ -18,8 +15,6 @@ import {OptionsComponent} from "./options/options.component";
 import {JoinedComponent} from "./joined/joined.component";
 
 //import services
-//import {ConstituentService} from "./shared/services/constituent.service";
-//import {SenatorService} from "./shared/services/senator.service";
 import {BoardService} from "./shared/services/board.service";
 import {SessionService} from "./shared/services/session.service";
 import {LedgerService} from "./shared/services/ledger.service";
@@ -52,9 +47,6 @@ export const allAppComponents = [
 	CaptainComponent,
 	OptionsComponent,
 	JoinedComponent
-	//ConstituentComponent,
-	//SenatorComponent,
-	//SplashComponent
 ];
 
 //setup routes
@@ -68,9 +60,6 @@ export const routes: Routes = [
 	{path: "captain/:boardId", component: CaptainComponent},
 	{path: "options", component: OptionsComponent},
 	{path: "joined", component: JoinedComponent}
-	//{path: "constituent", component: ConstituentComponent},
-	//{path: "senator", component: SenatorComponent},
-	//{path: "", component: SplashComponent}
 ];
 
 
