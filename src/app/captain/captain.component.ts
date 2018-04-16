@@ -11,6 +11,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Status} from "../shared/classes/status";
 import {CardService} from "../shared/services/card.service";
 import {Category} from "../shared/classes/category";
+import {PubNubAngular} from "pubnub-angular2";
 
 declare const $: any;
 @Component({
@@ -35,7 +36,7 @@ export class CaptainComponent implements OnInit {
 	@ViewChild(LeaderboardComponent) leaderboardComponent: LeaderboardComponent;
 	@ViewChildren(BoardComponent) gameComponents: QueryList<BoardComponent>;
 
-	constructor(protected ledgerService:LedgerService, protected route:ActivatedRoute, protected formBuilder: FormBuilder, protected cardService:CardService) {
+	constructor(protected ledgerService:LedgerService, protected pubnub: PubNubAngular, protected route:ActivatedRoute, protected formBuilder: FormBuilder, protected cardService:CardService) {
 		this.gameState = {
 			boardName: "",
 			finalQuestion: "",
@@ -48,6 +49,11 @@ export class CaptainComponent implements OnInit {
 			this.categories[i] = null;
 			this.gameState.cards.push({categoryName: "", availableCards: []});
 		}
+		this.pubnub.init({
+			publishKey: "pub-c-f4761826-34d5-4b1c-8977-ce66a5199a53",
+			subscribeKey: "sub-c-4c7ad82a-141f-11e8-acae-aa071d12b3f5",
+			ssl: true
+		});
 	}
 
 	ngOnInit() : void {
@@ -58,6 +64,7 @@ export class CaptainComponent implements OnInit {
 			select:["",[Validators.required]]
 		});
 		this.getCardId();
+		this.pubnub.subscribe({channels: "kmaru-" + this.boardId});
 	}
 
 	disableCard() :  void {
@@ -99,6 +106,7 @@ export class CaptainComponent implements OnInit {
 
 	engage() : void {
 		this.engaged = true;
+		this.publishGameState();
 	}
 
  	loadLeaderboard() : void {
@@ -111,6 +119,7 @@ export class CaptainComponent implements OnInit {
 					newLeaderboard.push({username: player.profileUsername, points: player.info});
 				}
 				this.gameState.leaderboard = newLeaderboard;
+				this.publishGameState();
 			});
 
 	}
@@ -128,6 +137,10 @@ export class CaptainComponent implements OnInit {
 		let index = categoryData.index;
 		this.categories[index] = categoryData.category;
 		this.gameState.cards[index].categoryName = this.categories[index].categoryName;
+	}
+
+	publishGameState() : void {
+		this.pubnub.publish({message: this.gameState, channel: "kmaru-" + this.boardId});
 	}
 
 }
