@@ -54,7 +54,7 @@ export const routes: Routes = [
 	{path: "card", component: CardComponent},
 	{path: "captain/:boardId", component: CaptainComponent},
 	{path: "options", component: OptionsComponent},
-	{path: "joined", component: JoinedComponent}
+	{path: "joined/:boardId", component: JoinedComponent}
 ];
 
 

@@ -63,7 +63,7 @@ export class OptionsComponent implements OnInit {
 				this.status = status;
 				if(this.status.status === 200) {
 					console.log("joined!");
-					this.router.navigate(["joined"]);
+					this.router.navigate(["joined", this.joinForm.value.id]);
 				} else {
 					console.log("Invalid Board");
 				}
