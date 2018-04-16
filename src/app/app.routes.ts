@@ -24,17 +24,12 @@ import {SignUpService} from "./shared/services/signup.service";
 import {SignInService} from "./shared/services/sign.in.service";
 import {AuthService} from "./shared/services/auth.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
-
+import {JoinService} from "./shared/services/join.service";
 
 //import interceptors
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 import {APP_BASE_HREF} from "@angular/common";
 import {CookieService} from "ng2-cookies";
-import {JoinService} from "./shared/services/join.service";
-
-
-
-
 
 //create array of components
 export const allAppComponents = [
