@@ -590,10 +590,28 @@ class Ledger implements \JsonSerializable {
 		$parameters = ["ledgerBoardId" => $ledgerBoardId->getBytes()];
 		$statement->execute($parameters);
 
+		// custom sort the array of results
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		$result = $statement->fetchAll();
+		usort($result, function($left, $right) {
+			if($left["points"] !== 0 && $right["points"] !== 0) {
+				return($right["points"] <=> $left["points"]);
+			} else {
+				if($left["points"] === 0 && $right["points"] === 0) {
+					return(strcmp($left["profileUsername"], $right["profileUsername"]));
+				}
+				if($left["points"] === 0) {
+					return(1);
+				}
+				if($right["points"] === 0) {
+					return(-1);
+				}
+			}
+		});
+
 		//build an array of players with their respective score
 		$leaderBoard = new JsonObjectStorage();
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
+		foreach($result as $row) {
 			try {
 				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileEmail"], $row["profileHash"], $row["profileName"], $row["profilePrivilege"], $row["profileSalt"], $row["profileUsername"]);
 				// attach points to profile object
