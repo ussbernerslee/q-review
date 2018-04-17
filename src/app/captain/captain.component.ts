@@ -23,6 +23,7 @@ declare const $: any;
 export class CaptainComponent implements OnInit {
 
 	boardId: string;
+	buzzedInPlayers: Profile[] = [];
 	players: Profile[] = [];
 	ledgerForm: FormGroup;
 	status: Status = null;
@@ -64,7 +65,9 @@ export class CaptainComponent implements OnInit {
 				console.log(pubnubMessage);
 				if(pubnubMessage.message.command === "buzz-in") {
 					let buzzInDate = new Date(+pubnubMessage.timetoken / 10000);
+					let player = parent.players.find(player => player.profileUsername === pubnubMessage.message.username);
 					parent.gameState.queue.push({username: pubnubMessage.message.username, timestamp: buzzInDate});
+					parent.buzzedInPlayers.push(player);
 				}
 			}
 		});
@@ -87,6 +90,9 @@ export class CaptainComponent implements OnInit {
 				game.availableCards[cardIndex] = false;
 			}
 		});
+		this.buzzedInPlayers = [];
+		this.gameState.queue = [];
+		this.publishGameState();
 	}
 
 	plus(): void {

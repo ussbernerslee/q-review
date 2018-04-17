@@ -50,7 +50,7 @@
 						<div class="input-group mb-3">
 							<select class="custom-select rounded-0" id="inputGroupSelect01" formControlName="select">
 								<option selected>Choose a player to answer the question</option>
-								<option id="activePlayer" [value]= "player.profileId" *ngFor="let player of players">{{ player.profileUsername }}</option>
+								<option id="activePlayer" [value]= "player.profileId" *ngFor="let player of buzzedInPlayers">{{ player.profileUsername }}</option>
 							</select>
 							<button type="button" class="btn btn-sm btn-success rounded-0 text-white" (click)="plus()"><i class="fas fa-thumbs-up"></i></button>
 							<button type="button" class="btn btn-sm btn-danger rounded-0" (click)="subtract()"><i class="fas fa-thumbs-down"></i></button>
