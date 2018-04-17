@@ -114,7 +114,7 @@ export class CaptainComponent implements OnInit {
 		this.ledgerService.postLedger(ledger)
 			.subscribe(status => this.status = status);
 		this.loadLeaderboard();
-
+		this.buzzedInPlayers.shift();
 	}
 
 	getCardId(): void {
