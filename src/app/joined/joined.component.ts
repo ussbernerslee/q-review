@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from "@angular/core";
 import {PubNubAngular} from "pubnub-angular2";
 import {ActivatedRoute} from "@angular/router";
+import {AuthService} from "../shared/services/auth.service";
 
 
 @Component({
@@ -11,9 +12,9 @@ import {ActivatedRoute} from "@angular/router";
 export class JoinedComponent implements OnInit {
 	boardId: string;
 	canBuzzIn: boolean = true;
+	profileUsername: string = this.authService.decodeJwt().auth.profileUsername;
 
-
-	constructor(protected pubnub: PubNubAngular, protected route: ActivatedRoute) {
+	constructor(protected authService: AuthService, protected pubnub: PubNubAngular, protected route: ActivatedRoute) {
 		let parent = this;
 		this.pubnub.init({
 			publishKey: "pub-c-f4761826-34d5-4b1c-8977-ce66a5199a53",
@@ -43,6 +44,6 @@ export class JoinedComponent implements OnInit {
 
 	buzzIn(): void {
 		this.canBuzzIn = false;
-		this.pubnub.publish({message: {command: "buzz-in", username: localStorage.getItem("username")}, channel: "kmaru-" + this.boardId});
+		this.pubnub.publish({message: {command: "buzz-in", username: this.profileUsername}, channel: "kmaru-" + this.boardId});
 	}
 }

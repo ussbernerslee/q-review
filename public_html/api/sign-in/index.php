@@ -74,7 +74,8 @@ try {
 			//create the Auth payload
 			$authObject = (object) [
 				"profileId" =>$profile->getProfileId(),
-				"profileEmail" => $profile->getProfileEmail()
+				"profileEmail" => $profile->getProfileEmail(),
+				"profileUsername" => $profile->getProfileUsername()
 			];
 			// create and set th JWT TOKEN
 			setJwtAndAuthHeader("auth",$authObject);

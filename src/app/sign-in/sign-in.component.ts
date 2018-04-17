@@ -52,7 +52,6 @@ export class SignInComponent implements OnInit {
 			.subscribe(status => {
 				this.status = status;
 				if(this.status.status === 200) {
-					localStorage.setItem("username", this.signInForm.value.profileEmail)
 					this.sessionService.setSession();
 					this.signInForm.reset();
 					this.router.navigate(["options"]);
