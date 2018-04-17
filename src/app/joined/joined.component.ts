@@ -43,6 +43,6 @@ export class JoinedComponent implements OnInit {
 
 	buzzIn(): void {
 		this.canBuzzIn = false;
-		this.pubnub.publish({message: localStorage.getItem("username"), channel: "kmaru-" + this.boardId});
+		this.pubnub.publish({message: {command: "buzz-in", username: localStorage.getItem("username")}, channel: "kmaru-" + this.boardId});
 	}
 }

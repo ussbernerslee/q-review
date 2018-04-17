@@ -15,6 +15,7 @@ import {Category} from "../shared/classes/category";
 import {PubNubAngular} from "pubnub-angular2";
 
 declare const $: any;
+
 @Component({
 	template: require("./captain.html")
 })
@@ -26,8 +27,8 @@ export class CaptainComponent implements OnInit {
 	ledgerForm: FormGroup;
 	status: Status = null;
 	card: Card;
-	numGames : number = 4;
-	placeholderArray : any[] = new Array(this.numGames);
+	numGames: number = 4;
+	placeholderArray: any[] = new Array(this.numGames);
 	cards: Card[][] = [];
 	categories: Category[] = [];
 	gameState: any = {};
@@ -38,7 +39,7 @@ export class CaptainComponent implements OnInit {
 	@ViewChild(LeaderboardComponent) leaderboardComponent: LeaderboardComponent;
 	@ViewChildren(BoardComponent) gameComponents: QueryList<BoardComponent>;
 
-	constructor(protected ledgerService:LedgerService, protected pubnub: PubNubAngular, protected route:ActivatedRoute, protected formBuilder: FormBuilder, protected cardService:CardService) {
+	constructor(protected ledgerService: LedgerService, protected pubnub: PubNubAngular, protected route: ActivatedRoute, protected formBuilder: FormBuilder, protected cardService: CardService) {
 		this.gameState = {
 			boardName: "",
 			finalQuestion: "",
@@ -58,22 +59,26 @@ export class CaptainComponent implements OnInit {
 			subscribeKey: "sub-c-4c7ad82a-141f-11e8-acae-aa071d12b3f5",
 			ssl: true
 		});
-		this.pubnub.addListener({message: function(pubnubMessage: any) {
-			console.log(pubnubMessage);
-			parent.playerMessage = pubnubMessage;
+		this.pubnub.addListener({
+			message: function(pubnubMessage: any) {
+				console.log(pubnubMessage);
+				if(pubnubMessage.message.command === "buzz-in") {
+					let buzzInDate = new Date(+pubnubMessage.timetoken / 10000);
+					parent.gameState.queue.push({username: pubnubMessage.message.username, timestamp: buzzInDate});
+				}
 			}
 		});
 	}
 
-	ngOnInit() : void {
+	ngOnInit(): void {
 		this.boardId = this.route.snapshot.params.boardId;
 		this.ledgerForm = this.formBuilder.group({
-			select:["",[Validators.required]]
+			select: ["", [Validators.required]]
 		});
 		this.getCardId();
 	}
 
-	disableCard() :  void {
+	disableCard(): void {
 		$("#ledger-modal").modal('hide');
 		this.gameComponents.forEach(game => {
 			let cardIndex = game.cards.findIndex(card => card.cardId === this.card.cardId);
@@ -84,39 +89,39 @@ export class CaptainComponent implements OnInit {
 		});
 	}
 
-	plus() : void {
+	plus(): void {
 		let ledger: Ledger = new Ledger(this.boardId, this.card.cardId, this.ledgerForm.value.select, this.card.cardPoints, "1");
 		this.ledgerService
 			.postLedger(ledger)
 			.subscribe(status => {
 				this.status = status;
-				if (status.status === 200){
+				if(status.status === 200) {
 					this.disableCard();
 					this.loadLeaderboard();
 				}
 			});
-}
+	}
 
-	subtract() : void {
+	subtract(): void {
 		let ledger: Ledger = new Ledger(this.boardId, this.card.cardId, this.ledgerForm.value.select, -this.card.cardPoints, "1");
 
-			this.ledgerService.postLedger(ledger)
+		this.ledgerService.postLedger(ledger)
 			.subscribe(status => this.status = status);
 		this.loadLeaderboard();
 
 	}
 
-	getCardId() : void {
+	getCardId(): void {
 		this.cardService.cardObserver.subscribe(cards => this.card = cards);
 	}
 
-	engage() : void {
+	engage(): void {
 		this.engaged = true;
 		this.publishGameState();
 		this.pubnub.subscribe({channels: ["kmaru-" + this.boardId]});
 	}
 
- 	loadLeaderboard() : void {
+	loadLeaderboard(): void {
 		this.ledgerService
 			.getLedgerByLedgerBoardId(this.boardId)
 			.subscribe(profiles => {
@@ -133,7 +138,7 @@ export class CaptainComponent implements OnInit {
 
 	}
 
-	loadCards(cardData: any) : void {
+	loadCards(cardData: any): void {
 		let index = cardData.index;
 		this.cards[index] = cardData.cards;
 		this.gameState.cards[index].availableCards = [];
@@ -142,13 +147,13 @@ export class CaptainComponent implements OnInit {
 		}
 	}
 
-	loadCategories(categoryData: any) : void {
+	loadCategories(categoryData: any): void {
 		let index = categoryData.index;
 		this.categories[index] = categoryData.category;
 		this.gameState.cards[index].categoryName = this.categories[index].categoryName;
 	}
 
-	publishGameState() : void {
+	publishGameState(): void {
 		if(this.engaged === true) {
 			this.pubnub.publish({message: this.gameState, channel: "kmaru-" + this.boardId});
 		}
