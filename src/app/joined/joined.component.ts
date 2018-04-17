@@ -12,6 +12,7 @@ import {AuthService} from "../shared/services/auth.service";
 export class JoinedComponent implements OnInit {
 	boardId: string;
 	canBuzzIn: boolean = true;
+	gameState: any = {};
 	profileUsername: string = this.authService.decodeJwt().auth.profileUsername;
 
 	constructor(protected authService: AuthService, protected pubnub: PubNubAngular, protected route: ActivatedRoute) {
@@ -22,6 +23,12 @@ export class JoinedComponent implements OnInit {
 			ssl: true
 		});
 		this.pubnub.addListener({message: function(pubnubMessage: any) {
+				if(pubnubMessage.message.queue && pubnubMessage.message.queue.length === 0) {
+					parent.canBuzzIn = true;
+				}
+				if(pubnubMessage.message.cards && pubnubMessage.message.cards.length > 0) {
+					parent.gameState = pubnubMessage.message;
+				}
 				console.log(pubnubMessage);
 			}
 		});
