@@ -64,27 +64,27 @@ try {
 			$cards = Card::getCardByCardCategoryId($pdo, $cardCategoryId)->toArray();
 			if($cards !== null) {
 
-				$cardsInTable = [];
-				for($i=0; $i < count($cards); $i++) {
-					$cardsInTable[] = (object)["cardId" => $cards[$i]->getCardId(), "cardAnswer" => $cards[$i]->getCardAnswer(), "cardPoints" => $cards[$i]->getCardPoints(), "cardQuestion" => $cards[$i]->getCardQuestion()];
-				}
-
-				// sorts $cards by point value from least to greatest
-				usort($cardsInTable, function($leftCard, $rightCard) {
-					// spaceship operator checks less than, equal to, and greater than returning -1,0,and 1 respectively
-					return($leftCard->cardPoints <=> $rightCard->cardPoints);
-				});
-
-				for($i = 0; $i < count($cardsInTable) - 1; $i++) {
-					if($cardsInTable[$i]->cardPoints === $cardsInTable[$i + 1]->cardPoints) {
-						$deleteIndex = random_int(0, 1) + $i;
-						unset($cardsInTable[$deleteIndex]);
-						$cardsInTable = array_combine(range(0, count($cardsInTable) - 1), $cardsInTable);
-						$i--;
+				$candidateCard = null;
+				$candidateCount = 0;
+				$candidatePoints = 0;
+				$chosenCards = [];
+				foreach($cards as $card) {
+					if($card->cardPoints !== $candidatePoints) {
+						if($candidateCard !== null) {
+							$chosenCards[] = $candidateCard;
+						}
+						$candidateCard = $card;
+						$candidateCount = 1;
+						$candidatePoints = $card->cardPoints;
+					} else {
+						$candidateCount++;
+						if(random_int(1, $candidateCount) === 1) {
+							$candidateCard = $card;
+						}
 					}
 				}
 
-				$reply->data = $cardsInTable;
+				$reply->data = $chosenCards;
 			}
 		} else if(empty($cardPoints) === false) {
 		$cards = Card::getCardByCardPoints($pdo, $cardPoints)->toArray();
