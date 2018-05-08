@@ -69,19 +69,23 @@ try {
 				$candidatePoints = 0;
 				$chosenCards = [];
 				foreach($cards as $card) {
-					if($card->cardPoints !== $candidatePoints) {
+					if($card->getCardPoints() !== $candidatePoints) {
 						if($candidateCard !== null) {
 							$chosenCards[] = $candidateCard;
 						}
 						$candidateCard = $card;
 						$candidateCount = 1;
-						$candidatePoints = $card->cardPoints;
+						$candidatePoints = $card->getCardPoints();
 					} else {
 						$candidateCount++;
 						if(random_int(1, $candidateCount) === 1) {
 							$candidateCard = $card;
 						}
 					}
+				}
+
+				if($candidateCard !== null) {
+					$chosenCards[] = $candidateCard;
 				}
 
 				$reply->data = $chosenCards;

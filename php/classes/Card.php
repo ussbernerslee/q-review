@@ -301,7 +301,7 @@ class Card implements \JsonSerializable {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		// create query template
-		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card WHERE cardCategoryId = :cardCategoryId";
+		$query = "SELECT cardId, cardCategoryId, cardAnswer, cardPoints, cardQuestion FROM card WHERE cardCategoryId = :cardCategoryId ORDER BY cardPoints";
 		$statement = $pdo->prepare($query);
 		// bind the card category id to the place holder in the template
 		$parameters = ["cardCategoryId" => $cardCategoryId->getBytes()];
